@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!-- ALIM.my Freelancer Protections Resource Page | March 2026 | Instagram: @artxlawmas -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Protections - ALIM.my</title>
+    <meta name="description" content="Interactive tools and guides for Malaysian freelance creatives. Invoice disputes, scope creep calculator, contract builder, employment quiz, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A; --foreground: #F5F5F5; --card: #141414;
+            --primary: #E53E3E; --accent: #FFD700; --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3; --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA; --foreground: #0A0A0A; --card: #FFFFFF;
+            --muted: #525252; --border: #E5E7EB;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--foreground); transition: background-color 0.4s ease, color 0.4s ease; overflow-x: hidden; }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); z-index: 9999; width: 0%; transition: width 0.1s linear; }
+        .gradient-text { background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+        .magnetic-btn { position: relative; transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease; }
+        .magnetic-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(229,62,62,0.3); }
+        .card-hover { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.4s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .nav-link { position: relative; } .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; } .nav-link:hover::after { width: 100%; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--background); } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        #mobile-menu.open { max-height: 400px; padding-top: 1rem; padding-bottom: 1rem; }
+
+        /* Tool cards */
+        .tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; }
+        .tool-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid var(--border); background: var(--background); color: var(--foreground); font-family: inherit; font-size: 0.9rem; transition: border-color 0.3s; }
+        .tool-input:focus { outline: none; border-color: var(--primary); }
+        .tool-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23A3A3A3' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+        .tool-btn { padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+        .tool-btn-primary { background: var(--primary); color: #fff; } .tool-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .tool-btn-outline { background: transparent; border: 2px solid var(--border); color: var(--foreground); } .tool-btn-outline:hover { border-color: var(--primary); }
+        .bar-fill { height: 100%; border-radius: 0.5rem; transition: width 1s cubic-bezier(0.16,1,0.3,1); }
+        .result-box { background: var(--background); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; margin-top: 1rem; }
+
+        /* Flowchart */
+        .flow-step { padding: 1rem 1.25rem; border-radius: 0.75rem; border: 2px solid var(--border); cursor: pointer; transition: all 0.4s; text-align: center; font-weight: 600; font-size: 0.9rem; }
+        .flow-step:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .flow-step.active { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 15%, var(--card)); }
+        .flow-arrow { color: var(--muted); font-size: 1.5rem; transition: color 0.4s; }
+        .flow-arrow.active { color: var(--primary); }
+
+        /* Quiz */
+        .quiz-option { padding: 0.75rem 1.25rem; border-radius: 0.75rem; border: 2px solid var(--border); cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+        .quiz-option:hover { border-color: var(--accent); }
+        .quiz-option.selected-yes { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 15%, var(--card)); }
+        .quiz-option.selected-no { border-color: #22c55e; background: color-mix(in srgb, #22c55e 15%, var(--card)); }
+        .meter-fill { height: 1rem; border-radius: 0.5rem; transition: width 0.8s cubic-bezier(0.16,1,0.3,1), background-color 0.5s; }
+
+        /* Rights cards */
+        .rights-card { perspective: 1000px; cursor: pointer; }
+        .rights-card-inner { position: relative; transition: transform 0.6s; transform-style: preserve-3d; }
+        .rights-card.flipped .rights-card-inner { transform: rotateY(180deg); }
+        .rights-card-front, .rights-card-back { backface-visibility: hidden; border-radius: 1rem; border: 1px solid var(--border); background: var(--card); padding: 1.5rem; min-height: 200px; }
+        .rights-card-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotateY(180deg); overflow-y: auto; }
+
+        @keyframes pulseAlert { 0%,100% { box-shadow: 0 0 0 0 rgba(229,62,62,0.4); } 50% { box-shadow: 0 0 20px 8px rgba(229,62,62,0.2); } }
+        .pulse-alert { animation: pulseAlert 1.5s ease infinite; }
+        @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeSlideIn 0.5s ease forwards; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="scroll-progress"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]" style="background-color: color-mix(in srgb, var(--card) 80%, transparent);">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-3 group">
+                <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8 transition-transform group-hover:rotate-12 duration-300">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="../../get-help/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Get Help</a>
+                <a href="../../our-work/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../../resources/" class="nav-link text-[var(--foreground)]">Resources</a>
+                <a href="../../join-us/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../../about-alim/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors p-2 rounded-lg hover:bg-[var(--border)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../../about-alim/#contact" class="hidden md:inline-block magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg text-sm">Get in Touch</a>
+                <button id="mobile-menu-button" class="md:hidden text-[var(--foreground)] focus:outline-none p-2" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 space-y-1 border-t border-[var(--border)]">
+            <a href="../../get-help/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Get Help</a>
+            <a href="../../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Our Work</a>
+            <a href="../../resources/" class="block text-[var(--foreground)] py-3 text-sm font-medium">Resources</a>
+            <a href="../../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Join the Movement</a>
+            <a href="../../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">About Us</a>
+            <a href="../../about-alim/#contact" class="block mt-2 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2.5 rounded-lg text-sm">Get in Touch</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="py-20 md:py-28 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(var(--primary) 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="reveal">
+                    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-[var(--primary)] text-[var(--primary)] mb-6">Interactive Toolkit</span>
+                    <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">Freelancer<br><span class="gradient-text">Protections</span></h1>
+                    <p class="text-lg text-[var(--muted)] max-w-2xl mx-auto">Six interactive tools to help Malaysian freelance creatives protect their work, get paid, and know their rights.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 1: INVOICE DISPUTE FLOWCHART -->
+        <section class="py-16 md:py-24" data-track="invoice">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 01</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">Invoice Dispute Flowchart</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Select how overdue your invoice is and follow the recommended escalation path.</p>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <p class="font-semibold mb-4 text-sm">How overdue is the payment?</p>
+                    <div id="flow-options" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                        <div class="flow-step" data-days="7" onclick="selectOverdue(7)">7 days</div>
+                        <div class="flow-step" data-days="14" onclick="selectOverdue(14)">14 days</div>
+                        <div class="flow-step" data-days="30" onclick="selectOverdue(30)">30 days</div>
+                        <div class="flow-step" data-days="60" onclick="selectOverdue(60)">60+ days</div>
+                    </div>
+                    <div id="flow-result" class="hidden fade-in">
+                        <p class="text-xs font-bold uppercase tracking-widest text-[var(--accent)] mb-4">Recommended Escalation Path</p>
+                        <div id="flow-steps" class="space-y-3"></div>
+                        <div id="flow-advice" class="result-box mt-6 text-sm text-[var(--muted)] leading-relaxed"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 2: SCOPE CREEP CALCULATOR -->
+        <section class="py-16 md:py-24" data-track="scope">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 02</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">Scope Creep Calculator</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Quantify how much extra work you're doing beyond the original agreement.</p>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Original Deliverables</label>
+                            <input type="number" id="scope-original" class="tool-input" placeholder="e.g. 5" min="1">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Additional Requests</label>
+                            <input type="number" id="scope-additional" class="tool-input" placeholder="e.g. 3" min="0">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Original Fee (RM)</label>
+                            <input type="number" id="scope-fee" class="tool-input" placeholder="e.g. 3000" min="0">
+                        </div>
+                    </div>
+                    <button class="tool-btn tool-btn-primary" onclick="calcScope()">Calculate Scope Creep</button>
+                    <div id="scope-result" class="hidden fade-in mt-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-semibold">Scope Creep</span>
+                            <span id="scope-pct" class="text-2xl font-black"></span>
+                        </div>
+                        <div class="w-full h-4 bg-[var(--border)] rounded-full overflow-hidden">
+                            <div id="scope-bar" class="bar-fill" style="width:0%"></div>
+                        </div>
+                        <div id="scope-extra" class="result-box text-sm text-[var(--muted)] leading-relaxed"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 3: CONTRACT CLAUSE BUILDER -->
+        <section class="py-16 md:py-24" data-track="contract">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 03</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">Contract Clause Builder</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Build key clauses for your freelance agreement in real time.</p>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Payment Terms</label>
+                            <select id="clause-payment" class="tool-input tool-select" onchange="buildContract()">
+                                <option value="">Select...</option>
+                                <option value="50% upfront, 50% on completion">50/50 Split</option>
+                                <option value="Full payment upfront before work begins">100% Upfront</option>
+                                <option value="Payment within 14 days of invoice">Net 14</option>
+                                <option value="Payment within 30 days of invoice">Net 30</option>
+                                <option value="3 milestone payments of equal portions">3 Milestones</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Revision Limits</label>
+                            <select id="clause-revisions" class="tool-input tool-select" onchange="buildContract()">
+                                <option value="">Select...</option>
+                                <option value="2 rounds of revisions included; additional revisions at RM150/hour">2 Rounds</option>
+                                <option value="3 rounds of revisions included; additional revisions at RM150/hour">3 Rounds</option>
+                                <option value="Unlimited minor revisions; major changes quoted separately">Unlimited Minor</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Kill Fee</label>
+                            <select id="clause-kill" class="tool-input tool-select" onchange="buildContract()">
+                                <option value="">Select...</option>
+                                <option value="If terminated by Client before completion, 25% of total fee is payable as a kill fee">25% Kill Fee</option>
+                                <option value="If terminated by Client before completion, 50% of total fee is payable as a kill fee">50% Kill Fee</option>
+                                <option value="No kill fee; payment only for completed milestones">No Kill Fee</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">IP Ownership</label>
+                            <select id="clause-ip" class="tool-input tool-select" onchange="buildContract()">
+                                <option value="">Select...</option>
+                                <option value="All intellectual property transfers to Client upon full payment">Full Transfer on Payment</option>
+                                <option value="Freelancer retains IP; Client receives a perpetual, non-exclusive licence">Licence Only</option>
+                                <option value="Freelancer retains IP; Client receives exclusive licence for 2 years">Exclusive 2-Year Licence</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Late Payment Penalty</label>
+                            <select id="clause-late" class="tool-input tool-select" onchange="buildContract()">
+                                <option value="">Select...</option>
+                                <option value="Late payments incur 1.5% interest per month on the outstanding balance">1.5%/month Interest</option>
+                                <option value="Late payments incur 8% per annum interest on the outstanding balance (as per Section 75 of the Contracts Act 1950)">8% p.a. (Contracts Act)</option>
+                                <option value="No late payment penalty">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="contract-output" class="hidden">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-[var(--accent)] mb-3">Generated Clauses</h4>
+                        <div id="contract-text" class="result-box text-sm leading-relaxed font-mono whitespace-pre-wrap"></div>
+                        <button class="tool-btn tool-btn-outline mt-3 text-sm" onclick="copyContract()">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 4: EMPLOYEE QUIZ -->
+        <section class="py-16 md:py-24" data-track="quiz">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 04</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">"Am I an Employee?" Quiz</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Answer 6 questions about your work arrangement to see if you might be misclassified.</p>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div id="quiz-questions" class="space-y-5"></div>
+                    <div class="mt-6">
+                        <p class="text-sm font-semibold mb-2">Employment Indicator Meter</p>
+                        <div class="w-full h-4 bg-[var(--border)] rounded-full overflow-hidden">
+                            <div id="quiz-meter" class="meter-fill" style="width:0%; background: #22c55e;"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                            <span>Freelancer</span><span>Likely Employee</span>
+                        </div>
+                    </div>
+                    <div id="quiz-result" class="hidden result-box fade-in mt-4 text-sm leading-relaxed"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 5: LATE PAYMENT INTEREST CALCULATOR -->
+        <section class="py-16 md:py-24" data-track="interest">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 05</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">Late Payment Interest Calculator</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Calculate how much you are owed including interest on overdue invoices.</p>
+                </div>
+                <div class="tool-card reveal reveal-delay-1">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Invoice Amount (RM)</label>
+                            <input type="number" id="lp-amount" class="tool-input" placeholder="e.g. 5000" min="0">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Due Date</label>
+                            <input type="date" id="lp-due" class="tool-input">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Interest Rate (% p.a.)</label>
+                            <input type="number" id="lp-rate" class="tool-input" placeholder="e.g. 8" min="0" step="0.5" value="8">
+                        </div>
+                    </div>
+                    <button class="tool-btn tool-btn-primary" onclick="calcInterest()">Calculate</button>
+                    <div id="lp-result" class="hidden fade-in mt-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div class="result-box text-center">
+                                <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Days Overdue</p>
+                                <p id="lp-days" class="text-3xl font-black text-[var(--primary)]">0</p>
+                            </div>
+                            <div class="result-box text-center">
+                                <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Interest Accrued</p>
+                                <p id="lp-interest" class="text-3xl font-black text-[var(--accent)]">RM 0</p>
+                            </div>
+                            <div class="result-box text-center">
+                                <p class="text-xs text-[var(--muted)] uppercase tracking-wide mb-1">Total Owed</p>
+                                <p id="lp-total" class="text-3xl font-black" style="color: var(--foreground);">RM 0</p>
+                            </div>
+                        </div>
+                        <div id="lp-timeline" class="result-box text-sm text-[var(--muted)] leading-relaxed"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION 6: RIGHTS DASHBOARD -->
+        <section class="py-16 md:py-24" data-track="rights">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2 block">Tool 06</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-3">Your Rights Dashboard</h2>
+                    <p class="text-[var(--muted)] mb-8 max-w-xl">Tap any card to flip and see the Malaysian law behind each right, plus your action plan.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal reveal-delay-1" id="rights-grid"></div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background: radial-gradient(ellipse at center, var(--primary), transparent 70%);"></div>
+            <div class="container mx-auto px-6 text-center relative z-10 reveal">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Need personalised help?</h2>
+                <p class="text-[var(--muted)] mb-8 max-w-lg mx-auto">Our volunteer lawyers can review your specific situation and advise on next steps -- completely free for Malaysian creatives.</p>
+                <a href="../../get-help/" class="magnetic-btn inline-block bg-[var(--primary)] text-[var(--primary-foreground)] font-bold px-8 py-3 rounded-lg text-base">Get Free Legal Help</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-sm text-[var(--muted)]">@artxlawmas</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ========== COMMON: Scroll, Theme, Menu, Reveal ==========
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                const s = document.documentElement.scrollTop || document.body.scrollTop;
+                const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                progressBar.style.width = (s / h) * 100 + '%';
+            });
+        }, { passive: true });
+
+        const applyTheme = (theme) => {
+            const d = document.getElementById('theme-icon-dark'), l = document.getElementById('theme-icon-light');
+            if (theme === 'light') { document.documentElement.classList.add('light'); d.classList.add('hidden'); l.classList.remove('hidden'); }
+            else { document.documentElement.classList.remove('light'); d.classList.remove('hidden'); l.classList.add('hidden'); }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const t = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', t); applyTheme(t);
+        });
+
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        });
+
+        const stt = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => { stt.classList.toggle('hidden', window.pageYOffset <= 400); }, { passive: true });
+        stt.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        const ro = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+        // ========== 1. INVOICE DISPUTE FLOWCHART ==========
+        const flowData = {
+            7: {
+                steps: ['Friendly email reminder', 'Follow up with a phone call', 'Send a formal written demand with 7-day deadline'],
+                advice: '<b>At 7 days overdue:</b> Most late payments are administrative oversights. Send a polite but clear reminder referencing your invoice number and due date. Under the Contracts Act 1950, a debt is due on the agreed date -- no "grace period" is legally required.'
+            },
+            14: {
+                steps: ['Second written reminder (firmer tone)', 'Pause any ongoing work', 'Issue formal Letter of Demand (14-day deadline)'],
+                advice: '<b>At 14 days overdue:</b> Escalate to a formal written notice. You have every right to pause ongoing work until payment is received. A Letter of Demand shows seriousness and is a prerequisite before court action in Malaysia.'
+            },
+            30: {
+                steps: ['Lawyer\'s Letter of Demand', 'Report to tribunal / mediation', 'File at Small Claims Court (up to RM5,000)', 'Consider Sessions Court for larger claims'],
+                advice: '<b>At 30 days overdue:</b> This is no longer an oversight. A lawyer\'s Letter of Demand (often RM300-500) frequently resolves disputes. For claims up to RM5,000, Malaysia\'s Small Claims Tribunal is fast and affordable (filing fee ~RM5-10). No lawyer needed at tribunal.'
+            },
+            60: {
+                steps: ['Final demand with legal action deadline', 'File Small Claims Court (up to RM5,000)', 'File Sessions Court (RM5,001 - RM1,000,000)', 'Engage collection agency as last resort'],
+                advice: '<b>At 60+ days overdue:</b> Strongly consider legal action. Small Claims Court handles up to RM5,000 with minimal costs. Sessions Court handles RM5,001 to RM1,000,000. Document all communications -- emails, WhatsApp messages, and contracts are admissible evidence in Malaysian courts.'
+            }
+        };
+
+        window.selectOverdue = function(days) {
+            document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+            document.querySelector('[data-days="'+days+'"]').classList.add('active');
+            const data = flowData[days];
+            const stepsEl = document.getElementById('flow-steps');
+            stepsEl.innerHTML = data.steps.map((s, i) => {
+                const colors = ['#22c55e','#eab308','#f97316','#ef4444'];
+                const c = colors[Math.min(i, colors.length-1)];
+                return (i > 0 ? '<div class="flex justify-center flow-arrow active">&darr;</div>' : '') +
+                    '<div class="result-box flex items-center gap-3 fade-in" style="animation-delay:'+i*0.12+'s;border-left:3px solid '+c+'"><span class="font-bold text-sm" style="color:'+c+'">'+(i+1)+'</span><span class="text-sm">'+s+'</span></div>';
+            }).join('');
+            document.getElementById('flow-advice').innerHTML = data.advice;
+            document.getElementById('flow-result').classList.remove('hidden');
+        };
+
+        // ========== 2. SCOPE CREEP CALCULATOR ==========
+        window.calcScope = function() {
+            const orig = parseInt(document.getElementById('scope-original').value) || 0;
+            const add = parseInt(document.getElementById('scope-additional').value) || 0;
+            const fee = parseFloat(document.getElementById('scope-fee').value) || 0;
+            if (!orig) return;
+            const pct = Math.round((add / orig) * 100);
+            const extraFee = Math.round(fee * (add / orig));
+            document.getElementById('scope-pct').textContent = pct + '%';
+            const bar = document.getElementById('scope-bar');
+            bar.style.width = '0%';
+            bar.style.background = pct <= 30 ? '#22c55e' : pct <= 60 ? '#eab308' : '#ef4444';
+            setTimeout(() => { bar.style.width = Math.min(pct, 100) + '%'; }, 50);
+            const card = document.querySelector('#scope-result').closest('.tool-card');
+            if (pct > 30) { card.classList.add('pulse-alert'); setTimeout(() => card.classList.remove('pulse-alert'), 4500); }
+            let msg = '<b>Scope creep: ' + pct + '%</b><br>';
+            if (fee) msg += 'Recommended additional fee: <b style="color:var(--accent)">RM ' + extraFee.toLocaleString() + '</b><br>';
+            if (pct <= 30) msg += 'This is within a manageable range. Document the extras and discuss billing.';
+            else if (pct <= 60) msg += '<span style="color:#eab308">Significant scope creep.</span> You should pause work and renegotiate the contract before proceeding.';
+            else msg += '<span style="color:#ef4444">Critical scope creep.</span> The project has fundamentally changed. A new contract and fee structure is warranted. Under Malaysian contract law, material changes to scope may constitute a new agreement.';
+            document.getElementById('scope-extra').innerHTML = msg;
+            document.getElementById('scope-result').classList.remove('hidden');
+        };
+
+        // ========== 3. CONTRACT CLAUSE BUILDER ==========
+        window.buildContract = function() {
+            const ids = ['clause-payment','clause-revisions','clause-kill','clause-ip','clause-late'];
+            const labels = ['PAYMENT TERMS','REVISIONS','TERMINATION / KILL FEE','INTELLECTUAL PROPERTY','LATE PAYMENT'];
+            let text = '', count = 0;
+            ids.forEach((id, i) => {
+                const v = document.getElementById(id).value;
+                if (v) { count++; text += (count) + '. ' + labels[i] + '\n   ' + v + '\n\n'; }
+            });
+            if (count) {
+                document.getElementById('contract-text').textContent = text.trim();
+                document.getElementById('contract-output').classList.remove('hidden');
+            } else {
+                document.getElementById('contract-output').classList.add('hidden');
+            }
+        };
+        window.copyContract = function() {
+            const t = document.getElementById('contract-text').textContent;
+            navigator.clipboard.writeText(t).then(() => {
+                const btn = document.querySelector('#contract-output .tool-btn-outline');
+                btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 2000);
+            });
+        };
+
+        // ========== 4. EMPLOYEE QUIZ ==========
+        const quizQs = [
+            { q: 'Does the client control when, where, and how you work?', tip: 'Employees are directed on methods; freelancers control their own process.' },
+            { q: 'Are you required to work exclusively for this client?', tip: 'Exclusivity is a strong indicator of employment.' },
+            { q: 'Does the client provide your tools and equipment?', tip: 'Freelancers typically use their own equipment.' },
+            { q: 'Are you paid a fixed salary (vs. per project)?', tip: 'Salary payments suggest employment rather than contract work.' },
+            { q: 'Are you entitled to EPF/SOCSO contributions from this client?', tip: 'Statutory deductions are an employment obligation.' },
+            { q: 'Has this arrangement lasted more than 12 continuous months?', tip: 'Long-term continuous engagement can indicate employment.' }
+        ];
+        let quizScore = 0;
+        const qEl = document.getElementById('quiz-questions');
+        quizQs.forEach((item, i) => {
+            qEl.innerHTML += '<div class="flex flex-col gap-2"><p class="text-sm font-semibold">' + (i+1) + '. ' + item.q + '</p><p class="text-xs text-[var(--muted)]">' + item.tip + '</p><div class="flex gap-3" data-qi="'+i+'"><button class="quiz-option" onclick="quizAnswer('+i+',true,this)">Yes</button><button class="quiz-option" onclick="quizAnswer('+i+',false,this)">No</button></div></div>';
+        });
+        const quizAnswered = new Array(quizQs.length).fill(null);
+        window.quizAnswer = function(i, yes, btn) {
+            const prev = quizAnswered[i];
+            quizAnswered[i] = yes;
+            const btns = btn.parentElement.querySelectorAll('.quiz-option');
+            btns.forEach(b => b.classList.remove('selected-yes','selected-no'));
+            btn.classList.add(yes ? 'selected-yes' : 'selected-no');
+            quizScore = quizAnswered.filter(a => a === true).length;
+            const pct = (quizScore / quizQs.length) * 100;
+            const meter = document.getElementById('quiz-meter');
+            meter.style.width = pct + '%';
+            meter.style.background = pct <= 33 ? '#22c55e' : pct <= 66 ? '#eab308' : '#ef4444';
+            // Show result when all answered
+            if (quizAnswered.every(a => a !== null)) {
+                const rEl = document.getElementById('quiz-result');
+                rEl.classList.remove('hidden');
+                if (quizScore <= 1) rEl.innerHTML = '<b style="color:#22c55e">Likely a genuine freelancer.</b><br>Your arrangement appears consistent with independent contracting. Keep clear contracts and invoices to maintain this distinction.';
+                else if (quizScore <= 3) rEl.innerHTML = '<b style="color:#eab308">Grey area -- some employment indicators.</b><br>Under the Employment Act 1955 and case law like <i>Hoh Kiang Ngan v Mahkamah Perusahaan</i>, Malaysian courts look at the "substance of the relationship." Consider clarifying your arrangement in writing.';
+                else rEl.innerHTML = '<b style="color:#ef4444">Strong indicators of employment.</b><br>You may be misclassified. Under Malaysian law, if the substance of your relationship is employment, you could be entitled to EPF, SOCSO, minimum wage, overtime, annual leave, and protections under the Employment Act 1955 regardless of what your contract says.';
+            }
+        };
+
+        // ========== 5. LATE PAYMENT INTEREST CALCULATOR ==========
+        window.calcInterest = function() {
+            const amt = parseFloat(document.getElementById('lp-amount').value) || 0;
+            const due = document.getElementById('lp-due').value;
+            const rate = parseFloat(document.getElementById('lp-rate').value) || 0;
+            if (!amt || !due) return;
+            const dueDate = new Date(due);
+            const today = new Date();
+            const diffMs = today - dueDate;
+            const days = Math.max(0, Math.floor(diffMs / (1000*60*60*24)));
+            const interest = Math.round((amt * (rate/100) * days / 365) * 100) / 100;
+            const total = amt + interest;
+            document.getElementById('lp-days').textContent = days;
+            document.getElementById('lp-interest').textContent = 'RM ' + interest.toLocaleString('en-MY', {minimumFractionDigits:2});
+            document.getElementById('lp-total').textContent = 'RM ' + total.toLocaleString('en-MY', {minimumFractionDigits:2});
+            // Timeline
+            const months = [1,3,6,12];
+            let timeline = '<b>Projection if unpaid:</b><br>';
+            months.forEach(m => {
+                const d = m * 30;
+                const int = Math.round((amt * (rate/100) * d / 365) * 100) / 100;
+                timeline += '<span style="color:var(--accent)">' + m + ' month' + (m>1?'s':'') + ':</span> RM ' + (amt+int).toLocaleString('en-MY',{minimumFractionDigits:2}) + ' (interest: RM ' + int.toLocaleString('en-MY',{minimumFractionDigits:2}) + ')<br>';
+            });
+            timeline += '<br><span class="text-xs">Interest calculated per Section 75 of the Contracts Act 1950. Courts typically award 5-8% p.a. for contractual debts.</span>';
+            document.getElementById('lp-timeline').innerHTML = timeline;
+            document.getElementById('lp-result').classList.remove('hidden');
+        };
+
+        // ========== 6. RIGHTS DASHBOARD ==========
+        const rightsData = [
+            { title: 'Right to Be Paid on Time', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>', back: '<b>Law:</b> Contracts Act 1950 -- once a contract is formed, payment terms are binding obligations.<br><br><b>Action:</b> Always specify payment terms in writing. If unpaid, issue a Letter of Demand, then file at the Small Claims Tribunal (up to RM5,000).' },
+            { title: 'Right to Own Your IP', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>', back: '<b>Law:</b> Copyright Act 1987 (s.26) -- the author is the first owner of copyright unless created under a contract of service (employment).<br><br><b>Action:</b> As a freelancer, you own your IP by default. Transfer it only explicitly in writing and only upon full payment.' },
+            { title: 'Right to Refuse Scope Creep', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>', back: '<b>Law:</b> Contracts Act 1950 (s.63) -- a contract can only be modified with mutual consent. Unilateral changes are not binding.<br><br><b>Action:</b> Define deliverables precisely. Any additions require a written variation agreement and additional compensation.' },
+            { title: 'Right to a Safe Environment', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"></path></svg>', back: '<b>Law:</b> Occupational Safety and Health Act 1994 covers all workplaces. Harassment is actionable under the Penal Code and Employment Act 1955 (s.81H).<br><br><b>Action:</b> Document incidents. Report to DOSH (workplace safety) or police (harassment). You can terminate contracts where safety is compromised.' },
+            { title: 'Right to Correct Classification', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>', back: '<b>Law:</b> Employment Act 1955 -- courts look at substance over form. Being called "freelancer" does not override the reality of the relationship.<br><br><b>Action:</b> If you are controlled like an employee, you may file a complaint with the Labour Department to be reclassified and claim statutory entitlements.' },
+            { title: 'Right to Data Privacy', icon: '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>', back: '<b>Law:</b> Personal Data Protection Act 2010 (PDPA) -- clients must handle your personal data lawfully and cannot share it without consent.<br><br><b>Action:</b> Request a privacy notice from clients. If your data is misused, lodge a complaint with the Personal Data Protection Commissioner.' }
+        ];
+        const rg = document.getElementById('rights-grid');
+        rightsData.forEach((r, i) => {
+            rg.innerHTML += '<div class="rights-card" onclick="this.classList.toggle(\'flipped\')" style="min-height:200px"><div class="rights-card-inner" style="min-height:200px"><div class="rights-card-front flex flex-col items-center justify-center text-center gap-3"><div class="text-[var(--primary)]">' + r.icon + '</div><h4 class="font-bold text-sm">' + r.title + '</h4><p class="text-xs text-[var(--muted)]">Tap to see the law</p></div><div class="rights-card-back"><h4 class="font-bold text-sm mb-3 text-[var(--accent)]">' + r.title + '</h4><p class="text-xs text-[var(--muted)] leading-relaxed">' + r.back + '</p></div></div></div>';
+        });
+
+    })();
+    </script>
+</body>
+</html>

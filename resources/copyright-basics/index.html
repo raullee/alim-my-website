@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<!-- ALIM.my Copyright Basics Interactive Guide | March 2026 | Instagram: @artxlawmas -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copyright Basics for Malaysian Artists - ALIM.my</title>
+    <meta name="description" content="A comprehensive, interactive guide to copyright law for Malaysian creatives. Learn about the Copyright Act 1987, fair dealing, moral rights, and how to protect your work.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #F5F5F5;
+            --card: #141414;
+            --primary: #E53E3E;
+            --accent: #FFD700;
+            --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3;
+            --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA;
+            --foreground: #0A0A0A;
+            --card: #FFFFFF;
+            --muted: #525252;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        /* Scroll progress bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Magnetic button effect */
+        .magnetic-btn {
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(229, 62, 62, 0.3);
+        }
+        .magnetic-btn:active {
+            transform: translateY(0px);
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Sticky header backdrop */
+        header {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        /* Smooth link underline */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* ============================================= */
+        /*  COPYRIGHT BASICS - INTERACTIVE COMPONENTS    */
+        /* ============================================= */
+
+        /* Progress tracker */
+        .progress-tracker {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        @media (max-width: 1279px) {
+            .progress-tracker { display: none; }
+        }
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .progress-dot.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: 0 0 12px rgba(229, 62, 62, 0.5);
+        }
+        .progress-dot .tooltip {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--foreground);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .progress-dot:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Timeline component */
+        .timeline-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+        .timeline-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 0;
+        }
+        .timeline-fill.animated {
+            width: var(--target-width);
+        }
+
+        /* Quiz component */
+        .quiz-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            background: var(--card);
+        }
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+        .quiz-option.correct {
+            border-color: #22C55E;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        .quiz-option.incorrect {
+            border-color: var(--primary);
+            background: rgba(229, 62, 62, 0.1);
+        }
+        .quiz-option.complex-answer {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Score counter */
+        .score-display {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Rights wheel */
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .wheel-segment {
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .wheel-segment:hover {
+            filter: brightness(1.2);
+        }
+        .wheel-segment.active {
+            filter: brightness(1.4) drop-shadow(0 0 8px rgba(229, 62, 62, 0.6));
+        }
+        .wheel-detail-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            opacity: 0;
+        }
+        .wheel-detail-panel.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* Fair dealing meter */
+        .meter-container {
+            height: 24px;
+            border-radius: 12px;
+            background: var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+        .meter-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+            width: 0%;
+        }
+        .meter-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Scenario slider */
+        .scenario-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            outline: none;
+            transition: background 0.3s;
+        }
+        .scenario-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(229, 62, 62, 0.4);
+            transition: transform 0.2s;
+        }
+        .scenario-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        .scenario-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Flowchart */
+        .flowchart-node {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .flowchart-node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .flowchart-connector {
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            margin: 0 auto;
+            transition: height 0.5s ease;
+        }
+        .flowchart-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0;
+            padding: 0 20px;
+        }
+        .flowchart-detail.open {
+            max-height: 500px;
+            opacity: 1;
+            padding: 16px 20px;
+        }
+
+        /* Flip cards */
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+            min-height: 200px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .flip-card-front {
+            background: var(--card);
+        }
+        .flip-card-back {
+            background: var(--card);
+            transform: rotateY(180deg);
+            border-color: var(--primary);
+        }
+
+        /* Animated counter */
+        @keyframes scorePopIn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .score-pop {
+            animation: scorePopIn 0.4s ease;
+        }
+
+        /* Pulse glow */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(229, 62, 62, 0); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Section active indicator for sidebar nav */
+        .section-nav-item {
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-left: 3px solid transparent;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .section-nav-item.active {
+            border-left-color: var(--primary);
+            color: var(--foreground);
+            font-weight: 600;
+        }
+        .section-nav-item:hover {
+            color: var(--foreground);
+        }
+
+        /* Tab navigation for fair dealing */
+        .scenario-tab {
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+        }
+        .scenario-tab.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border-color: var(--primary);
+        }
+        .scenario-tab:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--foreground);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb a {
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: var(--foreground);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]" style="background-color: color-mix(in srgb, var(--card) 80%, transparent);">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-3 group">
+                <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8 transition-transform group-hover:rotate-12 duration-300">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="../../get-help/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Get Help</a>
+                <a href="../../our-work/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../../resources/" class="nav-link text-[var(--foreground)]">Resources</a>
+                <a href="../../join-us/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../../about-alim/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors p-2 rounded-lg hover:bg-[var(--border)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../../about-alim/#contact" class="hidden md:inline-block magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg text-sm">
+                    Get in Touch
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-[var(--foreground)] focus:outline-none p-2" aria-label="Toggle menu">
+                    <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 space-y-1 border-t border-[var(--border)]">
+            <a href="../../get-help/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Get Help</a>
+            <a href="../../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Our Work</a>
+            <a href="../../resources/" class="block text-[var(--foreground)] py-3 text-sm font-medium">Resources</a>
+            <a href="../../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Join the Movement</a>
+            <a href="../../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">About Us</a>
+            <a href="../../about-alim/#contact" class="block mt-2 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2.5 rounded-lg text-sm">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- Progress Tracker (Desktop sidebar) -->
+    <nav class="progress-tracker" aria-label="Section navigation">
+        <div class="progress-dot" data-section="hero"><span class="tooltip">Top</span></div>
+        <div class="progress-dot" data-section="timeline"><span class="tooltip">Timeline</span></div>
+        <div class="progress-dot" data-section="quiz"><span class="tooltip">Quiz</span></div>
+        <div class="progress-dot" data-section="rights-wheel"><span class="tooltip">Rights</span></div>
+        <div class="progress-dot" data-section="fair-dealing"><span class="tooltip">Fair Dealing</span></div>
+        <div class="progress-dot" data-section="flowchart"><span class="tooltip">Action Plan</span></div>
+        <div class="progress-dot" data-section="myths"><span class="tooltip">Myth Busters</span></div>
+    </nav>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section id="hero" class="relative py-20 sm:py-28 flex items-center justify-center text-center px-6 bg-[var(--background)] overflow-hidden">
+            <div class="container mx-auto max-w-4xl relative z-10">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb flex items-center justify-center gap-2 text-sm text-[var(--muted)] mb-8 reveal">
+                    <a href="../../">Home</a>
+                    <span>/</span>
+                    <a href="../../resources/">Resources</a>
+                    <span>/</span>
+                    <span class="text-[var(--foreground)]">Copyright Basics</span>
+                </nav>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-[0.95] reveal">
+                    <span class="gradient-text">Copyright Basics</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--muted)] leading-relaxed reveal reveal-delay-1">
+                    Everything Malaysian creatives need to know about protecting their work under the <strong class="text-[var(--foreground)]">Copyright Act 1987</strong>.
+                </p>
+                <p class="mt-4 text-sm text-[var(--muted)] reveal reveal-delay-2">Interactive guide &middot; 7 sections &middot; ~15 min read</p>
+
+                <!-- Content Explored Counter -->
+                <div class="mt-8 flex justify-center reveal reveal-delay-3">
+                    <div class="inline-flex items-center gap-3 bg-[var(--card)] border border-[var(--border)] rounded-full px-5 py-2.5">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Explored</span>
+                        <span id="explored-counter" class="text-lg font-bold text-[var(--primary)] score-display">0</span>
+                        <span class="text-xs text-[var(--muted)]">/ 7 sections</span>
+                        <div class="w-20 h-1.5 rounded-full bg-[var(--border)] overflow-hidden">
+                            <div id="explored-bar" class="h-full rounded-full bg-[var(--primary)] transition-all duration-700" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none"></div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- INTRO: WHAT IS COPYRIGHT?      -->
+        <!-- ============================== -->
+        <section class="py-16 sm:py-20 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-3xl reveal">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">The Foundation</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">What Is Copyright?</h2>
+                <div class="mt-8 space-y-5 text-[var(--muted)] leading-relaxed text-base">
+                    <p>Copyright is an <strong class="text-[var(--foreground)]">automatic legal right</strong> that protects original creative works the moment they are expressed in a tangible form. In Malaysia, this is governed by the <strong class="text-[var(--foreground)]">Copyright Act 1987 (Act 332)</strong>, administered by the Intellectual Property Corporation of Malaysia (MyIPO).</p>
+                    <p>You do <strong class="text-[var(--foreground)]">not</strong> need to register, file any paperwork, or use the &copy; symbol for your work to be protected. The moment you write a lyric, record a beat, sketch a design, or choreograph a dance, copyright exists.</p>
+                    <p>However, copyright does <strong class="text-[var(--foreground)]">not</strong> protect ideas, concepts, styles, or methods. It protects the specific <em>expression</em> of an idea. For instance, copyright protects the specific melody you wrote, not the concept of writing a sad song.</p>
+                    <div class="p-5 bg-[var(--background)] rounded-xl border border-[var(--border)] mt-6">
+                        <p class="text-sm font-semibold text-[var(--accent)] mb-2">Key Malaysian Law Reference</p>
+                        <p class="text-sm text-[var(--muted)]"><strong class="text-[var(--foreground)]">Section 7(1), Copyright Act 1987:</strong> Copyright shall subsist in every work eligible for copyright of which the author is a qualified person at the time the work is made.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 1. COPYRIGHT TIMELINE          -->
+        <!-- ============================== -->
+        <section id="timeline" class="py-16 sm:py-24 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--card)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">01</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Interactive</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Copyright Timeline Visualiser</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">See exactly how long your copyright protection lasts under Malaysian law. Enter a year to visualise the timeline.</p>
+                </div>
+
+                <!-- Year Input -->
+                <div class="reveal reveal-delay-1 max-w-md mx-auto mb-12">
+                    <label for="timeline-year" class="block text-sm font-semibold text-[var(--foreground)] mb-3">When was the work created?</label>
+                    <div class="flex gap-3">
+                        <input type="number" id="timeline-year" min="1900" max="2026" value="2024" class="flex-1 bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 text-[var(--foreground)] text-lg font-bold text-center focus:outline-none focus:border-[var(--primary)] transition-colors" aria-label="Year of creation">
+                        <button id="timeline-calculate" class="magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-6 py-3 rounded-xl text-sm">Calculate</button>
+                    </div>
+                    <p class="text-xs text-[var(--muted)] mt-2">For works tied to the author's life, we assume the author lives to age 70.</p>
+                </div>
+
+                <!-- Timeline Cards -->
+                <div class="space-y-5" id="timeline-cards">
+                    <!-- Literary Works -->
+                    <div class="reveal reveal-delay-1 bg-[var(--card)] rounded-2xl border border-[var(--border)] p-6" data-type="literary">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--foreground)]">Literary Works</h3>
+                                <p class="text-sm text-[var(--muted)]">Songs, lyrics, poems, scripts, articles, books</p>
+                            </div>
+                            <span class="inline-block bg-[var(--primary)] bg-opacity-10 text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full">Life + 50 years</span>
+                        </div>
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" style="background: linear-gradient(90deg, #E53E3E, #FFD700); --target-width: 100%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-[var(--muted)]">
+                            <span class="timeline-start">Created: 2024</span>
+                            <span class="timeline-end font-semibold text-[var(--accent)]">Expires: ~2144</span>
+                        </div>
+                    </div>
+
+                    <!-- Musical Works -->
+                    <div class="reveal reveal-delay-2 bg-[var(--card)] rounded-2xl border border-[var(--border)] p-6" data-type="musical">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--foreground)]">Musical Works</h3>
+                                <p class="text-sm text-[var(--muted)]">Compositions, melodies, arrangements</p>
+                            </div>
+                            <span class="inline-block bg-[var(--primary)] bg-opacity-10 text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full">Life + 50 years</span>
+                        </div>
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" style="background: linear-gradient(90deg, #E53E3E, #FFD700); --target-width: 100%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-[var(--muted)]">
+                            <span class="timeline-start">Created: 2024</span>
+                            <span class="timeline-end font-semibold text-[var(--accent)]">Expires: ~2144</span>
+                        </div>
+                    </div>
+
+                    <!-- Sound Recordings -->
+                    <div class="reveal reveal-delay-3 bg-[var(--card)] rounded-2xl border border-[var(--border)] p-6" data-type="sound">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--foreground)]">Sound Recordings</h3>
+                                <p class="text-sm text-[var(--muted)]">Studio tracks, field recordings, DJ mixes, podcasts</p>
+                            </div>
+                            <span class="inline-block bg-[var(--primary)] bg-opacity-10 text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full">50 years from publication</span>
+                        </div>
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" style="background: linear-gradient(90deg, #E53E3E, #FF8C00); --target-width: 42%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-[var(--muted)]">
+                            <span class="timeline-start">Published: 2024</span>
+                            <span class="timeline-end font-semibold text-[var(--accent)]">Expires: 2074</span>
+                        </div>
+                    </div>
+
+                    <!-- Films -->
+                    <div class="reveal reveal-delay-4 bg-[var(--card)] rounded-2xl border border-[var(--border)] p-6" data-type="film">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--foreground)]">Films &amp; Videos</h3>
+                                <p class="text-sm text-[var(--muted)]">Short films, music videos, documentaries</p>
+                            </div>
+                            <span class="inline-block bg-[var(--primary)] bg-opacity-10 text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full">50 years from publication</span>
+                        </div>
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" style="background: linear-gradient(90deg, #E53E3E, #FF8C00); --target-width: 42%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-[var(--muted)]">
+                            <span class="timeline-start">Published: 2024</span>
+                            <span class="timeline-end font-semibold text-[var(--accent)]">Expires: 2074</span>
+                        </div>
+                    </div>
+
+                    <!-- Broadcasts -->
+                    <div class="reveal bg-[var(--card)] rounded-2xl border border-[var(--border)] p-6" data-type="broadcast">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--foreground)]">Broadcasts</h3>
+                                <p class="text-sm text-[var(--muted)]">Radio, TV, livestreams, podcasts over airwaves</p>
+                            </div>
+                            <span class="inline-block bg-[var(--primary)] bg-opacity-10 text-[var(--primary)] text-xs font-bold px-3 py-1.5 rounded-full">50 years from broadcast</span>
+                        </div>
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" style="background: linear-gradient(90deg, #E53E3E, #FF8C00); --target-width: 42%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-[var(--muted)]">
+                            <span class="timeline-start">Broadcast: 2024</span>
+                            <span class="timeline-end font-semibold text-[var(--accent)]">Expires: 2074</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-5 bg-[var(--card)] rounded-xl border border-[var(--border)] reveal">
+                    <p class="text-sm text-[var(--muted)]"><strong class="text-[var(--foreground)]">Section 17, Copyright Act 1987:</strong> The duration provisions vary by work type. For literary, musical, and artistic works, protection lasts for the life of the author plus 50 years after their death. For sound recordings, films, and broadcasts, protection is 50 years from first publication or broadcast.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 2. "IS IT PROTECTED?" QUIZ     -->
+        <!-- ============================== -->
+        <section id="quiz" class="py-16 sm:py-24 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--background)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">02</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Interactive Quiz</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">"Is It Protected?"</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Test your knowledge. For each scenario, decide whether the work is protected by Malaysian copyright law.</p>
+                </div>
+
+                <!-- Score display -->
+                <div class="reveal reveal-delay-1 flex items-center justify-center gap-6 mb-10">
+                    <div class="text-center">
+                        <p class="text-xs uppercase tracking-wider text-[var(--muted)] mb-1">Score</p>
+                        <p class="text-3xl font-black text-[var(--primary)] score-display" id="quiz-score">0</p>
+                    </div>
+                    <div class="w-px h-10 bg-[var(--border)]"></div>
+                    <div class="text-center">
+                        <p class="text-xs uppercase tracking-wider text-[var(--muted)] mb-1">Question</p>
+                        <p class="text-3xl font-black text-[var(--foreground)] score-display"><span id="quiz-current">1</span>/8</p>
+                    </div>
+                </div>
+
+                <!-- Quiz container -->
+                <div id="quiz-container" class="reveal reveal-delay-2">
+                    <!-- Questions rendered by JS -->
+                </div>
+
+                <!-- Quiz complete message -->
+                <div id="quiz-complete" class="hidden text-center py-12">
+                    <div class="text-6xl font-black gradient-text mb-4" id="quiz-final-score">0/8</div>
+                    <p class="text-lg text-[var(--muted)]" id="quiz-message"></p>
+                    <button id="quiz-restart" class="mt-6 magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-6 py-3 rounded-xl text-sm">Try Again</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 3. RIGHTS EXPLORER WHEEL       -->
+        <!-- ============================== -->
+        <section id="rights-wheel" class="py-16 sm:py-24 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--card)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">03</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Interactive</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Rights Explorer</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Copyright gives you a bundle of exclusive rights. Click each segment to learn what each right means for you.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    <!-- SVG Wheel -->
+                    <div class="reveal reveal-delay-1">
+                        <div class="wheel-container" role="img" aria-label="Interactive copyright rights wheel. Click segments to learn about each right.">
+                            <svg id="rights-wheel-svg" viewBox="0 0 500 500" class="w-full h-auto">
+                                <!-- Segments drawn by JS -->
+                            </svg>
+                        </div>
+                        <p class="text-center text-xs text-[var(--muted)] mt-4">Click a segment to explore</p>
+                    </div>
+
+                    <!-- Detail Panel -->
+                    <div class="reveal reveal-delay-2">
+                        <div id="wheel-placeholder" class="bg-[var(--card)] rounded-2xl border border-[var(--border)] p-8 text-center">
+                            <div class="w-16 h-16 mx-auto rounded-2xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-[var(--foreground)] mb-2">Select a Right</h3>
+                            <p class="text-[var(--muted)]">Click any segment on the wheel to see a detailed explanation of that copyright right under Malaysian law.</p>
+                        </div>
+                        <div id="wheel-detail" class="hidden bg-[var(--card)] rounded-2xl border border-[var(--border)] p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div id="wheel-detail-icon" class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg"></div>
+                                <h3 id="wheel-detail-title" class="text-xl font-bold text-[var(--foreground)]"></h3>
+                            </div>
+                            <p id="wheel-detail-desc" class="text-[var(--muted)] leading-relaxed mb-4"></p>
+                            <div id="wheel-detail-example" class="p-4 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Example for Artists</p>
+                                <p id="wheel-detail-example-text" class="text-sm text-[var(--muted)]"></p>
+                            </div>
+                            <div class="mt-4 p-4 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-[var(--primary)] mb-2">Legal Reference</p>
+                                <p id="wheel-detail-law" class="text-sm text-[var(--muted)]"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 4. FAIR DEALING SIMULATOR      -->
+        <!-- ============================== -->
+        <section id="fair-dealing" class="py-16 sm:py-24 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--background)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">04</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Simulator</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Fair Dealing Simulator</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Malaysian law allows limited use of copyrighted works for specific purposes. Adjust the factors below and see how likely a use qualifies as "fair dealing" under <strong class="text-[var(--foreground)]">Section 13(2A)</strong>.</p>
+                </div>
+
+                <!-- Scenario tabs -->
+                <div class="reveal reveal-delay-1 flex flex-wrap gap-2 justify-center mb-10" id="scenario-tabs" role="tablist">
+                    <button class="scenario-tab active" data-scenario="0" role="tab" aria-selected="true">Song Review</button>
+                    <button class="scenario-tab" data-scenario="1" role="tab" aria-selected="false">Teacher Copy</button>
+                    <button class="scenario-tab" data-scenario="2" role="tab" aria-selected="false">Meme Use</button>
+                    <button class="scenario-tab" data-scenario="3" role="tab" aria-selected="false">News Background</button>
+                </div>
+
+                <!-- Scenario content -->
+                <div id="scenario-content" class="reveal reveal-delay-2">
+                    <div class="bg-[var(--background)] rounded-2xl border border-[var(--border)] p-6 sm:p-8">
+                        <h3 id="scenario-title" class="text-xl font-bold text-[var(--foreground)] mb-2"></h3>
+                        <p id="scenario-desc" class="text-[var(--muted)] mb-8"></p>
+
+                        <!-- Factor sliders -->
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label class="text-sm font-semibold text-[var(--foreground)]">Purpose of Use</label>
+                                    <span id="factor-purpose-label" class="text-sm text-[var(--muted)]">Review/Criticism</span>
+                                </div>
+                                <input type="range" id="factor-purpose" class="scenario-slider" min="0" max="100" value="50" aria-label="Purpose of use factor">
+                                <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                                    <span>Commercial</span>
+                                    <span>Non-commercial / Educational</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label class="text-sm font-semibold text-[var(--foreground)]">Amount Used</label>
+                                    <span id="factor-amount-label" class="text-sm text-[var(--muted)]">Moderate</span>
+                                </div>
+                                <input type="range" id="factor-amount" class="scenario-slider" min="0" max="100" value="50" aria-label="Amount of work used factor">
+                                <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                                    <span>Entire work</span>
+                                    <span>Small portion</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label class="text-sm font-semibold text-[var(--foreground)]">Market Impact</label>
+                                    <span id="factor-market-label" class="text-sm text-[var(--muted)]">Some impact</span>
+                                </div>
+                                <input type="range" id="factor-market" class="scenario-slider" min="0" max="100" value="50" aria-label="Market impact factor">
+                                <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                                    <span>Replaces original</span>
+                                    <span>No market harm</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label class="text-sm font-semibold text-[var(--foreground)]">Transformative Nature</label>
+                                    <span id="factor-transform-label" class="text-sm text-[var(--muted)]">Somewhat</span>
+                                </div>
+                                <input type="range" id="factor-transform" class="scenario-slider" min="0" max="100" value="50" aria-label="Transformative nature factor">
+                                <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                                    <span>Direct copy</span>
+                                    <span>Highly transformative</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fair dealing meter -->
+                        <div class="mt-8">
+                            <p class="text-sm font-semibold text-[var(--foreground)] mb-3">Fair Dealing Likelihood</p>
+                            <div class="meter-container">
+                                <div id="fair-meter" class="meter-fill"></div>
+                                <span id="fair-meter-label" class="meter-label">50%</span>
+                            </div>
+                            <p id="fair-verdict" class="mt-3 text-sm font-semibold"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-5 bg-[var(--background)] rounded-xl border border-[var(--border)] reveal">
+                    <p class="text-sm text-[var(--muted)]"><strong class="text-[var(--foreground)]">Note:</strong> This simulator is for educational purposes only. Fair dealing analysis in actual cases depends on specific facts and judicial interpretation. The Malaysian Copyright Act provides for fair dealing under Sections 13(2A) for research, private study, criticism, review, and reporting of current events. Always consult a lawyer for specific situations.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 5. INFRINGEMENT ACTION FLOWCHART -->
+        <!-- ============================== -->
+        <section id="flowchart" class="py-16 sm:py-24 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--card)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">05</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Action Plan</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Someone Stole Your Work?</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Follow this step-by-step decision tree. Click each step for practical, Malaysian-specific advice.</p>
+                </div>
+
+                <div id="flowchart-container" class="space-y-0 reveal reveal-delay-1">
+                    <!-- Nodes rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 6. MYTH BUSTERS FLIP CARDS     -->
+        <!-- ============================== -->
+        <section id="myths" class="py-16 sm:py-24 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-flex items-center gap-2 bg-[var(--background)] border border-[var(--border)] rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-bold text-[var(--primary)]">06</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Myth Busters</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Copyright Myths — Busted</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Click each card to reveal the truth. How many of these did you believe?</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="myths-grid">
+                    <!-- Flip cards rendered by JS -->
+                </div>
+                <p class="text-center text-xs text-[var(--muted)] mt-6 reveal">Click to flip &middot; <span id="myths-flipped">0</span>/6 revealed</p>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- CTA: GET HELP                  -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-3xl text-center reveal">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Need Help?</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight gradient-text">Protect Your Rights</h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-[var(--muted)] leading-relaxed">If someone is infringing your copyright or you need guidance on licensing your work, ALIM's network of volunteer lawyers can help. All consultations are free and confidential.</p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../../get-help/" class="magnetic-btn inline-block bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3.5 rounded-xl text-base">Get Legal Help</a>
+                    <a href="../../resources/" class="magnetic-btn inline-block bg-[var(--card)] text-[var(--foreground)] font-semibold px-8 py-3.5 rounded-xl text-base border border-[var(--border)] hover:border-[var(--primary)]" style="transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;">Back to Resources</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-sm text-[var(--muted)]">@artxlawmas</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ================================================================
+        //  CORE SITE FUNCTIONALITY (same as rest of site)
+        // ================================================================
+
+        // Scroll progress bar
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = progress + '%';
+        }, { passive: true });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const applyTheme = (theme) => {
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // Mobile menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Scroll to top
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollToTopButton.classList.toggle('hidden', window.pageYOffset <= 400);
+        }, { passive: true });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ================================================================
+        //  PROGRESS TRACKER (sections explored)
+        // ================================================================
+        const exploredSections = new Set();
+        const sectionIds = ['timeline', 'quiz', 'rights-wheel', 'fair-dealing', 'flowchart', 'myths'];
+        const exploredCounter = document.getElementById('explored-counter');
+        const exploredBar = document.getElementById('explored-bar');
+
+        function markExplored(id) {
+            if (exploredSections.has(id)) return;
+            exploredSections.add(id);
+            const count = exploredSections.size;
+            exploredCounter.textContent = count;
+            exploredCounter.classList.remove('score-pop');
+            void exploredCounter.offsetWidth;
+            exploredCounter.classList.add('score-pop');
+            // 7 total sections: 6 interactive + intro counted via hero
+            exploredBar.style.width = ((count / 7) * 100) + '%';
+        }
+
+        // Track which sections user scrolls into
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    if (sectionIds.includes(id)) {
+                        markExplored(id);
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) sectionObserver.observe(el);
+        });
+        // Count hero/intro as explored on load
+        setTimeout(() => markExplored('intro'), 1000);
+
+        // Progress dots sidebar
+        const allSectionIds = ['hero', ...sectionIds];
+        const progressDots = document.querySelectorAll('.progress-dot');
+        progressDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const target = document.getElementById(dot.dataset.section);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        const dotObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressDots.forEach(d => d.classList.remove('active'));
+                    const dot = document.querySelector(`.progress-dot[data-section="${entry.target.id}"]`);
+                    if (dot) dot.classList.add('active');
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+        allSectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) dotObserver.observe(el);
+        });
+
+        // ================================================================
+        //  1. COPYRIGHT TIMELINE VISUALISER
+        // ================================================================
+        const timelineYear = document.getElementById('timeline-year');
+        const timelineCalcBtn = document.getElementById('timeline-calculate');
+
+        function updateTimeline(year) {
+            year = parseInt(year);
+            if (isNaN(year) || year < 1900 || year > 2100) return;
+            const assumedDeathYear = year + 70; // assume author lives 70 more years
+            const maxYear = assumedDeathYear + 50; // life + 50 for longest
+            const cards = document.querySelectorAll('#timeline-cards > div');
+
+            const types = [
+                { type: 'literary', expiry: assumedDeathYear + 50, label: 'Created' },
+                { type: 'musical', expiry: assumedDeathYear + 50, label: 'Created' },
+                { type: 'sound', expiry: year + 50, label: 'Published' },
+                { type: 'film', expiry: year + 50, label: 'Published' },
+                { type: 'broadcast', expiry: year + 50, label: 'Broadcast' },
+            ];
+
+            types.forEach((t, i) => {
+                const card = cards[i];
+                if (!card) return;
+                const start = card.querySelector('.timeline-start');
+                const end = card.querySelector('.timeline-end');
+                const fill = card.querySelector('.timeline-fill');
+
+                start.textContent = t.label + ': ' + year;
+                const expiryText = t.type === 'literary' || t.type === 'musical' ? '~' + t.expiry : '' + t.expiry;
+                end.textContent = 'Expires: ' + expiryText;
+
+                // Proportional width: 50-year types vs 120-year types
+                const duration = t.expiry - year;
+                const pct = Math.min(100, (duration / (maxYear - year)) * 100);
+                fill.style.setProperty('--target-width', pct + '%');
+                fill.classList.remove('animated');
+                void fill.offsetWidth;
+                fill.classList.add('animated');
+            });
+        }
+
+        timelineCalcBtn.addEventListener('click', () => updateTimeline(timelineYear.value));
+        timelineYear.addEventListener('keydown', (e) => { if (e.key === 'Enter') updateTimeline(timelineYear.value); });
+
+        // Animate on scroll into view
+        const timelineSection = document.getElementById('timeline');
+        const timelineAnimObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateTimeline(timelineYear.value);
+                    timelineAnimObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        timelineAnimObserver.observe(timelineSection);
+
+        // ================================================================
+        //  2. "IS IT PROTECTED?" QUIZ
+        // ================================================================
+        const quizQuestions = [
+            {
+                scenario: 'A melody you hummed into your phone',
+                answer: 'yes',
+                explanation: 'Yes! The moment you record a melody, it becomes a fixed musical work protected under Section 7 of the Copyright Act 1987. Even a voice memo counts as fixation.'
+            },
+            {
+                scenario: 'A list of ingredients in a recipe',
+                answer: 'no',
+                explanation: 'No. A bare list of ingredients is considered factual information and not sufficiently original. However, the creative expression in how a recipe is written (instructions, commentary) may be protected.'
+            },
+            {
+                scenario: 'Your Instagram caption about your art show',
+                answer: 'yes',
+                explanation: 'Yes! An original caption is a literary work under the Copyright Act. Even short text can be protected if it shows sufficient creativity and originality.'
+            },
+            {
+                scenario: 'A dance choreography you created for a performance',
+                answer: 'yes',
+                explanation: 'Yes! Choreographic works are protected as "artistic works" under Section 3 of the Copyright Act 1987, provided they are recorded or notated in some form.'
+            },
+            {
+                scenario: 'Your band\'s name: "Neon Monsoon"',
+                answer: 'no',
+                explanation: 'No. Names, titles, and short phrases are generally not protected by copyright. To protect a band name, you should register it as a trademark with MyIPO.'
+            },
+            {
+                scenario: 'A photograph you took at a street market',
+                answer: 'yes',
+                explanation: 'Yes! Photographs are "artistic works" under the Copyright Act. The photographer holds copyright from the moment the photo is taken, covering creative choices like framing and composition.'
+            },
+            {
+                scenario: 'An image you generated using an AI tool like Midjourney',
+                answer: 'complex',
+                explanation: 'It\'s complicated. Malaysian law has not definitively addressed AI-generated works. Section 7 requires an "author" who is a "qualified person." If AI is the sole creator, copyright may not subsist. However, if you significantly contributed creatively (substantial prompting, editing, selection), you may have a claim. This is an evolving area of law globally.'
+            },
+            {
+                scenario: 'Your DJ set — a live mix of other artists\' songs',
+                answer: 'yes',
+                explanation: 'Yes! Your DJ mix is protected as a sound recording under the Copyright Act. However, you may need licences from the original copyright owners for the underlying tracks. The creative arrangement and mixing itself generates a separate copyright.'
+            }
+        ];
+
+        let quizIndex = 0;
+        let quizScore = 0;
+        const quizContainer = document.getElementById('quiz-container');
+        const quizScoreEl = document.getElementById('quiz-score');
+        const quizCurrentEl = document.getElementById('quiz-current');
+        const quizComplete = document.getElementById('quiz-complete');
+
+        function renderQuizQuestion() {
+            if (quizIndex >= quizQuestions.length) {
+                quizContainer.classList.add('hidden');
+                quizComplete.classList.remove('hidden');
+                document.getElementById('quiz-final-score').textContent = quizScore + '/8';
+                const pct = quizScore / quizQuestions.length;
+                let msg = '';
+                if (pct === 1) msg = 'Perfect score! You clearly know your copyright law.';
+                else if (pct >= 0.75) msg = 'Great job! You have a solid understanding of copyright basics.';
+                else if (pct >= 0.5) msg = 'Not bad! Keep learning and you\'ll master this.';
+                else msg = 'There\'s room to learn. Read through the guide above and try again!';
+                document.getElementById('quiz-message').textContent = msg;
+                return;
+            }
+
+            const q = quizQuestions[quizIndex];
+            quizCurrentEl.textContent = quizIndex + 1;
+
+            quizContainer.innerHTML = `
+                <div class="bg-[var(--background)] rounded-2xl border border-[var(--border)] p-6 sm:p-8">
+                    <p class="text-sm text-[var(--muted)] mb-2">Scenario ${quizIndex + 1} of ${quizQuestions.length}</p>
+                    <h3 class="text-xl font-bold text-[var(--foreground)] mb-6">${q.scenario}</h3>
+                    <p class="text-sm text-[var(--muted)] mb-4">Is this protected by copyright under Malaysian law?</p>
+                    <div class="space-y-3" id="quiz-options">
+                        <button class="quiz-option w-full text-left flex items-center gap-3" data-answer="yes" aria-label="Yes, it is protected">
+                            <span class="w-8 h-8 rounded-full border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 text-sm font-bold">A</span>
+                            <span class="text-[var(--foreground)] font-medium">Yes, it's protected</span>
+                        </button>
+                        <button class="quiz-option w-full text-left flex items-center gap-3" data-answer="no" aria-label="No, not protected">
+                            <span class="w-8 h-8 rounded-full border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 text-sm font-bold">B</span>
+                            <span class="text-[var(--foreground)] font-medium">No, not protected</span>
+                        </button>
+                        <button class="quiz-option w-full text-left flex items-center gap-3" data-answer="complex" aria-label="It's complicated">
+                            <span class="w-8 h-8 rounded-full border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 text-sm font-bold">C</span>
+                            <span class="text-[var(--foreground)] font-medium">It's complicated</span>
+                        </button>
+                    </div>
+                    <div id="quiz-explanation" class="hidden mt-6 p-5 rounded-xl border border-[var(--border)]"></div>
+                </div>
+            `;
+
+            document.querySelectorAll('#quiz-options .quiz-option').forEach(btn => {
+                btn.addEventListener('click', handleQuizAnswer);
+            });
+        }
+
+        function handleQuizAnswer(e) {
+            const btn = e.currentTarget;
+            const answer = btn.dataset.answer;
+            const q = quizQuestions[quizIndex];
+            const isCorrect = answer === q.answer;
+            const explanationEl = document.getElementById('quiz-explanation');
+
+            // Disable all options
+            document.querySelectorAll('#quiz-options .quiz-option').forEach(b => {
+                b.removeEventListener('click', handleQuizAnswer);
+                b.style.pointerEvents = 'none';
+                if (b.dataset.answer === q.answer) {
+                    if (q.answer === 'complex') b.classList.add('complex-answer');
+                    else b.classList.add('correct');
+                } else if (b === btn && !isCorrect) {
+                    b.classList.add('incorrect');
+                }
+            });
+
+            if (isCorrect) {
+                quizScore++;
+                quizScoreEl.textContent = quizScore;
+                quizScoreEl.classList.remove('score-pop');
+                void quizScoreEl.offsetWidth;
+                quizScoreEl.classList.add('score-pop');
+            }
+
+            const bgColor = isCorrect ? 'rgba(34, 197, 94, 0.1)' : (q.answer === 'complex' ? 'rgba(255, 215, 0, 0.1)' : 'rgba(229, 62, 62, 0.1)');
+            const label = isCorrect ? 'Correct!' : (q.answer === 'complex' ? 'This one\'s nuanced.' : 'Not quite.');
+            const labelColor = isCorrect ? '#22C55E' : (q.answer === 'complex' ? 'var(--accent)' : 'var(--primary)');
+
+            explanationEl.innerHTML = `
+                <p class="text-sm font-bold mb-2" style="color: ${labelColor}">${label}</p>
+                <p class="text-sm text-[var(--muted)] leading-relaxed">${q.explanation}</p>
+            `;
+            explanationEl.style.background = bgColor;
+            explanationEl.classList.remove('hidden');
+
+            setTimeout(() => {
+                quizIndex++;
+                renderQuizQuestion();
+            }, 3000);
+        }
+
+        renderQuizQuestion();
+
+        document.getElementById('quiz-restart').addEventListener('click', () => {
+            quizIndex = 0;
+            quizScore = 0;
+            quizScoreEl.textContent = 0;
+            quizComplete.classList.add('hidden');
+            quizContainer.classList.remove('hidden');
+            renderQuizQuestion();
+        });
+
+        // ================================================================
+        //  3. RIGHTS EXPLORER WHEEL (SVG)
+        // ================================================================
+        const rightsData = [
+            {
+                label: 'Reproduce',
+                short: 'Copy',
+                color: '#E53E3E',
+                desc: 'The right to reproduce your work in any material form, including making copies, printing, or digital duplication. No one can copy your work without your permission.',
+                example: 'If a clothing brand prints your artwork on T-shirts without permission, they are infringing your reproduction right. Similarly, if someone screenshots and reposts your digital art, that is reproduction.',
+                law: 'Section 13(1)(a), Copyright Act 1987 — The copyright owner has the exclusive right to reproduce the work in any material form.'
+            },
+            {
+                label: 'Distribute',
+                short: 'Share',
+                color: '#FF6B35',
+                desc: 'The right to distribute copies of your work to the public, whether by sale, rental, lending, or other transfer. This controls how your work reaches audiences.',
+                example: 'If a record shop sells bootleg copies of your album, or someone sells prints of your painting on Shopee without permission, they are violating your distribution right.',
+                law: 'Section 13(1)(a), Copyright Act 1987 — Includes the right to distribute copies of the work to the public.'
+            },
+            {
+                label: 'Perform',
+                short: 'Stage',
+                color: '#FFD700',
+                desc: 'The right to perform or show your work publicly. This covers live performances, screenings, recitals, and any public presentation of the work.',
+                example: 'If a cafe plays your music without a licence from a collecting society (like MACP/PPM), or a theatre stages your play without permission, they infringe your performance right.',
+                law: 'Section 13(1)(b), Copyright Act 1987 — The exclusive right to perform or show the work to the public.'
+            },
+            {
+                label: 'Communicate',
+                short: 'Broadcast',
+                color: '#22C55E',
+                desc: 'The right to communicate your work to the public by any means, including broadcasting, streaming, uploading online, or making available on-demand.',
+                example: 'If a radio station plays your song, a streaming platform hosts your film, or someone uploads your track to YouTube — all require your authorisation as the copyright owner.',
+                law: 'Section 13(1)(aa), Copyright Act 1987 — The exclusive right to communicate the work to the public.'
+            },
+            {
+                label: 'Derivative',
+                short: 'Adapt',
+                color: '#3B82F6',
+                desc: 'The right to make adaptations, translations, arrangements, or any other transformation of your work. This controls how others can build upon your creation.',
+                example: 'If someone remixes your song, translates your poem into Malay, or adapts your short story into a screenplay, they need your permission under this right.',
+                law: 'Section 13(1)(c) & (d), Copyright Act 1987 — The exclusive right to make adaptations and translations of the work.'
+            },
+            {
+                label: 'Moral Rights',
+                short: 'Identity',
+                color: '#A855F7',
+                desc: 'Moral rights protect your personal connection to your work: the right of attribution (paternity) to be identified as the author, and the right of integrity to prevent distortion or mutilation of your work that would harm your reputation.',
+                example: 'If a gallery exhibits your painting but removes your name, or a brand modifies your design in a way that damages your reputation — these violate your moral rights. In Malaysia, moral rights exist independently of economic rights.',
+                law: 'Section 25, Copyright Act 1987 — The author has the right to be identified as the author and to object to any distortion, mutilation, or modification of the work.'
+            }
+        ];
+
+        function drawWheel() {
+            const svg = document.getElementById('rights-wheel-svg');
+            svg.innerHTML = '';
+            const cx = 250, cy = 250, r = 200, innerR = 80;
+            const n = rightsData.length;
+            const angleStep = (2 * Math.PI) / n;
+            const gap = 0.03; // radians gap between segments
+
+            rightsData.forEach((right, i) => {
+                const startAngle = i * angleStep - Math.PI / 2 + gap / 2;
+                const endAngle = (i + 1) * angleStep - Math.PI / 2 - gap / 2;
+
+                const x1 = cx + r * Math.cos(startAngle);
+                const y1 = cy + r * Math.sin(startAngle);
+                const x2 = cx + r * Math.cos(endAngle);
+                const y2 = cy + r * Math.sin(endAngle);
+                const ix1 = cx + innerR * Math.cos(startAngle);
+                const iy1 = cy + innerR * Math.sin(startAngle);
+                const ix2 = cx + innerR * Math.cos(endAngle);
+                const iy2 = cy + innerR * Math.sin(endAngle);
+
+                const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', `M ${ix1} ${iy1} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${innerR} ${innerR} 0 ${largeArc} 0 ${ix1} ${iy1} Z`);
+                path.setAttribute('fill', right.color);
+                path.setAttribute('fill-opacity', '0.7');
+                path.setAttribute('stroke', 'var(--background)');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('class', 'wheel-segment');
+                path.setAttribute('data-index', i);
+                path.setAttribute('role', 'button');
+                path.setAttribute('tabindex', '0');
+                path.setAttribute('aria-label', 'Learn about ' + right.label + ' right');
+                svg.appendChild(path);
+
+                // Label
+                const midAngle = (startAngle + endAngle) / 2;
+                const labelR = (r + innerR) / 2 + 10;
+                const lx = cx + labelR * Math.cos(midAngle);
+                const ly = cy + labelR * Math.sin(midAngle);
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', lx);
+                text.setAttribute('y', ly);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                text.setAttribute('fill', 'white');
+                text.setAttribute('font-size', '13');
+                text.setAttribute('font-weight', '700');
+                text.setAttribute('pointer-events', 'none');
+                text.textContent = right.short;
+                svg.appendChild(text);
+            });
+
+            // Center circle
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', cx);
+            circle.setAttribute('cy', cy);
+            circle.setAttribute('r', innerR - 5);
+            circle.setAttribute('fill', 'var(--card)');
+            circle.setAttribute('stroke', 'var(--border)');
+            circle.setAttribute('stroke-width', '2');
+            svg.appendChild(circle);
+
+            const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            centerText.setAttribute('x', cx);
+            centerText.setAttribute('y', cy - 8);
+            centerText.setAttribute('text-anchor', 'middle');
+            centerText.setAttribute('dominant-baseline', 'middle');
+            centerText.setAttribute('fill', 'var(--foreground)');
+            centerText.setAttribute('font-size', '14');
+            centerText.setAttribute('font-weight', '800');
+            centerText.textContent = 'YOUR';
+            svg.appendChild(centerText);
+
+            const centerText2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            centerText2.setAttribute('x', cx);
+            centerText2.setAttribute('y', cy + 12);
+            centerText2.setAttribute('text-anchor', 'middle');
+            centerText2.setAttribute('dominant-baseline', 'middle');
+            centerText2.setAttribute('fill', 'var(--primary)');
+            centerText2.setAttribute('font-size', '14');
+            centerText2.setAttribute('font-weight', '800');
+            centerText2.textContent = 'RIGHTS';
+            svg.appendChild(centerText2);
+
+            // Event listeners
+            svg.querySelectorAll('.wheel-segment').forEach(seg => {
+                const handler = () => showWheelDetail(parseInt(seg.dataset.index));
+                seg.addEventListener('click', handler);
+                seg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+            });
+        }
+
+        function showWheelDetail(index) {
+            const right = rightsData[index];
+            const placeholder = document.getElementById('wheel-placeholder');
+            const detail = document.getElementById('wheel-detail');
+
+            placeholder.classList.add('hidden');
+            detail.classList.remove('hidden');
+
+            document.getElementById('wheel-detail-icon').style.background = right.color;
+            document.getElementById('wheel-detail-icon').textContent = (index + 1);
+            document.getElementById('wheel-detail-title').textContent = 'Right to ' + right.label;
+            document.getElementById('wheel-detail-desc').textContent = right.desc;
+            document.getElementById('wheel-detail-example-text').textContent = right.example;
+            document.getElementById('wheel-detail-law').textContent = right.law;
+
+            // Highlight active segment
+            document.querySelectorAll('.wheel-segment').forEach((seg, i) => {
+                seg.classList.toggle('active', i === index);
+                seg.setAttribute('fill-opacity', i === index ? '1' : '0.5');
+            });
+        }
+
+        drawWheel();
+
+        // ================================================================
+        //  4. FAIR DEALING SIMULATOR
+        // ================================================================
+        const scenarios = [
+            {
+                title: 'A music reviewer uses 30 seconds of your song in their YouTube review',
+                desc: 'A popular YouTube reviewer plays a clip of your song while discussing its production and lyrical content. The review is monetised with ads.',
+                defaults: { purpose: 75, amount: 70, market: 60, transform: 55 }
+            },
+            {
+                title: 'A university lecturer photocopies your article for a class of 40 students',
+                desc: 'A lecturer at a public university in Malaysia distributes printed copies of your full article to students for their coursework reading.',
+                defaults: { purpose: 85, amount: 20, market: 55, transform: 30 }
+            },
+            {
+                title: 'Someone turns your artwork into a viral meme on Twitter',
+                desc: 'Your digital illustration is overlaid with text and shared thousands of times as a meme. The person did not credit you or ask permission.',
+                defaults: { purpose: 25, amount: 15, market: 35, transform: 45 }
+            },
+            {
+                title: 'A news channel plays your music as background during a report',
+                desc: 'A Malaysian TV news channel uses your instrumental track as background music during a 3-minute news segment about local arts events.',
+                defaults: { purpose: 50, amount: 40, market: 30, transform: 15 }
+            }
+        ];
+
+        let currentScenario = 0;
+
+        function loadScenario(index) {
+            currentScenario = index;
+            const s = scenarios[index];
+            document.getElementById('scenario-title').textContent = s.title;
+            document.getElementById('scenario-desc').textContent = s.desc;
+            document.getElementById('factor-purpose').value = s.defaults.purpose;
+            document.getElementById('factor-amount').value = s.defaults.amount;
+            document.getElementById('factor-market').value = s.defaults.market;
+            document.getElementById('factor-transform').value = s.defaults.transform;
+            updateFairMeter();
+
+            document.querySelectorAll('.scenario-tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+                tab.setAttribute('aria-selected', i === index ? 'true' : 'false');
+            });
+        }
+
+        function getSliderLabel(value) {
+            if (value < 25) return 'Very low';
+            if (value < 45) return 'Low';
+            if (value < 55) return 'Moderate';
+            if (value < 75) return 'High';
+            return 'Very high';
+        }
+
+        function updateFairMeter() {
+            const purpose = parseInt(document.getElementById('factor-purpose').value);
+            const amount = parseInt(document.getElementById('factor-amount').value);
+            const market = parseInt(document.getElementById('factor-market').value);
+            const transform = parseInt(document.getElementById('factor-transform').value);
+
+            document.getElementById('factor-purpose-label').textContent = getSliderLabel(purpose);
+            document.getElementById('factor-amount-label').textContent = getSliderLabel(amount);
+            document.getElementById('factor-market-label').textContent = getSliderLabel(market);
+            document.getElementById('factor-transform-label').textContent = getSliderLabel(transform);
+
+            // Weighted average: purpose 30%, amount 20%, market 25%, transform 25%
+            const likelihood = Math.round(purpose * 0.30 + amount * 0.20 + market * 0.25 + transform * 0.25);
+
+            const meter = document.getElementById('fair-meter');
+            const label = document.getElementById('fair-meter-label');
+            const verdict = document.getElementById('fair-verdict');
+
+            meter.style.width = likelihood + '%';
+            label.textContent = likelihood + '%';
+
+            if (likelihood < 30) {
+                meter.style.background = 'linear-gradient(90deg, #E53E3E, #FF6B35)';
+                verdict.textContent = 'Unlikely to be fair dealing. This use would likely require permission from the copyright owner.';
+                verdict.style.color = '#E53E3E';
+            } else if (likelihood < 55) {
+                meter.style.background = 'linear-gradient(90deg, #FF6B35, #FFD700)';
+                verdict.textContent = 'Grey area. The outcome would depend on specific facts and judicial interpretation. Seek legal advice.';
+                verdict.style.color = '#FFD700';
+            } else if (likelihood < 75) {
+                meter.style.background = 'linear-gradient(90deg, #FFD700, #22C55E)';
+                verdict.textContent = 'Likely fair dealing, but not guaranteed. The use appears to fall within permissible exceptions.';
+                verdict.style.color = '#22C55E';
+            } else {
+                meter.style.background = 'linear-gradient(90deg, #22C55E, #16A34A)';
+                verdict.textContent = 'Strong case for fair dealing under Malaysian law. The factors weigh heavily in favour of the user.';
+                verdict.style.color = '#22C55E';
+            }
+        }
+
+        document.querySelectorAll('.scenario-tab').forEach(tab => {
+            tab.addEventListener('click', () => loadScenario(parseInt(tab.dataset.scenario)));
+        });
+
+        ['factor-purpose', 'factor-amount', 'factor-market', 'factor-transform'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateFairMeter);
+        });
+
+        loadScenario(0);
+
+        // ================================================================
+        //  5. INFRINGEMENT ACTION FLOWCHART
+        // ================================================================
+        const flowSteps = [
+            {
+                title: 'Step 1: Document Everything',
+                icon: '1',
+                color: '#E53E3E',
+                summary: 'Gather evidence of the infringement before taking any action.',
+                detail: '<strong>What to do:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li>Screenshot or record the infringing use (include URLs, dates, platform)</li><li>Save your original files with metadata showing creation date</li><li>Use the Wayback Machine (web.archive.org) to archive online infringements</li><li>Keep records of any communication with the infringer</li><li>Note any commercial use or revenue the infringer is generating from your work</li></ul><p class="mt-3"><strong>Malaysian tip:</strong> Consider making a statutory declaration (surat akuan bersumpah) before a Commissioner for Oaths to formally attest to your authorship. This costs around RM5-10 and creates a useful legal record.</p>'
+            },
+            {
+                title: 'Step 2: Send a Cease & Desist Letter',
+                icon: '2',
+                color: '#FF6B35',
+                summary: 'A formal letter demanding the infringer stop using your work.',
+                detail: '<strong>What to include:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li>Your identity as the copyright owner</li><li>A description of your original work and where it was first published</li><li>A description of the infringing use</li><li>A clear demand to cease the infringing activity</li><li>A deadline (typically 7-14 days)</li><li>A statement that you will take legal action if they do not comply</li></ul><p class="mt-3"><strong>Malaysian tip:</strong> A cease & desist from a lawyer carries more weight, but you can write one yourself. Send via email AND registered post (Pos Berdaftar) for proof of delivery. ALIM can help you draft this letter for free.</p>'
+            },
+            {
+                title: 'Step 3: File a Complaint with MyIPO',
+                icon: '3',
+                color: '#FFD700',
+                summary: 'Malaysia\'s IP authority can mediate and take enforcement action.',
+                detail: '<strong>How to file:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li>Visit <a href="https://www.myipo.gov.my" target="_blank" class="text-[var(--primary)] underline">www.myipo.gov.my</a> or visit their office in Kuala Lumpur</li><li>File a complaint with the Enforcement Division</li><li>MyIPO enforcement officers have the power to conduct raids, seize infringing copies, and investigate</li><li>This is particularly effective for large-scale piracy (e.g. counterfeit CDs, mass reproduction)</li></ul><p class="mt-3"><strong>Voluntary copyright notification:</strong> While not required, you can register a voluntary notification of copyright with MyIPO (RM50 per work). This creates a public record that can strengthen your case.</p>'
+            },
+            {
+                title: 'Step 4: Platform Takedown (DMCA/NTD)',
+                icon: '4',
+                color: '#22C55E',
+                summary: 'File takedown notices on the platforms hosting the infringing content.',
+                detail: '<strong>How to file takedowns:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li><strong>Instagram/Facebook:</strong> Use Meta\'s IP reporting form at facebook.com/help/intellectual_property</li><li><strong>YouTube:</strong> Use YouTube\'s Copyright Takedown tool in YouTube Studio</li><li><strong>TikTok:</strong> Report via the in-app IP infringement form</li><li><strong>Spotify:</strong> Email copyright@spotify.com with evidence</li><li><strong>Shopee/Lazada:</strong> Use their IP Protection Platform</li></ul><p class="mt-3"><strong>Malaysian tip:</strong> Under the Malaysian Communications and Multimedia Act 1998, you can also report to the Malaysian Communications and Multimedia Commission (MCMC) if the infringement is online.</p>'
+            },
+            {
+                title: 'Step 5: Mediation',
+                icon: '5',
+                color: '#3B82F6',
+                summary: 'Try resolving the dispute through mediation before going to court.',
+                detail: '<strong>Mediation options in Malaysia:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li><strong>MyIPO Mediation:</strong> MyIPO offers IP dispute mediation services</li><li><strong>Asian International Arbitration Centre (AIAC):</strong> Offers mediation for IP disputes</li><li><strong>Malaysian Bar Council Mediation Centre:</strong> General commercial mediation</li></ul><p class="mt-3"><strong>Why mediate?</strong> Mediation is typically faster (weeks, not years), cheaper (hundreds vs thousands of RM), and confidential compared to court proceedings. Many cases settle at this stage with licensing agreements or compensation.</p>'
+            },
+            {
+                title: 'Step 6: Court Action',
+                icon: '6',
+                color: '#A855F7',
+                summary: 'When all else fails, take legal action through the Malaysian courts.',
+                detail: '<strong>Your legal remedies under the Copyright Act 1987:</strong><ul class="list-disc pl-5 mt-2 space-y-1"><li><strong>Injunction (Section 37):</strong> Court order to stop the infringement immediately</li><li><strong>Damages:</strong> Compensation for your financial losses</li><li><strong>Account of profits:</strong> The infringer\'s profits from using your work</li><li><strong>Delivery up:</strong> Court orders infringing copies to be surrendered or destroyed</li><li><strong>Anton Piller order:</strong> Emergency order to search and seize evidence</li></ul><p class="mt-3"><strong>Criminal penalties (Section 41):</strong> Copyright infringement in Malaysia is also a criminal offence. Penalties include fines up to RM20,000 per copy (minimum RM2,000) and/or imprisonment up to 5 years. For repeat offenders: fines up to RM40,000 per copy and/or up to 10 years imprisonment.</p><p class="mt-2"><strong>ALIM can help:</strong> We can connect you with IP lawyers who offer pro bono or reduced-rate services for Malaysian artists.</p>'
+            }
+        ];
+
+        function renderFlowchart() {
+            const container = document.getElementById('flowchart-container');
+            container.innerHTML = '';
+
+            flowSteps.forEach((step, i) => {
+                const node = document.createElement('div');
+                node.innerHTML = `
+                    <div class="flowchart-node bg-[var(--card)] rounded-2xl border border-[var(--border)] p-5 sm:p-6 hover:border-[var(--primary)]" data-step="${i}" role="button" tabindex="0" aria-expanded="false" aria-label="${step.title}">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background: ${step.color}">${step.icon}</div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-[var(--foreground)]">${step.title}</h3>
+                                <p class="text-sm text-[var(--muted)] mt-1">${step.summary}</p>
+                            </div>
+                            <svg class="w-5 h-5 text-[var(--muted)] flex-shrink-0 transition-transform duration-300 flowchart-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                    <div class="flowchart-detail bg-[var(--background)] rounded-xl border border-[var(--border)] mx-4 mt-0 text-sm text-[var(--muted)] leading-relaxed" data-detail="${i}">
+                        ${step.detail}
+                    </div>
+                    ${i < flowSteps.length - 1 ? '<div class="flowchart-connector h-8"></div>' : ''}
+                `;
+                container.appendChild(node);
+            });
+
+            container.querySelectorAll('.flowchart-node').forEach(node => {
+                const handler = () => {
+                    const stepIndex = node.dataset.step;
+                    const detail = container.querySelector(`.flowchart-detail[data-detail="${stepIndex}"]`);
+                    const chevron = node.querySelector('.flowchart-chevron');
+                    const isOpen = detail.classList.contains('open');
+
+                    // Close all
+                    container.querySelectorAll('.flowchart-detail').forEach(d => d.classList.remove('open'));
+                    container.querySelectorAll('.flowchart-chevron').forEach(c => c.style.transform = '');
+                    container.querySelectorAll('.flowchart-node').forEach(n => n.setAttribute('aria-expanded', 'false'));
+
+                    if (!isOpen) {
+                        detail.classList.add('open');
+                        chevron.style.transform = 'rotate(180deg)';
+                        node.setAttribute('aria-expanded', 'true');
+                    }
+                };
+                node.addEventListener('click', handler);
+                node.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+            });
+        }
+
+        renderFlowchart();
+
+        // ================================================================
+        //  6. MYTH BUSTERS FLIP CARDS
+        // ================================================================
+        const myths = [
+            {
+                myth: '"I need to register my copyright for it to be valid"',
+                truth: 'Copyright is automatic in Malaysia. The moment you create an original work in a tangible form, it is protected under Section 7 of the Copyright Act 1987. No registration, filing, or fees are required.',
+            },
+            {
+                myth: '"If there\'s no \u00A9 symbol, it\'s not copyrighted"',
+                truth: 'The copyright symbol is NOT required for protection under Malaysian law. It is a useful notice to others, but its absence does not mean the work is free to use. Protection is automatic.',
+            },
+            {
+                myth: '"I can use anything as long as I credit the original creator"',
+                truth: 'Giving credit does NOT equal having permission. Attribution is a moral right issue, but using someone\'s work still requires a licence or must fall under a fair dealing exception. "Credit" and "permission" are two different things.',
+            },
+            {
+                myth: '"Copyright protects my ideas and concepts"',
+                truth: 'Copyright only protects the expression of ideas, not the ideas themselves. Your specific song is protected, but the idea of writing a love ballad is not. If you want to protect an idea or invention, consider patents or trade secrets.',
+            },
+            {
+                myth: '"If I post my work online, it becomes public domain"',
+                truth: 'Publishing online does NOT put your work in the public domain. Your copyright is fully intact when you post on Instagram, YouTube, Spotify, or anywhere else. Public access is not the same as public domain.',
+            },
+            {
+                myth: '"Copyright lasts forever"',
+                truth: 'Copyright has a fixed duration. In Malaysia, for literary and musical works, it lasts for the life of the author plus 50 years. After that, the work enters the public domain and can be freely used by anyone.',
+            }
+        ];
+
+        let mythsFlippedCount = 0;
+        const mythsFlippedEl = document.getElementById('myths-flipped');
+
+        function renderMyths() {
+            const grid = document.getElementById('myths-grid');
+            grid.innerHTML = '';
+
+            myths.forEach((m, i) => {
+                const card = document.createElement('div');
+                card.className = 'flip-card reveal' + (i < 4 ? ' reveal-delay-' + (i % 4 + 1) : '');
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-label', 'Click to reveal the truth about: ' + m.myth);
+                card.innerHTML = `
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[var(--primary)] mb-3">Myth</span>
+                            <p class="text-base font-bold text-[var(--foreground)] leading-snug">${m.myth}</p>
+                            <p class="text-xs text-[var(--muted)] mt-4">Click to reveal truth</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#22C55E] mb-3">Truth</span>
+                            <p class="text-sm text-[var(--muted)] leading-relaxed">${m.truth}</p>
+                        </div>
+                    </div>
+                `;
+
+                let flipped = false;
+                const flipHandler = () => {
+                    card.classList.toggle('flipped');
+                    if (!flipped) {
+                        flipped = true;
+                        mythsFlippedCount++;
+                        mythsFlippedEl.textContent = mythsFlippedCount;
+                    }
+                };
+                card.addEventListener('click', flipHandler);
+                card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flipHandler(); } });
+
+                grid.appendChild(card);
+            });
+
+            // Re-observe new elements for reveal
+            grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        }
+
+        renderMyths();
+
+    })();
+    </script>
+</body>
+</html>

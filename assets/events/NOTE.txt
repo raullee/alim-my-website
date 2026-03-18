@@ -1,0 +1,9 @@
+These event images already exist on the live hPanel server.
+Do NOT delete them when uploading. They include:
+- march-2026-arts-revolution.jpeg
+- sept-panel.jpeg
+- july-sundays.jpeg
+- legal-learning.jpeg
+- art-fashion.jpeg
+- hari-kopek.jpeg
+- mural-alim.png

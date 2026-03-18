@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIM Reel - Contract Red Flags</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.reel {
+  width: 1080px;
+  height: 1920px;
+  background: #0A0A0A;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.45);
+  transform-origin: center center;
+}
+/* Animated background grain */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+/* Glow orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+}
+.orb-1 { width: 500px; height: 500px; background: rgba(229,62,62,0.15); top: -100px; right: -100px; animation: float1 8s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(255,215,0,0.08); bottom: 200px; left: -100px; animation: float2 10s ease-in-out infinite; }
+@keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,60px); } }
+@keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,-40px); } }
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 60px;
+}
+
+/* Animation sequence */
+.slide { opacity: 0; animation-fill-mode: forwards; }
+
+/* SLIDE 1: Hook — visible 0s-5s */
+.hook-label {
+  font-size: 28px; font-weight: 600; color: #E53E3E; letter-spacing: 4px; text-transform: uppercase;
+  animation: fadeUp 0.6s 0.3s forwards;
+}
+.hook-text {
+  font-size: 82px; font-weight: 900; color: #F5F5F5; line-height: 1.05; margin-top: 30px;
+  animation: fadeUp 0.7s 0.8s forwards;
+}
+.hook-text em { font-style: normal; color: #E53E3E; }
+.hook-sub {
+  font-size: 36px; color: #A3A3A3; margin-top: 30px; line-height: 1.4;
+  animation: fadeUp 0.6s 1.5s forwards;
+}
+
+/* SLIDE 2: Red flags cascade — visible 5s-20s */
+.flags-container {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  padding: 80px 60px;
+  display: flex; flex-direction: column;
+  animation: fadeIn 0.5s 5.5s forwards;
+}
+.flags-title {
+  font-size: 42px; font-weight: 800; color: #F5F5F5; margin-bottom: 50px;
+  animation: fadeUp 0.5s 5.8s forwards;
+}
+.flag-item {
+  display: flex; align-items: flex-start; gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.flag-icon {
+  width: 56px; height: 56px; min-width: 56px;
+  background: rgba(229,62,62,0.15);
+  border: 2px solid #E53E3E;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.flag-text h3 { font-size: 32px; font-weight: 700; color: #F5F5F5; }
+.flag-text p { font-size: 24px; color: #A3A3A3; margin-top: 6px; line-height: 1.4; }
+.flag-1 { animation: slideLeft 0.6s 6.5s forwards; }
+.flag-2 { animation: slideLeft 0.6s 9.0s forwards; }
+.flag-3 { animation: slideLeft 0.6s 11.5s forwards; }
+.flag-4 { animation: slideLeft 0.6s 14.0s forwards; }
+.flag-5 { animation: slideLeft 0.6s 16.5s forwards; }
+
+/* SLIDE 3: CTA — visible 20s-25s */
+.cta-container {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 60px;
+  animation: fadeIn 0.6s 20.0s forwards;
+}
+.cta-badge {
+  font-size: 22px; font-weight: 700; color: #FFD700; letter-spacing: 6px;
+  text-transform: uppercase; margin-bottom: 40px;
+  animation: fadeUp 0.5s 20.5s forwards;
+}
+.cta-main {
+  font-size: 72px; font-weight: 900; color: #F5F5F5; line-height: 1.1;
+  animation: scaleIn 0.6s 21.0s forwards;
+}
+.cta-main em { font-style: normal; background: linear-gradient(135deg, #E53E3E, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cta-url {
+  font-size: 36px; font-weight: 600; color: #E53E3E; margin-top: 50px;
+  padding: 20px 50px;
+  border: 2px solid #E53E3E;
+  border-radius: 60px;
+  animation: fadeUp 0.5s 21.5s forwards;
+}
+.cta-handle {
+  font-size: 28px; color: #A3A3A3; margin-top: 30px;
+  animation: fadeUp 0.5s 22.0s forwards;
+}
+
+/* Logo watermark */
+.logo {
+  position: absolute; bottom: 60px; left: 60px;
+  font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.3);
+  letter-spacing: 3px; z-index: 20;
+}
+
+/* Keyframes */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+/* Timing: hide/show slides — total 25s */
+.slide-1 { animation: showHide1 25s forwards; }
+.slide-2 { animation: showHide2 25s forwards; }
+.slide-3 { animation: showHide3 25s forwards; }
+@keyframes showHide1 { 0% { opacity: 1; } 19% { opacity: 1; } 21% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes showHide2 { 0% { opacity: 0; } 20% { opacity: 0; } 22% { opacity: 1; } 78% { opacity: 1; } 80% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes showHide3 { 0% { opacity: 0; } 79% { opacity: 0; } 81% { opacity: 1; } 100% { opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="reel">
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- SLIDE 1: Hook -->
+  <div class="content slide slide-1" style="opacity:1">
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <div class="hook-label slide">CONTRACTS</div>
+      <div class="hook-text slide">Stop signing<br>contracts<br>with <em>these</em><br>red flags</div>
+      <div class="hook-sub slide">5 clauses Malaysian creatives<br>miss every time</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: Red flags -->
+  <div class="flags-container slide slide-2">
+    <div class="flags-title slide">Watch out for these:</div>
+    <div class="flag-item flag-1 slide">
+      <div class="flag-icon">1</div>
+      <div class="flag-text">
+        <h3>"All IP transfers to Client"</h3>
+        <p>You lose ownership of YOUR work forever</p>
+      </div>
+    </div>
+    <div class="flag-item flag-2 slide">
+      <div class="flag-icon">2</div>
+      <div class="flag-text">
+        <h3>"Waive all moral rights"</h3>
+        <p>They can remove your name & alter your work</p>
+      </div>
+    </div>
+    <div class="flag-item flag-3 slide">
+      <div class="flag-icon">3</div>
+      <div class="flag-text">
+        <h3>"Non-compete: 2 years"</h3>
+        <p>Can't work in your own industry for 2 years</p>
+      </div>
+    </div>
+    <div class="flag-item flag-4 slide">
+      <div class="flag-icon">4</div>
+      <div class="flag-text">
+        <h3>"Unlimited revisions"</h3>
+        <p>No cap = infinite free work for the client</p>
+      </div>
+    </div>
+    <div class="flag-item flag-5 slide">
+      <div class="flag-icon">5</div>
+      <div class="flag-text">
+        <h3>"Payment upon satisfaction"</h3>
+        <p>Subjective = they can delay payment forever</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: CTA -->
+  <div class="cta-container slide slide-3">
+    <div class="cta-badge slide">FREE INTERACTIVE GUIDE</div>
+    <div class="cta-main slide">Learn to<br>read contracts<br>like a <em>lawyer</em></div>
+    <div class="cta-url slide">alim.my/resources</div>
+    <div class="cta-handle slide">@artxlawmas</div>
+  </div>
+
+  <div class="logo">ALIM.MY</div>
+</div>
+</body>
+</html>

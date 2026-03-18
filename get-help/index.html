@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- ALIM.my Get Help Page | March 15, 2026 | Instagram: @artxlawmas -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Help - ALIM.my</title>
+    <meta name="description" content="Get free, confidential legal advice for Malaysia's artists and cultural workers. ALIM provides pro-bono legal support.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #F5F5F5;
+            --card: #141414;
+            --primary: #E53E3E;
+            --accent: #FFD700;
+            --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3;
+            --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA;
+            --foreground: #0A0A0A;
+            --card: #FFFFFF;
+            --muted: #525252;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        /* Scroll progress bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-animated {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 50%, #E53E3E 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* Magnetic button effect */
+        .magnetic-btn {
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(229, 62, 62, 0.3);
+        }
+        .magnetic-btn:active {
+            transform: translateY(0px);
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Sticky header backdrop */
+        header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(20, 20, 20, 0.8);
+        }
+        .light header {
+            background-color: rgba(250, 250, 250, 0.85);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        /* Step connector line */
+        .step-connector {
+            position: absolute;
+            top: 2rem;
+            left: calc(50% + 2rem);
+            width: calc(100% - 4rem);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0.3;
+        }
+
+        /* FAQ accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 300px;
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+        .faq-chevron.open {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile menu */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-3">
+                <img src="../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="../get-help/" class="text-[var(--foreground)] font-semibold transition-colors">Get Help</a>
+                <a href="../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Resources</a>
+                <a href="../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../about-alim/" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../request-consultation/" class="hidden md:inline-block bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-sm">
+                    Get in Touch
+                </a>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-[var(--foreground)] focus:outline-none" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 pb-4 space-y-2 border-t border-[var(--border)]">
+            <a href="../get-help/" class="block text-[var(--foreground)] font-semibold py-2">Get Help</a>
+            <a href="../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-2">Our Work</a>
+            <a href="../resources/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-2">Resources</a>
+            <a href="../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-2">Join the Movement</a>
+            <a href="../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-2">About Us</a>
+            <a href="../request-consultation/" class="block mt-4 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg hover:opacity-90">Get in Touch</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)] border-b border-[var(--border)] relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full" style="background: radial-gradient(circle, var(--primary) 0%, transparent 70%);"></div>
+            </div>
+            <div class="container mx-auto max-w-4xl text-center relative z-10">
+                <div class="reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Legal Support</p>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight gradient-text-animated leading-tight">Get Legal Help</h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--muted)] leading-relaxed">Confidential, free legal advice for Malaysia's artists and cultural workers</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- HOW IT WORKS -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center reveal mb-16">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Simple Process</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text">How It Works</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <!-- Connector line (desktop only) -->
+                    <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5" style="background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); opacity: 0.2;"></div>
+
+                    <!-- Step 1 -->
+                    <div class="reveal reveal-delay-1 text-center relative">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10">1</div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-3">Reach Out</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Contact us via email or Instagram DM. Briefly describe your situation.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="reveal reveal-delay-2 text-center relative">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10">2</div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-3">We Connect You</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Our team will match you with the right legal advisor for your case.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="reveal reveal-delay-3 text-center relative">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] flex items-center justify-center text-white text-2xl font-bold mb-6 relative z-10">3</div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-3">Get Support</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Receive confidential, pro-bono legal advice tailored to your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- WHAT WE CAN HELP WITH -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center reveal mb-16">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Our Expertise</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text">What We Can Help With</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="reveal reveal-delay-1 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Contract Reviews & Disputes</h3>
+                        <p class="text-sm text-[var(--muted)]">Understanding and resolving issues with performance contracts, commissions, and agreements.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="reveal reveal-delay-2 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Intellectual Property</h3>
+                        <p class="text-sm text-[var(--muted)]">Copyright protection, trademark registration guidance, and IP dispute resolution.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="reveal reveal-delay-3 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Performance & Venue Agreements</h3>
+                        <p class="text-sm text-[var(--muted)]">Navigating venue contracts, rider agreements, and performance terms.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="reveal reveal-delay-1 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Employment & Freelance Rights</h3>
+                        <p class="text-sm text-[var(--muted)]">Understanding your rights as a freelancer, gig worker, or employed creative.</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="reveal reveal-delay-2 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Censorship & Freedom of Expression</h3>
+                        <p class="text-sm text-[var(--muted)]">Defending your right to create and express through art without fear.</p>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="reveal reveal-delay-3 card-hover bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--primary)]">
+                        <div class="w-14 h-14 rounded-xl bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5">
+                            <svg class="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-[var(--foreground)] mb-2">Grant & Funding Agreements</h3>
+                        <p class="text-sm text-[var(--muted)]">Reviewing grant terms, funding contracts, and sponsorship agreements.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12 reveal">
+                    <a href="../how-we-can-help/" class="magnetic-btn inline-flex items-center bg-[var(--background)] text-[var(--foreground)] font-semibold px-8 py-3.5 rounded-xl border border-[var(--border)] hover:border-[var(--primary)]" style="transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;">
+                        See Our Full Services
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- IMPORTANT INFORMATION -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="reveal">
+                    <div class="rounded-2xl border-2 border-[var(--primary)] p-8 md:p-12 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(229,62,62,0.05) 0%, rgba(255,215,0,0.05) 100%);">
+                        <div class="absolute top-0 right-0 w-32 h-32 rounded-bl-full" style="background: linear-gradient(135deg, rgba(229,62,62,0.1), rgba(255,215,0,0.1));"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-6">
+                                <svg class="w-8 h-8 text-[var(--accent)] mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                <h2 class="text-2xl md:text-3xl font-bold text-[var(--foreground)]">Important Information</h2>
+                            </div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-[var(--primary)] mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-lg text-[var(--muted)]">All consultations are <strong class="text-[var(--foreground)]">100% confidential</strong> and <strong class="text-[var(--foreground)]">pro-bono</strong></span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-[var(--primary)] mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-lg text-[var(--muted)]">We serve <strong class="text-[var(--foreground)]">artists, musicians, performers, filmmakers, writers, designers</strong>, and all cultural workers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-[var(--primary)] mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span class="text-lg text-[var(--muted)]">Available in <strong class="text-[var(--foreground)]">English</strong> and <strong class="text-[var(--foreground)]">Bahasa Malaysia</strong></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CONTACT -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center reveal mb-16">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Reach Out</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text">Get In Touch</h2>
+                    <p class="mt-4 text-[var(--muted)] max-w-xl mx-auto">Choose your preferred way to reach us. We typically respond within 48 hours.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Request Consultation -->
+                    <a href="../request-consultation/" class="reveal reveal-delay-1 card-hover block bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 text-center hover:border-[var(--primary)] group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5 group-hover:bg-opacity-20 transition-all">
+                            <svg class="w-8 h-8 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-2">Request a Consultation</h3>
+                        <p class="text-sm text-[var(--muted)]">Free &amp; confidential</p>
+                    </a>
+
+                    <!-- Email Card -->
+                    <a href="mailto:artxlawinitiative@gmail.com" class="reveal reveal-delay-2 card-hover block bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 text-center hover:border-[var(--primary)] group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5 group-hover:bg-opacity-20 transition-all">
+                            <svg class="w-8 h-8 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-2">Email Us</h3>
+                        <p class="text-[var(--primary)] font-medium text-sm">artxlawinitiative@gmail.com</p>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="reveal reveal-delay-3 card-hover block bg-[var(--background)] border border-[var(--border)] rounded-2xl p-8 text-center hover:border-[var(--primary)] group">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-[var(--primary)] bg-opacity-10 flex items-center justify-center mb-5 group-hover:bg-opacity-20 transition-all">
+                            <svg class="w-8 h-8 text-[var(--primary)]" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-2">Instagram DM</h3>
+                        <p class="text-[var(--primary)] font-medium text-sm">@artxlawmas</p>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- FAQ -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center reveal mb-16">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Common Questions</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4 reveal reveal-delay-1">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--primary)] transition-colors">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                            <span class="text-lg font-semibold text-[var(--foreground)] pr-4">Is my consultation really free?</span>
+                            <svg class="faq-chevron w-5 h-5 text-[var(--muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer px-6">
+                            <p class="pb-6 text-[var(--muted)] leading-relaxed">Yes, ALIM provides 100% pro-bono services. All our legal consultations are completely free of charge. We believe every artist deserves access to legal support regardless of their financial situation.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--primary)] transition-colors">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                            <span class="text-lg font-semibold text-[var(--foreground)] pr-4">Will my information be kept confidential?</span>
+                            <svg class="faq-chevron w-5 h-5 text-[var(--muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer px-6">
+                            <p class="pb-6 text-[var(--muted)] leading-relaxed">Absolutely. All consultations are protected by professional confidentiality. Your personal information and case details will never be shared without your explicit consent.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--primary)] transition-colors">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                            <span class="text-lg font-semibold text-[var(--foreground)] pr-4">What kinds of artists do you help?</span>
+                            <svg class="faq-chevron w-5 h-5 text-[var(--muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer px-6">
+                            <p class="pb-6 text-[var(--muted)] leading-relaxed">We help ALL creative professionals -- musicians, visual artists, filmmakers, performers, writers, designers, and cultural workers of every discipline. If you create, we are here for you.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--primary)] transition-colors">
+                        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                            <span class="text-lg font-semibold text-[var(--foreground)] pr-4">Do I need to be in KL?</span>
+                            <svg class="faq-chevron w-5 h-5 text-[var(--muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer px-6">
+                            <p class="pb-6 text-[var(--muted)] leading-relaxed">No, we can assist remotely via email or video call. Whether you are in Penang, Johor, Sabah, Sarawak, or anywhere in Malaysia, we are here to help.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                    <a href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+                        Featured in The Star
+                    </a>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-sm text-[var(--muted)]">@artxlawmas</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ========== SCROLL PROGRESS BAR ==========
+        const scrollProgress = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        }, { passive: true });
+
+        // ========== THEME TOGGLE ==========
+        const themeToggle = document.getElementById('theme-toggle');
+        const applyTheme = (theme) => {
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // ========== MOBILE MENU ==========
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // ========== SCROLL TO TOP ==========
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollToTopButton.classList.toggle('hidden', window.pageYOffset <= 400);
+        }, { passive: true });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== INTERSECTION OBSERVER (Scroll Reveal) ==========
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ========== FAQ ACCORDION ==========
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const chevron = item.querySelector('.faq-chevron');
+                const isOpen = answer.classList.contains('open');
+
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+                    openAnswer.classList.remove('open');
+                    openAnswer.closest('.faq-item').querySelector('.faq-chevron').classList.remove('open');
+                    openAnswer.closest('.faq-item').querySelector('.faq-toggle').setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    chevron.classList.add('open');
+                    button.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // ========== CONTACT FORM (mailto) ==========
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value.trim();
+            const issue = document.getElementById('form-issue').value;
+            const description = document.getElementById('form-description').value.trim();
+            const subject = encodeURIComponent('Legal Help Request');
+            const body = encodeURIComponent(
+                'LEGAL HELP REQUEST\n' +
+                '================================\n\n' +
+                'Name: ' + (name || 'Not provided') + '\n' +
+                'Issue Type: ' + (issue || 'Not specified') + '\n\n' +
+                'Description:\n' + (description || 'Not provided') + '\n\n' +
+                '================================\n' +
+                'Sent via ALIM.my Get Help Form'
+            );
+            window.location.href = 'mailto:artxlawinitiative@gmail.com?subject=' + subject + '&body=' + body;
+        });
+
+    })();
+    </script>
+</body>
+</html>

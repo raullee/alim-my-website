@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIM Reel - Copyright Myths</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.reel {
+  width: 1080px; height: 1920px; background: #0A0A0A;
+  position: relative; overflow: hidden;
+  transform: scale(0.45); transform-origin: center center;
+}
+.grain {
+  position: absolute; inset: 0; opacity: 0.04; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: 0; }
+.orb-1 { width: 500px; height: 500px; background: rgba(255,215,0,0.1); top: 200px; right: -150px; animation: f1 9s ease-in-out infinite; }
+.orb-2 { width: 500px; height: 500px; background: rgba(229,62,62,0.1); bottom: 300px; left: -200px; animation: f2 11s ease-in-out infinite; }
+@keyframes f1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-60px,40px); } }
+@keyframes f2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px,-50px); } }
+
+/* Myth cards */
+.myth-sequence {
+  position: absolute; inset: 0; z-index: 10;
+}
+.myth-slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 70px;
+  opacity: 0;
+}
+
+/* Slide timings - each myth gets ~4s, total ~30s */
+.myth-hook { animation: mythTiming 30s 0s forwards; }
+.myth-1 { animation: mythTiming 30s 4.5s forwards; }
+.myth-2 { animation: mythTiming 30s 9.0s forwards; }
+.myth-3 { animation: mythTiming 30s 13.5s forwards; }
+.myth-4 { animation: mythTiming 30s 18.0s forwards; }
+.myth-5 { animation: mythTiming 30s 22.5s forwards; }
+.myth-cta { animation: mythTimingLast 30s 27.0s forwards; }
+
+@keyframes mythTiming {
+  0% { opacity: 0; transform: scale(0.95); }
+  3% { opacity: 1; transform: scale(1); }
+  12% { opacity: 1; transform: scale(1); }
+  14% { opacity: 0; transform: scale(1.02); }
+  100% { opacity: 0; }
+}
+@keyframes mythTimingLast {
+  0% { opacity: 0; transform: scale(0.95); }
+  5% { opacity: 1; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Hook slide */
+.hook-tag {
+  font-size: 24px; font-weight: 700; color: #FFD700;
+  letter-spacing: 6px; text-transform: uppercase;
+}
+.hook-main {
+  font-size: 84px; font-weight: 900; color: #F5F5F5; line-height: 1.05; margin-top: 30px;
+}
+.hook-main em { font-style: normal; color: #E53E3E; }
+.hook-sub { font-size: 34px; color: #A3A3A3; margin-top: 24px; }
+
+/* Myth card styling */
+.myth-number {
+  font-size: 120px; font-weight: 900;
+  background: linear-gradient(135deg, rgba(229,62,62,0.3), rgba(255,215,0,0.3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.myth-label {
+  display: inline-block;
+  font-size: 22px; font-weight: 800; letter-spacing: 4px;
+  padding: 10px 30px; border-radius: 50px; margin-top: 10px;
+}
+.myth-label-myth { background: rgba(229,62,62,0.15); color: #E53E3E; }
+.myth-label-fact { background: rgba(72,187,120,0.15); color: #48BB78; }
+.myth-statement {
+  font-size: 44px; font-weight: 800; color: #F5F5F5; margin-top: 30px; line-height: 1.2;
+}
+.myth-strike {
+  text-decoration: line-through;
+  text-decoration-color: #E53E3E;
+  text-decoration-thickness: 4px;
+  color: #666;
+}
+.myth-truth {
+  font-size: 34px; color: #48BB78; margin-top: 24px; line-height: 1.4;
+  font-weight: 600;
+}
+.myth-context {
+  font-size: 24px; color: #A3A3A3; margin-top: 16px;
+  padding: 16px 30px; background: rgba(255,255,255,0.04); border-radius: 12px;
+}
+
+/* CTA */
+.cta-main {
+  font-size: 64px; font-weight: 900; color: #F5F5F5; line-height: 1.15;
+}
+.cta-main em { font-style: normal; background: linear-gradient(135deg, #E53E3E, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cta-url {
+  font-size: 36px; font-weight: 600; color: #E53E3E;
+  margin-top: 40px; padding: 18px 50px;
+  border: 2px solid #E53E3E; border-radius: 60px;
+}
+.cta-handle { font-size: 26px; color: #A3A3A3; margin-top: 24px; }
+
+.logo { position: absolute; bottom: 60px; left: 60px; font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.25); letter-spacing: 3px; z-index: 20; }
+</style>
+</head>
+<body>
+<div class="reel">
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="myth-sequence">
+    <!-- Hook -->
+    <div class="myth-slide myth-hook">
+      <div class="hook-tag">COPYRIGHT IN MALAYSIA</div>
+      <div class="hook-main">5 myths<br>you still<br><em>believe</em></div>
+      <div class="hook-sub">How many are you guilty of?</div>
+    </div>
+
+    <!-- Myth 1 -->
+    <div class="myth-slide myth-1">
+      <div class="myth-number">01</div>
+      <div class="myth-label myth-label-myth">MYTH</div>
+      <div class="myth-statement"><span class="myth-strike">"I need to register<br>my copyright"</span></div>
+      <div class="myth-truth">Copyright is AUTOMATIC<br>in Malaysia</div>
+      <div class="myth-context">No registration needed. Created it? You own it.</div>
+    </div>
+
+    <!-- Myth 2 -->
+    <div class="myth-slide myth-2">
+      <div class="myth-number">02</div>
+      <div class="myth-label myth-label-myth">MYTH</div>
+      <div class="myth-statement"><span class="myth-strike">"No &copy; symbol =<br>not copyrighted"</span></div>
+      <div class="myth-truth">The symbol is optional.<br>Protection exists without it.</div>
+      <div class="myth-context">Under the Copyright Act 1987 (Malaysia)</div>
+    </div>
+
+    <!-- Myth 3 -->
+    <div class="myth-slide myth-3">
+      <div class="myth-number">03</div>
+      <div class="myth-label myth-label-myth">MYTH</div>
+      <div class="myth-statement"><span class="myth-strike">"Giving credit =<br>legal permission"</span></div>
+      <div class="myth-truth">Credit does NOT equal<br>a license to use</div>
+      <div class="myth-context">You still need permission from the creator</div>
+    </div>
+
+    <!-- Myth 4 -->
+    <div class="myth-slide myth-4">
+      <div class="myth-number">04</div>
+      <div class="myth-label myth-label-myth">MYTH</div>
+      <div class="myth-statement"><span class="myth-strike">"Post online =<br>public domain"</span></div>
+      <div class="myth-truth">Sharing online does NOT<br>give up your rights</div>
+      <div class="myth-context">Your Instagram post is still YOUR intellectual property</div>
+    </div>
+
+    <!-- Myth 5 -->
+    <div class="myth-slide myth-5">
+      <div class="myth-number">05</div>
+      <div class="myth-label myth-label-myth">MYTH</div>
+      <div class="myth-statement"><span class="myth-strike">"Copyright lasts<br>forever"</span></div>
+      <div class="myth-truth">Life of author + 50 years<br>in Malaysia</div>
+      <div class="myth-context">After that, works enter the public domain</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="myth-slide myth-cta">
+      <div class="hook-tag" style="margin-bottom: 20px;">FREE INTERACTIVE GUIDE</div>
+      <div class="cta-main">Test your<br>copyright<br><em>knowledge</em></div>
+      <div class="cta-url">alim.my/resources</div>
+      <div class="cta-handle">@artxlawmas</div>
+    </div>
+  </div>
+
+  <div class="logo">ALIM.MY</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIM Reel - Know Before You Play</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.reel {
+  width: 1080px; height: 1920px; background: #0A0A0A;
+  position: relative; overflow: hidden;
+  transform: scale(0.45); transform-origin: center center;
+}
+.grain {
+  position: absolute; inset: 0; opacity: 0.04; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: 0; }
+.orb-1 { width: 500px; height: 500px; background: rgba(229,62,62,0.12); top: 100px; right: -200px; animation: f1 9s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(255,215,0,0.08); bottom: 300px; left: -150px; animation: f2 11s ease-in-out infinite; }
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,40px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+
+.seq { position: absolute; inset: 0; z-index: 10; }
+.s-slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 80px 60px;
+  opacity: 0;
+}
+
+.s-hook { animation: sT 25s 0s forwards; }
+.s-check { animation: sT2 25s 5s forwards; }
+.s-cta { animation: sTL 25s 20s forwards; }
+
+@keyframes sT {
+  0%{opacity:0;transform:translateY(20px)}3%{opacity:1;transform:translateY(0)}16%{opacity:1}20%{opacity:0}100%{opacity:0}
+}
+@keyframes sT2 {
+  0%{opacity:0}20%{opacity:0}22%{opacity:1}78%{opacity:1}80%{opacity:0}100%{opacity:0}
+}
+@keyframes sTL {
+  0%{opacity:0;transform:translateY(20px)}4%{opacity:1;transform:translateY(0)}100%{opacity:1}
+}
+
+/* Hook */
+.hook-center { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.hook-tag { font-size: 24px; font-weight: 700; color: #FFD700; letter-spacing: 5px; }
+.hook-main { font-size: 76px; font-weight: 900; color: #F5F5F5; line-height: 1.05; margin-top: 24px; }
+.hook-main em { font-style: normal; color: #E53E3E; }
+.hook-sub { font-size: 30px; color: #A3A3A3; margin-top: 20px; }
+
+/* Checklist */
+.checklist { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.check-title { font-size: 36px; font-weight: 800; color: #F5F5F5; margin-bottom: 36px; }
+.check-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0;
+}
+.check-box {
+  width: 48px; height: 48px; min-width: 48px;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  transition: all 0.3s;
+}
+.check-box.checked {
+  border-color: #48BB78;
+  background: rgba(72,187,120,0.15);
+}
+.check-text { font-size: 28px; font-weight: 600; color: #D4D4D4; }
+.check-sub { font-size: 20px; color: #666; margin-top: 4px; }
+
+.c1 { animation: checkIn 25s 6.0s forwards; }
+.c2 { animation: checkIn 25s 7.5s forwards; }
+.c3 { animation: checkIn 25s 9.0s forwards; }
+.c4 { animation: checkIn 25s 10.5s forwards; }
+.c5 { animation: checkIn 25s 12.0s forwards; }
+.c6 { animation: checkIn 25s 13.5s forwards; }
+.c7 { animation: checkIn 25s 15.0s forwards; }
+
+@keyframes checkIn {
+  0% { opacity: 0; transform: translateX(30px); }
+  3% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* CTA */
+.cta-center { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.cta-main { font-size: 64px; font-weight: 900; color: #F5F5F5; line-height: 1.15; }
+.cta-main em { font-style:normal; background:linear-gradient(135deg,#E53E3E,#FFD700); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.cta-url { font-size:36px; font-weight:600; color:#E53E3E; margin-top:40px; padding:18px 50px; border:2px solid #E53E3E; border-radius:60px; }
+.cta-handle { font-size:26px; color:#A3A3A3; margin-top:24px; }
+.cta-tag { font-size:22px; font-weight:700; color:#FFD700; letter-spacing:5px; margin-bottom:24px; }
+
+.logo { position:absolute; bottom:60px; left:60px; font-size:26px; font-weight:800; color:rgba(255,255,255,0.25); letter-spacing:3px; z-index:20; }
+</style>
+</head>
+<body>
+<div class="reel">
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="seq">
+    <!-- Hook -->
+    <div class="s-slide s-hook">
+      <div class="hook-center">
+        <div class="hook-tag">BEFORE YOUR NEXT GIG</div>
+        <div class="hook-main">Check<br><em>all 7</em><br>or don't<br>play</div>
+        <div class="hook-sub">The pre-gig checklist every<br>Malaysian performer needs</div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="s-slide s-check">
+      <div class="checklist">
+        <div class="check-title">Know Before You Play</div>
+        <div class="check-item c1">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Written contract signed</div><div class="check-sub">Not just a WhatsApp agreement</div></div>
+        </div>
+        <div class="check-item c2">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Payment terms confirmed</div><div class="check-sub">Amount, method, and when you get paid</div></div>
+        </div>
+        <div class="check-item c3">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Set times & duration locked</div><div class="check-sub">No surprise overtime without extra pay</div></div>
+        </div>
+        <div class="check-item c4">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Technical rider submitted</div><div class="check-sub">Sound system, monitors, power, backline</div></div>
+        </div>
+        <div class="check-item c5">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Cancellation policy agreed</div><div class="check-sub">Kill fee if they cancel last minute</div></div>
+        </div>
+        <div class="check-item c6">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Recording / streaming permissions</div><div class="check-sub">Can they film you? Livestream? Upload?</div></div>
+        </div>
+        <div class="check-item c7">
+          <div class="check-box checked">&#10003;</div>
+          <div><div class="check-text">Transport & accommodation</div><div class="check-sub">Who covers travel for out-of-town gigs?</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="s-slide s-cta">
+      <div class="cta-center">
+        <div class="cta-tag">FREE INTERACTIVE CHECKLIST</div>
+        <div class="cta-main">Get the full<br><em>performer's<br>toolkit</em></div>
+        <div class="cta-url">alim.my/resources</div>
+        <div class="cta-handle">@artxlawmas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">ALIM.MY</div>
+</div>
+</body>
+</html>

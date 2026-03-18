@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Consultation - ALIM.my</title>
+    <meta name="description" content="Request a free legal consultation from Art x Law Initiative Malaysia (ALIM). Get confidential legal advice for creative professionals.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #F5F5F5;
+            --card: #141414;
+            --primary: #E53E3E;
+            --accent: #FFD700;
+            --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3;
+            --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA;
+            --foreground: #0A0A0A;
+            --card: #FFFFFF;
+            --muted: #525252;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; width: 0; height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .magnetic-btn {
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+        }
+        .magnetic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(229, 62, 62, 0.3);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        header {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        #mobile-menu {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        #mobile-menu.open { max-height: 400px; padding-top: 1rem; padding-bottom: 1rem; }
+
+        /* Custom radio buttons */
+        .issue-radio {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .issue-radio:hover {
+            border-color: var(--primary) !important;
+        }
+        .issue-radio input[type="radio"] {
+            display: none;
+        }
+        .issue-radio input[type="radio"]:checked + .radio-label {
+            border-color: var(--primary);
+            background-color: rgba(229, 62, 62, 0.1);
+        }
+        .issue-radio input[type="radio"]:checked + .radio-label .radio-dot {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+        }
+        .radio-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        /* Form input styling */
+        .form-input {
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            color: var(--foreground);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.15);
+        }
+        .form-input::placeholder {
+            color: var(--muted);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]" style="background-color: color-mix(in srgb, var(--card) 80%, transparent);">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-3 group">
+                <img src="../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8 transition-transform group-hover:rotate-12 duration-300">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="../get-help/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Get Help</a>
+                <a href="../our-work/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../resources/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Resources</a>
+                <a href="../join-us/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../about-alim/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors p-2 rounded-lg hover:bg-[var(--border)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../about-alim/#contact" class="hidden md:inline-block magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg text-sm">Get in Touch</a>
+                <button id="mobile-menu-button" class="md:hidden text-[var(--foreground)] focus:outline-none p-2" aria-label="Toggle menu">
+                    <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 space-y-1 border-t border-[var(--border)]">
+            <a href="../get-help/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Get Help</a>
+            <a href="../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Our Work</a>
+            <a href="../resources/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Resources</a>
+            <a href="../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Join the Movement</a>
+            <a href="../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">About Us</a>
+            <a href="../about-alim/#contact" class="block mt-2 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2.5 rounded-lg text-sm">Get in Touch</a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- PAGE HEADER -->
+        <section class="py-16 sm:py-20 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Get Legal Support</p>
+                    <h1 class="text-4xl md:text-5xl font-black tracking-tight">
+                        <span class="gradient-text">Request a Consultation</span>
+                    </h1>
+                    <p class="mt-4 text-[var(--muted)] max-w-2xl leading-relaxed">Fill in the details below and click submit to send us your consultation request. All consultations are free and confidential.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- FORM SECTION -->
+        <section class="py-16 sm:py-20 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-2xl">
+
+                <!-- Free & Confidential Banner -->
+                <div class="mb-10 p-6 rounded-2xl border-2 border-[var(--primary)] text-center" style="background: linear-gradient(135deg, rgba(229,62,62,0.08) 0%, rgba(255,215,0,0.08) 100%);">
+                    <div class="flex items-center justify-center space-x-3">
+                        <svg class="w-6 h-6 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <p class="text-lg font-bold text-[var(--foreground)]">All consultations are free and confidential</p>
+                    </div>
+                </div>
+
+                <!-- Consultation Request Form (Formspree) -->
+                <div class="reveal rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--background)] p-8 md:p-10">
+                    <!-- Form -->
+                    <form id="consultation-form" action="https://formspree.io/f/FORMSPREE_ID" method="POST" class="space-y-6">
+                        <input type="hidden" name="_subject" value="ALIM Consultation Request">
+                        <input type="hidden" name="_next" value="">
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Your Name *</label>
+                            <input type="text" name="name" required placeholder="e.g. Ahmad Zulkifli" class="w-full bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] focus:shadow-[0_0_0_3px_rgba(229,62,62,0.15)] transition-all text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Your Email *</label>
+                            <input type="email" name="email" required placeholder="e.g. ahmad@email.com" class="w-full bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] focus:shadow-[0_0_0_3px_rgba(229,62,62,0.15)] transition-all text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-3">Type of Issue *</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Contract Dispute" required class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Contract Dispute</div></label>
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Copyright / IP" class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Copyright / IP</div></label>
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Performance Agreement" class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Performance Agreement</div></label>
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Employment / Freelance" class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Employment / Freelance</div></label>
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Censorship" class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Censorship</div></label>
+                                <label class="cursor-pointer"><input type="radio" name="issue-type" value="Other" class="peer hidden"><div class="p-3 rounded-xl border border-[var(--border)] bg-[var(--card)] text-sm text-[var(--muted)] peer-checked:border-[var(--primary)] peer-checked:text-[var(--foreground)] transition-all text-center">Other</div></label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Brief Description</label>
+                            <textarea name="description" rows="4" placeholder="Tell us briefly about your situation..." class="w-full bg-[var(--card)] border border-[var(--border)] rounded-xl px-4 py-3 text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--primary)] focus:shadow-[0_0_0_3px_rgba(229,62,62,0.15)] transition-all text-sm resize-none"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="magnetic-btn w-full bg-[var(--primary)] text-[var(--primary-foreground)] font-bold px-8 py-4 rounded-xl text-base">Submit Consultation Request</button>
+                    </form>
+                    <!-- Thank you state (shown after submit) -->
+                    <div id="form-success" class="hidden text-center py-12">
+                        <svg class="w-16 h-16 mx-auto text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-2xl font-bold text-[var(--foreground)]">Request Received</h3>
+                        <p class="mt-3 text-[var(--muted)]">Thank you. Our team will review your request and get back to you within 48 hours.</p>
+                    </div>
+                </div>
+
+                <div class="section-divider my-12"></div>
+
+                <!-- DIRECT CONTACT -->
+                <div class="reveal">
+                    <div class="p-8 bg-[var(--background)] rounded-2xl border border-[var(--border)] text-center">
+                        <h3 class="text-xl font-bold text-[var(--foreground)] mb-2">Prefer to reach out directly?</h3>
+                        <p class="text-[var(--muted)] mb-6">You can also email us or reach us on social media.</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="mailto:artxlawinitiative@gmail.com" class="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <span>artxlawinitiative@gmail.com</span>
+                            </a>
+                            <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z" clip-rule="evenodd"/></svg>
+                                <span>@artxlawmas</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                    <a href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+                        Featured in The Star
+                    </a>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+        const themeToggle = document.getElementById('theme-toggle');
+        const applyTheme = (theme) => {
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollToTopButton.classList.toggle('hidden', window.pageYOffset <= 400);
+        }, { passive: true });
+        scrollToTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Form submission via Formspree (AJAX)
+        const form = document.getElementById('consultation-form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    document.getElementById('form-success').classList.remove('hidden');
+                } else {
+                    btn.textContent = 'Something went wrong. Try again.';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                btn.textContent = 'Network error. Try again.';
+                btn.disabled = false;
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<!-- ALIM.my Understanding Contracts Resource Page | March 2026 | Instagram: @artxlawmas -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Contracts - ALIM.my</title>
+    <meta name="description" content="Interactive guide to understanding contracts for Malaysian creatives. Learn to read, negotiate, and protect yourself with contracts under Malaysian law.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #F5F5F5;
+            --card: #141414;
+            --primary: #E53E3E;
+            --accent: #FFD700;
+            --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3;
+            --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA;
+            --foreground: #0A0A0A;
+            --card: #FFFFFF;
+            --muted: #525252;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: var(--primary); z-index: 9999; width: 0%;
+            transition: width 0.1s linear;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .magnetic-btn {
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease;
+        }
+        .magnetic-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(229,62,62,0.3); }
+        .magnetic-btn:active { transform: translateY(0px); }
+        .card-hover { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.4s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        #mobile-menu.open { max-height: 400px; padding-top: 1rem; padding-bottom: 1rem; }
+
+        /* === CONTRACT ANATOMY === */
+        .contract-doc {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .contract-section {
+            padding: 1rem 1.5rem;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+        }
+        .contract-section:hover, .contract-section.active {
+            border-left-color: var(--primary);
+            background: color-mix(in srgb, var(--primary) 8%, var(--card));
+        }
+        .contract-section.active {
+            border-left-color: var(--accent);
+        }
+        .contract-section .section-number {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--muted); margin-bottom: 0.25rem;
+        }
+        .contract-section h4 { font-weight: 700; font-size: 1rem; }
+        .contract-section .clause-text {
+            font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-top: 0.35rem;
+        }
+        .explanation-panel {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease, padding 0.4s ease;
+            padding: 0 1.5rem;
+        }
+        .explanation-panel.open {
+            max-height: 400px; opacity: 1; padding: 1rem 1.5rem 1.25rem;
+        }
+
+        /* === RED FLAG DETECTOR === */
+        .clause-card {
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            cursor: pointer;
+        }
+        .clause-card.answered { pointer-events: none; }
+        .clause-card.correct { border-color: #22c55e !important; }
+        .clause-card.wrong { border-color: var(--primary) !important; animation: shake 0.5s ease; }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+        .rating-btn {
+            padding: 0.5rem 1.25rem; border-radius: 0.75rem; font-weight: 600;
+            font-size: 0.85rem; border: 2px solid var(--border);
+            transition: all 0.3s ease; cursor: pointer;
+            background: var(--card); color: var(--foreground);
+        }
+        .rating-btn:hover { transform: translateY(-2px); }
+        .rating-btn.safe { border-color: #22c55e; color: #22c55e; }
+        .rating-btn.safe:hover, .rating-btn.safe.selected { background: #22c55e; color: #fff; }
+        .rating-btn.caution { border-color: #eab308; color: #eab308; }
+        .rating-btn.caution:hover, .rating-btn.caution.selected { background: #eab308; color: #000; }
+        .rating-btn.danger { border-color: #ef4444; color: #ef4444; }
+        .rating-btn.danger:hover, .rating-btn.danger.selected { background: #ef4444; color: #fff; }
+
+        /* === TABS === */
+        .tab-btn {
+            padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem;
+            border-bottom: 3px solid transparent; color: var(--muted);
+            transition: all 0.3s ease; cursor: pointer; white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--foreground); }
+        .tab-btn.active { color: var(--foreground); border-bottom-color: var(--primary); }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* === ACCORDION === */
+        .accordion-item { border: 1px solid var(--border); border-radius: 0.75rem; overflow: hidden; transition: border-color 0.3s ease; }
+        .accordion-item:hover, .accordion-item.open { border-color: var(--primary); }
+        .accordion-trigger {
+            width: 100%; padding: 1.25rem 1.5rem; display: flex;
+            justify-content: space-between; align-items: center;
+            cursor: pointer; background: var(--card); border: none;
+            color: var(--foreground); font-weight: 600; font-size: 1rem;
+            text-align: left; font-family: inherit;
+        }
+        .accordion-trigger svg { transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem; }
+        .accordion-item.open .accordion-trigger svg { transform: rotate(180deg); }
+        .accordion-body {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        .accordion-item.open .accordion-body { max-height: 500px; }
+        .accordion-body-inner { padding: 0 1.5rem 1.25rem; color: var(--muted); line-height: 1.8; font-size: 0.95rem; }
+
+        /* === NEGOTIATION RANKING === */
+        .rank-item {
+            padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border);
+            border-radius: 0.75rem; cursor: grab; user-select: none;
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 1rem;
+        }
+        .rank-item:active { cursor: grabbing; }
+        .rank-item:hover { border-color: var(--primary); transform: translateX(4px); }
+        .rank-item .rank-number {
+            width: 2rem; height: 2rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+            background: var(--border); color: var(--foreground);
+            transition: all 0.3s ease;
+        }
+        .rank-item.placed .rank-number { background: var(--primary); color: #fff; }
+        .rank-item.correct-pos .rank-number { background: #22c55e; color: #fff; }
+        .rank-item.dragging { opacity: 0.5; transform: scale(0.95); }
+
+        /* === PROGRESS TRACKER === */
+        .progress-dot {
+            width: 10px; height: 10px; border-radius: 50%; background: var(--border);
+            transition: all 0.4s ease; cursor: pointer;
+        }
+        .progress-dot.visited { background: var(--primary); }
+        .progress-dot.current { background: var(--accent); box-shadow: 0 0 8px rgba(255,215,0,0.5); }
+
+        /* === SCORE DISPLAY === */
+        .score-circle {
+            width: 120px; height: 120px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-weight: 900;
+            background: conic-gradient(var(--primary) var(--score-pct), var(--border) var(--score-pct));
+            position: relative;
+        }
+        .score-circle::after {
+            content: ''; position: absolute;
+            width: 96px; height: 96px; border-radius: 50%;
+            background: var(--card);
+        }
+        .score-circle span { position: relative; z-index: 1; }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .contract-anatomy-grid { grid-template-columns: 1fr !important; }
+            .tab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="scroll-progress"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]" style="background-color: color-mix(in srgb, var(--card) 80%, transparent);">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-3 group">
+                <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8 transition-transform group-hover:rotate-12 duration-300">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="../../get-help/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Get Help</a>
+                <a href="../../our-work/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../../resources/" class="nav-link text-[var(--foreground)]">Resources</a>
+                <a href="../../join-us/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../../about-alim/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors p-2 rounded-lg hover:bg-[var(--border)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../../about-alim/#contact" class="hidden md:inline-block magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg text-sm">Get in Touch</a>
+                <button id="mobile-menu-button" class="md:hidden text-[var(--foreground)] focus:outline-none p-2" aria-label="Toggle menu">
+                    <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 space-y-1 border-t border-[var(--border)]">
+            <a href="../../get-help/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Get Help</a>
+            <a href="../../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Our Work</a>
+            <a href="../../resources/" class="block text-[var(--foreground)] py-3 text-sm font-medium">Resources</a>
+            <a href="../../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Join the Movement</a>
+            <a href="../../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">About Us</a>
+            <a href="../../about-alim/#contact" class="block mt-2 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2.5 rounded-lg text-sm">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- SECTION PROGRESS TRACKER -->
+    <div id="section-tracker" class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3" aria-label="Page sections">
+        <div class="progress-dot" data-section="hero" title="Top"></div>
+        <div class="progress-dot" data-section="anatomy" title="Contract Anatomy"></div>
+        <div class="progress-dot" data-section="redflag" title="Red Flag Detector"></div>
+        <div class="progress-dot" data-section="deepdive" title="Deep Dives"></div>
+        <div class="progress-dot" data-section="negotiation" title="Negotiation Tips"></div>
+        <div class="progress-dot" data-section="faq" title="FAQ"></div>
+        <div class="progress-dot" data-section="cta" title="Get Help"></div>
+    </div>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section id="sec-hero" data-track="hero" class="relative py-24 sm:py-32 flex items-center justify-center text-center px-6 bg-[var(--background)] overflow-hidden">
+            <div class="container mx-auto max-w-4xl relative z-10">
+                <a href="../../resources/" class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-8 reveal">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    Back to Resources
+                </a>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-[0.95] reveal">
+                    <span class="gradient-text">Understanding Contracts</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--muted)] leading-relaxed reveal reveal-delay-1">
+                    A comprehensive, interactive guide for Malaysian artists and creatives. Learn to read, negotiate, and protect yourself under Malaysian law.
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3 reveal reveal-delay-2">
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full border border-[var(--border)] text-[var(--muted)]">Contracts Act 1950</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full border border-[var(--border)] text-[var(--muted)]">Copyright Act 1987</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full border border-[var(--border)] text-[var(--muted)]">Interactive</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full border border-[var(--border)] text-[var(--muted)]">15 min read</span>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none"></div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================================ -->
+        <!-- 1. INTERACTIVE CONTRACT ANATOMY              -->
+        <!-- ============================================ -->
+        <section id="sec-anatomy" data-track="anatomy" class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Section 1</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Anatomy of a Contract</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Click on any section of this sample contract to understand what it means and why it matters.</p>
+                </div>
+
+                <div class="contract-anatomy-grid grid grid-cols-1 lg:grid-cols-5 gap-8 reveal reveal-delay-1">
+                    <!-- Contract Document -->
+                    <div class="lg:col-span-3 contract-doc">
+                        <div class="p-6 border-b border-[var(--border)] text-center">
+                            <p class="text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)]">Sample Agreement</p>
+                            <h3 class="text-lg font-bold mt-1">Creative Services Agreement</h3>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="parties" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-parties">
+                            <div class="section-number">Clause 1</div>
+                            <h4>Parties to the Agreement</h4>
+                            <p class="clause-text">This Agreement is entered into between <strong>Client Sdn Bhd</strong> (Company No. 123456-X) ("the Client") and <strong>Ahmad bin Ismail</strong> (NRIC: 900101-14-XXXX) ("the Artist")...</p>
+                        </div>
+                        <div id="explain-parties" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Under the <strong>Malaysian Contracts Act 1950 (Section 10)</strong>, every valid contract needs clearly identified, competent parties. Always verify the company registration number on SSM's website. If they use a Sdn Bhd, your contract is with the <em>company</em>, not the individual directors -- this matters if they don't pay.</p>
+                            </div>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="scope" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-scope">
+                            <div class="section-number">Clause 2</div>
+                            <h4>Scope of Work</h4>
+                            <p class="clause-text">The Artist shall deliver: (a) 5 original illustrations, (b) 2 rounds of revisions, (c) final files in PNG and AI format. Delivery within 30 days of signing...</p>
+                        </div>
+                        <div id="explain-scope" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">A vague scope is the #1 cause of disputes. If the contract says "design work" without specifics, the client can keep asking for more. Always insist on: <strong>exact deliverables, number of revisions, file formats, and deadlines</strong>. Under Section 29 of the Contracts Act 1950, agreements that are uncertain are void.</p>
+                            </div>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="payment" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-payment">
+                            <div class="section-number">Clause 3</div>
+                            <h4>Payment Terms</h4>
+                            <p class="clause-text">Total fee: RM5,000. Payment schedule: 50% deposit upon signing, 50% upon final delivery. Late payment shall incur 1.5% monthly interest...</p>
+                        </div>
+                        <div id="explain-payment" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed"><strong>Never start work without a deposit.</strong> A 50/50 split is standard; some artists use 50/25/25 for longer projects. The late payment interest clause protects you -- without it, you'd need to go to court to claim interest. For claims under RM5,000, you can use the <strong>Small Claims Tribunal</strong> (fast and no lawyer needed).</p>
+                            </div>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="ip" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-ip">
+                            <div class="section-number">Clause 4</div>
+                            <h4>Intellectual Property</h4>
+                            <p class="clause-text">Upon full payment, the Client shall receive a non-exclusive license to use the Work for the purposes specified in Schedule A. The Artist retains all copyright ownership...</p>
+                        </div>
+                        <div id="explain-ip" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">This is THE most important clause. Under Malaysia's <strong>Copyright Act 1987</strong>, you automatically own the copyright to your work. A <strong>license</strong> lets the client use it; an <strong>assignment</strong> transfers ownership forever. Always prefer licensing over assignment. If they insist on full assignment, charge significantly more -- you're selling a permanent asset.</p>
+                            </div>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="termination" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-termination">
+                            <div class="section-number">Clause 5</div>
+                            <h4>Termination</h4>
+                            <p class="clause-text">Either party may terminate this Agreement with 14 days written notice. Upon termination, the Client shall pay for all work completed to date. Kill fee: 25% of remaining balance...</p>
+                        </div>
+                        <div id="explain-termination" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">A termination clause protects both sides. The <strong>kill fee</strong> (25% here) compensates you for turning down other work. Watch out for clauses that let the client terminate without paying anything -- that's a major red flag. Also ensure that termination requires <strong>written</strong> notice, not just a WhatsApp message that can be disputed later.</p>
+                            </div>
+                        </div>
+
+                        <div class="contract-section" data-anatomy="disputes" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-disputes">
+                            <div class="section-number">Clause 6</div>
+                            <h4>Dispute Resolution</h4>
+                            <p class="clause-text">Any dispute arising shall first be referred to mediation at the Asian International Arbitration Centre (AIAC). This Agreement is governed by the laws of Malaysia...</p>
+                        </div>
+                        <div id="explain-disputes" class="explanation-panel" role="region">
+                            <div class="p-4 rounded-lg bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-sm font-bold text-[var(--accent)] mb-2">Why This Matters</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Mediation is cheaper and faster than court. The <strong>AIAC</strong> (Asian International Arbitration Centre) in KL handles creative disputes. Always ensure the governing law is <strong>Malaysian law</strong> -- foreign companies sometimes slip in foreign jurisdiction clauses, which means you'd need to sue in another country. Also check: who pays mediation/arbitration fees?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Legend -->
+                    <div class="lg:col-span-2">
+                        <div class="sticky top-24 space-y-4">
+                            <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                                <h3 class="font-bold text-lg mb-4">Contract Checklist</h3>
+                                <div class="space-y-3" id="anatomy-checklist">
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="parties">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        Parties identified
+                                    </label>
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="scope">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        Scope clearly defined
+                                    </label>
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="payment">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        Payment terms set
+                                    </label>
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="ip">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        IP ownership clear
+                                    </label>
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="termination">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        Termination clause present
+                                    </label>
+                                    <label class="flex items-center gap-3 text-sm text-[var(--muted)] cursor-pointer" data-check="disputes">
+                                        <span class="w-5 h-5 rounded border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all check-box"></span>
+                                        Dispute resolution included
+                                    </label>
+                                </div>
+                                <div id="checklist-progress" class="mt-5">
+                                    <div class="flex justify-between text-xs text-[var(--muted)] mb-1">
+                                        <span>Sections explored</span>
+                                        <span id="checklist-count">0/6</span>
+                                    </div>
+                                    <div class="w-full h-2 rounded-full bg-[var(--border)] overflow-hidden">
+                                        <div id="checklist-bar" class="h-full rounded-full bg-[var(--primary)] transition-all duration-500" style="width:0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--accent)] mb-2">Pro Tip</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Under Section 10 of the Contracts Act 1950, a valid contract needs: <strong>offer, acceptance, consideration, and intention to create legal relations.</strong> An oral agreement IS legally binding in Malaysia -- but good luck proving what was agreed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================================ -->
+        <!-- 2. RED FLAG DETECTOR PLAYGROUND              -->
+        <!-- ============================================ -->
+        <section id="sec-redflag" data-track="redflag" class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Section 2</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Red Flag Detector</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Real contract clauses from Malaysian creative contracts. Rate each one: is it safe, worth caution, or a red flag?</p>
+                </div>
+
+                <div id="redflag-game" class="reveal reveal-delay-1">
+                    <!-- Game state: playing -->
+                    <div id="rf-playing">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-sm text-[var(--muted)]">Clause <span id="rf-current">1</span> of <span id="rf-total">8</span></div>
+                            <div class="text-sm font-bold">Score: <span id="rf-score" class="text-[var(--accent)]">0</span></div>
+                        </div>
+                        <div class="w-full h-2 rounded-full bg-[var(--border)] overflow-hidden mb-8">
+                            <div id="rf-progress-bar" class="h-full rounded-full bg-[var(--primary)] transition-all duration-500" style="width:12.5%"></div>
+                        </div>
+
+                        <div id="rf-clause-card" class="p-8 bg-[var(--card)] rounded-2xl border border-[var(--border)] mb-8">
+                            <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--muted)] mb-3">Contract Clause</p>
+                            <p id="rf-clause-text" class="text-lg font-medium leading-relaxed"></p>
+                        </div>
+
+                        <div class="flex flex-wrap justify-center gap-4 mb-6">
+                            <button class="rating-btn safe" data-rating="safe" aria-label="Rate as safe">Safe</button>
+                            <button class="rating-btn caution" data-rating="caution" aria-label="Rate as caution">Caution</button>
+                            <button class="rating-btn danger" data-rating="danger" aria-label="Rate as danger">Red Flag</button>
+                        </div>
+
+                        <div id="rf-feedback" class="hidden p-6 rounded-xl border border-[var(--border)] bg-[var(--card)] mb-6">
+                            <div class="flex items-start gap-3">
+                                <span id="rf-fb-icon" class="text-2xl flex-shrink-0"></span>
+                                <div>
+                                    <p id="rf-fb-verdict" class="font-bold mb-1"></p>
+                                    <p id="rf-fb-explanation" class="text-sm text-[var(--muted)] leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="rf-next-wrap" class="hidden text-center">
+                            <button id="rf-next-btn" class="magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3 rounded-xl">Next Clause &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- Game state: results -->
+                    <div id="rf-results" class="hidden text-center">
+                        <div class="p-10 bg-[var(--card)] rounded-2xl border border-[var(--border)]">
+                            <div class="score-circle mx-auto mb-6" style="--score-pct: 0%">
+                                <span id="rf-final-score" class="text-[var(--foreground)]">0/8</span>
+                            </div>
+                            <h3 id="rf-result-title" class="text-2xl font-bold mb-2"></h3>
+                            <p id="rf-result-desc" class="text-[var(--muted)] mb-8 max-w-md mx-auto"></p>
+                            <button id="rf-retry" class="magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3 rounded-xl">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================================ -->
+        <!-- 3. TABBED DEEP DIVES                        -->
+        <!-- ============================================ -->
+        <section id="sec-deepdive" data-track="deepdive" class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Section 3</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Contract Deep Dives</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Specific guidance for different types of creative contracts in Malaysia.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1">
+                    <div class="tab-scroll border-b border-[var(--border)] mb-8 flex">
+                        <button class="tab-btn active" data-tab="performance" aria-selected="true" role="tab">Performance / Gig</button>
+                        <button class="tab-btn" data-tab="commission" aria-selected="false" role="tab">Commission & Licensing</button>
+                        <button class="tab-btn" data-tab="label" aria-selected="false" role="tab">Record Label</button>
+                        <button class="tab-btn" data-tab="freelance" aria-selected="false" role="tab">Freelance Services</button>
+                    </div>
+
+                    <!-- TAB: Performance -->
+                    <div class="tab-content active" id="tab-performance" role="tabpanel">
+                        <div class="grid gap-6">
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Key Clauses to Watch</h4>
+                                <ul class="space-y-3 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">01</span><span><strong>Performance fee & payment timing</strong> -- Get paid before or on the night. "Net 30" for a gig means you might never see the money. Insist on 50% deposit minimum.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">02</span><span><strong>Cancellation clause</strong> -- If the venue cancels within 7 days, you should still get 50-100% of the fee. Your time was blocked. Include a "rain or shine" clause for outdoor events.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">03</span><span><strong>Recording & livestream rights</strong> -- Does the venue plan to record or livestream? Under the Copyright Act 1987, your live performance has separate performers' rights. Charge extra for recording permissions.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">04</span><span><strong>Liability & insurance</strong> -- Who's responsible if equipment gets damaged? What about injuries? Make sure the venue has public liability insurance and it's stated in the contract.</span></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Negotiation Tips</h4>
+                                <ul class="space-y-2 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li>-- Always get sound/tech rider requirements in writing as part of the contract</li>
+                                    <li>-- Negotiate separate fees for soundcheck time if it's on a different day</li>
+                                    <li>-- Include a clause for reasonable accommodation/transport for out-of-town gigs</li>
+                                    <li>-- Specify set times, load-in times, and whether there's a curfew</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--accent)] border-opacity-30">
+                                <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)] mb-2">What's Fair? -- Malaysian Benchmark</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">For KL/Selangor venues: Solo acts RM500-2,000/night, bands RM2,000-8,000/night (2026 rates). Always add 50% for corporate events. Festival rates should include a day rate + per diem. Don't accept "exposure" as payment -- <strong>Section 2(d) of the Contracts Act 1950</strong> requires "consideration" (something of value) for a valid contract.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Commission & Licensing -->
+                    <div class="tab-content" id="tab-commission" role="tabpanel">
+                        <div class="grid gap-6">
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Key Clauses to Watch</h4>
+                                <ul class="space-y-3 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">01</span><span><strong>License vs. Assignment</strong> -- A license lets the client use your work; assignment transfers ownership. Under the Copyright Act 1987, copyright assignment must be in writing. If the contract says "all rights assigned," you lose the work forever.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">02</span><span><strong>Scope of license</strong> -- Limit by: territory (Malaysia only vs. worldwide), duration (1 year vs. perpetuity), medium (print only vs. all media), and exclusivity (exclusive vs. non-exclusive).</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">03</span><span><strong>Moral rights</strong> -- Under Section 25 of the Copyright Act 1987, you have the right to be credited as the creator and to object to distortion of your work. These moral rights exist even if you assign copyright. Never waive them.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">04</span><span><strong>Revision limits</strong> -- Specify exactly how many revision rounds are included. Additional revisions should be charged at an hourly rate stated in the contract.</span></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Negotiation Tips</h4>
+                                <ul class="space-y-2 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li>-- Price licensing based on usage: a small business Instagram post vs. a national billboard campaign are very different values</li>
+                                    <li>-- Retain the right to use commissioned work in your portfolio</li>
+                                    <li>-- Include a "revert clause" -- if the client doesn't use the work within 12 months, rights revert to you</li>
+                                    <li>-- Charge a premium (2-5x) for exclusive licenses vs. non-exclusive</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--accent)] border-opacity-30">
+                                <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)] mb-2">What's Fair? -- Malaysian Benchmark</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Commission pricing: Illustration RM800-5,000 per piece (depending on complexity and usage). Licensing: charge 20-40% of the commission fee per year for ongoing use. Full copyright assignment: 3-5x the commission fee. These are guidelines -- your rate depends on experience, demand, and the client's budget.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Record Label -->
+                    <div class="tab-content" id="tab-label" role="tabpanel">
+                        <div class="grid gap-6">
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Key Clauses to Watch</h4>
+                                <ul class="space-y-3 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">01</span><span><strong>Master ownership</strong> -- Who owns the master recordings? Traditional deals: the label owns masters. Modern approach: artist retains masters, label gets exclusive license for a set period (3-7 years). This is the single biggest financial decision of your music career.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">02</span><span><strong>Royalty splits & accounting</strong> -- Standard artist royalty: 15-25% of net receipts for major labels, 50/50 for indie. Insist on quarterly statements and the right to audit. "Net receipts" can be manipulated -- demand clear definitions of deductions.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">03</span><span><strong>Album commitment / option clauses</strong> -- A "3 album + 2 option" deal means the label can lock you in for 5 albums over potentially 10+ years. Option clauses should have minimum commitment terms from the label (marketing spend, release timeline).</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">04</span><span><strong>360 deal terms</strong> -- Many Malaysian labels now want a cut of live performance, merchandise, and endorsements. If you agree, the percentage should be lower (5-15%) and the label must actively contribute to those revenue streams.</span></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Negotiation Tips</h4>
+                                <ul class="space-y-2 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li>-- Never sign a record deal without a lawyer reviewing it. Full stop.</li>
+                                    <li>-- Push for a "sunset clause" -- the label's percentage decreases over time</li>
+                                    <li>-- Negotiate reversion of masters after a specific period (5-10 years is fair)</li>
+                                    <li>-- Ensure you retain songwriting/publishing rights separately from recording rights</li>
+                                    <li>-- Get approval rights over release dates, artwork, and marketing plans</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--accent)] border-opacity-30">
+                                <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)] mb-2">What's Fair? -- Malaysian Benchmark</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Malaysian indie labels: 50/50 profit split after recoupment, 3-5 year term, artist retains masters after term. Advances: RM5,000-50,000 per album (indie). Always calculate: will the advance be recouped from your royalties? If yes, you're essentially getting a loan. Make sure the recoupment formula is clear and doesn't include "cross-collateralisation" (using one album's debt against another's earnings).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: Freelance Services -->
+                    <div class="tab-content" id="tab-freelance" role="tabpanel">
+                        <div class="grid gap-6">
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Key Clauses to Watch</h4>
+                                <ul class="space-y-3 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">01</span><span><strong>Independent contractor vs. employee</strong> -- Ensure the contract clearly states you're an independent contractor. If you're treated as an employee (fixed hours, provided equipment, exclusive work), you may have rights under the Employment Act 1955 -- and the client has obligations like EPF, SOCSO.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">02</span><span><strong>Non-compete clauses</strong> -- Be very careful. A clause preventing you from working with "competitors" for 2+ years can cripple your career. Under Malaysian law, overly broad non-competes may be unenforceable, but legal challenges are expensive.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">03</span><span><strong>Scope creep protection</strong> -- Include a clear change order process: any work beyond the original scope requires a written amendment with additional fees agreed before work begins.</span></li>
+                                    <li class="flex gap-3"><span class="text-[var(--primary)] font-bold mt-0.5">04</span><span><strong>Indemnification</strong> -- Watch for clauses requiring you to "indemnify and hold harmless" the client for everything. Limit your liability to the total contract value. Never accept unlimited liability.</span></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--border)]">
+                                <h4 class="font-bold text-lg mb-3">Negotiation Tips</h4>
+                                <ul class="space-y-2 text-sm text-[var(--muted)] leading-relaxed">
+                                    <li>-- Use milestone-based payments rather than lump sum at completion</li>
+                                    <li>-- Include a "pause clause" -- if the client ghosts for 30 days, the project is deemed complete and final payment is due</li>
+                                    <li>-- Retain all work product until final payment is received (this is your leverage)</li>
+                                    <li>-- Add an SST exemption note if your annual revenue is below the RM500,000 threshold</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 bg-[var(--background)] rounded-xl border border-[var(--accent)] border-opacity-30">
+                                <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)] mb-2">What's Fair? -- Malaysian Benchmark</p>
+                                <p class="text-sm text-[var(--muted)] leading-relaxed">Freelance rates vary widely. Graphic design: RM80-250/hour. Web development: RM100-400/hour. Photography: RM1,500-8,000/day. Videography: RM2,000-15,000/project. Always charge project rates (not hourly) for creative work where possible -- hourly penalises efficiency. Payment terms: Net 14 is ideal, Net 30 is acceptable, anything beyond is unfair to freelancers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================================ -->
+        <!-- 4. INTERACTIVE NEGOTIATION RANKING           -->
+        <!-- ============================================ -->
+        <section id="sec-negotiation" data-track="negotiation" class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Section 4</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Negotiation Priorities</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">When reviewing a contract, what should you negotiate first? Drag to rank these items from most to least important, then check against our recommended order.</p>
+                </div>
+
+                <div id="negotiation-game" class="reveal reveal-delay-1">
+                    <div id="rank-list" class="space-y-3" role="list" aria-label="Drag to reorder negotiation priorities">
+                    </div>
+
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                        <button id="rank-check" class="magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3 rounded-xl">Check My Order</button>
+                        <button id="rank-reset" class="magnetic-btn bg-[var(--card)] text-[var(--foreground)] font-semibold px-8 py-3 rounded-xl border border-[var(--border)]">Shuffle & Reset</button>
+                    </div>
+
+                    <div id="rank-feedback" class="hidden mt-8 p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]">
+                        <p id="rank-fb-text" class="font-bold mb-2"></p>
+                        <p id="rank-fb-detail" class="text-sm text-[var(--muted)] leading-relaxed"></p>
+                    </div>
+
+                    <div id="rank-answer" class="hidden mt-8 p-6 rounded-xl border border-[var(--accent)] bg-[var(--card)]">
+                        <p class="text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)] mb-3">Recommended Priority Order</p>
+                        <ol class="space-y-2 text-sm text-[var(--muted)] leading-relaxed list-decimal list-inside">
+                            <li><strong>Payment terms & amounts</strong> -- Money first. Everything else is secondary if you're not getting paid fairly.</li>
+                            <li><strong>Intellectual property / ownership</strong> -- This determines the long-term value of your work. Once assigned, it's gone.</li>
+                            <li><strong>Scope of work</strong> -- Clear boundaries prevent scope creep and protect your time.</li>
+                            <li><strong>Termination & kill fee</strong> -- Your safety net. What happens if things go wrong?</li>
+                            <li><strong>Timeline & deadlines</strong> -- Unrealistic timelines lead to burnout and subpar work.</li>
+                            <li><strong>Non-compete / exclusivity</strong> -- Limit how much this contract restricts your other opportunities.</li>
+                            <li><strong>Dispute resolution</strong> -- Important but usually standard. Mediation first is always best.</li>
+                            <li><strong>Confidentiality terms</strong> -- Usually reasonable, but check the duration and scope.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================================ -->
+        <!-- 5. FAQ ACCORDION                            -->
+        <!-- ============================================ -->
+        <section id="sec-faq" data-track="faq" class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Section 5</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Frequently Asked Questions</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Common questions about contracts for Malaysian creatives.</p>
+                </div>
+
+                <div class="space-y-4 reveal reveal-delay-1">
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>Do I need a written contract for every gig?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p>Legally, no. Under the Malaysian Contracts Act 1950, oral agreements are valid and enforceable (except for land-related contracts, which must be in writing). However, <strong>practically, yes -- always get it in writing.</strong></p>
+                                <p class="mt-3">The problem with oral agreements isn't legality; it's <strong>proof</strong>. In a dispute, it becomes your word against theirs. Even a simple email confirmation or WhatsApp message confirming the key terms (fee, date, scope) is better than nothing. For anything above RM1,000, use a proper written agreement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>Can I negotiate a standard contract?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p><strong>Absolutely. There's no such thing as a "standard" non-negotiable contract.</strong> When someone says "this is our standard contract," what they mean is "this is the version that's best for us." Everything is negotiable.</p>
+                                <p class="mt-3">Common negotiation points: payment terms, IP ownership, scope limits, revision rounds, and termination conditions. Start by marking up the contract with your requested changes and send it back. The worst they can say is no. If they refuse to negotiate any terms at all, that itself is a red flag about the working relationship.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>What if I already signed something unfair?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p>Don't panic. You may have options:</p>
+                                <ul class="mt-2 space-y-2">
+                                    <li><strong>1. Check for unconscionability</strong> -- Under Malaysian contract law, terms that are grossly unfair may be voidable, especially if there was unequal bargaining power (e.g., a major label vs. a 19-year-old first-time artist).</li>
+                                    <li><strong>2. Look for breach by the other side</strong> -- If the other party hasn't upheld their obligations, you may have grounds to terminate.</li>
+                                    <li><strong>3. Renegotiate</strong> -- Approach the other party professionally. Many businesses prefer to renegotiate rather than lose a creative partner.</li>
+                                    <li><strong>4. Seek legal advice</strong> -- <a href="../../get-help/" class="text-[var(--primary)] hover:underline">Contact ALIM</a> or the Legal Aid Department for free guidance.</li>
+                                </ul>
+                                <p class="mt-3">Under <strong>Section 19 of the Contracts Act 1950</strong>, contracts made under coercion, undue influence, fraud, or misrepresentation are voidable.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>How long should a contract be?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p>Length doesn't equal quality. A one-page contract that covers the essentials is better than a 50-page document full of confusing legalese.</p>
+                                <p class="mt-3">For most freelance creative work, <strong>2-5 pages</strong> is sufficient. It should cover: parties, scope, payment, IP, termination, and dispute resolution. Record label contracts tend to be longer (15-40 pages) due to the complexity of rights involved. If a contract is very long, focus on the commercial terms first (money, rights, duration) before the legal boilerplate.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>What's the difference between a license and an assignment?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p>Think of it like a house:</p>
+                                <ul class="mt-2 space-y-2">
+                                    <li><strong>License = renting out a room.</strong> You still own the house. The tenant (client) can use the room under agreed conditions (duration, purpose). You can license the same work to multiple clients (if non-exclusive).</li>
+                                    <li><strong>Assignment = selling the house.</strong> The buyer (client) now owns it completely. You can't use it anymore without their permission. It's permanent and irreversible (unless the assignment contract says otherwise).</li>
+                                </ul>
+                                <p class="mt-3">Under the <strong>Copyright Act 1987 (Section 27)</strong>, copyright assignment must be in writing and signed. Always prefer licensing. If a client demands assignment, charge 3-5x your normal rate -- you're selling an asset, not renting a service.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>Do WhatsApp agreements count as contracts?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p><strong>Yes, they can.</strong> Under the Electronic Commerce Act 2006 and the Contracts Act 1950, electronic communications (including WhatsApp messages) can form a valid contract if the essential elements are present: offer, acceptance, consideration, and intention to create legal relations.</p>
+                                <p class="mt-3">Malaysian courts have recognised WhatsApp messages as evidence in contract disputes. However, a proper written agreement is always stronger. If you must agree via WhatsApp, send a summary message listing all key terms and get explicit confirmation ("I agree to these terms"). Screenshot and back up everything.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <span>What should I do if a client refuses to pay?</span>
+                            <svg class="w-5 h-5 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <p>Step-by-step escalation:</p>
+                                <ol class="mt-2 space-y-2 list-decimal list-inside">
+                                    <li><strong>Send a formal demand letter</strong> -- Give them 14 days to pay. Be professional but firm. Mention that you will pursue legal action.</li>
+                                    <li><strong>Send a lawyer's letter</strong> -- This often resolves 80% of payment disputes. The cost is typically RM200-500.</li>
+                                    <li><strong>Small Claims Tribunal</strong> -- For claims up to RM5,000. No lawyer needed, filing fee is only RM10. Fast resolution (usually within 60 days). Try our <a href="../../small-claim-drafter/" class="text-[var(--primary)] hover:underline">Small Claim Drafter</a> tool.</li>
+                                    <li><strong>Magistrate's Court</strong> -- For claims RM5,001-RM100,000. You'll need a lawyer.</li>
+                                    <li><strong>Sessions Court</strong> -- For claims above RM100,000.</li>
+                                </ol>
+                                <p class="mt-3">Prevention is better than cure: always get a deposit, use milestone payments, and retain work product until final payment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CTA -->
+        <section id="sec-cta" data-track="cta" class="py-20 sm:py-28 px-6 bg-[var(--background)]">
+            <div class="container mx-auto max-w-3xl text-center reveal">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Need More Help?</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight gradient-text">Get Contract Advice</h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-[var(--muted)] leading-relaxed">If you have a contract you need reviewed, or you're unsure about terms you've been offered, reach out to ALIM. All consultations are free and confidential.</p>
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="../../get-help/" class="magnetic-btn inline-block bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3.5 rounded-xl text-base">Get Legal Help &rarr;</a>
+                    <a href="../../resources/" class="magnetic-btn inline-block bg-[var(--card)] text-[var(--foreground)] font-semibold px-8 py-3.5 rounded-xl text-base border border-[var(--border)]">&larr; Back to Resources</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-sm text-[var(--muted)]">@artxlawmas</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ========== SCROLL PROGRESS BAR ==========
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
+            });
+        }, { passive: true });
+
+        // ========== THEME TOGGLE ==========
+        const themeToggle = document.getElementById('theme-toggle');
+        const applyTheme = (theme) => {
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // ========== MOBILE MENU ==========
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        });
+
+        // ========== SCROLL TO TOP ==========
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollToTopButton.classList.toggle('hidden', window.pageYOffset <= 400);
+        }, { passive: true });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== INTERSECTION OBSERVER (Scroll Reveal) ==========
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ========== SECTION PROGRESS TRACKER ==========
+        const sectionDots = document.querySelectorAll('.progress-dot');
+        const trackedSections = document.querySelectorAll('[data-track]');
+        const visitedSections = new Set();
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.dataset.track;
+                    visitedSections.add(id);
+                    sectionDots.forEach(dot => {
+                        dot.classList.remove('current');
+                        if (dot.dataset.section === id) dot.classList.add('current');
+                        if (visitedSections.has(dot.dataset.section)) dot.classList.add('visited');
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        trackedSections.forEach(s => sectionObserver.observe(s));
+
+        sectionDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sec = document.querySelector(`[data-track="${dot.dataset.section}"]`);
+                if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ========== CONTRACT ANATOMY ==========
+        const anatomySections = document.querySelectorAll('.contract-section');
+        const checkedSections = new Set();
+
+        anatomySections.forEach(section => {
+            const handler = () => {
+                const key = section.dataset.anatomy;
+                const panel = section.nextElementSibling;
+                const isOpen = panel.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.explanation-panel').forEach(p => p.classList.remove('open'));
+                anatomySections.forEach(s => {
+                    s.classList.remove('active');
+                    s.setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    panel.classList.add('open');
+                    section.classList.add('active');
+                    section.setAttribute('aria-expanded', 'true');
+                }
+
+                // Mark as checked
+                if (!checkedSections.has(key)) {
+                    checkedSections.add(key);
+                    const checkLabel = document.querySelector(`[data-check="${key}"]`);
+                    if (checkLabel) {
+                        const box = checkLabel.querySelector('.check-box');
+                        box.style.borderColor = 'var(--primary)';
+                        box.style.background = 'var(--primary)';
+                        box.innerHTML = '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
+                    }
+                    const count = checkedSections.size;
+                    document.getElementById('checklist-count').textContent = count + '/6';
+                    document.getElementById('checklist-bar').style.width = (count / 6 * 100) + '%';
+                }
+            };
+
+            section.addEventListener('click', handler);
+            section.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+            });
+        });
+
+        // ========== RED FLAG DETECTOR ==========
+        const rfClauses = [
+            {
+                text: '"All intellectual property created during the engagement shall belong exclusively to the Client."',
+                answer: 'danger',
+                explanation: 'This is a full IP assignment clause. Under Malaysia\'s Copyright Act 1987, you automatically own your creative work. This clause strips that away entirely. If you agree, you lose all rights to reuse, display, or profit from your own work. Negotiate for a license instead, or charge significantly more for full assignment.'
+            },
+            {
+                text: '"Payment shall be made within 30 days of invoice."',
+                answer: 'safe',
+                explanation: 'Net 30 is a standard and reasonable payment term in Malaysia. It gives the client a fair window to process payment. For freelancers, Net 14 is better, but Net 30 is acceptable. Make sure to add a late payment interest clause (e.g., 1.5% per month) to incentivise timely payment.'
+            },
+            {
+                text: '"The Artist waives all moral rights in connection with the Work."',
+                answer: 'danger',
+                explanation: 'Moral rights under Section 25 of the Copyright Act 1987 include your right to be credited and to prevent distortion of your work. Waiving moral rights means the client could remove your name, alter your work beyond recognition, or use it in ways you find objectionable -- and you\'d have no legal recourse. Never waive moral rights.'
+            },
+            {
+                text: '"Either party may terminate with 14 days written notice."',
+                answer: 'safe',
+                explanation: 'A mutual termination clause with reasonable notice is a sign of a fair contract. 14 days is standard. Make sure it also specifies payment for work completed to date and includes a kill fee for the remaining scope. Written notice creates a clear paper trail.'
+            },
+            {
+                text: '"The Client may use the work in perpetuity across all media, territories, and formats, whether now known or hereafter devised."',
+                answer: 'caution',
+                explanation: 'The breadth of this license is concerning. "Perpetuity" means forever. "All media... hereafter devised" means any future technology. While not necessarily a red flag (some projects require broad licenses), the compensation should reflect this unlimited usage. If they\'re paying a one-time flat fee for perpetual worldwide rights, negotiate for a higher fee or royalty structure.'
+            },
+            {
+                text: '"Confidentiality obligations survive termination for 2 years."',
+                answer: 'safe',
+                explanation: 'A 2-year confidentiality survival period is reasonable and standard. It protects legitimate business secrets. Just make sure the definition of "confidential information" is reasonable and doesn\'t prevent you from showing the work in your portfolio (negotiate a portfolio exception).'
+            },
+            {
+                text: '"The Artist shall not work with any competing clients, brands, or entities in the same industry for a period of 3 years following termination."',
+                answer: 'danger',
+                explanation: 'A 3-year non-compete is extremely aggressive and could effectively end your career in that industry. While Malaysian courts may not enforce overly broad non-competes (per Section 28 of the Contracts Act 1950 which renders restraint of trade agreements void), legal challenges are expensive and stressful. Push back hard: limit to 6 months maximum, narrow the definition of "competing," or refuse entirely.'
+            },
+            {
+                text: '"Disputes shall be resolved through mediation at the Asian International Arbitration Centre (AIAC) before either party may commence court proceedings."',
+                answer: 'safe',
+                explanation: 'Mediation-first clauses are excellent. Mediation is cheaper, faster, and more collaborative than court proceedings. The AIAC in Kuala Lumpur is a respected institution. This clause means you won\'t be dragged straight into expensive litigation. It\'s a green flag that shows the other party prefers to resolve disputes fairly.'
+            }
+        ];
+
+        let rfIndex = 0, rfScore = 0, rfAnswered = false;
+        const rfCurrentEl = document.getElementById('rf-current');
+        const rfTotalEl = document.getElementById('rf-total');
+        const rfScoreEl = document.getElementById('rf-score');
+        const rfClauseText = document.getElementById('rf-clause-text');
+        const rfProgressBarEl = document.getElementById('rf-progress-bar');
+        const rfFeedback = document.getElementById('rf-feedback');
+        const rfNextWrap = document.getElementById('rf-next-wrap');
+        const rfPlaying = document.getElementById('rf-playing');
+        const rfResults = document.getElementById('rf-results');
+
+        rfTotalEl.textContent = rfClauses.length;
+
+        function loadClause() {
+            rfAnswered = false;
+            rfCurrentEl.textContent = rfIndex + 1;
+            rfClauseText.textContent = rfClauses[rfIndex].text;
+            rfProgressBarEl.style.width = ((rfIndex + 1) / rfClauses.length * 100) + '%';
+            rfFeedback.classList.add('hidden');
+            rfNextWrap.classList.add('hidden');
+            document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected'));
+        }
+        loadClause();
+
+        document.querySelectorAll('.rating-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (rfAnswered) return;
+                rfAnswered = true;
+
+                const rating = btn.dataset.rating;
+                const clause = rfClauses[rfIndex];
+                const correct = rating === clause.answer;
+
+                btn.classList.add('selected');
+                if (correct) rfScore++;
+                rfScoreEl.textContent = rfScore;
+
+                const icon = document.getElementById('rf-fb-icon');
+                const verdict = document.getElementById('rf-fb-verdict');
+                const explanation = document.getElementById('rf-fb-explanation');
+
+                if (correct) {
+                    icon.textContent = '\u2705';
+                    verdict.textContent = 'Correct!';
+                    verdict.style.color = '#22c55e';
+                } else {
+                    icon.textContent = '\u274C';
+                    verdict.textContent = 'Not quite. This is: ' + clause.answer.charAt(0).toUpperCase() + clause.answer.slice(1);
+                    verdict.style.color = '#ef4444';
+                }
+                explanation.textContent = clause.explanation;
+                rfFeedback.classList.remove('hidden');
+                rfNextWrap.classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('rf-next-btn').addEventListener('click', () => {
+            rfIndex++;
+            if (rfIndex >= rfClauses.length) {
+                showRfResults();
+            } else {
+                loadClause();
+            }
+        });
+
+        function showRfResults() {
+            rfPlaying.classList.add('hidden');
+            rfResults.classList.remove('hidden');
+
+            const pct = Math.round(rfScore / rfClauses.length * 100);
+            document.getElementById('rf-final-score').textContent = rfScore + '/' + rfClauses.length;
+            document.querySelector('.score-circle').style.setProperty('--score-pct', pct + '%');
+
+            const title = document.getElementById('rf-result-title');
+            const desc = document.getElementById('rf-result-desc');
+
+            if (pct >= 88) {
+                title.textContent = 'Contract Law Expert!';
+                desc.textContent = 'You clearly know your way around a contract. You\'d make a solid negotiator for any creative deal in Malaysia.';
+            } else if (pct >= 63) {
+                title.textContent = 'Solid Awareness';
+                desc.textContent = 'You\'ve got a good foundation. A few more reads through this guide and you\'ll spot red flags in your sleep.';
+            } else if (pct >= 38) {
+                title.textContent = 'Getting There';
+                desc.textContent = 'You caught some key issues but missed a few. Review the contract anatomy section above and try again.';
+            } else {
+                title.textContent = 'Time to Study Up';
+                desc.textContent = 'Don\'t worry -- that\'s exactly why this guide exists. Read through each section above and come back for another round.';
+            }
+        }
+
+        document.getElementById('rf-retry').addEventListener('click', () => {
+            rfIndex = 0; rfScore = 0;
+            rfScoreEl.textContent = 0;
+            rfPlaying.classList.remove('hidden');
+            rfResults.classList.add('hidden');
+            loadClause();
+        });
+
+        // ========== TABS ==========
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // ========== ACCORDION ==========
+        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const isOpen = item.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                    trigger.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // ========== NEGOTIATION RANKING ==========
+        const rankItems = [
+            { id: 'payment', label: 'Payment terms & amounts', correctRank: 1 },
+            { id: 'ip', label: 'Intellectual property / ownership', correctRank: 2 },
+            { id: 'scope', label: 'Scope of work', correctRank: 3 },
+            { id: 'termination', label: 'Termination & kill fee', correctRank: 4 },
+            { id: 'timeline', label: 'Timeline & deadlines', correctRank: 5 },
+            { id: 'noncompete', label: 'Non-compete / exclusivity', correctRank: 6 },
+            { id: 'disputes', label: 'Dispute resolution', correctRank: 7 },
+            { id: 'confidentiality', label: 'Confidentiality terms', correctRank: 8 }
+        ];
+
+        let currentOrder = [];
+        const rankList = document.getElementById('rank-list');
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function renderRankList() {
+            rankList.innerHTML = '';
+            currentOrder.forEach((item, idx) => {
+                const el = document.createElement('div');
+                el.className = 'rank-item';
+                el.draggable = true;
+                el.dataset.id = item.id;
+                el.setAttribute('role', 'listitem');
+                el.setAttribute('aria-label', 'Priority ' + (idx + 1) + ': ' + item.label);
+                el.innerHTML = '<span class="rank-number">' + (idx + 1) + '</span><span class="flex-1 text-sm font-medium">' + item.label + '</span><svg class="w-5 h-5 text-[var(--muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>';
+                rankList.appendChild(el);
+            });
+            setupDragDrop();
+        }
+
+        function setupDragDrop() {
+            let dragEl = null;
+            const items = rankList.querySelectorAll('.rank-item');
+
+            items.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    dragEl = item;
+                    item.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+                item.addEventListener('dragend', () => {
+                    if (dragEl) dragEl.classList.remove('dragging');
+                    dragEl = null;
+                    // Update order
+                    currentOrder = Array.from(rankList.querySelectorAll('.rank-item')).map(el => rankItems.find(r => r.id === el.dataset.id));
+                    // Renumber
+                    rankList.querySelectorAll('.rank-item').forEach((el, i) => {
+                        el.querySelector('.rank-number').textContent = i + 1;
+                        el.setAttribute('aria-label', 'Priority ' + (i + 1) + ': ' + el.querySelector('.flex-1').textContent);
+                    });
+                });
+                item.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    const rect = item.getBoundingClientRect();
+                    const midY = rect.top + rect.height / 2;
+                    if (e.clientY < midY) {
+                        rankList.insertBefore(dragEl, item);
+                    } else {
+                        rankList.insertBefore(dragEl, item.nextSibling);
+                    }
+                });
+            });
+
+            // Touch support
+            let touchStartY = 0, touchItem = null, touchClone = null;
+            items.forEach(item => {
+                item.addEventListener('touchstart', (e) => {
+                    touchItem = item;
+                    touchStartY = e.touches[0].clientY;
+                    item.classList.add('dragging');
+                }, { passive: true });
+                item.addEventListener('touchmove', (e) => {
+                    if (!touchItem) return;
+                    e.preventDefault();
+                    const touchY = e.touches[0].clientY;
+                    const elements = Array.from(rankList.querySelectorAll('.rank-item:not(.dragging)'));
+                    for (const el of elements) {
+                        const rect = el.getBoundingClientRect();
+                        if (touchY < rect.top + rect.height / 2) {
+                            rankList.insertBefore(touchItem, el);
+                            break;
+                        } else if (el === elements[elements.length - 1]) {
+                            rankList.appendChild(touchItem);
+                        }
+                    }
+                }, { passive: false });
+                item.addEventListener('touchend', () => {
+                    if (touchItem) {
+                        touchItem.classList.remove('dragging');
+                        currentOrder = Array.from(rankList.querySelectorAll('.rank-item')).map(el => rankItems.find(r => r.id === el.dataset.id));
+                        rankList.querySelectorAll('.rank-item').forEach((el, i) => {
+                            el.querySelector('.rank-number').textContent = i + 1;
+                        });
+                        touchItem = null;
+                    }
+                });
+            });
+        }
+
+        currentOrder = shuffle(rankItems);
+        renderRankList();
+
+        document.getElementById('rank-check').addEventListener('click', () => {
+            currentOrder = Array.from(rankList.querySelectorAll('.rank-item')).map(el => rankItems.find(r => r.id === el.dataset.id));
+
+            let correctCount = 0;
+            const items = rankList.querySelectorAll('.rank-item');
+            items.forEach((el, idx) => {
+                const item = currentOrder[idx];
+                el.classList.add('placed');
+                if (item.correctRank === idx + 1) {
+                    el.classList.add('correct-pos');
+                    correctCount++;
+                }
+            });
+
+            const fb = document.getElementById('rank-feedback');
+            const fbText = document.getElementById('rank-fb-text');
+            const fbDetail = document.getElementById('rank-fb-detail');
+            fb.classList.remove('hidden');
+
+            if (correctCount === rankItems.length) {
+                fbText.textContent = 'Perfect order! You nailed the negotiation priorities.';
+                fbText.style.color = '#22c55e';
+                fbDetail.textContent = 'You clearly understand what matters most when reviewing a creative contract.';
+            } else if (correctCount >= 5) {
+                fbText.textContent = correctCount + '/' + rankItems.length + ' in the right position. Very close!';
+                fbText.style.color = 'var(--accent)';
+                fbDetail.textContent = 'Check the recommended order below to see the full rationale.';
+            } else {
+                fbText.textContent = correctCount + '/' + rankItems.length + ' in the right position.';
+                fbText.style.color = 'var(--primary)';
+                fbDetail.textContent = 'No worries -- check the recommended order below. The key insight: always negotiate money and IP first.';
+            }
+
+            document.getElementById('rank-answer').classList.remove('hidden');
+        });
+
+        document.getElementById('rank-reset').addEventListener('click', () => {
+            currentOrder = shuffle(rankItems);
+            renderRankList();
+            document.getElementById('rank-feedback').classList.add('hidden');
+            document.getElementById('rank-answer').classList.add('hidden');
+        });
+
+    })();
+    </script>
+</body>
+</html>

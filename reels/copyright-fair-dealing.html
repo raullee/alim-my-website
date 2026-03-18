@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIM Reel - Fair Dealing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.reel {
+  width: 1080px; height: 1920px; background: #0A0A0A;
+  position: relative; overflow: hidden;
+  transform: scale(0.45); transform-origin: center center;
+}
+.grain {
+  position: absolute; inset: 0; opacity: 0.04; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: 0; }
+.orb-1 { width: 600px; height: 600px; background: rgba(229,62,62,0.1); bottom: 200px; left: -200px; animation: f1 9s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(72,187,120,0.08); top: 100px; right: -100px; animation: f2 7s ease-in-out infinite; }
+@keyframes f1 { 0%,100%{transform:translate(0,0)}50%{transform:translate(60px,-40px)} }
+@keyframes f2 { 0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,50px)} }
+
+.scenario-seq { position: absolute; inset: 0; z-index: 10; }
+.sc-slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 80px 60px;
+  opacity: 0;
+}
+
+/* Timings — hook 5s, each scenario 6s, CTA 5s = ~28s */
+.sc-hook { animation: scT 28s 0s forwards; }
+.sc-1 { animation: scT 28s 5s forwards; }
+.sc-2 { animation: scT 28s 11s forwards; }
+.sc-3 { animation: scT 28s 17s forwards; }
+.sc-cta { animation: scTLast 28s 23s forwards; }
+
+@keyframes scT {
+  0%{opacity:0;transform:translateY(20px)}2%{opacity:1;transform:translateY(0)}16%{opacity:1}19%{opacity:0}100%{opacity:0}
+}
+@keyframes scTLast {
+  0%{opacity:0;transform:translateY(20px)}4%{opacity:1;transform:translateY(0)}100%{opacity:1}
+}
+
+/* Hook */
+.hook-emoji { font-size: 100px; margin-bottom: 20px; }
+.hook-main { font-size: 76px; font-weight: 900; color: #F5F5F5; line-height: 1.08; }
+.hook-main em { font-style: normal; color: #FFD700; }
+.hook-sub { font-size: 32px; color: #A3A3A3; margin-top: 20px; line-height: 1.4; }
+
+/* Scenario card */
+.sc-header {
+  font-size: 22px; font-weight: 700; color: #FFD700;
+  letter-spacing: 4px; text-transform: uppercase;
+}
+.sc-title {
+  font-size: 46px; font-weight: 800; color: #F5F5F5; margin-top: 16px; line-height: 1.2;
+}
+.sc-desc {
+  font-size: 30px; color: #A3A3A3; margin-top: 20px; line-height: 1.5;
+  padding: 24px 30px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  border-left: 4px solid rgba(255,255,255,0.1);
+}
+
+/* Verdict meter */
+.meter-container { margin-top: 40px; }
+.meter-label { font-size: 20px; font-weight: 700; color: #666; letter-spacing: 3px; margin-bottom: 16px; }
+.meter {
+  height: 24px; background: rgba(255,255,255,0.06); border-radius: 12px;
+  overflow: hidden; position: relative;
+}
+.meter-fill {
+  height: 100%; border-radius: 12px;
+  animation: fillMeter 1.5s 0.5s ease-out forwards;
+  width: 0%;
+}
+@keyframes fillMeter { to { width: var(--fill); } }
+.meter-green { background: linear-gradient(90deg, #48BB78, #38A169); }
+.meter-red { background: linear-gradient(90deg, #E53E3E, #C53030); }
+.meter-yellow { background: linear-gradient(90deg, #FFD700, #ECC94B); }
+
+.verdict {
+  margin-top: 20px; padding: 20px 30px; border-radius: 14px;
+  font-size: 32px; font-weight: 800; text-align: center;
+}
+.verdict-fair { background: rgba(72,187,120,0.1); color: #48BB78; border: 1px solid rgba(72,187,120,0.2); }
+.verdict-not { background: rgba(229,62,62,0.1); color: #E53E3E; border: 1px solid rgba(229,62,62,0.2); }
+.verdict-maybe { background: rgba(255,215,0,0.1); color: #FFD700; border: 1px solid rgba(255,215,0,0.2); }
+
+.verdict-reason { font-size: 24px; color: #A3A3A3; margin-top: 12px; line-height: 1.4; }
+
+/* CTA */
+.cta-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.cta-main { font-size: 64px; font-weight: 900; color: #F5F5F5; line-height: 1.15; }
+.cta-main em { font-style: normal; background: linear-gradient(135deg, #E53E3E, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cta-url { font-size: 36px; font-weight: 600; color: #E53E3E; margin-top: 40px; padding: 18px 50px; border: 2px solid #E53E3E; border-radius: 60px; }
+.cta-handle { font-size: 26px; color: #A3A3A3; margin-top: 24px; }
+.cta-tag { font-size: 22px; font-weight: 700; color: #FFD700; letter-spacing: 5px; margin-bottom: 24px; }
+
+.logo { position: absolute; bottom: 60px; left: 60px; font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.25); letter-spacing: 3px; z-index: 20; }
+</style>
+</head>
+<body>
+<div class="reel">
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="scenario-seq">
+    <!-- Hook -->
+    <div class="sc-slide sc-hook">
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+        <div class="hook-emoji">&#9878;</div>
+        <div class="hook-main">Is it<br><em>fair dealing</em><br>or theft?</div>
+        <div class="hook-sub">3 real scenarios.<br>Can you get them right?</div>
+      </div>
+    </div>
+
+    <!-- Scenario 1 -->
+    <div class="sc-slide sc-1">
+      <div class="sc-header">SCENARIO 1</div>
+      <div class="sc-title">Music reviewer uses 30s of a song in a monetized YouTube review</div>
+      <div class="sc-desc">"I only used 30 seconds and I'm reviewing the song, so it's fair use right?"</div>
+      <div class="meter-container">
+        <div class="meter-label">FAIR DEALING METER</div>
+        <div class="meter"><div class="meter-fill meter-yellow" style="--fill:55%"></div></div>
+      </div>
+      <div class="verdict verdict-maybe">DEPENDS ON CONTEXT</div>
+      <div class="verdict-reason">Monetization + using the "heart" of the song tips the scale. Commentary helps but doesn't guarantee protection.</div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="sc-slide sc-2">
+      <div class="sc-header">SCENARIO 2</div>
+      <div class="sc-title">Lecturer photocopies an entire journal article for 40 students</div>
+      <div class="sc-desc">"It's for education, so it must be fair dealing."</div>
+      <div class="meter-container">
+        <div class="meter-label">FAIR DEALING METER</div>
+        <div class="meter"><div class="meter-fill meter-red" style="--fill:25%"></div></div>
+      </div>
+      <div class="verdict verdict-not">LIKELY NOT FAIR DEALING</div>
+      <div class="verdict-reason">Copying the entire work for 40 people exceeds reasonable educational use under Malaysian law.</div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="sc-slide sc-3">
+      <div class="sc-header">SCENARIO 3</div>
+      <div class="sc-title">Someone turns your artwork into a viral Twitter meme</div>
+      <div class="sc-desc">"It's just a meme bro, chill. It's free publicity."</div>
+      <div class="meter-container">
+        <div class="meter-label">FAIR DEALING METER</div>
+        <div class="meter"><div class="meter-fill meter-red" style="--fill:15%"></div></div>
+      </div>
+      <div class="verdict verdict-not">NOT FAIR DEALING</div>
+      <div class="verdict-reason">Using the full work without permission, transformation, or commentary. "Free publicity" is not a legal defense.</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="sc-slide sc-cta">
+      <div class="cta-center">
+        <div class="cta-tag">FREE INTERACTIVE SIMULATOR</div>
+        <div class="cta-main">Test more<br>scenarios in our<br><em>Fair Dealing<br>Simulator</em></div>
+        <div class="cta-url">alim.my/resources</div>
+        <div class="cta-handle">@artxlawmas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">ALIM.MY</div>
+</div>
+</body>
+</html>

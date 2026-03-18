@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<!-- ALIM.my Performing Artist Rights | March 2026 | Instagram: @artxlawmas -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQSFWS10NL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GQSFWS10NL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performing Artist Rights - ALIM.my</title>
+    <meta name="description" content="A comprehensive interactive guide to performing artist rights in Malaysia. Venue simulators, payment calculators, pre-gig checklists, and legal remedies for performers.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: #0A0A0A;
+            --foreground: #F5F5F5;
+            --card: #141414;
+            --primary: #E53E3E;
+            --accent: #FFD700;
+            --primary-foreground: #FFFFFF;
+            --muted: #A3A3A3;
+            --border: #262626;
+        }
+        .light {
+            --background: #FAFAFA;
+            --foreground: #0A0A0A;
+            --card: #FFFFFF;
+            --muted: #525252;
+            --border: #E5E7EB;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: var(--primary); z-index: 9999; width: 0%;
+            transition: width 0.1s linear;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #FFD700 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .magnetic-btn { position: relative; transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease; }
+        .magnetic-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(229,62,62,0.3); }
+        .magnetic-btn:active { transform: translateY(0px); }
+        .card-hover { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.4s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--background); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        #mobile-menu.open { max-height: 400px; padding-top: 1rem; padding-bottom: 1rem; }
+
+        /* ===== PAGE-SPECIFIC STYLES ===== */
+
+        /* Progress tracker */
+        .progress-tracker {
+            position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+            z-index: 40; display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        @media (max-width: 1023px) { .progress-tracker { display: none; } }
+        .progress-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--border); transition: all 0.3s ease; cursor: pointer;
+            position: relative;
+        }
+        .progress-dot.active { background: var(--primary); transform: scale(1.3); }
+        .progress-dot .tooltip {
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+            background: var(--card); border: 1px solid var(--border); color: var(--foreground);
+            padding: 4px 10px; border-radius: 6px; font-size: 11px; white-space: nowrap;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s;
+        }
+        .progress-dot:hover .tooltip { opacity: 1; }
+
+        /* Simulator cards */
+        .sim-option {
+            cursor: pointer; padding: 1rem 1.25rem; border-radius: 0.75rem;
+            border: 1px solid var(--border); background: var(--background);
+            transition: all 0.3s ease; text-align: center; font-weight: 600;
+        }
+        .sim-option:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .sim-option.selected { border-color: var(--primary); background: rgba(229,62,62,0.1); color: var(--primary); }
+        .sim-result-card {
+            opacity: 0; transform: translateY(20px);
+            animation: cardReveal 0.5s ease forwards;
+        }
+        @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
+
+        /* Calculator gauge */
+        .gauge-container { position: relative; width: 100%; height: 24px; border-radius: 12px; overflow: hidden; background: var(--border); }
+        .gauge-fill { height: 100%; border-radius: 12px; transition: width 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .gauge-low { background: linear-gradient(90deg, #E53E3E, #F6AD55); }
+        .gauge-fair { background: linear-gradient(90deg, #F6AD55, #48BB78); }
+        .gauge-premium { background: linear-gradient(90deg, #48BB78, #FFD700); }
+        .gauge-marker {
+            position: absolute; top: -6px; width: 3px; height: 36px;
+            background: var(--foreground); border-radius: 2px; transition: left 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        /* Checklist progress ring */
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease;
+            transform: rotate(-90deg); transform-origin: 50% 50%;
+        }
+
+        /* Flip cards */
+        .flip-card { perspective: 1000px; cursor: pointer; height: 220px; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; border-radius: 1rem;
+            border: 1px solid var(--border); padding: 1.5rem;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .flip-card-front { background: var(--card); }
+        .flip-card-back { background: var(--background); transform: rotateY(180deg); overflow-y: auto; }
+
+        /* Decision tree */
+        .tree-node {
+            padding: 1rem 1.25rem; border-radius: 0.75rem;
+            border: 1px solid var(--border); background: var(--card);
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .tree-node:hover { border-color: var(--primary); transform: translateX(4px); }
+        .tree-path { animation: pathReveal 0.4s ease forwards; opacity: 0; }
+        @keyframes pathReveal { to { opacity: 1; } }
+
+        /* FAQ accordion */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+        .faq-answer.open { padding-top: 0.75rem; padding-bottom: 0.5rem; }
+        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-chevron.open { transform: rotate(180deg); }
+
+        /* Content explored counter */
+        .explored-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.375rem 0.75rem; border-radius: 9999px;
+            background: rgba(229,62,62,0.1); border: 1px solid rgba(229,62,62,0.3);
+            font-size: 0.75rem; font-weight: 600; color: var(--primary);
+        }
+
+        /* Stagger children */
+        .stagger-children > * { opacity: 0; transform: translateY(15px); animation: staggerIn 0.4s ease forwards; }
+        .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+        .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+        .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+        .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+        .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+        .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+        .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+        .stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+        @keyframes staggerIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* Negotiation tips */
+        .tip-tag {
+            display: inline-block; padding: 2px 10px; border-radius: 9999px;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-[var(--border)]" style="background-color: color-mix(in srgb, var(--card) 80%, transparent);">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-3 group">
+                <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8 transition-transform group-hover:rotate-12 duration-300">
+                <span class="text-2xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="../../get-help/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Get Help</a>
+                <a href="../../our-work/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Our Work</a>
+                <a href="../../resources/" class="nav-link text-[var(--foreground)]">Resources</a>
+                <a href="../../join-us/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">Join the Movement</a>
+                <a href="../../about-alim/" class="nav-link text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">About Us</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors p-2 rounded-lg hover:bg-[var(--border)]" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="../../about-alim/#contact" class="hidden md:inline-block magnetic-btn bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2 rounded-lg text-sm">
+                    Get in Touch
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-[var(--foreground)] focus:outline-none p-2" aria-label="Toggle menu">
+                    <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden px-6 space-y-1 border-t border-[var(--border)]">
+            <a href="../../get-help/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Get Help</a>
+            <a href="../../our-work/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Our Work</a>
+            <a href="../../resources/" class="block text-[var(--foreground)] py-3 text-sm font-medium">Resources</a>
+            <a href="../../join-us/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">Join the Movement</a>
+            <a href="../../about-alim/" class="block text-[var(--muted)] hover:text-[var(--foreground)] py-3 text-sm font-medium">About Us</a>
+            <a href="../../about-alim/#contact" class="block mt-2 w-full text-center bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-5 py-2.5 rounded-lg text-sm">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- Progress Tracker (right side dots) -->
+    <div class="progress-tracker" id="progress-tracker"></div>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section class="relative py-24 sm:py-32 flex items-center justify-center text-center px-6 bg-[var(--background)] overflow-hidden" data-section="hero">
+            <div class="container mx-auto max-w-4xl relative z-10">
+                <a href="../../resources/" class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors mb-6 reveal">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Back to Resources
+                </a>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[0.95] reveal">
+                    <span class="gradient-text">Performing Artist</span><br>
+                    <span class="text-[var(--foreground)]">Rights</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--muted)] leading-relaxed reveal reveal-delay-1">Your comprehensive guide to performing in Malaysia. Venue contracts, fair pay, legal protections, and what to do when things go wrong.</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3 reveal reveal-delay-2">
+                    <span class="explored-badge" id="explored-counter">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg>
+                        <span id="explored-count">0</span> / 6 sections explored
+                    </span>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none"></div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 1. VENUE SCENARIO SIMULATOR    -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]" id="sec-simulator" data-section="simulator">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Interactive Tool</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Venue Scenario Simulator</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Select your venue and performance type to get a tailored breakdown of permits, fees, insurance, and contract essentials.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 reveal reveal-delay-1">
+                    <!-- Venue Selection -->
+                    <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--muted)] mb-4">Select Venue Type</h3>
+                        <div class="grid grid-cols-2 gap-3" id="venue-options">
+                            <div class="sim-option" data-venue="bar" onclick="selectVenue(this)">
+                                <div class="text-2xl mb-1">&#127867;</div>Bar / Pub
+                            </div>
+                            <div class="sim-option" data-venue="festival" onclick="selectVenue(this)">
+                                <div class="text-2xl mb-1">&#127926;</div>Festival
+                            </div>
+                            <div class="sim-option" data-venue="corporate" onclick="selectVenue(this)">
+                                <div class="text-2xl mb-1">&#127970;</div>Corporate Event
+                            </div>
+                            <div class="sim-option" data-venue="private" onclick="selectVenue(this)">
+                                <div class="text-2xl mb-1">&#127881;</div>Private Party
+                            </div>
+                            <div class="sim-option col-span-2" data-venue="gallery" onclick="selectVenue(this)">
+                                <div class="text-2xl mb-1">&#127912;</div>Gallery Opening
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Performance Selection -->
+                    <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--muted)] mb-4">Select Performance Type</h3>
+                        <div class="grid grid-cols-2 gap-3" id="perf-options">
+                            <div class="sim-option" data-perf="dj" onclick="selectPerf(this)">
+                                <div class="text-2xl mb-1">&#127911;</div>DJ Set
+                            </div>
+                            <div class="sim-option" data-perf="band" onclick="selectPerf(this)">
+                                <div class="text-2xl mb-1">&#127928;</div>Live Band
+                            </div>
+                            <div class="sim-option" data-perf="solo" onclick="selectPerf(this)">
+                                <div class="text-2xl mb-1">&#127908;</div>Solo Acoustic
+                            </div>
+                            <div class="sim-option" data-perf="dance" onclick="selectPerf(this)">
+                                <div class="text-2xl mb-1">&#128131;</div>Dance
+                            </div>
+                            <div class="sim-option col-span-2" data-perf="theatre" onclick="selectPerf(this)">
+                                <div class="text-2xl mb-1">&#127917;</div>Theatre / Spoken Word
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="sim-results" class="mt-12 hidden">
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl font-bold text-[var(--foreground)]">Your Scenario Breakdown</h3>
+                        <p class="text-sm text-[var(--muted)] mt-1" id="sim-scenario-label"></p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 stagger-children" id="sim-cards"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 2. PAYMENT CALCULATOR          -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]" id="sec-calculator" data-section="calculator">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Know Your Worth</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Payment Calculator & Rate Card</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Input your details to get a suggested fair rate range based on Malaysian market rates.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1 bg-[var(--card)] rounded-2xl border border-[var(--border)] p-8">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Performance Type -->
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Performance Type</label>
+                            <select id="calc-type" onchange="calculateRate()" class="w-full bg-[var(--background)] border border-[var(--border)] rounded-lg px-4 py-3 text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors">
+                                <option value="dj">DJ Set</option>
+                                <option value="band">Live Band (3-5 pax)</option>
+                                <option value="solo">Solo Acoustic</option>
+                                <option value="dance">Dance Performance</option>
+                                <option value="theatre">Theatre / Spoken Word</option>
+                                <option value="mc">MC / Host</option>
+                            </select>
+                        </div>
+                        <!-- Duration -->
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Duration (hours)</label>
+                            <input type="range" id="calc-hours" min="1" max="8" value="2" step="0.5" onchange="calculateRate()" oninput="updateHoursLabel()" class="w-full accent-[var(--primary)]">
+                            <div class="flex justify-between text-xs text-[var(--muted)] mt-1">
+                                <span>1 hr</span>
+                                <span id="hours-label" class="font-bold text-[var(--foreground)]">2 hrs</span>
+                                <span>8 hrs</span>
+                            </div>
+                        </div>
+                        <!-- Location -->
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Location</label>
+                            <select id="calc-location" onchange="calculateRate()" class="w-full bg-[var(--background)] border border-[var(--border)] rounded-lg px-4 py-3 text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors">
+                                <option value="kl">Kuala Lumpur</option>
+                                <option value="penang">Penang</option>
+                                <option value="jb">Johor Bahru</option>
+                                <option value="ipoh">Ipoh</option>
+                                <option value="kk">Kota Kinabalu</option>
+                                <option value="kuching">Kuching</option>
+                                <option value="melaka">Melaka</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <!-- Experience -->
+                        <div>
+                            <label class="block text-sm font-semibold text-[var(--foreground)] mb-2">Experience Level</label>
+                            <select id="calc-exp" onchange="calculateRate()" class="w-full bg-[var(--background)] border border-[var(--border)] rounded-lg px-4 py-3 text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] transition-colors">
+                                <option value="beginner">Beginner (< 2 years)</option>
+                                <option value="intermediate" selected>Intermediate (2-5 years)</option>
+                                <option value="experienced">Experienced (5-10 years)</option>
+                                <option value="veteran">Veteran (10+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="calc-results" class="mt-8 pt-8 border-t border-[var(--border)]">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                            <div>
+                                <p class="text-sm text-[var(--muted)]">Suggested Fair Rate</p>
+                                <p class="text-3xl font-black text-[var(--foreground)]">RM <span id="calc-low">0</span> - <span id="calc-high">0</span></p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-[var(--muted)]">Per Hour Rate</p>
+                                <p class="text-lg font-bold text-[var(--accent)]">RM <span id="calc-hourly">0</span>/hr</p>
+                            </div>
+                        </div>
+
+                        <!-- Gauge -->
+                        <div class="mb-3">
+                            <div class="flex justify-between text-xs text-[var(--muted)] mb-2">
+                                <span>Below Market</span>
+                                <span>Fair Rate</span>
+                                <span>Premium</span>
+                            </div>
+                            <div class="gauge-container">
+                                <div class="gauge-fill gauge-low" style="width: 33%;" id="gauge-low"></div>
+                                <div class="gauge-fill gauge-fair" style="width: 33%; position: absolute; left: 33%; top: 0;" id="gauge-fair"></div>
+                                <div class="gauge-fill gauge-premium" style="width: 34%; position: absolute; left: 66%; top: 0;" id="gauge-premium"></div>
+                                <div class="gauge-marker" id="gauge-marker-low" style="left: 25%;"></div>
+                                <div class="gauge-marker" id="gauge-marker-high" style="left: 55%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Negotiation tips -->
+                        <div class="mt-8 grid md:grid-cols-2 gap-4" id="calc-tips"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 3. GIG READINESS CHECKLIST     -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]" id="sec-checklist" data-section="checklist">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Pre-Gig Essentials</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">"Know Before You Play" Checklist</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Check off each item before your gig. Click any item to learn why it matters.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1 flex flex-col md:flex-row gap-10 items-start">
+                    <!-- Progress Ring -->
+                    <div class="flex-shrink-0 mx-auto md:mx-0 md:sticky md:top-24">
+                        <div class="relative">
+                            <svg width="160" height="160" class="block">
+                                <circle cx="80" cy="80" r="70" fill="none" stroke="var(--border)" stroke-width="8"/>
+                                <circle cx="80" cy="80" r="70" fill="none" stroke="var(--primary)" stroke-width="8"
+                                    stroke-dasharray="439.82" stroke-dashoffset="439.82"
+                                    class="progress-ring-circle" id="checklist-ring"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-3xl font-black text-[var(--foreground)]" id="checklist-score">0</span>
+                                <span class="text-xs text-[var(--muted)]">/ 8 Ready</span>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="text-sm font-semibold" id="checklist-label" style="color: var(--primary);">Not Started</span>
+                        </div>
+                    </div>
+
+                    <!-- Checklist Items -->
+                    <div class="flex-1 space-y-3" id="checklist-items">
+                        <!-- Items are generated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 4. DECISION TREE               -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]" id="sec-decision" data-section="decision">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Legal Pathways</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">"When Things Go Wrong" Decision Tree</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Select your scenario to explore your legal options under Malaysian law.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1">
+                    <!-- Scenario Selection -->
+                    <div id="tree-scenarios" class="space-y-3">
+                        <div class="tree-node" onclick="startTree('cancelled')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128683;</span>
+                                <div>
+                                    <p class="font-bold text-[var(--foreground)]">The venue cancelled last minute</p>
+                                    <p class="text-sm text-[var(--muted)]">You showed up or were ready, but they pulled the plug.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tree-node" onclick="startTree('nopay')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128176;</span>
+                                <div>
+                                    <p class="font-bold text-[var(--foreground)]">They didn't pay you</p>
+                                    <p class="text-sm text-[var(--muted)]">You performed, but the money never came.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tree-node" onclick="startTree('recorded')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128249;</span>
+                                <div>
+                                    <p class="font-bold text-[var(--foreground)]">Someone recorded your performance without permission</p>
+                                    <p class="text-sm text-[var(--muted)]">Your performance ended up online without your consent.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tree-node" onclick="startTree('injured')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#129657;</span>
+                                <div>
+                                    <p class="font-bold text-[var(--foreground)]">You got injured during the performance</p>
+                                    <p class="text-sm text-[var(--muted)]">Faulty equipment, unsafe stage, or negligence caused harm.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tree-node" onclick="startTree('terms')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128221;</span>
+                                <div>
+                                    <p class="font-bold text-[var(--foreground)]">The promoter changed the terms</p>
+                                    <p class="text-sm text-[var(--muted)]">Different pay, different time slot, different scope than agreed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tree Flow -->
+                    <div id="tree-flow" class="hidden mt-8">
+                        <button onclick="resetTree()" class="text-sm text-[var(--primary)] hover:underline mb-6 inline-flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                            Back to scenarios
+                        </button>
+                        <div id="tree-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 5. RIGHTS VS RESPONSIBILITIES  -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]" id="sec-rights" data-section="rights">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Two Sides of the Coin</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Rights vs Responsibilities</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Every right comes with a responsibility. Click any card to flip it and see the legal basis.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 reveal reveal-delay-1" id="flip-cards-container">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ============================== -->
+        <!-- 6. FAQ ACCORDION               -->
+        <!-- ============================== -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--background)]" id="sec-faq" data-section="faq">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Common Questions</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">Performer FAQ</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-[var(--muted)]">Answers to the questions Malaysian performing artists ask most.</p>
+                </div>
+
+                <div class="space-y-3 reveal reveal-delay-1" id="faq-container">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CTA -->
+        <section class="py-20 sm:py-28 px-6 bg-[var(--card)]">
+            <div class="container mx-auto max-w-3xl text-center reveal">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)] mb-4">Need Specific Help?</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight gradient-text">We're Here for You</h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-[var(--muted)] leading-relaxed">If you're facing a legal issue as a performing artist, our team provides free, confidential consultations.</p>
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="../../get-help/" class="magnetic-btn inline-block bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-8 py-3.5 rounded-xl text-base">Get Legal Help</a>
+                    <a href="../../resources/" class="magnetic-btn inline-block bg-[var(--background)] text-[var(--foreground)] font-semibold px-8 py-3.5 rounded-xl border border-[var(--border)] hover:border-[var(--primary)] text-base" style="transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;">More Resources</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--background)] border-t border-[var(--border)] relative z-10">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="../../alim-logo-temp.png" alt="ALIM.my Logo" class="w-8 h-8">
+                        <span class="text-xl font-bold text-[var(--foreground)]">ALIM<span class="text-[var(--primary)]">.my</span></span>
+                    </div>
+                    <p class="text-[var(--muted)] mb-5 max-w-sm leading-relaxed">Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Navigate</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../../get-help/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Get Help</a></li>
+                        <li><a href="../../our-work/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Work</a></li>
+                        <li><a href="../../mission.html" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Our Charter</a></li>
+                        <li><a href="../../resources/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Resources</a></li>
+                        <li><a href="../../join-us/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Join the Movement</a></li>
+                        <li><a href="../../privacy/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="../../terms-of-service/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Terms of Service</a></li>
+                        <li><a href="../../sitemap/" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Sitemap</a></li>
+                        <li><a href="mailto:artxlawinitiative@gmail.com" class="text-[var(--muted)] hover:text-[var(--foreground)] text-sm transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-[var(--foreground)]">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+                        </a>
+                        <a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Follow us on Threads">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.264 1.332-3.03.858-.712 2.032-1.116 3.394-1.165 1.082-.04 2.074.072 2.96.332-.02-.86-.196-1.544-.527-2.033-.41-.604-1.078-.915-1.983-.924h-.025c-.72 0-1.644.24-2.058.993l-1.788-.96C9.482 5.632 10.762 5.1 12.14 5.1h.041c1.42.016 2.505.528 3.224 1.523.622.858.95 2.003.978 3.404.488.15.94.34 1.354.57 1.156.642 2.033 1.55 2.536 2.627.76 1.63.834 4.345-1.238 6.378-1.737 1.703-3.853 2.44-6.862 2.477zM12.33 14.6c-1.028.038-1.838.27-2.345.667-.457.36-.594.822-.568 1.304.042.737.68 1.556 2.163 1.476 1.058-.056 1.878-.46 2.442-1.2.406-.533.683-1.24.826-2.11-.776-.224-1.636-.34-2.518-.137z"/></svg>
+                        </a>
+                        <a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all" aria-label="Visit our Linktree">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.953 15.066l-.038-4.035-3.4 2.975L3 12.131l4.304-3.69L3.07 4.777l1.514-1.874 3.372 3.186.037-4.058h2.442l-.065 4.058L13.73 2.86l1.553 1.916-4.264 3.663 4.304 3.69-1.514 1.874-3.4-2.975-.038 4.035zm0 2.44h2.442v4.056H7.953z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-sm text-[var(--muted)]">@artxlawmas</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-[var(--border)] pt-6 flex flex-col sm:flex-row justify-between items-center text-[var(--muted)] text-sm">
+                <p>&copy; 2026 ALIM.my (Art x Law Initiative Malaysia). All rights reserved. Made with purpose in Malaysia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-to-top" class="hidden fixed bottom-6 right-6 z-50 bg-[var(--primary)] text-[var(--primary-foreground)] p-3 rounded-full shadow-lg hover:opacity-90 transition-all hover:scale-110" aria-label="Scroll to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ===========================
+        // CORE SITE FUNCTIONALITY
+        // ===========================
+
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
+        }, { passive: true });
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const applyTheme = (theme) => {
+            const lightIcon = document.getElementById('theme-icon-light');
+            const darkIcon = document.getElementById('theme-icon-dark');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('light');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        };
+        applyTheme(localStorage.getItem('theme') || 'dark');
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollToTopButton.classList.toggle('hidden', window.pageYOffset <= 400);
+        }, { passive: true });
+        scrollToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ===========================
+        // PROGRESS TRACKER (right dots)
+        // ===========================
+        const sections = [
+            { id: 'sec-simulator', label: 'Venue Simulator' },
+            { id: 'sec-calculator', label: 'Rate Calculator' },
+            { id: 'sec-checklist', label: 'Gig Checklist' },
+            { id: 'sec-decision', label: 'Decision Tree' },
+            { id: 'sec-rights', label: 'Rights & Duties' },
+            { id: 'sec-faq', label: 'FAQ' },
+        ];
+        const tracker = document.getElementById('progress-tracker');
+        sections.forEach(s => {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            dot.dataset.target = s.id;
+            dot.innerHTML = '<span class="tooltip">' + s.label + '</span>';
+            dot.addEventListener('click', () => document.getElementById(s.id).scrollIntoView({ behavior: 'smooth' }));
+            tracker.appendChild(dot);
+        });
+
+        const explored = new Set();
+        function updateExplored(id) {
+            explored.add(id);
+            document.getElementById('explored-count').textContent = explored.size;
+        }
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.id;
+                const dot = tracker.querySelector('[data-target="' + id + '"]');
+                if (entry.isIntersecting) {
+                    tracker.querySelectorAll('.progress-dot').forEach(d => d.classList.remove('active'));
+                    if (dot) dot.classList.add('active');
+                    updateExplored(id);
+                }
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(s => {
+            const el = document.getElementById(s.id);
+            if (el) sectionObserver.observe(el);
+        });
+
+        // ===========================
+        // 1. VENUE SCENARIO SIMULATOR
+        // ===========================
+        let selectedVenue = null, selectedPerf = null;
+
+        const simData = {
+            permits: {
+                bar:       { prs: true, ppm: true, macp: true, eda: true, liquor: true, dbkl: false, bomba: false },
+                festival:  { prs: true, ppm: true, macp: true, eda: true, liquor: false, dbkl: true, bomba: true },
+                corporate: { prs: true, ppm: true, macp: true, eda: false, liquor: false, dbkl: false, bomba: false },
+                private:   { prs: false, ppm: false, macp: false, eda: false, liquor: false, dbkl: false, bomba: false },
+                gallery:   { prs: true, ppm: true, macp: true, eda: false, liquor: false, dbkl: false, bomba: false },
+            },
+            fees: {
+                bar:       { dj: [500,1500], band: [1500,4000], solo: [300,1000], dance: [800,2000], theatre: [1000,3000] },
+                festival:  { dj: [2000,8000], band: [3000,15000], solo: [1000,4000], dance: [2000,6000], theatre: [2000,8000] },
+                corporate: { dj: [1500,5000], band: [3000,12000], solo: [800,3000], dance: [1500,5000], theatre: [2000,8000] },
+                private:   { dj: [800,3000], band: [2000,6000], solo: [500,2000], dance: [1000,3000], theatre: [1500,4000] },
+                gallery:   { dj: [500,2000], band: [1500,4000], solo: [400,1500], dance: [800,2500], theatre: [1000,3500] },
+            },
+            insurance: {
+                bar:       ['Public liability insurance recommended', 'Equipment insurance (venue may not cover)', 'Personal accident coverage for late-night work'],
+                festival:  ['Public liability insurance essential', 'Equipment insurance mandatory (weather/crowds)', 'Personal accident insurance strongly recommended', 'Consider cancellation insurance for large fees'],
+                corporate: ['Professional indemnity insurance', 'Equipment covered by corporate event insurance usually', 'Verify coverage with event organiser beforehand'],
+                private:   ['Basic equipment insurance sufficient', 'Host usually bears liability for venue', 'Check if homeowner insurance covers events'],
+                gallery:   ['Public liability recommended', 'Artwork/installation damage coverage if applicable', 'Equipment insurance for fragile acoustic setups'],
+            },
+            contracts: {
+                dj:      ['Set times and duration', 'Equipment provision (CDJs, mixer, monitors)', 'Music format rights (original vs. licensed tracks)', 'Recording/streaming permission clause'],
+                band:    ['Number of sets and break times', 'Sound check schedule and duration', 'Backline/equipment provision split', 'Individual vs. band payment structure', 'Substitution clause for band members'],
+                solo:    ['PA system and monitor provision', 'Set list approval or creative freedom clause', 'Amplification requirements', 'Recording and tip jar permissions'],
+                dance:   ['Stage dimensions and flooring type', 'Costume/changing room requirements', 'Rehearsal access and timing', 'Physical safety requirements (rigging, props)'],
+                theatre: ['Rehearsal schedule and venue access', 'Technical requirements (lighting, sound, staging)', 'Run duration and number of shows', 'Intellectual property rights for the script/performance', 'Audience capacity and ticketing split'],
+            }
+        };
+
+        const permitLabels = {
+            prs: { name: 'PRS Malaysia License', desc: 'Required for playing copyrighted music publicly. The venue should hold this.' },
+            ppm: { name: 'PPM License (Public Performance)', desc: 'Covers public performance of sound recordings. Separate from PRS.' },
+            macp: { name: 'MACP License', desc: 'Music Authors\' Copyright Protection. Covers musical composition rights.' },
+            eda: { name: 'Entertainment Duty (Local Council)', desc: 'Under the Entertainment Duty enactments, venues charging admission must pay entertainment duty.' },
+            liquor: { name: 'Liquor License Compliance', desc: 'Venues serving alcohol must have valid liquor licenses. Affects your performance hours.' },
+            dbkl: { name: 'DBKL/Local Authority Event Permit', desc: 'Large public events require local council approval, especially for outdoor festivals.' },
+            bomba: { name: 'Bomba (Fire Dept) Safety Clearance', desc: 'Required for large venues/festivals. Ensure stage setup meets fire safety standards.' },
+        };
+
+        const venueLabels = { bar: 'Bar / Pub', festival: 'Festival', corporate: 'Corporate Event', private: 'Private Party', gallery: 'Gallery Opening' };
+        const perfLabels = { dj: 'DJ Set', band: 'Live Band', solo: 'Solo Acoustic', dance: 'Dance', theatre: 'Theatre / Spoken Word' };
+
+        window.selectVenue = function(el) {
+            document.querySelectorAll('#venue-options .sim-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedVenue = el.dataset.venue;
+            if (selectedPerf) renderSimResults();
+        };
+        window.selectPerf = function(el) {
+            document.querySelectorAll('#perf-options .sim-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedPerf = el.dataset.perf;
+            if (selectedVenue) renderSimResults();
+        };
+
+        function renderSimResults() {
+            const results = document.getElementById('sim-results');
+            const cards = document.getElementById('sim-cards');
+            const label = document.getElementById('sim-scenario-label');
+            label.textContent = perfLabels[selectedPerf] + ' at a ' + venueLabels[selectedVenue];
+            results.classList.remove('hidden');
+
+            const permits = simData.permits[selectedVenue];
+            const fees = simData.fees[selectedVenue][selectedPerf];
+            const insurance = simData.insurance[selectedVenue];
+            const contracts = simData.contracts[selectedPerf];
+
+            let requiredPermits = Object.entries(permits).filter(([,v]) => v).map(([k]) => permitLabels[k]);
+            let permitHTML = requiredPermits.length ? requiredPermits.map(p =>
+                '<div class="mb-3"><p class="font-semibold text-sm text-[var(--foreground)]">' + p.name + '</p><p class="text-xs text-[var(--muted)]">' + p.desc + '</p></div>'
+            ).join('') : '<p class="text-sm text-[var(--muted)]">No special permits typically required for private events, but always confirm with the host.</p>';
+
+            cards.innerHTML = '';
+
+            const cardData = [
+                { title: 'Required Permits & Licenses', icon: '&#128203;', color: 'var(--primary)', content: permitHTML },
+                { title: 'Typical Fee Range', icon: '&#128176;', color: 'var(--accent)', content:
+                    '<p class="text-2xl font-black text-[var(--foreground)]">RM ' + fees[0].toLocaleString() + ' - RM ' + fees[1].toLocaleString() + '</p>' +
+                    '<p class="text-xs text-[var(--muted)] mt-2">Per engagement. Rates vary by experience, duration, and specific venue reputation. These are 2026 Malaysian market estimates.</p>' +
+                    '<p class="text-xs text-[var(--primary)] mt-2 font-semibold">Tip: Always negotiate a deposit of at least 50% upfront.</p>'
+                },
+                { title: 'Insurance Considerations', icon: '&#128737;', color: '#48BB78', content:
+                    insurance.map(i => '<div class="flex items-start gap-2 mb-2"><svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #48BB78;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/></svg><span class="text-sm text-[var(--muted)]">' + i + '</span></div>').join('')
+                },
+                { title: 'Contract Must-Haves', icon: '&#128221;', color: '#805AD5', content:
+                    contracts.map(c => '<div class="flex items-start gap-2 mb-2"><svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: #805AD5;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-[var(--muted)]">' + c + '</span></div>').join('')
+                },
+            ];
+
+            cardData.forEach((cd, i) => {
+                const card = document.createElement('div');
+                card.className = 'sim-result-card bg-[var(--background)] rounded-xl border border-[var(--border)] p-6';
+                card.style.animationDelay = (i * 0.12) + 's';
+                card.innerHTML = '<div class="flex items-center gap-3 mb-4"><span class="text-xl">' + cd.icon + '</span><h4 class="font-bold text-[var(--foreground)]">' + cd.title + '</h4></div>' + cd.content;
+                cards.appendChild(card);
+            });
+
+            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ===========================
+        // 2. PAYMENT CALCULATOR
+        // ===========================
+        const rateData = {
+            base: { dj: 250, band: 600, solo: 150, dance: 300, theatre: 400, mc: 200 },
+            hourMultiplier: { 1: 1.6, 1.5: 1.4, 2: 1.3, 2.5: 1.2, 3: 1.15, 3.5: 1.1, 4: 1.05, 4.5: 1.02, 5: 1, 5.5: 0.98, 6: 0.96, 6.5: 0.94, 7: 0.92, 7.5: 0.9, 8: 0.88 },
+            locationMultiplier: { kl: 1.3, penang: 1.1, jb: 1.05, ipoh: 0.9, kk: 0.95, kuching: 0.95, melaka: 0.95, other: 0.85 },
+            expMultiplier: { beginner: 0.6, intermediate: 1, experienced: 1.5, veteran: 2.2 },
+        };
+
+        const negTips = {
+            beginner: [
+                { tag: 'Build Portfolio', color: '#48BB78', tip: 'Accept a slightly lower rate in exchange for professional photos/videos of your set you can use for promotion.' },
+                { tag: 'Never Free', color: '#E53E3E', tip: 'Even as a beginner, never perform for free. Minimum: cover your transport + equipment costs + RM100.' },
+            ],
+            intermediate: [
+                { tag: 'Package Deals', color: '#805AD5', tip: 'Offer a package: 2-hour set + 1 encore slot. Makes the client feel they\'re getting value.' },
+                { tag: 'Deposit First', color: '#E53E3E', tip: 'Always request 50% deposit upon confirmation. This is industry standard in Malaysia.' },
+            ],
+            experienced: [
+                { tag: 'Rate Card', color: '#FFD700', tip: 'Have a printed/PDF rate card. It signals professionalism and makes negotiation easier.' },
+                { tag: 'Rider', color: '#48BB78', tip: 'Include a technical and hospitality rider. Meals, parking, and green room are standard requests.' },
+            ],
+            veteran: [
+                { tag: 'Exclusivity Fee', color: '#FFD700', tip: 'If they want exclusivity (no competing gigs that week), charge a 20-30% premium.' },
+                { tag: 'Licensing', color: '#805AD5', tip: 'Consider licensing fees for recordings. Your performance has ongoing commercial value.' },
+            ],
+        };
+
+        window.updateHoursLabel = function() {
+            const v = parseFloat(document.getElementById('calc-hours').value);
+            document.getElementById('hours-label').textContent = v + (v === 1 ? ' hr' : ' hrs');
+        };
+
+        window.calculateRate = function() {
+            const type = document.getElementById('calc-type').value;
+            const hours = parseFloat(document.getElementById('calc-hours').value);
+            const loc = document.getElementById('calc-location').value;
+            const exp = document.getElementById('calc-exp').value;
+
+            const base = rateData.base[type];
+            const hMult = rateData.hourMultiplier[hours] || 1;
+            const lMult = rateData.locationMultiplier[loc];
+            const eMult = rateData.expMultiplier[exp];
+
+            const perHour = Math.round(base * hMult * lMult * eMult);
+            const total = perHour * hours;
+            const low = Math.round(total * 0.85);
+            const high = Math.round(total * 1.25);
+
+            document.getElementById('calc-low').textContent = low.toLocaleString();
+            document.getElementById('calc-high').textContent = high.toLocaleString();
+            document.getElementById('calc-hourly').textContent = perHour.toLocaleString();
+
+            // Gauge markers
+            const maxGauge = high * 1.5;
+            const lowPct = Math.min((low / maxGauge) * 100, 95);
+            const highPct = Math.min((high / maxGauge) * 100, 95);
+            document.getElementById('gauge-marker-low').style.left = lowPct + '%';
+            document.getElementById('gauge-marker-high').style.left = highPct + '%';
+
+            // Tips
+            const tips = negTips[exp] || negTips.intermediate;
+            const tipsEl = document.getElementById('calc-tips');
+            tipsEl.innerHTML = tips.map(t =>
+                '<div class="bg-[var(--background)] rounded-xl border border-[var(--border)] p-4">' +
+                '<span class="tip-tag mb-2" style="background:' + t.color + '22; color:' + t.color + ';">' + t.tag + '</span>' +
+                '<p class="text-sm text-[var(--muted)] mt-2">' + t.tip + '</p></div>'
+            ).join('');
+
+            updateHoursLabel();
+        };
+
+        // Init calculator
+        calculateRate();
+
+        // ===========================
+        // 3. GIG READINESS CHECKLIST
+        // ===========================
+        const checklistData = [
+            { label: 'Written agreement signed', detail: 'Under the Contracts Act 1950 (Malaysia), a valid contract requires offer, acceptance, and consideration. A written agreement protects both parties. Even a simple email confirmation with key terms (fee, date, time, scope) constitutes a binding agreement. Without it, enforcing your rights becomes significantly harder.' },
+            { label: 'Payment terms confirmed', detail: 'Specify the exact fee, payment method (bank transfer, cash, cheque), and timeline (deposit before, balance after). Under Malaysian law, if no payment term is specified, payment is due upon completion of services. Always get at least 50% deposit.' },
+            { label: 'Sound/technical requirements specified', detail: 'Document your technical rider: PA system specs, monitor requirements, backline needs, microphone types, and stage dimensions. If the venue fails to provide agreed technical requirements, this constitutes a breach of contract and grounds for fee adjustment.' },
+            { label: 'Cancellation policy agreed', detail: 'Define what happens if either party cancels. Industry standard: if the client cancels within 14 days, they pay 50% of the fee. Within 7 days, 100%. If you cancel, you should provide a suitable replacement or refund the deposit. Put this in writing.' },
+            { label: 'Load-in / load-out times set', detail: 'Agree on arrival time, setup duration, sound check schedule, and pack-down time. Factor in parking and access. If load-in takes longer than agreed due to venue issues, you may claim additional costs for your time under quantum meruit principles.' },
+            { label: 'Insurance coverage checked', detail: 'Verify whether the venue has public liability insurance covering performers. If not, consider your own coverage. Personal accident insurance (starting from ~RM300/year) covers injuries during performances. Equipment insurance covers your gear against damage or theft.' },
+            { label: 'Performance recording rights discussed', detail: 'Under the Copyright Act 1987 (Section 16A), performers have the right to control recordings of their live performances. If anyone wants to record, livestream, or photograph your performance for commercial use, this must be agreed in advance. Specify usage rights, duration, and compensation.' },
+            { label: 'Social media usage rights agreed', detail: 'Clarify who can post what. Can the venue post clips? Can you? Are there exclusivity windows? Under the Personal Data Protection Act 2010 (PDPA), your image is personal data. Commercial use of your likeness without consent is actionable.' },
+        ];
+
+        const checklistContainer = document.getElementById('checklist-items');
+        let checkedCount = 0;
+
+        checklistData.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'bg-[var(--background)] rounded-xl border border-[var(--border)] overflow-hidden transition-all duration-300';
+            div.innerHTML =
+                '<div class="flex items-center gap-4 p-4 cursor-pointer select-none" onclick="toggleCheckItem(this,' + i + ')">' +
+                    '<div class="w-6 h-6 rounded-md border-2 border-[var(--border)] flex items-center justify-center flex-shrink-0 transition-all duration-300 check-box" id="check-box-' + i + '">' +
+                        '<svg class="w-4 h-4 text-[var(--primary-foreground)] opacity-0 transition-opacity duration-300" id="check-svg-' + i + '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>' +
+                    '</div>' +
+                    '<span class="font-semibold text-sm text-[var(--foreground)] flex-1">' + item.label + '</span>' +
+                    '<svg class="w-5 h-5 text-[var(--muted)] faq-chevron flex-shrink-0" id="check-chev-' + i + '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>' +
+                '</div>' +
+                '<div class="faq-answer px-4 text-sm text-[var(--muted)] leading-relaxed" id="check-detail-' + i + '">' +
+                    '<p class="pb-4">' + item.detail + '</p>' +
+                '</div>';
+            checklistContainer.appendChild(div);
+        });
+
+        const checked = new Array(checklistData.length).fill(false);
+
+        window.toggleCheckItem = function(el, idx) {
+            checked[idx] = !checked[idx];
+            const box = document.getElementById('check-box-' + idx);
+            const svg = document.getElementById('check-svg-' + idx);
+            const detail = document.getElementById('check-detail-' + idx);
+            const chev = document.getElementById('check-chev-' + idx);
+
+            if (checked[idx]) {
+                box.style.background = 'var(--primary)';
+                box.style.borderColor = 'var(--primary)';
+                svg.style.opacity = '1';
+            } else {
+                box.style.background = 'transparent';
+                box.style.borderColor = 'var(--border)';
+                svg.style.opacity = '0';
+            }
+
+            // Toggle detail
+            if (detail.classList.contains('open')) {
+                detail.classList.remove('open');
+                detail.style.maxHeight = '0px';
+                chev.classList.remove('open');
+            } else {
+                detail.classList.add('open');
+                detail.style.maxHeight = detail.scrollHeight + 'px';
+                chev.classList.add('open');
+            }
+
+            checkedCount = checked.filter(Boolean).length;
+            updateChecklistRing();
+        };
+
+        function updateChecklistRing() {
+            const ring = document.getElementById('checklist-ring');
+            const circumference = 2 * Math.PI * 70; // r=70
+            const offset = circumference - (checkedCount / 8) * circumference;
+            ring.style.strokeDashoffset = offset;
+            document.getElementById('checklist-score').textContent = checkedCount;
+
+            const label = document.getElementById('checklist-label');
+            if (checkedCount === 0) { label.textContent = 'Not Started'; label.style.color = 'var(--muted)'; }
+            else if (checkedCount < 4) { label.textContent = 'Getting There'; label.style.color = '#F6AD55'; }
+            else if (checkedCount < 7) { label.textContent = 'Almost Ready'; label.style.color = '#48BB78'; }
+            else if (checkedCount < 8) { label.textContent = 'Nearly Perfect'; label.style.color = '#48BB78'; }
+            else { label.textContent = 'Gig Ready!'; label.style.color = 'var(--accent)'; }
+        }
+
+        // ===========================
+        // 4. DECISION TREE
+        // ===========================
+        const treeData = {
+            cancelled: {
+                title: 'The venue cancelled last minute',
+                question: 'Did you have a written agreement (contract, email confirmation, or WhatsApp agreement)?',
+                options: [
+                    {
+                        label: 'Yes, I have written proof',
+                        result: {
+                            title: 'You have strong legal standing',
+                            steps: [
+                                { heading: 'Send a Letter of Demand', text: 'Under the Contracts Act 1950, the venue has breached the contract. Send a formal letter of demand within 14 days requesting your full agreed fee (or the cancellation fee if specified in the contract). Keep it professional but firm.' },
+                                { heading: 'Claim via Small Claims Court', text: 'If the amount is RM5,000 or below, you can file at the Tribunal for Consumer Claims (TTPM). For amounts up to RM100,000, use the Small Claims procedure at the Magistrate\'s Court. Filing fees are minimal (RM10-RM50).' },
+                                { heading: 'Document Everything', text: 'Screenshot all messages, save the contract, and note expenses incurred (transport, equipment hire, lost alternative bookings). These are recoverable as damages.' },
+                                { heading: 'Consider Mediation', text: 'The Malaysian Mediation Centre offers affordable mediation services. This is often faster and cheaper than court, and preserves the professional relationship.' },
+                            ]
+                        }
+                    },
+                    {
+                        label: 'No, it was a verbal agreement only',
+                        result: {
+                            title: 'Verbal agreements are still enforceable, but harder to prove',
+                            steps: [
+                                { heading: 'Gather Witness Evidence', text: 'Verbal contracts are valid under the Contracts Act 1950 (Section 10). Gather any witnesses, screenshots of related messages, bank transfer records of deposits, or social media posts announcing your performance.' },
+                                { heading: 'Send a Demand Anyway', text: 'A letter of demand costs nothing and often prompts payment. Many venues will pay rather than risk legal action, even without a written contract.' },
+                                { heading: 'Negotiate a Compromise', text: 'If full recovery seems unlikely, negotiate for partial payment, a future booking at premium rate, or credit/promotion. Something is better than nothing.' },
+                                { heading: 'Learn for Next Time', text: 'Always get it in writing. Even a WhatsApp message saying "Confirmed: [Artist] performing at [Venue] on [Date] for RM[X]" with a thumbs up reply constitutes written evidence.' },
+                            ]
+                        }
+                    }
+                ]
+            },
+            nopay: {
+                title: 'They didn\'t pay you',
+                question: 'How long has it been since the performance?',
+                options: [
+                    {
+                        label: 'Less than 30 days',
+                        result: {
+                            title: 'Act quickly but professionally',
+                            steps: [
+                                { heading: 'Send a Polite Reminder', text: 'Sometimes it\'s genuinely an admin delay. Send a friendly follow-up with your invoice attached. Give them 7 days to respond.' },
+                                { heading: 'Escalate to a Letter of Demand', text: 'If no response, send a formal letter of demand citing the Contracts Act 1950 and specifying a 14-day deadline. State that you will pursue legal action if payment is not received.' },
+                                { heading: 'Report to Industry Networks', text: 'Alert the Malaysian music community through professional networks. Venues that don\'t pay performers develop reputations quickly. This social pressure often works.' },
+                                { heading: 'File a Police Report (if fraud)', text: 'If there\'s evidence of deliberate deception (e.g., venue never intended to pay, bounced cheques), you can file a police report under Section 420 of the Penal Code (cheating and dishonestly inducing delivery of property).' },
+                            ]
+                        }
+                    },
+                    {
+                        label: 'More than 30 days',
+                        result: {
+                            title: 'Formal legal action is warranted',
+                            steps: [
+                                { heading: 'Final Letter of Demand', text: 'Send a lawyer\'s letter of demand. This carries more weight and typically costs RM200-500. Many disputes resolve at this stage. ALIM can help connect you with pro bono lawyers.' },
+                                { heading: 'Small Claims Tribunal', text: 'For claims up to RM5,000, the Tribunal for Consumer Claims is fast, cheap (RM5 filing fee), and you don\'t need a lawyer. For up to RM100,000, the Magistrate\'s Court small claims procedure applies.' },
+                                { heading: 'Limitation Period', text: 'Under the Limitation Act 1953, you have 6 years to file a claim for breach of contract. Don\'t wait that long, but know you have time to act properly.' },
+                                { heading: 'Interest on Late Payment', text: 'You can claim interest at 5% per annum on overdue payments under Section 75 of the Courts of Judicature Act 1964. Include this in your claim.' },
+                            ]
+                        }
+                    }
+                ]
+            },
+            recorded: {
+                title: 'Someone recorded your performance without permission',
+                question: 'Where did the recording end up?',
+                options: [
+                    {
+                        label: 'Posted on social media / YouTube',
+                        result: {
+                            title: 'Your performer\'s rights have been infringed',
+                            steps: [
+                                { heading: 'Copyright Act 1987, Section 16A', text: 'Performers have exclusive rights over recordings of their live performances. Unauthorized recording, reproduction, or distribution is an infringement. This is a statutory right -- you don\'t need to have registered anything.' },
+                                { heading: 'Send a Takedown Notice', text: 'File a DMCA takedown (YouTube) or report the content (Instagram, TikTok, Facebook). Platforms are required to act on valid takedown notices. Document the URLs before filing.' },
+                                { heading: 'Demand Compensation', text: 'If the recording was used commercially (monetized video, promotional content), you are entitled to compensation. Send a letter of demand for licensing fees retroactively.' },
+                                { heading: 'Criminal Penalties', text: 'Under Section 41 of the Copyright Act, unauthorized recording of a live performance can result in a fine of RM2,000 to RM20,000 per infringing copy, or imprisonment up to 5 years, or both.' },
+                            ]
+                        }
+                    },
+                    {
+                        label: 'Used in venue / promoter advertising',
+                        result: {
+                            title: 'This is commercial exploitation of your performer\'s rights',
+                            steps: [
+                                { heading: 'Stronger Claim', text: 'Commercial use without consent is a more serious infringement. You can claim both copyright infringement (Copyright Act 1987) and unauthorized use of your image/likeness (common law right to publicity + PDPA 2010).' },
+                                { heading: 'Quantify the Damage', text: 'Calculate what you would have charged for the usage. A typical licensing fee for a performer\'s image/footage in Malaysian advertising ranges from RM1,000-10,000+ depending on reach and duration.' },
+                                { heading: 'Lawyer\'s Letter', text: 'Given the commercial angle, a lawyer\'s letter is highly recommended. ALIM can connect you with intellectual property lawyers experienced in performer rights.' },
+                                { heading: 'Negotiate a Licensing Agreement', text: 'If you\'re open to it, convert this into a paid licensing deal going forward. Charge a retroactive fee + ongoing licensing terms. Turn a wrong into recurring income.' },
+                            ]
+                        }
+                    }
+                ]
+            },
+            injured: {
+                title: 'You got injured during the performance',
+                question: 'What caused the injury?',
+                options: [
+                    {
+                        label: 'Faulty equipment or unsafe stage',
+                        result: {
+                            title: 'The venue / organiser likely owes you a duty of care',
+                            steps: [
+                                { heading: 'Occupational Safety & Health Act 1994', text: 'While primarily for employees, Section 15 imposes a general duty on the controller of a premises to ensure safety of all persons, including contractors and performers. Venues must ensure stages, rigging, and electrical equipment are safe.' },
+                                { heading: 'Document Everything Immediately', text: 'Photograph the hazard, get medical attention, keep all receipts (medical bills, transport, medication). Ask witnesses for written statements. File a report with venue management in writing.' },
+                                { heading: 'Claim for Damages', text: 'You can claim for medical expenses, loss of earnings (including future bookings you had to cancel), pain and suffering, and any equipment damage. These are civil claims under tort law (negligence).' },
+                                { heading: 'Report to DOSH', text: 'If the venue\'s negligence is serious, report to the Department of Occupational Safety and Health (DOSH). They have the power to investigate and take enforcement action.' },
+                            ]
+                        }
+                    },
+                    {
+                        label: 'Crowd-related incident or other cause',
+                        result: {
+                            title: 'Multiple parties may share liability',
+                            steps: [
+                                { heading: 'Venue\'s Duty of Care', text: 'Under the Occupiers\' Liability Act 1957 (applied via English common law principles in Malaysia), the venue owes a duty of care to all lawful visitors, including performers. Inadequate crowd control can be negligence.' },
+                                { heading: 'Event Organiser Liability', text: 'If there was a separate event organiser (distinct from the venue), they may also be liable. Check your contract -- does it specify safety responsibilities?' },
+                                { heading: 'Your Insurance', text: 'If you have personal accident insurance, file a claim immediately. Most policies require notification within 30 days. Even basic policies (RM300-500/year) cover medical expenses and temporary disability.' },
+                                { heading: 'Police Report', text: 'If the injury resulted from assault or criminal negligence, file a police report. This strengthens any subsequent civil claim and may be required by your insurer.' },
+                            ]
+                        }
+                    }
+                ]
+            },
+            terms: {
+                title: 'The promoter changed the terms',
+                question: 'What was changed?',
+                options: [
+                    {
+                        label: 'Pay was reduced or payment structure changed',
+                        result: {
+                            title: 'Unilateral changes to agreed terms are a breach of contract',
+                            steps: [
+                                { heading: 'Contract Law Basics', text: 'Under Section 38 of the Contracts Act 1950, the parties must perform or offer to perform their respective promises. Changing the fee without your agreement is a breach. You are entitled to refuse the new terms and claim the original fee.' },
+                                { heading: 'Your Options at the Gig', text: 'If you discover the change before performing: you can refuse to perform and demand the original fee. If you perform under protest: state clearly (preferably in writing/text) that you do not accept the new terms and reserve your right to claim the difference.' },
+                                { heading: 'Doctrine of Promissory Estoppel', text: 'If you relied on the original terms (turned down other bookings, incurred expenses), the promoter cannot renege. This legal doctrine prevents parties from going back on promises others have relied upon.' },
+                                { heading: 'Practical Step', text: 'Send a WhatsApp message before the gig: "Just confirming our agreed fee of RM[X] as per our contract dated [date]. I do not agree to any changes." This creates a clear record.' },
+                            ]
+                        }
+                    },
+                    {
+                        label: 'Time slot, scope, or conditions changed',
+                        result: {
+                            title: 'Material changes may release you from the contract or entitle you to more',
+                            steps: [
+                                { heading: 'Frustration of Contract', text: 'Under Section 57 of the Contracts Act 1950, if the change makes the contract fundamentally different from what was agreed, it may be "frustrated" and you are released from your obligations. Example: moved from headline slot to opening act.' },
+                                { heading: 'Variation Requires Consent', text: 'Any change to a contract requires agreement from both parties (Section 63, Contracts Act 1950). A unilateral change by the promoter is not binding on you. You can insist on the original terms or negotiate new ones.' },
+                                { heading: 'Additional Compensation', text: 'If the changes increase your burden (longer set, different location, additional performances), you are entitled to additional compensation. This is fresh consideration for a varied contract.' },
+                                { heading: 'Document and Communicate', text: 'Always respond to changes in writing. "I received your message about the change to [X]. I do not agree to this change. The original terms were [Y]. Please confirm the original arrangement stands." Keep the tone professional.' },
+                            ]
+                        }
+                    }
+                ]
+            },
+        };
+
+        window.startTree = function(scenario) {
+            document.getElementById('tree-scenarios').classList.add('hidden');
+            const flow = document.getElementById('tree-flow');
+            flow.classList.remove('hidden');
+            const content = document.getElementById('tree-content');
+            const data = treeData[scenario];
+
+            content.innerHTML =
+                '<div class="tree-path" style="animation-delay:0s;">' +
+                    '<h3 class="text-xl font-bold text-[var(--foreground)] mb-2">' + data.title + '</h3>' +
+                    '<p class="text-[var(--muted)] mb-6">' + data.question + '</p>' +
+                    '<div class="space-y-3">' +
+                        data.options.map((opt, i) =>
+                            '<div class="tree-node" onclick="showTreeResult(\'' + scenario + '\',' + i + ')">' +
+                                '<p class="font-semibold text-[var(--foreground)]">' + opt.label + '</p>' +
+                            '</div>'
+                        ).join('') +
+                    '</div>' +
+                '</div>';
+        };
+
+        window.showTreeResult = function(scenario, optIdx) {
+            const content = document.getElementById('tree-content');
+            const result = treeData[scenario].options[optIdx].result;
+
+            content.innerHTML =
+                '<div class="tree-path" style="animation-delay:0s;">' +
+                    '<div class="mb-6 p-4 rounded-xl border border-[var(--primary)] bg-[var(--primary)]" style="background: rgba(229,62,62,0.08);">' +
+                        '<h3 class="text-lg font-bold text-[var(--primary)]">' + result.title + '</h3>' +
+                    '</div>' +
+                    '<div class="space-y-4">' +
+                        result.steps.map((s, i) =>
+                            '<div class="tree-path bg-[var(--card)] rounded-xl border border-[var(--border)] p-5" style="animation-delay:' + (i * 0.1) + 's;">' +
+                                '<div class="flex items-start gap-3">' +
+                                    '<div class="w-8 h-8 rounded-full bg-[var(--primary)] flex items-center justify-center flex-shrink-0 text-white text-sm font-bold">' + (i + 1) + '</div>' +
+                                    '<div><h4 class="font-bold text-[var(--foreground)] mb-1">' + s.heading + '</h4><p class="text-sm text-[var(--muted)] leading-relaxed">' + s.text + '</p></div>' +
+                                '</div>' +
+                            '</div>'
+                        ).join('') +
+                    '</div>' +
+                    '<div class="mt-8 flex gap-3">' +
+                        '<button onclick="startTree(\'' + scenario + '\')" class="text-sm font-semibold text-[var(--primary)] hover:underline">Try the other option</button>' +
+                        '<span class="text-[var(--border)]">|</span>' +
+                        '<button onclick="resetTree()" class="text-sm font-semibold text-[var(--muted)] hover:text-[var(--foreground)]">All scenarios</button>' +
+                    '</div>' +
+                '</div>';
+        };
+
+        window.resetTree = function() {
+            document.getElementById('tree-scenarios').classList.remove('hidden');
+            document.getElementById('tree-flow').classList.add('hidden');
+        };
+
+        // ===========================
+        // 5. RIGHTS VS RESPONSIBILITIES FLIP CARDS
+        // ===========================
+        const flipData = [
+            {
+                right: 'Your RIGHT to be paid fairly',
+                resp: 'Your RESPONSIBILITY to deliver as agreed',
+                backRight: 'Under the Contracts Act 1950, you are entitled to the agreed consideration (payment) for services rendered. If no specific amount was agreed, you can claim quantum meruit -- a reasonable sum based on the market rate for your services. The minimum wage order may also apply if you are engaged as an employee.',
+                backResp: 'Section 38 of the Contracts Act 1950 requires you to perform or offer to perform your promises. This means showing up on time, performing the agreed set/duration, and meeting the quality standard reasonably expected. Failure to deliver can result in the other party withholding payment or claiming damages.',
+            },
+            {
+                right: 'Your RIGHT to safe working conditions',
+                resp: 'Your RESPONSIBILITY to follow venue rules',
+                backRight: 'The Occupational Safety and Health Act 1994 (OSHA) requires premises controllers to ensure safety. Venues must provide safe stages, functioning equipment, adequate lighting, and reasonable crowd control. You can refuse to perform if conditions are genuinely unsafe without forfeiting your fee.',
+                backResp: 'Venues have rules for reasons (fire codes, noise ordinances, curfews). Violating venue rules can void your contract, create liability for damages, and potentially result in fines under local council bylaws. Respect load limits, noise curfews, and restricted areas.',
+            },
+            {
+                right: 'Your RIGHT to control recordings',
+                resp: 'Your RESPONSIBILITY to respect the audience',
+                backRight: 'Section 16A of the Copyright Act 1987 grants performers exclusive rights over recordings of live performances. No one may record, reproduce, or distribute recordings of your performance without consent. This applies to audio and video. Penalties include fines up to RM20,000 per copy and imprisonment.',
+                backResp: 'While you control recordings, audience members at a public event have certain expectations. Aggressive enforcement during a performance can damage your reputation. Address recording issues through venue management or after the event. Be professional -- communicate your recording policy upfront.',
+            },
+            {
+                right: 'Your RIGHT to creative freedom',
+                resp: 'Your RESPONSIBILITY to stay within agreed scope',
+                backRight: 'As a performer, your artistic expression is protected under Article 10 of the Federal Constitution (freedom of expression, subject to restrictions). Within the bounds of your agreement, you have the right to perform your material as you see fit. Venues cannot dictate your artistic choices beyond what was contractually agreed.',
+                backResp: 'If you agreed to a "family-friendly acoustic set" and instead play a heavy metal set with explicit lyrics, you have breached the contract. Scope includes genre, content rating, volume levels, and duration. Significant deviation gives the other party grounds to terminate and withhold payment.',
+            },
+        ];
+
+        const flipContainer = document.getElementById('flip-cards-container');
+        flipData.forEach((item, i) => {
+            // Right card
+            const rightCard = document.createElement('div');
+            rightCard.className = 'flip-card';
+            rightCard.onclick = function() { this.classList.toggle('flipped'); };
+            rightCard.innerHTML =
+                '<div class="flip-card-inner">' +
+                    '<div class="flip-card-front" style="border-color: var(--primary);">' +
+                        '<div class="text-xs font-bold uppercase tracking-widest text-[var(--primary)] mb-2">Your Right</div>' +
+                        '<p class="text-lg font-bold text-[var(--foreground)]">' + item.right.replace('Your RIGHT to ', '') + '</p>' +
+                        '<p class="text-xs text-[var(--muted)] mt-3">Click to see legal basis</p>' +
+                    '</div>' +
+                    '<div class="flip-card-back" style="border-color: var(--primary);">' +
+                        '<p class="text-sm text-[var(--muted)] leading-relaxed">' + item.backRight + '</p>' +
+                    '</div>' +
+                '</div>';
+            flipContainer.appendChild(rightCard);
+
+            // Responsibility card
+            const respCard = document.createElement('div');
+            respCard.className = 'flip-card';
+            respCard.onclick = function() { this.classList.toggle('flipped'); };
+            respCard.innerHTML =
+                '<div class="flip-card-inner">' +
+                    '<div class="flip-card-front" style="border-color: var(--accent);">' +
+                        '<div class="text-xs font-bold uppercase tracking-widest text-[var(--accent)] mb-2">Your Responsibility</div>' +
+                        '<p class="text-lg font-bold text-[var(--foreground)]">' + item.resp.replace('Your RESPONSIBILITY to ', '') + '</p>' +
+                        '<p class="text-xs text-[var(--muted)] mt-3">Click to see legal basis</p>' +
+                    '</div>' +
+                    '<div class="flip-card-back" style="border-color: var(--accent);">' +
+                        '<p class="text-sm text-[var(--muted)] leading-relaxed">' + item.backResp + '</p>' +
+                    '</div>' +
+                '</div>';
+            flipContainer.appendChild(respCard);
+        });
+
+        // ===========================
+        // 6. FAQ ACCORDION
+        // ===========================
+        const faqData = [
+            {
+                q: 'Do I need a business license to perform?',
+                a: 'It depends on how you operate. If you perform as an individual freelancer, you do not need a business license -- your income is taxed as personal income under the Income Tax Act 1967. However, if you perform under a business name (e.g., "The [Band Name] Entertainment"), you need to register with SSM (Suruhanjaya Syarikat Malaysia) under the Registration of Businesses Act 1956. Registration costs RM30-60 and is valid for 1-5 years. Many professional performers register as sole proprietors for credibility and to issue proper invoices.'
+            },
+            {
+                q: 'What if the venue doesn\'t have PRS/PPM licensing?',
+                a: 'This is the venue\'s problem, not yours -- but it can affect you. PRS Malaysia (Performers\' Rights Society) and PPM (Public Performance Malaysia) licensing is the responsibility of the venue or event organiser, not the performer. If a venue is caught playing copyrighted music without licenses, they face fines under the Copyright Act 1987. As a performer, you should: (1) Ask the venue to confirm their licensing status before performing, (2) If playing covers, ensure the venue has PRS/PPM/MACP licenses, (3) Include a clause in your contract stating the venue is responsible for all necessary music licenses. If you perform original music only, PRS/PPM licensing is less relevant, but MACP may still apply.'
+            },
+            {
+                q: 'Can a venue record my performance?',
+                a: 'Not without your explicit consent. Under Section 16A of the Copyright Act 1987, performers have the exclusive right to authorise or prohibit: (1) Recording of their live performance, (2) Broadcasting or communication of their live performance, (3) Reproduction of recordings of their performance. This means the venue, audience members, or anyone else needs your permission to record. Many venues include a recording clause in their performance contracts -- read it carefully. You can negotiate: no recording allowed, recording for venue social media only (with credit), full recording rights (for a higher fee), or revenue sharing on any commercial use. If someone records without permission, you can demand takedown and seek damages.'
+            },
+            {
+                q: 'What insurance do I need as a performer?',
+                a: 'There are several types to consider: <strong>Personal Accident Insurance</strong> (RM300-800/year): Covers injuries during performances, including medical expenses and temporary disability income. Highly recommended. <strong>Equipment Insurance</strong> (varies): Covers your instruments, DJ equipment, sound gear against theft, damage, and loss. Essential if you own expensive gear. <strong>Public Liability Insurance</strong> (RM500-2,000/year): Covers claims if someone is injured or property is damaged due to your performance. Important for acts with physical elements (dance, pyro, aerial). <strong>Professional Indemnity</strong> (optional): Covers claims of professional negligence. More relevant for DJs at large events or theatre directors. Many performers skip insurance to save money -- this is risky. A single equipment theft or injury claim can cost more than years of premiums.'
+            },
+            {
+                q: 'How do I handle tax as a performing artist in Malaysia?',
+                a: 'Performing artists in Malaysia are typically taxed as: <strong>Individual / Sole Proprietor</strong>: Income from performances is assessed under Section 4(a) of the Income Tax Act 1967 (business income) if regular, or Section 4(f) (other income) if occasional. You must file a tax return (Form B or BE) annually by 30 June (paper) or 15 July (e-filing). <strong>Deductible Expenses</strong>: You can deduct legitimate business expenses including equipment purchases, maintenance, transport to gigs, costumes/wardrobe, marketing, agent fees, insurance premiums, and training/workshops. Keep all receipts. <strong>Services Tax</strong>: If your annual revenue exceeds RM500,000, you must register for Services Tax (SST) at 6% under the Service Tax Act 2018. Most individual performers are below this threshold. <strong>Withholding Tax</strong>: If you are a non-resident performing in Malaysia, the payer must withhold tax at 15% (Section 109A). This is common for international touring artists. <strong>Tip</strong>: Open a separate bank account for performance income to make tracking and reporting easier.'
+            },
+            {
+                q: 'What are my rights if the promoter goes bankrupt?',
+                a: 'This is unfortunately common in the Malaysian events industry. Your options: <strong>If the promoter is a company (Sdn Bhd)</strong>: You become an unsecured creditor under the Companies Act 2016. You must file a proof of debt with the liquidator. Unsecured creditors are paid last (after secured creditors, employees, and government claims), so recovery is often partial or nil. <strong>If the promoter is a sole proprietor / individual</strong>: You can pursue them personally under the Insolvency Act 1967. You can file for judgment and enforce against their personal assets. <strong>Practical Protection</strong>: (1) Always take a 50% deposit upfront -- this is money in your pocket before the event. (2) For large events, request payment in full before the performance. (3) Research the promoter\'s track record. Ask other performers. (4) For events with ticket sales, negotiate a revenue-sharing arrangement with access to ticket sales data. (5) Include a "pay-or-play" clause: you get paid whether the event happens or not. ALIM can help you draft protective contract clauses.'
+            },
+        ];
+
+        const faqContainer = document.getElementById('faq-container');
+        faqData.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'bg-[var(--card)] rounded-xl border border-[var(--border)] overflow-hidden';
+            div.innerHTML =
+                '<button class="w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(' + i + ')">' +
+                    '<span class="font-semibold text-[var(--foreground)] pr-4">' + item.q + '</span>' +
+                    '<svg class="w-5 h-5 text-[var(--muted)] flex-shrink-0 faq-chevron" id="faq-chev-' + i + '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>' +
+                '</button>' +
+                '<div class="faq-answer px-5 text-sm text-[var(--muted)] leading-relaxed" id="faq-answer-' + i + '">' +
+                    '<div class="pb-5">' + item.a + '</div>' +
+                '</div>';
+            faqContainer.appendChild(div);
+        });
+
+        window.toggleFaq = function(idx) {
+            const answer = document.getElementById('faq-answer-' + idx);
+            const chev = document.getElementById('faq-chev-' + idx);
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                answer.style.maxHeight = '0px';
+                chev.classList.remove('open');
+            } else {
+                answer.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                chev.classList.add('open');
+            }
+        };
+
+    })();
+    </script>
+</body>
+</html>

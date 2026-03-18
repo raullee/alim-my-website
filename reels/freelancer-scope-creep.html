@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALIM Reel - Scope Creep</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A0A0A;
+  display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.reel {
+  width: 1080px; height: 1920px; background: #0A0A0A;
+  position: relative; overflow: hidden;
+  transform: scale(0.45); transform-origin: center center;
+}
+.grain {
+  position: absolute; inset: 0; opacity: 0.04; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: 0; }
+.orb-1 { width: 500px; height: 500px; background: rgba(255,165,0,0.12); top: 200px; right: -200px; animation: f1 9s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(229,62,62,0.08); bottom: 100px; left: -150px; animation: f2 11s ease-in-out infinite; }
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,40px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+
+.seq { position: absolute; inset: 0; z-index: 10; }
+.s-slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 80px 60px;
+  opacity: 0;
+}
+
+.s-hook { animation: sT 25s 0s forwards; }
+.s-calc { animation: sT2 25s 5s forwards; }
+.s-cta { animation: sTL 25s 20s forwards; }
+
+@keyframes sT {
+  0%{opacity:0;transform:translateY(20px)}3%{opacity:1;transform:translateY(0)}16%{opacity:1}20%{opacity:0}100%{opacity:0}
+}
+@keyframes sT2 {
+  0%{opacity:0}20%{opacity:0}22%{opacity:1}78%{opacity:1}80%{opacity:0}100%{opacity:0}
+}
+@keyframes sTL {
+  0%{opacity:0;transform:translateY(20px)}4%{opacity:1;transform:translateY(0)}100%{opacity:1}
+}
+
+/* Hook */
+.hook-center { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.hook-tag { font-size: 24px; font-weight: 700; color: #FF8C00; letter-spacing: 5px; }
+.hook-main { font-size: 74px; font-weight: 900; color: #F5F5F5; line-height: 1.05; margin-top: 24px; }
+.hook-main em { font-style: normal; color: #E53E3E; }
+.hook-sub { font-size: 30px; color: #A3A3A3; margin-top: 20px; line-height: 1.4; }
+
+/* Calculator mockup */
+.calc-container { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.calc-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 50px;
+}
+.calc-title { font-size: 32px; font-weight: 800; color: #F5F5F5; margin-bottom: 36px; }
+
+.calc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0;
+}
+.calc-label { font-size: 24px; color: #A3A3A3; }
+.calc-value {
+  font-size: 28px; font-weight: 700; color: #F5F5F5;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 8px 20px; background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.cr1 { animation: crIn 25s 6.0s forwards; }
+.cr2 { animation: crIn 25s 8.0s forwards; }
+.cr3 { animation: crIn 25s 10.0s forwards; }
+
+@keyframes crIn {
+  0%{opacity:0;transform:translateY(10px)}4%{opacity:1;transform:translateY(0)}100%{opacity:1}
+}
+
+/* Result */
+.calc-result {
+  margin-top: 36px; padding: 30px; border-radius: 20px;
+  text-align: center;
+  opacity: 0; animation: resultIn 25s 12.0s forwards;
+}
+@keyframes resultIn {
+  0%{opacity:0;transform:scale(0.95)}4%{opacity:1;transform:scale(1)}100%{opacity:1}
+}
+.result-danger {
+  background: rgba(229,62,62,0.08);
+  border: 2px solid rgba(229,62,62,0.2);
+}
+.result-label { font-size: 20px; font-weight: 700; color: #A3A3A3; letter-spacing: 3px; }
+.result-percent {
+  font-size: 96px; font-weight: 900; color: #E53E3E;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 10px;
+}
+.result-text { font-size: 28px; color: #E53E3E; font-weight: 700; margin-top: 8px; }
+.result-money {
+  font-size: 24px; color: #A3A3A3; margin-top: 12px;
+  opacity: 0; animation: crIn 25s 14.0s forwards;
+}
+.result-money strong {
+  color: #FFD700; font-family: 'JetBrains Mono', monospace;
+}
+
+.result-warning {
+  margin-top: 24px; padding: 18px 24px;
+  background: rgba(229,62,62,0.06);
+  border-left: 4px solid #E53E3E;
+  border-radius: 0 12px 12px 0;
+  font-size: 22px; color: #FC8181; font-weight: 600; text-align: left;
+  opacity: 0; animation: crIn 25s 16.0s forwards;
+}
+
+/* CTA */
+.cta-center { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.cta-main { font-size: 60px; font-weight: 900; color: #F5F5F5; line-height: 1.15; }
+.cta-main em { font-style:normal; background:linear-gradient(135deg,#E53E3E,#FFD700); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.cta-url { font-size:36px; font-weight:600; color:#E53E3E; margin-top:40px; padding:18px 50px; border:2px solid #E53E3E; border-radius:60px; }
+.cta-handle { font-size:26px; color:#A3A3A3; margin-top:24px; }
+.cta-tag { font-size:22px; font-weight:700; color:#FFD700; letter-spacing:5px; margin-bottom:24px; }
+
+.logo { position:absolute; bottom:60px; left:60px; font-size:26px; font-weight:800; color:rgba(255,255,255,0.25); letter-spacing:3px; z-index:20; }
+</style>
+</head>
+<body>
+<div class="reel">
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="seq">
+    <!-- Hook -->
+    <div class="s-slide s-hook">
+      <div class="hook-center">
+        <div class="hook-tag">SCOPE CREEP</div>
+        <div class="hook-main">"Just one<br>more small<br><em>change"</em></div>
+        <div class="hook-sub">How "small changes" cost<br>freelancers thousands</div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="s-slide s-calc">
+      <div class="calc-container">
+        <div class="calc-card">
+          <div class="calc-title">Scope Creep Calculator</div>
+
+          <div class="calc-row cr1">
+            <div class="calc-label">Original scope</div>
+            <div class="calc-value">40 hours</div>
+          </div>
+          <div class="calc-row cr2">
+            <div class="calc-label">Additional "small changes"</div>
+            <div class="calc-value">22 hours</div>
+          </div>
+          <div class="calc-row cr3">
+            <div class="calc-label">Project fee agreed</div>
+            <div class="calc-value">RM 4,000</div>
+          </div>
+
+          <div class="calc-result result-danger">
+            <div class="result-label">SCOPE CREEP</div>
+            <div class="result-percent">+55%</div>
+            <div class="result-text">SEVERE SCOPE CREEP</div>
+            <div class="result-money">You're owed an additional <strong>RM 2,200</strong></div>
+            <div class="result-warning">Your effective rate dropped from RM100/hr to RM64/hr. That's a 36% pay cut you didn't agree to.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="s-slide s-cta">
+      <div class="cta-center">
+        <div class="cta-tag">FREE CALCULATOR TOOL</div>
+        <div class="cta-main">Calculate<br>your <em>scope<br>creep</em> now</div>
+        <div class="cta-url">alim.my/resources</div>
+        <div class="cta-handle">@artxlawmas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">ALIM.MY</div>
+</div>
+</body>
+</html>
