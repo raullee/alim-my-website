@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Docket — ALIM</title>
+<meta name="description" content="ALIM's watching brief: the cases shaping creative-rights law in Malaysia right now.">
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Instrument+Sans:ital,wght@0,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --paper:#F2EBDD; --paper-2:#ECE4D2; --paper-3:#E5DBC4; --ink:#1A1612; --ink-2:#3C342A; --ink-3:#6B5F4E; --vermillion:#D8311F; --ochre:#B8862E; --sage:#4D5747; }
+  html,body{ background:var(--paper); color:var(--ink); }
+  body{ font-family:'Instrument Sans',ui-sans-serif,system-ui; -webkit-font-smoothing:antialiased; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.3; mix-blend-mode:multiply;
+    background-image: radial-gradient(rgba(26,22,18,.10) 1px, transparent 1px), radial-gradient(rgba(26,22,18,.06) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px; }
+  .display{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 760; letter-spacing:-0.025em; line-height:.92; }
+  .display-italic{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 460; line-height:.95; }
+  .editorial{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 36,"SOFT" 50,"wght" 500; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .label{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); }
+  .ornament{ color:var(--vermillion); font-family:'Fraunces',serif; font-style:italic; }
+  .hl{ background-image: linear-gradient(transparent 65%, rgba(216,49,31,.22) 65%); padding:0 .12em; }
+  .stamp{ display:inline-flex; border:1.5px solid var(--vermillion); color:var(--vermillion); padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; transform:rotate(-3deg); border-radius:2px; }
+  .btn{ display:inline-flex; align-items:center; gap:.6rem; padding:14px 22px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; transition:transform .3s,background .25s; }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:var(--vermillion); transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid currentColor; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+  .stat{ font-family:'Fraunces',serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 720; line-height:.85; }
+  ::selection{ background:var(--vermillion); color:var(--paper); }
+  .hr-thin{ height:1px; background:linear-gradient(90deg, transparent, var(--paper-3) 12%, var(--paper-3) 88%, transparent); }
+  .case-card{ background:var(--paper-2); border:1px solid var(--paper-3); padding:32px; border-radius:4px; position:relative; }
+  .case-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; padding:4px 10px; border-radius:999px; }
+  .tag-urgent{ background:var(--vermillion); color:var(--paper); }
+  .tag-active{ background:var(--ochre); color:var(--paper); }
+  .tag-watch{ background:var(--sage); color:var(--paper); }
+  .fact{ display:flex; gap:1rem; padding:10px 0; border-bottom:1px dashed var(--paper-3); font-size:14px; }
+  .fact dt{ flex: 0 0 130px; color:var(--ink-3); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; padding-top:2px; }
+  .fact dd{ color:var(--ink-2); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="border-b sticky top-0 z-50" style="border-color:var(--paper-3); background: color-mix(in oklab, var(--paper) 86%, transparent); backdrop-filter:blur(18px);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2">
+      <span class="display text-[24px]" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style:italic;">Alim</span>
+      <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:var(--ink-3)">·my / docket</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/">Home</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/register/">Register</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/lawyers/">Counsel</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/structure/">Structure</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-6 md:px-10 py-12 md:py-20 relative" style="z-index:2;">
+
+  <section class="mb-16 md:mb-20">
+    <div class="flex items-center gap-4 mb-6">
+      <span class="stamp">Docket Q2 / 2026</span>
+      <span class="label">Watching brief — public</span>
+    </div>
+    <h1 class="display text-[44px] sm:text-[72px] md:text-[104px]">
+      The
+      <span class="display-italic ornament">Docket.</span>
+    </h1>
+    <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-8 max-w-[64ch]" style="color:var(--ink-2)">
+      Three cases this quarter will reshape the legal terrain Malaysia's creative communities work on. ALIM is on watching brief for each. <span class="hl">Help where you can.</span>
+    </p>
+  </section>
+
+  <!-- Case 1 -->
+  <article id="macp" class="case-card mb-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+      <span class="case-tag tag-urgent">Urgent — Mediation</span>
+      <span class="label">File № 01 · Music sector</span>
+    </div>
+    <h2 class="display text-[36px] md:text-[48px]" style="font-variation-settings:'opsz' 144,'wght' 720;">
+      Activist musicians v. MACP <span class="display-italic ornament">(defamation)</span>
+    </h2>
+    <p class="editorial text-[17px] leading-[1.6] mt-5 max-w-[72ch]" style="color:var(--ink-2)">
+      A group of activist musicians is facing a <strong>USD 2 million</strong> defamation suit from the Music Authors' Copyright Protection (MACP) collection management organisation, reportedly tied to public statements made while pushing for royalty-system reform. Mediation is imminent. Current representation is reported to be inexperienced for a claim of this scale.
+    </p>
+    <dl class="mt-6">
+      <div class="fact"><dt>Plaintiff</dt><dd>MACP (collection management organisation)</dd></div>
+      <div class="fact"><dt>Defendants</dt><dd>Activist musicians (group, names withheld pending consent)</dd></div>
+      <div class="fact"><dt>Quantum</dt><dd>≈ USD 2,000,000 in damages claimed</dd></div>
+      <div class="fact"><dt>Stage</dt><dd>Pre-mediation</dd></div>
+      <div class="fact"><dt>ALIM position</dt><dd>Seeking experienced defamation/media counsel to assist or take over. Coordinating with Karl & Fahri.</dd></div>
+      <div class="fact"><dt>Risk if lost</dt><dd>Chilling effect on industry reform criticism; sets precedent for CMO retaliation</dd></div>
+    </dl>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/lawyers/" class="btn btn-primary">I can help → Counsel roster</a>
+      <a href="mailto:artxlawinitiative@gmail.com?subject=MACP%20defamation%20—%20support%20offer" class="btn btn-ghost">Email ALIM</a>
+    </div>
+  </article>
+
+  <!-- Case 2 -->
+  <article id="mentega" class="case-card mb-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+      <span class="case-tag tag-active">Active — Litigation</span>
+      <span class="label">File № 02 · Film sector</span>
+    </div>
+    <h2 class="display text-[36px] md:text-[48px]" style="font-variation-settings:'opsz' 144,'wght' 720;">
+      Mentega Terbang <span class="display-italic ornament">defence</span>
+    </h2>
+    <p class="editorial text-[17px] leading-[1.6] mt-5 max-w-[72ch]" style="color:var(--ink-2)">
+      Constitutional and freedom-of-expression litigation around the film <em>Mentega Terbang</em>. ALIM is coordinating expert witnesses from European avant-garde / film-law circles to give the court an international comparative frame on what is and isn't transgressive cinema.
+    </p>
+    <dl class="mt-6">
+      <div class="fact"><dt>Issue</dt><dd>Freedom of expression · Religious-content prohibitions · Film classification</dd></div>
+      <div class="fact"><dt>Stage</dt><dd>Active</dd></div>
+      <div class="fact"><dt>ALIM ask</dt><dd>Expert witnesses — film studies, comparative free-expression jurisprudence (EU)</dd></div>
+      <div class="fact"><dt>Lead</dt><dd>Karl (witness coordination) · July (procedural)</dd></div>
+      <div class="fact"><dt>Wider stake</dt><dd>Sets the line between religious authority and artistic expression in Malaysian courts</dd></div>
+    </dl>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/lawyers/" class="btn btn-primary">I can help → Counsel roster</a>
+      <a href="mailto:artxlawinitiative@gmail.com?subject=Mentega%20Terbang%20—%20expert%20witness%20offer" class="btn btn-ghost">Offer expert witness</a>
+    </div>
+  </article>
+
+  <!-- Case 3 -->
+  <article id="myipo-jr" class="case-card mb-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+      <span class="case-tag tag-watch">Watching brief — November</span>
+      <span class="label">File № 03 · Music royalties · Admin law</span>
+    </div>
+    <h2 class="display text-[36px] md:text-[48px]" style="font-variation-settings:'opsz' 144,'wght' 720;">
+      CMOs v. MyIPO <span class="display-italic ornament">(transparency JR)</span>
+    </h2>
+    <p class="editorial text-[17px] leading-[1.6] mt-5 max-w-[72ch]" style="color:var(--ink-2)">
+      MACP, PPM and RPM (the three big collection management organisations) have initiated a judicial review against MyIPO's new transparency guidelines for royalty collection. Activist musicians are exploring intervention. The court date is in November 2026.
+    </p>
+    <dl class="mt-6">
+      <div class="fact"><dt>Applicants</dt><dd>MACP · PPM · RPM</dd></div>
+      <div class="fact"><dt>Respondent</dt><dd>MyIPO (regulator)</dd></div>
+      <div class="fact"><dt>Issue</dt><dd>Whether MyIPO's transparency-of-distribution guidelines exceed its statutory power</dd></div>
+      <div class="fact"><dt>Court date</dt><dd>November 2026 (confirm with cause list)</dd></div>
+      <div class="fact"><dt>ALIM plan</dt><dd>Help interested musicians intervene · Coordinate with MyIPO's counsel · Fahri to assign legal team to prepare papers</dd></div>
+      <div class="fact"><dt>If CMOs win</dt><dd>The reform agenda for royalty transparency is set back years</dd></div>
+    </dl>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/lawyers/" class="btn btn-primary">I can intervene → Counsel roster</a>
+      <a href="mailto:artxlawinitiative@gmail.com?subject=MyIPO%20JR%20—%20intervention%20interest" class="btn btn-ghost">Register interest</a>
+    </div>
+  </article>
+
+  <!-- Federal court note -->
+  <section class="mt-16 border-t pt-10" style="border-color:var(--paper-3);">
+    <p class="label mb-4">Recent — for reference</p>
+    <h3 class="display text-[28px] md:text-[36px]">Federal Court: moral rights are <span class="display-italic ornament">inalienable.</span></h3>
+    <p class="editorial text-[16px] leading-[1.6] mt-4 max-w-[68ch]" style="color:var(--ink-2)">
+      A recent Federal Court decision affirmed that an artist's moral rights do not transfer with the sale of copyright. The burden of proof and cost of enforcement, however, still make it impractical for most artists to defend these rights. ALIM is exploring a pro bono enforcement track for representative cases.
+    </p>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="mt-16 border-t pt-8" style="border-color:var(--paper-3);">
+    <p class="label mb-3">Disclaimer</p>
+    <p class="text-[13px] leading-[1.6]" style="color:var(--ink-3); max-width:72ch;">
+      Information on this page is a watching-brief summary maintained by ALIM volunteers. It is not legal advice. Some matters are described in general terms to protect ongoing strategy. For verified case details, consult cause lists and counsel of record.
+    </p>
+  </section>
+
+</main>
+
+<footer class="border-t py-10 mt-10" style="background:var(--paper-2); border-color:var(--paper-3);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">© 2026 Art × Law Initiative Malaysia · Docket Q2 2026</p>
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">Maintained by volunteer counsel · Last review 17 May 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

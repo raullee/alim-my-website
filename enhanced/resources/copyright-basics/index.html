@@ -1,0 +1,1253 @@
+<!doctype html>
+<!-- ALIM.my · Copyright Basics interactive guide. Dossier design system; 1:1 content + tool logic port. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copyright Basics · ALIM.my</title>
+<meta name="description" content="A comprehensive, interactive guide to copyright law for Malaysian creatives. Learn about the Copyright Act 1987, fair dealing, moral rights, and how to protect your work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/alim.css">
+<style>
+/* ============ PAGE-SCOPED TOOL SKIN (dossier vars only) ============ */
+.hidden{ display:none !important; }
+
+/* Breadcrumb */
+.crumb{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:26px; }
+.crumb a{ color:var(--ink-3); text-decoration:none; }
+.crumb a:hover{ color:var(--pillar); }
+.crumb span[aria-current]{ color:var(--ink); }
+
+/* Explored X/7 progress widget */
+.explored{ display:inline-flex; align-items:center; gap:14px; border:1px solid var(--rule); background:var(--paper-2); padding:12px 18px; margin-top:30px; }
+.explored .lab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); }
+.explored .num{ font-family:'Literata',serif; font-variation-settings:"opsz" 40,"wght" 640; font-size:22px; color:var(--pillar); line-height:1; }
+.explored .of{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3); }
+.explored .track{ width:92px; height:6px; background:var(--rule); position:relative; overflow:hidden; }
+.explored .track > i{ position:absolute; top:0; left:0; bottom:0; width:0; background:var(--pillar); transition:width .7s var(--ease-print); }
+
+@keyframes scorePopIn{ 0%{transform:scale(1);} 50%{transform:scale(1.3);} 100%{transform:scale(1);} }
+.score-pop{ animation:scorePopIn .4s ease; display:inline-block; }
+
+/* Right-hand docket rail */
+.progress-tracker{ position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:10px; }
+@media(min-width:1280px){ .progress-tracker{ display:flex; } }
+.progress-dot{ width:11px; height:11px; border:1.5px solid var(--rule); background:transparent; cursor:pointer; position:relative; padding:0; transition:border-color .3s, background .3s; }
+.progress-dot.active{ border-color:var(--pillar); background:var(--pillar); }
+.progress-dot .tooltip{ position:absolute; right:20px; top:50%; transform:translateY(-50%); background:var(--ink); color:var(--paper); padding:3px 9px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s; }
+.progress-dot:hover .tooltip{ opacity:1; }
+
+/* Section numbered eyebrow */
+.tool-eyebrow{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.tool-note{ margin-top:26px; border-left:3px solid var(--pillar); background:var(--paper-2); padding:18px 22px; font-size:14.5px; line-height:1.68; color:var(--ink-2); }
+.tool-note strong{ color:var(--ink); }
+.tool-intro{ max-width:60ch; color:var(--ink-2); font-size:16px; line-height:1.65; margin:14px 0 0; }
+.tool-center{ text-align:center; }
+.tool-center .tool-intro{ margin-left:auto; margin-right:auto; }
+
+/* ---- TIMELINE ---- */
+.cb-yearbox{ max-width:440px; margin:0 auto 44px; }
+.cb-yearbox label{ display:block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.cb-yearrow{ display:flex; gap:12px; }
+.cb-yearrow input{ flex:1; font-family:'Literata',serif; font-variation-settings:"opsz" 24,"wght" 600; font-size:20px; text-align:center; color:var(--ink); background:var(--paper); border:1.5px solid var(--rule); padding:12px 14px; }
+.cb-yearrow input:focus{ outline:none; border-color:var(--pillar); box-shadow:4px 4px 0 var(--pillar); }
+.cb-yearbox .hint{ font-size:12.5px; color:var(--ink-3); margin-top:10px; }
+.cb-cards{ display:grid; gap:18px; }
+.tl-top{ display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.tl-top h3{ font-family:'Literata',serif; font-variation-settings:"opsz" 30,"wght" 620; font-size:20px; margin:0; }
+.tl-top p{ margin:4px 0 0; font-size:13.5px; color:var(--ink-3); }
+.dur-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--pillar); border:1.5px solid var(--pillar); padding:4px 10px; white-space:nowrap; }
+.timeline-bar{ height:8px; background:var(--rule); position:relative; overflow:hidden; }
+.timeline-fill{ height:100%; width:0; background:linear-gradient(90deg,var(--vermillion),var(--ochre)); }
+.timeline-fill.animated{ width:var(--target-width); transition:width 1.4s var(--ease-print); }
+.tl-dates{ display:flex; justify-content:space-between; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.04em; color:var(--ink-3); }
+.tl-dates .timeline-end{ color:var(--pillar); }
+
+/* ---- QUIZ ---- */
+.quiz-scoreboard{ display:flex; align-items:center; justify-content:center; gap:30px; margin-bottom:36px; }
+.quiz-scoreboard .cell{ text-align:center; }
+.quiz-scoreboard .k{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.quiz-scoreboard .v{ font-family:'Literata',serif; font-variation-settings:"opsz" 48,"wght" 700; font-size:32px; line-height:1; }
+.quiz-scoreboard .v.pill{ color:var(--pillar); }
+.quiz-scoreboard .div{ width:1px; height:38px; background:var(--rule); }
+.cb-tool-card{ background:var(--paper-2); border:1px solid var(--rule-soft); padding:26px; position:relative; }
+.cb-tool-card::after{ content:""; position:absolute; top:8px; right:8px; width:14px; height:14px; border-top:1.5px solid var(--ink-3); border-right:1.5px solid var(--ink-3); }
+.cb-scenario-tag{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 8px; }
+.cb-q{ font-family:'Literata',serif; font-variation-settings:"opsz" 40,"wght" 640; font-size:24px; line-height:1.15; margin:0 0 20px; }
+.cb-q-sub{ font-size:14px; color:var(--ink-2); margin:0 0 16px; }
+.quiz-options{ display:grid; gap:12px; }
+.quiz-option{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; background:var(--paper); border:1.5px solid var(--rule); padding:14px 18px; cursor:pointer; font-family:'Archivo',sans-serif; font-size:15px; color:var(--ink); transition:border-color .25s, transform .25s, background .25s; }
+.quiz-option:hover{ border-color:var(--pillar); transform:translateX(4px); }
+.quiz-option.correct{ border-color:#00A95C; background:rgba(0,169,92,.10); }
+.quiz-option.incorrect{ border-color:var(--vermillion); background:rgba(216,49,31,.10); }
+.quiz-option.complex-answer{ border-color:var(--ochre); background:rgba(184,134,46,.14); }
+.quiz-key{ width:30px; height:30px; border:1.5px solid var(--rule); display:grid; place-items:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; flex:none; }
+.quiz-explanation{ margin-top:22px; padding:18px 20px; border:1px solid var(--rule); }
+.quiz-verdict{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; margin:0 0 8px; }
+.quiz-explain-text{ font-size:14.5px; line-height:1.68; color:var(--ink-2); margin:0; }
+.quiz-final{ font-family:'Literata',serif; font-variation-settings:"opsz" 72,"wght" 760; font-size:64px; color:var(--pillar); line-height:1; margin-bottom:16px; }
+.quiz-msg{ font-size:17px; color:var(--ink-2); }
+
+/* ---- RIGHTS WHEEL ---- */
+.cb-two{ display:grid; gap:34px; align-items:start; }
+@media(min-width:900px){ .cb-two{ grid-template-columns:1fr 1fr; } }
+.wheel-container{ position:relative; width:100%; max-width:480px; margin:0 auto; }
+.wheel-segment{ cursor:pointer; transition:filter .3s ease; }
+.wheel-segment:hover{ filter:brightness(1.12); }
+.wheel-segment.active{ filter:brightness(1.15) drop-shadow(0 0 6px rgba(184,134,46,.6)); }
+.wheel-hint{ text-align:center; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:14px; }
+#wheel-placeholder h3, #wheel-detail-title{ font-family:'Literata',serif; font-variation-settings:"opsz" 34,"wght" 620; font-size:22px; margin:0; }
+#wheel-placeholder p{ margin:10px 0 0; font-size:14.5px; color:var(--ink-2); line-height:1.6; }
+.wheel-detail-top{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+.wheel-icon{ width:40px; height:40px; display:grid; place-items:center; color:#F2EBDD; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; flex:none; }
+.wheel-desc{ font-size:15px; line-height:1.65; color:var(--ink-2); margin:0 0 14px; }
+.wheel-box{ margin-top:14px; border:1px solid var(--rule); background:var(--paper); padding:14px 16px; }
+.wheel-box p{ margin:8px 0 0; font-size:14px; color:var(--ink-2); line-height:1.58; }
+
+/* ---- FAIR DEALING ---- */
+.scenario-tabs{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:36px; }
+.scenario-tab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; padding:10px 15px; border:1.5px solid var(--rule); background:var(--paper); color:var(--ink-2); cursor:pointer; transition:all .25s; }
+.scenario-tab.active{ background:var(--pillar); border-color:var(--pillar); color:#F2EBDD; }
+.scenario-tab:hover:not(.active){ border-color:var(--ink); color:var(--ink); }
+#scenario-title{ font-family:'Literata',serif; font-variation-settings:"opsz" 34,"wght" 640; font-size:22px; line-height:1.2; margin:0 0 8px; }
+#scenario-desc{ font-size:15px; color:var(--ink-2); line-height:1.6; margin:0 0 28px; }
+.cb-sliders{ display:grid; gap:24px; }
+.slider-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+.slider-head label{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); }
+.slider-head span{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3); }
+.scenario-slider{ -webkit-appearance:none; appearance:none; width:100%; height:6px; background:var(--rule); outline:none; cursor:pointer; }
+.scenario-slider::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:18px; height:18px; background:var(--pillar); border:1.5px solid var(--ink); cursor:pointer; }
+.scenario-slider::-moz-range-thumb{ width:18px; height:18px; background:var(--pillar); border:1.5px solid var(--ink); cursor:pointer; border-radius:0; }
+.range-ends{ display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-3); margin-top:8px; }
+.meter-wrap{ margin-top:30px; }
+.meter-wrap > p{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin:0 0 12px; }
+.meter-container{ height:26px; background:var(--rule); position:relative; overflow:hidden; }
+.meter-fill{ height:100%; width:0; transition:width .6s var(--ease-print), background .4s; }
+.meter-label{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:#F2EBDD; text-shadow:0 1px 3px rgba(0,0,0,.5); }
+#fair-verdict{ margin-top:14px; font-size:14.5px; font-weight:600; line-height:1.55; }
+
+/* ---- FLOWCHART ---- */
+.flowchart-container{ display:block; }
+.flowchart-node{ background:var(--paper-2); border:1px solid var(--rule-soft); padding:18px 20px; cursor:pointer; transition:border-color .3s, transform .3s; position:relative; }
+.flowchart-node:hover{ border-color:var(--pillar); transform:translateY(-2px); }
+.fc-row{ display:flex; align-items:center; gap:16px; }
+.fc-badge{ width:38px; height:38px; display:grid; place-items:center; color:#F2EBDD; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; flex:none; }
+.fc-main{ flex:1; min-width:0; }
+.fc-main h3{ font-family:'Literata',serif; font-variation-settings:"opsz" 28,"wght" 620; font-size:18px; margin:0; }
+.fc-main p{ margin:4px 0 0; font-size:14px; color:var(--ink-2); }
+.flowchart-chevron{ width:20px; height:20px; color:var(--ink-3); flex:none; transition:transform .3s; }
+.flowchart-connector{ width:2px; height:26px; margin:0 auto; background:linear-gradient(var(--vermillion),var(--ochre)); }
+.flowchart-detail{ max-height:0; overflow:hidden; opacity:0; padding:0 20px; margin:0 16px; background:var(--paper); border:1px solid transparent; font-size:14.5px; color:var(--ink-2); line-height:1.65; transition:max-height .5s var(--ease-print), opacity .4s ease, padding .4s ease; }
+.flowchart-detail.open{ max-height:680px; opacity:1; padding:18px 20px; border-color:var(--rule); }
+.flowchart-detail ul{ list-style:disc; padding-left:22px; margin:8px 0 0; }
+.flowchart-detail li{ margin-top:5px; }
+.flowchart-detail strong{ color:var(--ink); }
+.flowchart-detail a{ color:var(--vermillion); text-decoration:underline; text-underline-offset:2px; }
+.flowchart-detail p{ margin-top:12px; }
+
+/* ---- MYTH FLIP CARDS ---- */
+.flip-card{ perspective:1000px; cursor:pointer; min-height:214px; }
+.flip-card-inner{ position:relative; width:100%; min-height:214px; height:100%; transition:transform .6s var(--ease-print); transform-style:preserve-3d; }
+.flip-card.flipped .flip-card-inner{ transform:rotateY(180deg); }
+.flip-card-front,.flip-card-back{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border:1px solid var(--rule-soft); background:var(--paper-2); padding:24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+.flip-card-back{ transform:rotateY(180deg); border-color:var(--pillar); }
+.fc-tag{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--vermillion); margin-bottom:12px; }
+.fc-tag.truth{ color:#00A95C; }
+.myth-text{ font-family:'Literata',serif; font-variation-settings:"opsz" 24,"wght" 560; font-size:17px; line-height:1.35; color:var(--ink); margin:0; }
+.myth-hint{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-top:16px; }
+.truth-text{ font-size:14px; line-height:1.6; color:var(--ink-2); margin:0; }
+.myths-foot{ text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-top:26px; }
+</style>
+</head>
+<body data-pillar="education">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+  </div>
+</div>
+
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="../../index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../get-help/">Get Help</a>
+      <a href="../../our-work/">Our Work</a>
+      <a href="../../resources/" aria-current="page">Resources</a>
+      <a href="../../join-us/">Join the Movement</a>
+      <a href="../../about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="../../request-consultation/">Request a Consultation <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="../../get-help/">Get Help</a>
+    <a href="../../our-work/">Our Work</a>
+    <a href="../../resources/">Resources</a>
+    <a href="../../join-us/">Join the Movement</a>
+    <a href="../../about-alim/">About Us</a>
+    <a href="../../request-consultation/">Request a Consultation</a>
+  </nav>
+</header>
+
+<!-- Right-hand docket rail -->
+<nav class="progress-tracker" aria-label="Section navigation">
+  <button class="progress-dot" type="button" data-section="hero"><span class="tooltip">Top</span></button>
+  <button class="progress-dot" type="button" data-section="timeline"><span class="tooltip">Timeline</span></button>
+  <button class="progress-dot" type="button" data-section="quiz"><span class="tooltip">Quiz</span></button>
+  <button class="progress-dot" type="button" data-section="rights-wheel"><span class="tooltip">Rights</span></button>
+  <button class="progress-dot" type="button" data-section="fair-dealing"><span class="tooltip">Fair Dealing</span></button>
+  <button class="progress-dot" type="button" data-section="flowchart"><span class="tooltip">Action Plan</span></button>
+  <button class="progress-dot" type="button" data-section="myths"><span class="tooltip">Myth Busters</span></button>
+</nav>
+
+<main id="main">
+<!-- DOSSIER HEADER -->
+<section id="hero" class="dossier-head">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a><span>/</span>
+      <a href="../index.html">Resources</a><span>/</span>
+      <span aria-current="page">Copyright Basics</span>
+    </nav>
+    <div class="dossier-meta">
+      <span class="bar">The foundation</span>
+      <div style="text-align:right">
+        <span class="label">§ File · Copyright</span>
+        <span class="label" style="display:block;margin-top:4px">Pillar 03 · Education</span>
+      </div>
+    </div>
+    <h1 class="page-h1">Copyright <em>basics</em>.</h1>
+    <p class="page-lede">Everything Malaysian creatives need to know about protecting their work under the Copyright Act 1987. Interactive guide · 7 sections · ~15 min read.</p>
+    <div class="explored">
+      <span class="lab">Explored</span>
+      <span class="num score-pop" id="explored-counter">0</span>
+      <span class="of">/ 7 sections</span>
+      <span class="track"><i id="explored-bar" style="width:0%"></i></span>
+    </div>
+  </div>
+  <div class="page-emblem" aria-hidden="true">©</div>
+</section>
+
+<!-- INTRO: WHAT IS COPYRIGHT? -->
+<section class="pad">
+  <div class="wrap-narrow reveal">
+    <div class="sec-head"><div><span class="bar">Definition</span><h2>What is copyright?</h2></div></div>
+    <div class="prose">
+      <p>Copyright is an <strong>automatic legal right</strong> that protects original creative works the moment they are expressed in a tangible form. In Malaysia, this is governed by the <strong>Copyright Act 1987 (Act 332)</strong>, administered by the Intellectual Property Corporation of Malaysia (MyIPO).</p>
+      <p>You do <strong>not</strong> need to register, file any paperwork, or use the © symbol for your work to be protected. The moment you write a lyric, record a beat, sketch a design, or choreograph a dance, copyright exists.</p>
+      <p>However, copyright does <strong>not</strong> protect ideas, concepts, styles, or methods. It protects the specific <em>expression</em> of an idea. For instance, copyright protects the specific melody you wrote, not the concept of writing a sad song.</p>
+    </div>
+    <div class="tool-note"><span class="bar">Key reference</span><p style="margin-top:12px"><strong>Section 7(1), Copyright Act 1987:</strong> Copyright shall subsist in every work eligible for copyright of which the author is a qualified person at the time the work is made.</p></div>
+  </div>
+</section>
+
+<!-- 01 · TIMELINE VISUALISER -->
+<section id="timeline" class="pad tint">
+  <div class="wrap">
+    <div class="sec-head reveal tool-center" style="display:block">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">01 · Interactive</span></div>
+      <h2>Copyright Timeline Visualiser</h2>
+      <p class="tool-intro">See exactly how long your copyright protection lasts under Malaysian law. Enter a year to visualise the timeline.</p>
+    </div>
+
+    <div class="cb-yearbox">
+      <label for="timeline-year">When was the work created?</label>
+      <div class="cb-yearrow">
+        <input type="number" id="timeline-year" min="1900" max="2026" value="2024" aria-label="Year of creation">
+        <button id="timeline-calculate" class="btn btn-primary" type="button" data-magnet>Calculate</button>
+      </div>
+      <p class="hint">For works tied to the author's life, we assume the author lives to age 70.</p>
+    </div>
+
+    <div class="cb-cards" id="timeline-cards">
+      <!-- Literary -->
+      <div class="card" data-type="literary">
+        <div class="tl-top">
+          <div><h3>Literary Works</h3><p>Songs, lyrics, poems, scripts, articles, books</p></div>
+          <span class="dur-tag">Life + 50 years</span>
+        </div>
+        <div class="timeline-bar"><div class="timeline-fill" style="--target-width:100%;"></div></div>
+        <div class="tl-dates"><span class="timeline-start">Created: 2024</span><span class="timeline-end">Expires: ~2144</span></div>
+      </div>
+      <!-- Musical -->
+      <div class="card" data-type="musical">
+        <div class="tl-top">
+          <div><h3>Musical Works</h3><p>Compositions, melodies, arrangements</p></div>
+          <span class="dur-tag">Life + 50 years</span>
+        </div>
+        <div class="timeline-bar"><div class="timeline-fill" style="--target-width:100%;"></div></div>
+        <div class="tl-dates"><span class="timeline-start">Created: 2024</span><span class="timeline-end">Expires: ~2144</span></div>
+      </div>
+      <!-- Sound Recordings -->
+      <div class="card" data-type="sound">
+        <div class="tl-top">
+          <div><h3>Sound Recordings</h3><p>Studio tracks, field recordings, DJ mixes, podcasts</p></div>
+          <span class="dur-tag">50 years from publication</span>
+        </div>
+        <div class="timeline-bar"><div class="timeline-fill" style="--target-width:42%;"></div></div>
+        <div class="tl-dates"><span class="timeline-start">Published: 2024</span><span class="timeline-end">Expires: 2074</span></div>
+      </div>
+      <!-- Films -->
+      <div class="card" data-type="film">
+        <div class="tl-top">
+          <div><h3>Films &amp; Videos</h3><p>Short films, music videos, documentaries</p></div>
+          <span class="dur-tag">50 years from publication</span>
+        </div>
+        <div class="timeline-bar"><div class="timeline-fill" style="--target-width:42%;"></div></div>
+        <div class="tl-dates"><span class="timeline-start">Published: 2024</span><span class="timeline-end">Expires: 2074</span></div>
+      </div>
+      <!-- Broadcasts -->
+      <div class="card" data-type="broadcast">
+        <div class="tl-top">
+          <div><h3>Broadcasts</h3><p>Radio, TV, livestreams, podcasts over airwaves</p></div>
+          <span class="dur-tag">50 years from broadcast</span>
+        </div>
+        <div class="timeline-bar"><div class="timeline-fill" style="--target-width:42%;"></div></div>
+        <div class="tl-dates"><span class="timeline-start">Broadcast: 2024</span><span class="timeline-end">Expires: 2074</span></div>
+      </div>
+    </div>
+
+    <div class="tool-note reveal"><strong>Section 17, Copyright Act 1987:</strong> The duration provisions vary by work type. For literary, musical, and artistic works, protection lasts for the life of the author plus 50 years after their death. For sound recordings, films, and broadcasts, protection is 50 years from first publication or broadcast.</div>
+  </div>
+</section>
+
+<!-- 02 · "IS IT PROTECTED?" QUIZ -->
+<section id="quiz" class="pad">
+  <div class="wrap-narrow">
+    <div class="sec-head reveal" style="display:block;text-align:center">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">02 · Interactive Quiz</span></div>
+      <h2>"Is It Protected?"</h2>
+      <p class="tool-intro" style="margin-left:auto;margin-right:auto">Test your knowledge. For each scenario, decide whether the work is protected by Malaysian copyright law.</p>
+    </div>
+
+    <div class="quiz-scoreboard">
+      <div class="cell"><p class="k">Score</p><p class="v pill score-pop" id="quiz-score">0</p></div>
+      <div class="div"></div>
+      <div class="cell"><p class="k">Question</p><p class="v"><span id="quiz-current">1</span>/8</p></div>
+    </div>
+
+    <div id="quiz-container"><!-- rendered by JS --></div>
+
+    <div id="quiz-complete" class="hidden" style="text-align:center;padding:40px 0">
+      <div class="quiz-final" id="quiz-final-score">0/8</div>
+      <p class="quiz-msg" id="quiz-message"></p>
+      <button id="quiz-restart" class="btn btn-primary" type="button" data-magnet style="margin-top:24px">Try Again</button>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · RIGHTS EXPLORER WHEEL -->
+<section id="rights-wheel" class="pad tint">
+  <div class="wrap">
+    <div class="sec-head reveal" style="display:block;text-align:center">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">03 · Interactive</span></div>
+      <h2>Rights Explorer</h2>
+      <p class="tool-intro" style="margin-left:auto;margin-right:auto">Copyright gives you a bundle of exclusive rights. Click each segment to learn what each right means for you.</p>
+    </div>
+
+    <div class="cb-two">
+      <div>
+        <div class="wheel-container" role="img" aria-label="Interactive copyright rights wheel. Click segments to learn about each right.">
+          <svg id="rights-wheel-svg" viewBox="0 0 500 500" style="width:100%;height:auto"><!-- drawn by JS --></svg>
+        </div>
+        <p class="wheel-hint">Click a segment to explore</p>
+      </div>
+      <div>
+        <div id="wheel-placeholder" class="card">
+          <h3>Select a right</h3>
+          <p>Click any segment on the wheel to see a detailed explanation of that copyright right under Malaysian law.</p>
+        </div>
+        <div id="wheel-detail" class="card hidden">
+          <div class="wheel-detail-top">
+            <div id="wheel-detail-icon" class="wheel-icon"></div>
+            <h3 id="wheel-detail-title"></h3>
+          </div>
+          <p id="wheel-detail-desc" class="wheel-desc"></p>
+          <div class="wheel-box"><span class="bar">Example for artists</span><p id="wheel-detail-example-text"></p></div>
+          <div class="wheel-box"><span class="bar" style="background:var(--vermillion)">Legal reference</span><p id="wheel-detail-law"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · FAIR DEALING SIMULATOR -->
+<section id="fair-dealing" class="pad">
+  <div class="wrap">
+    <div class="sec-head reveal" style="display:block;text-align:center">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">04 · Simulator</span></div>
+      <h2>Fair Dealing Simulator</h2>
+      <p class="tool-intro" style="margin-left:auto;margin-right:auto">Malaysian law allows limited use of copyrighted works for specific purposes. Adjust the factors below and see how likely a use qualifies as "fair dealing" under <strong>Section 13(2A)</strong>.</p>
+    </div>
+
+    <div class="scenario-tabs" id="scenario-tabs" role="tablist">
+      <button class="scenario-tab active" data-scenario="0" role="tab" aria-selected="true" type="button">Song Review</button>
+      <button class="scenario-tab" data-scenario="1" role="tab" aria-selected="false" type="button">Teacher Copy</button>
+      <button class="scenario-tab" data-scenario="2" role="tab" aria-selected="false" type="button">Meme Use</button>
+      <button class="scenario-tab" data-scenario="3" role="tab" aria-selected="false" type="button">News Background</button>
+    </div>
+
+    <div id="scenario-content" class="wrap-narrow" style="padding-inline:0">
+      <div class="cb-tool-card">
+        <h3 id="scenario-title"></h3>
+        <p id="scenario-desc"></p>
+        <div class="cb-sliders">
+          <div>
+            <div class="slider-head"><label>Purpose of Use</label><span id="factor-purpose-label">Review/Criticism</span></div>
+            <input type="range" id="factor-purpose" class="scenario-slider" min="0" max="100" value="50" aria-label="Purpose of use factor">
+            <div class="range-ends"><span>Commercial</span><span>Non-commercial / Educational</span></div>
+          </div>
+          <div>
+            <div class="slider-head"><label>Amount Used</label><span id="factor-amount-label">Moderate</span></div>
+            <input type="range" id="factor-amount" class="scenario-slider" min="0" max="100" value="50" aria-label="Amount of work used factor">
+            <div class="range-ends"><span>Entire work</span><span>Small portion</span></div>
+          </div>
+          <div>
+            <div class="slider-head"><label>Market Impact</label><span id="factor-market-label">Some impact</span></div>
+            <input type="range" id="factor-market" class="scenario-slider" min="0" max="100" value="50" aria-label="Market impact factor">
+            <div class="range-ends"><span>Replaces original</span><span>No market harm</span></div>
+          </div>
+          <div>
+            <div class="slider-head"><label>Transformative Nature</label><span id="factor-transform-label">Somewhat</span></div>
+            <input type="range" id="factor-transform" class="scenario-slider" min="0" max="100" value="50" aria-label="Transformative nature factor">
+            <div class="range-ends"><span>Direct copy</span><span>Highly transformative</span></div>
+          </div>
+        </div>
+        <div class="meter-wrap">
+          <p>Fair Dealing Likelihood</p>
+          <div class="meter-container">
+            <div id="fair-meter" class="meter-fill"></div>
+            <span id="fair-meter-label" class="meter-label">50%</span>
+          </div>
+          <p id="fair-verdict"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-note reveal"><strong>Note:</strong> This simulator is for educational purposes only. Fair dealing analysis in actual cases depends on specific facts and judicial interpretation. The Malaysian Copyright Act provides for fair dealing under Sections 13(2A) for research, private study, criticism, review, and reporting of current events. Always consult a lawyer for specific situations.</div>
+  </div>
+</section>
+
+<!-- 05 · INFRINGEMENT ACTION FLOWCHART -->
+<section id="flowchart" class="pad tint">
+  <div class="wrap-narrow">
+    <div class="sec-head reveal" style="display:block;text-align:center">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">05 · Action Plan</span></div>
+      <h2>Someone Stole Your Work?</h2>
+      <p class="tool-intro" style="margin-left:auto;margin-right:auto">Follow this step-by-step decision tree. Click each step for practical, Malaysian-specific advice.</p>
+    </div>
+    <div id="flowchart-container" class="flowchart-container"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- 06 · MYTH BUSTERS FLIP CARDS -->
+<section id="myths" class="pad">
+  <div class="wrap">
+    <div class="sec-head reveal" style="display:block;text-align:center">
+      <div class="tool-eyebrow" style="justify-content:center"><span class="bar">06 · Myth Busters</span></div>
+      <h2>Copyright Myths, Busted</h2>
+      <p class="tool-intro" style="margin-left:auto;margin-right:auto">Click each card to reveal the truth. How many of these did you believe?</p>
+    </div>
+    <div class="grid grid-3" id="myths-grid"><!-- rendered by JS --></div>
+    <p class="myths-foot">Click to flip · <span id="myths-flipped">0</span>/6 revealed</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pad tint">
+  <div class="wrap-narrow" style="text-align:center">
+    <span class="bar">Need help?</span>
+    <h2 class="display" style="font-size:clamp(30px,5vw,58px);margin:18px 0 0">Protect your rights.</h2>
+    <p class="prose" style="margin:18px auto 0;max-width:56ch">If someone is infringing your copyright or you need guidance on licensing your work, ALIM's network of volunteer lawyers can help. All consultations are free and confidential.</p>
+    <div class="hero-ctas" style="justify-content:center;margin-top:28px">
+      <a class="btn btn-primary" href="../../get-help/" data-magnet>Get legal help →</a>
+      <a class="btn btn-ghost" href="../index.html" data-magnet>Back to resources</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px"><a class="ulink" href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener">★ Featured in The Star →</a></p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../../get-help/">Get Help</a></li>
+          <li><a href="../../our-work/">Our Work</a></li>
+          <li><a href="../../mission/">Our Charter</a></li>
+          <li><a href="../../resources/">Resources</a></li>
+          <li><a href="../../join-us/">Join the Movement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="../../about-alim/">About Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+          <li><a href="../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../terms-of-service/">Terms of Service</a></li>
+          <li><a href="../../sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="dot" aria-hidden="true"></div>
+<script src="../../assets/alim.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ================================================================
+     PROGRESS TRACKER (sections explored) + docket rail
+     ================================================================ */
+  var exploredSections = new Set();
+  var sectionIds = ['timeline', 'quiz', 'rights-wheel', 'fair-dealing', 'flowchart', 'myths'];
+  var exploredCounter = document.getElementById('explored-counter');
+  var exploredBar = document.getElementById('explored-bar');
+
+  function markExplored(id) {
+    if (exploredSections.has(id)) return;
+    exploredSections.add(id);
+    var count = exploredSections.size;
+    exploredCounter.textContent = count;
+    exploredCounter.classList.remove('score-pop');
+    void exploredCounter.offsetWidth;
+    exploredCounter.classList.add('score-pop');
+    exploredBar.style.width = ((count / 7) * 100) + '%';
+  }
+
+  if ('IntersectionObserver' in window) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && sectionIds.indexOf(entry.target.id) !== -1) {
+          markExplored(entry.target.id);
+        }
+      });
+    }, { threshold: 0.3 });
+    sectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+  }
+  setTimeout(function () { markExplored('intro'); }, 1000);
+
+  // Docket rail dots
+  var allSectionIds = ['hero'].concat(sectionIds);
+  var progressDots = document.querySelectorAll('.progress-dot');
+  progressDots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var target = document.getElementById(dot.dataset.section);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var dotObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          progressDots.forEach(function (d) { d.classList.remove('active'); });
+          var dot = document.querySelector('.progress-dot[data-section="' + entry.target.id + '"]');
+          if (dot) dot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+    allSectionIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) dotObserver.observe(el);
+    });
+  }
+
+  /* ================================================================
+     1. COPYRIGHT TIMELINE VISUALISER
+     ================================================================ */
+  var timelineYear = document.getElementById('timeline-year');
+  var timelineCalcBtn = document.getElementById('timeline-calculate');
+
+  function updateTimeline(year) {
+    year = parseInt(year);
+    if (isNaN(year) || year < 1900 || year > 2100) return;
+    var assumedDeathYear = year + 70; // assume author lives 70 more years
+    var maxYear = assumedDeathYear + 50; // life + 50 for longest
+    var cards = document.querySelectorAll('#timeline-cards > div');
+
+    var types = [
+      { type: 'literary', expiry: assumedDeathYear + 50, label: 'Created' },
+      { type: 'musical', expiry: assumedDeathYear + 50, label: 'Created' },
+      { type: 'sound', expiry: year + 50, label: 'Published' },
+      { type: 'film', expiry: year + 50, label: 'Published' },
+      { type: 'broadcast', expiry: year + 50, label: 'Broadcast' }
+    ];
+
+    types.forEach(function (t, i) {
+      var card = cards[i];
+      if (!card) return;
+      var start = card.querySelector('.timeline-start');
+      var end = card.querySelector('.timeline-end');
+      var fill = card.querySelector('.timeline-fill');
+
+      start.textContent = t.label + ': ' + year;
+      var expiryText = t.type === 'literary' || t.type === 'musical' ? '~' + t.expiry : '' + t.expiry;
+      end.textContent = 'Expires: ' + expiryText;
+
+      var duration = t.expiry - year;
+      var pct = Math.min(100, (duration / (maxYear - year)) * 100);
+      fill.style.setProperty('--target-width', pct + '%');
+      fill.classList.remove('animated');
+      void fill.offsetWidth;
+      fill.classList.add('animated');
+    });
+  }
+
+  timelineCalcBtn.addEventListener('click', function () { updateTimeline(timelineYear.value); });
+  timelineYear.addEventListener('keydown', function (e) { if (e.key === 'Enter') updateTimeline(timelineYear.value); });
+
+  if ('IntersectionObserver' in window) {
+    var timelineSection = document.getElementById('timeline');
+    var timelineAnimObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          updateTimeline(timelineYear.value);
+          timelineAnimObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    timelineAnimObserver.observe(timelineSection);
+  } else {
+    updateTimeline(timelineYear.value);
+  }
+
+  /* ================================================================
+     2. "IS IT PROTECTED?" QUIZ
+     ================================================================ */
+  var quizQuestions = [
+    {
+      scenario: 'A melody you hummed into your phone',
+      answer: 'yes',
+      explanation: 'Yes! The moment you record a melody, it becomes a fixed musical work protected under Section 7 of the Copyright Act 1987. Even a voice memo counts as fixation.'
+    },
+    {
+      scenario: 'A list of ingredients in a recipe',
+      answer: 'no',
+      explanation: 'No. A bare list of ingredients is considered factual information and not sufficiently original. However, the creative expression in how a recipe is written (instructions, commentary) may be protected.'
+    },
+    {
+      scenario: 'Your Instagram caption about your art show',
+      answer: 'yes',
+      explanation: 'Yes! An original caption is a literary work under the Copyright Act. Even short text can be protected if it shows sufficient creativity and originality.'
+    },
+    {
+      scenario: 'A dance choreography you created for a performance',
+      answer: 'yes',
+      explanation: 'Yes! Choreographic works are protected as "artistic works" under Section 3 of the Copyright Act 1987, provided they are recorded or notated in some form.'
+    },
+    {
+      scenario: 'Your band\'s name: "Neon Monsoon"',
+      answer: 'no',
+      explanation: 'No. Names, titles, and short phrases are generally not protected by copyright. To protect a band name, you should register it as a trademark with MyIPO.'
+    },
+    {
+      scenario: 'A photograph you took at a street market',
+      answer: 'yes',
+      explanation: 'Yes! Photographs are "artistic works" under the Copyright Act. The photographer holds copyright from the moment the photo is taken, covering creative choices like framing and composition.'
+    },
+    {
+      scenario: 'An image you generated using an AI tool like Midjourney',
+      answer: 'complex',
+      explanation: 'It\'s complicated. Malaysian law has not definitively addressed AI-generated works. Section 7 requires an "author" who is a "qualified person." If AI is the sole creator, copyright may not subsist. However, if you significantly contributed creatively (substantial prompting, editing, selection), you may have a claim. This is an evolving area of law globally.'
+    },
+    {
+      scenario: 'Your DJ set · a live mix of other artists\' songs',
+      answer: 'yes',
+      explanation: 'Yes! Your DJ mix is protected as a sound recording under the Copyright Act. However, you may need licences from the original copyright owners for the underlying tracks. The creative arrangement and mixing itself generates a separate copyright.'
+    }
+  ];
+
+  var quizIndex = 0;
+  var quizScore = 0;
+  var quizContainer = document.getElementById('quiz-container');
+  var quizScoreEl = document.getElementById('quiz-score');
+  var quizCurrentEl = document.getElementById('quiz-current');
+  var quizComplete = document.getElementById('quiz-complete');
+
+  function renderQuizQuestion() {
+    if (quizIndex >= quizQuestions.length) {
+      quizContainer.classList.add('hidden');
+      quizComplete.classList.remove('hidden');
+      document.getElementById('quiz-final-score').textContent = quizScore + '/8';
+      var pct = quizScore / quizQuestions.length;
+      var msg = '';
+      if (pct === 1) msg = 'Perfect score! You clearly know your copyright law.';
+      else if (pct >= 0.75) msg = 'Great job! You have a solid understanding of copyright basics.';
+      else if (pct >= 0.5) msg = 'Not bad! Keep learning and you\'ll master this.';
+      else msg = 'There\'s room to learn. Read through the guide above and try again!';
+      document.getElementById('quiz-message').textContent = msg;
+      return;
+    }
+
+    var q = quizQuestions[quizIndex];
+    quizCurrentEl.textContent = quizIndex + 1;
+
+    quizContainer.innerHTML =
+      '<div class="cb-tool-card">' +
+        '<p class="cb-scenario-tag">Scenario ' + (quizIndex + 1) + ' of ' + quizQuestions.length + '</p>' +
+        '<h3 class="cb-q">' + q.scenario + '</h3>' +
+        '<p class="cb-q-sub">Is this protected by copyright under Malaysian law?</p>' +
+        '<div class="quiz-options" id="quiz-options">' +
+          '<button class="quiz-option" data-answer="yes" type="button" aria-label="Yes, it is protected"><span class="quiz-key">A</span><span>Yes, it\'s protected</span></button>' +
+          '<button class="quiz-option" data-answer="no" type="button" aria-label="No, not protected"><span class="quiz-key">B</span><span>No, not protected</span></button>' +
+          '<button class="quiz-option" data-answer="complex" type="button" aria-label="It\'s complicated"><span class="quiz-key">C</span><span>It\'s complicated</span></button>' +
+        '</div>' +
+        '<div id="quiz-explanation" class="quiz-explanation hidden"></div>' +
+      '</div>';
+
+    document.querySelectorAll('#quiz-options .quiz-option').forEach(function (btn) {
+      btn.addEventListener('click', handleQuizAnswer);
+    });
+  }
+
+  function handleQuizAnswer(e) {
+    var btn = e.currentTarget;
+    var answer = btn.dataset.answer;
+    var q = quizQuestions[quizIndex];
+    var isCorrect = answer === q.answer;
+    var explanationEl = document.getElementById('quiz-explanation');
+
+    document.querySelectorAll('#quiz-options .quiz-option').forEach(function (b) {
+      b.removeEventListener('click', handleQuizAnswer);
+      b.style.pointerEvents = 'none';
+      if (b.dataset.answer === q.answer) {
+        if (q.answer === 'complex') b.classList.add('complex-answer');
+        else b.classList.add('correct');
+      } else if (b === btn && !isCorrect) {
+        b.classList.add('incorrect');
+      }
+    });
+
+    if (isCorrect) {
+      quizScore++;
+      quizScoreEl.textContent = quizScore;
+      quizScoreEl.classList.remove('score-pop');
+      void quizScoreEl.offsetWidth;
+      quizScoreEl.classList.add('score-pop');
+    }
+
+    var bgColor = isCorrect ? 'rgba(0,169,92,0.10)' : (q.answer === 'complex' ? 'rgba(184,134,46,0.12)' : 'rgba(216,49,31,0.10)');
+    var label = isCorrect ? 'Correct!' : (q.answer === 'complex' ? 'This one\'s nuanced.' : 'Not quite.');
+    var labelColor = isCorrect ? '#00A95C' : (q.answer === 'complex' ? 'var(--ochre)' : 'var(--vermillion)');
+
+    explanationEl.innerHTML =
+      '<p class="quiz-verdict" style="color:' + labelColor + '">' + label + '</p>' +
+      '<p class="quiz-explain-text">' + q.explanation + '</p>';
+    explanationEl.style.background = bgColor;
+    explanationEl.classList.remove('hidden');
+
+    setTimeout(function () {
+      quizIndex++;
+      renderQuizQuestion();
+    }, 3000);
+  }
+
+  renderQuizQuestion();
+
+  document.getElementById('quiz-restart').addEventListener('click', function () {
+    quizIndex = 0;
+    quizScore = 0;
+    quizScoreEl.textContent = 0;
+    quizComplete.classList.add('hidden');
+    quizContainer.classList.remove('hidden');
+    renderQuizQuestion();
+  });
+
+  /* ================================================================
+     3. RIGHTS EXPLORER WHEEL (SVG)
+     ================================================================ */
+  var rightsData = [
+    {
+      label: 'Reproduce',
+      short: 'Copy',
+      color: '#E53E3E',
+      desc: 'The right to reproduce your work in any material form, including making copies, printing, or digital duplication. No one can copy your work without your permission.',
+      example: 'If a clothing brand prints your artwork on T-shirts without permission, they are infringing your reproduction right. Similarly, if someone screenshots and reposts your digital art, that is reproduction.',
+      law: 'Section 13(1)(a), Copyright Act 1987 · The copyright owner has the exclusive right to reproduce the work in any material form.'
+    },
+    {
+      label: 'Distribute',
+      short: 'Share',
+      color: '#FF6B35',
+      desc: 'The right to distribute copies of your work to the public, whether by sale, rental, lending, or other transfer. This controls how your work reaches audiences.',
+      example: 'If a record shop sells bootleg copies of your album, or someone sells prints of your painting on Shopee without permission, they are violating your distribution right.',
+      law: 'Section 13(1)(a), Copyright Act 1987 · Includes the right to distribute copies of the work to the public.'
+    },
+    {
+      label: 'Perform',
+      short: 'Stage',
+      color: '#FFD700',
+      desc: 'The right to perform or show your work publicly. This covers live performances, screenings, recitals, and any public presentation of the work.',
+      example: 'If a cafe plays your music without a licence from a collecting society (like MACP/PPM), or a theatre stages your play without permission, they infringe your performance right.',
+      law: 'Section 13(1)(b), Copyright Act 1987 · The exclusive right to perform or show the work to the public.'
+    },
+    {
+      label: 'Communicate',
+      short: 'Broadcast',
+      color: '#22C55E',
+      desc: 'The right to communicate your work to the public by any means, including broadcasting, streaming, uploading online, or making available on-demand.',
+      example: 'If a radio station plays your song, a streaming platform hosts your film, or someone uploads your track to YouTube · all require your authorisation as the copyright owner.',
+      law: 'Section 13(1)(aa), Copyright Act 1987 · The exclusive right to communicate the work to the public.'
+    },
+    {
+      label: 'Derivative',
+      short: 'Adapt',
+      color: '#3B82F6',
+      desc: 'The right to make adaptations, translations, arrangements, or any other transformation of your work. This controls how others can build upon your creation.',
+      example: 'If someone remixes your song, translates your poem into Malay, or adapts your short story into a screenplay, they need your permission under this right.',
+      law: 'Section 13(1)(c) & (d), Copyright Act 1987 · The exclusive right to make adaptations and translations of the work.'
+    },
+    {
+      label: 'Moral Rights',
+      short: 'Identity',
+      color: '#A855F7',
+      desc: 'Moral rights protect your personal connection to your work: the right of attribution (paternity) to be identified as the author, and the right of integrity to prevent distortion or mutilation of your work that would harm your reputation.',
+      example: 'If a gallery exhibits your painting but removes your name, or a brand modifies your design in a way that damages your reputation · these violate your moral rights. In Malaysia, moral rights exist independently of economic rights.',
+      law: 'Section 25, Copyright Act 1987 · The author has the right to be identified as the author and to object to any distortion, mutilation, or modification of the work.'
+    }
+  ];
+
+  function drawWheel() {
+    var svg = document.getElementById('rights-wheel-svg');
+    svg.innerHTML = '';
+    var cx = 250, cy = 250, r = 200, innerR = 80;
+    var n = rightsData.length;
+    var angleStep = (2 * Math.PI) / n;
+    var gap = 0.03;
+
+    rightsData.forEach(function (right, i) {
+      var startAngle = i * angleStep - Math.PI / 2 + gap / 2;
+      var endAngle = (i + 1) * angleStep - Math.PI / 2 - gap / 2;
+
+      var x1 = cx + r * Math.cos(startAngle);
+      var y1 = cy + r * Math.sin(startAngle);
+      var x2 = cx + r * Math.cos(endAngle);
+      var y2 = cy + r * Math.sin(endAngle);
+      var ix1 = cx + innerR * Math.cos(startAngle);
+      var iy1 = cy + innerR * Math.sin(startAngle);
+      var ix2 = cx + innerR * Math.cos(endAngle);
+      var iy2 = cy + innerR * Math.sin(endAngle);
+
+      var largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M ' + ix1 + ' ' + iy1 + ' L ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + largeArc + ' 1 ' + x2 + ' ' + y2 + ' L ' + ix2 + ' ' + iy2 + ' A ' + innerR + ' ' + innerR + ' 0 ' + largeArc + ' 0 ' + ix1 + ' ' + iy1 + ' Z');
+      path.setAttribute('fill', right.color);
+      path.setAttribute('fill-opacity', '0.7');
+      path.setAttribute('stroke', 'var(--paper)');
+      path.setAttribute('stroke-width', '2');
+      path.setAttribute('class', 'wheel-segment');
+      path.setAttribute('data-index', i);
+      path.setAttribute('role', 'button');
+      path.setAttribute('tabindex', '0');
+      path.setAttribute('aria-label', 'Learn about ' + right.label + ' right');
+      svg.appendChild(path);
+
+      var midAngle = (startAngle + endAngle) / 2;
+      var labelR = (r + innerR) / 2 + 10;
+      var lx = cx + labelR * Math.cos(midAngle);
+      var ly = cy + labelR * Math.sin(midAngle);
+
+      var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', lx);
+      text.setAttribute('y', ly);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'middle');
+      text.setAttribute('fill', 'white');
+      text.setAttribute('font-size', '13');
+      text.setAttribute('font-weight', '700');
+      text.setAttribute('font-family', 'JetBrains Mono, monospace');
+      text.setAttribute('pointer-events', 'none');
+      text.textContent = right.short;
+      svg.appendChild(text);
+    });
+
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx);
+    circle.setAttribute('cy', cy);
+    circle.setAttribute('r', innerR - 5);
+    circle.setAttribute('fill', 'var(--paper-2)');
+    circle.setAttribute('stroke', 'var(--rule)');
+    circle.setAttribute('stroke-width', '2');
+    svg.appendChild(circle);
+
+    var centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerText.setAttribute('x', cx);
+    centerText.setAttribute('y', cy - 8);
+    centerText.setAttribute('text-anchor', 'middle');
+    centerText.setAttribute('dominant-baseline', 'middle');
+    centerText.setAttribute('fill', 'var(--ink)');
+    centerText.setAttribute('font-size', '14');
+    centerText.setAttribute('font-weight', '800');
+    centerText.setAttribute('font-family', 'JetBrains Mono, monospace');
+    centerText.textContent = 'YOUR';
+    svg.appendChild(centerText);
+
+    var centerText2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerText2.setAttribute('x', cx);
+    centerText2.setAttribute('y', cy + 12);
+    centerText2.setAttribute('text-anchor', 'middle');
+    centerText2.setAttribute('dominant-baseline', 'middle');
+    centerText2.setAttribute('fill', 'var(--pillar)');
+    centerText2.setAttribute('font-size', '14');
+    centerText2.setAttribute('font-weight', '800');
+    centerText2.setAttribute('font-family', 'JetBrains Mono, monospace');
+    centerText2.textContent = 'RIGHTS';
+    svg.appendChild(centerText2);
+
+    svg.querySelectorAll('.wheel-segment').forEach(function (seg) {
+      var handler = function () { showWheelDetail(parseInt(seg.dataset.index)); };
+      seg.addEventListener('click', handler);
+      seg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+    });
+  }
+
+  function showWheelDetail(index) {
+    var right = rightsData[index];
+    var placeholder = document.getElementById('wheel-placeholder');
+    var detail = document.getElementById('wheel-detail');
+
+    placeholder.classList.add('hidden');
+    detail.classList.remove('hidden');
+
+    document.getElementById('wheel-detail-icon').style.background = right.color;
+    document.getElementById('wheel-detail-icon').textContent = (index + 1);
+    document.getElementById('wheel-detail-title').textContent = 'Right to ' + right.label;
+    document.getElementById('wheel-detail-desc').textContent = right.desc;
+    document.getElementById('wheel-detail-example-text').textContent = right.example;
+    document.getElementById('wheel-detail-law').textContent = right.law;
+
+    document.querySelectorAll('.wheel-segment').forEach(function (seg, i) {
+      seg.classList.toggle('active', i === index);
+      seg.setAttribute('fill-opacity', i === index ? '1' : '0.5');
+    });
+  }
+
+  drawWheel();
+
+  /* ================================================================
+     4. FAIR DEALING SIMULATOR
+     ================================================================ */
+  var scenarios = [
+    {
+      title: 'A music reviewer uses 30 seconds of your song in their YouTube review',
+      desc: 'A popular YouTube reviewer plays a clip of your song while discussing its production and lyrical content. The review is monetised with ads.',
+      defaults: { purpose: 75, amount: 70, market: 60, transform: 55 }
+    },
+    {
+      title: 'A university lecturer photocopies your article for a class of 40 students',
+      desc: 'A lecturer at a public university in Malaysia distributes printed copies of your full article to students for their coursework reading.',
+      defaults: { purpose: 85, amount: 20, market: 55, transform: 30 }
+    },
+    {
+      title: 'Someone turns your artwork into a viral meme on Twitter',
+      desc: 'Your digital illustration is overlaid with text and shared thousands of times as a meme. The person did not credit you or ask permission.',
+      defaults: { purpose: 25, amount: 15, market: 35, transform: 45 }
+    },
+    {
+      title: 'A news channel plays your music as background during a report',
+      desc: 'A Malaysian TV news channel uses your instrumental track as background music during a 3-minute news segment about local arts events.',
+      defaults: { purpose: 50, amount: 40, market: 30, transform: 15 }
+    }
+  ];
+
+  var currentScenario = 0;
+
+  function loadScenario(index) {
+    currentScenario = index;
+    var s = scenarios[index];
+    document.getElementById('scenario-title').textContent = s.title;
+    document.getElementById('scenario-desc').textContent = s.desc;
+    document.getElementById('factor-purpose').value = s.defaults.purpose;
+    document.getElementById('factor-amount').value = s.defaults.amount;
+    document.getElementById('factor-market').value = s.defaults.market;
+    document.getElementById('factor-transform').value = s.defaults.transform;
+    updateFairMeter();
+
+    document.querySelectorAll('.scenario-tab').forEach(function (tab, i) {
+      tab.classList.toggle('active', i === index);
+      tab.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+  }
+
+  function getSliderLabel(value) {
+    if (value < 25) return 'Very low';
+    if (value < 45) return 'Low';
+    if (value < 55) return 'Moderate';
+    if (value < 75) return 'High';
+    return 'Very high';
+  }
+
+  function updateFairMeter() {
+    var purpose = parseInt(document.getElementById('factor-purpose').value);
+    var amount = parseInt(document.getElementById('factor-amount').value);
+    var market = parseInt(document.getElementById('factor-market').value);
+    var transform = parseInt(document.getElementById('factor-transform').value);
+
+    document.getElementById('factor-purpose-label').textContent = getSliderLabel(purpose);
+    document.getElementById('factor-amount-label').textContent = getSliderLabel(amount);
+    document.getElementById('factor-market-label').textContent = getSliderLabel(market);
+    document.getElementById('factor-transform-label').textContent = getSliderLabel(transform);
+
+    // Weighted average: purpose 30%, amount 20%, market 25%, transform 25%
+    var likelihood = Math.round(purpose * 0.30 + amount * 0.20 + market * 0.25 + transform * 0.25);
+
+    var meter = document.getElementById('fair-meter');
+    var label = document.getElementById('fair-meter-label');
+    var verdict = document.getElementById('fair-verdict');
+
+    meter.style.width = likelihood + '%';
+    label.textContent = likelihood + '%';
+
+    if (likelihood < 30) {
+      meter.style.background = 'linear-gradient(90deg, #E53E3E, #FF6B35)';
+      verdict.textContent = 'Unlikely to be fair dealing. This use would likely require permission from the copyright owner.';
+      verdict.style.color = '#E53E3E';
+    } else if (likelihood < 55) {
+      meter.style.background = 'linear-gradient(90deg, #FF6B35, #FFD700)';
+      verdict.textContent = 'Grey area. The outcome would depend on specific facts and judicial interpretation. Seek legal advice.';
+      verdict.style.color = '#B8862E';
+    } else if (likelihood < 75) {
+      meter.style.background = 'linear-gradient(90deg, #FFD700, #22C55E)';
+      verdict.textContent = 'Likely fair dealing, but not guaranteed. The use appears to fall within permissible exceptions.';
+      verdict.style.color = '#00A95C';
+    } else {
+      meter.style.background = 'linear-gradient(90deg, #22C55E, #16A34A)';
+      verdict.textContent = 'Strong case for fair dealing under Malaysian law. The factors weigh heavily in favour of the user.';
+      verdict.style.color = '#00A95C';
+    }
+  }
+
+  document.querySelectorAll('.scenario-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () { loadScenario(parseInt(tab.dataset.scenario)); });
+  });
+
+  ['factor-purpose', 'factor-amount', 'factor-market', 'factor-transform'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', updateFairMeter);
+  });
+
+  loadScenario(0);
+
+  /* ================================================================
+     5. INFRINGEMENT ACTION FLOWCHART
+     ================================================================ */
+  var flowSteps = [
+    {
+      title: 'Step 1: Document Everything',
+      icon: '1',
+      color: '#E53E3E',
+      summary: 'Gather evidence of the infringement before taking any action.',
+      detail: '<strong>What to do:</strong><ul><li>Screenshot or record the infringing use (include URLs, dates, platform)</li><li>Save your original files with metadata showing creation date</li><li>Use the Wayback Machine (web.archive.org) to archive online infringements</li><li>Keep records of any communication with the infringer</li><li>Note any commercial use or revenue the infringer is generating from your work</li></ul><p><strong>Malaysian tip:</strong> Consider making a statutory declaration (surat akuan bersumpah) before a Commissioner for Oaths to formally attest to your authorship. This costs around RM5-10 and creates a useful legal record.</p>'
+    },
+    {
+      title: 'Step 2: Send a Cease & Desist Letter',
+      icon: '2',
+      color: '#FF6B35',
+      summary: 'A formal letter demanding the infringer stop using your work.',
+      detail: '<strong>What to include:</strong><ul><li>Your identity as the copyright owner</li><li>A description of your original work and where it was first published</li><li>A description of the infringing use</li><li>A clear demand to cease the infringing activity</li><li>A deadline (typically 7-14 days)</li><li>A statement that you will take legal action if they do not comply</li></ul><p><strong>Malaysian tip:</strong> A cease & desist from a lawyer carries more weight, but you can write one yourself. Send via email AND registered post (Pos Berdaftar) for proof of delivery. ALIM can help you draft this letter for free.</p>'
+    },
+    {
+      title: 'Step 3: File a Complaint with MyIPO',
+      icon: '3',
+      color: '#FFD700',
+      summary: 'Malaysia\'s IP authority can mediate and take enforcement action.',
+      detail: '<strong>How to file:</strong><ul><li>Visit <a href="https://www.myipo.gov.my" target="_blank" rel="noopener">www.myipo.gov.my</a> or visit their office in Kuala Lumpur</li><li>File a complaint with the Enforcement Division</li><li>MyIPO enforcement officers have the power to conduct raids, seize infringing copies, and investigate</li><li>This is particularly effective for large-scale piracy (e.g. counterfeit CDs, mass reproduction)</li></ul><p><strong>Voluntary copyright notification:</strong> While not required, you can register a voluntary notification of copyright with MyIPO (RM50 per work). This creates a public record that can strengthen your case.</p>'
+    },
+    {
+      title: 'Step 4: Platform Takedown (DMCA/NTD)',
+      icon: '4',
+      color: '#22C55E',
+      summary: 'File takedown notices on the platforms hosting the infringing content.',
+      detail: '<strong>How to file takedowns:</strong><ul><li><strong>Instagram/Facebook:</strong> Use Meta\'s IP reporting form at facebook.com/help/intellectual_property</li><li><strong>YouTube:</strong> Use YouTube\'s Copyright Takedown tool in YouTube Studio</li><li><strong>TikTok:</strong> Report via the in-app IP infringement form</li><li><strong>Spotify:</strong> Email copyright@spotify.com with evidence</li><li><strong>Shopee/Lazada:</strong> Use their IP Protection Platform</li></ul><p><strong>Malaysian tip:</strong> Under the Malaysian Communications and Multimedia Act 1998, you can also report to the Malaysian Communications and Multimedia Commission (MCMC) if the infringement is online.</p>'
+    },
+    {
+      title: 'Step 5: Mediation',
+      icon: '5',
+      color: '#3B82F6',
+      summary: 'Try resolving the dispute through mediation before going to court.',
+      detail: '<strong>Mediation options in Malaysia:</strong><ul><li><strong>MyIPO Mediation:</strong> MyIPO offers IP dispute mediation services</li><li><strong>Asian International Arbitration Centre (AIAC):</strong> Offers mediation for IP disputes</li><li><strong>Malaysian Bar Council Mediation Centre:</strong> General commercial mediation</li></ul><p><strong>Why mediate?</strong> Mediation is typically faster (weeks, not years), cheaper (hundreds vs thousands of RM), and confidential compared to court proceedings. Many cases settle at this stage with licensing agreements or compensation.</p>'
+    },
+    {
+      title: 'Step 6: Court Action',
+      icon: '6',
+      color: '#A855F7',
+      summary: 'When all else fails, take legal action through the Malaysian courts.',
+      detail: '<strong>Your legal remedies under the Copyright Act 1987:</strong><ul><li><strong>Injunction (Section 37):</strong> Court order to stop the infringement immediately</li><li><strong>Damages:</strong> Compensation for your financial losses</li><li><strong>Account of profits:</strong> The infringer\'s profits from using your work</li><li><strong>Delivery up:</strong> Court orders infringing copies to be surrendered or destroyed</li><li><strong>Anton Piller order:</strong> Emergency order to search and seize evidence</li></ul><p><strong>Criminal penalties (Section 41):</strong> Copyright infringement in Malaysia is also a criminal offence. Penalties include fines up to RM20,000 per copy (minimum RM2,000) and/or imprisonment up to 5 years. For repeat offenders: fines up to RM40,000 per copy and/or up to 10 years imprisonment.</p><p><strong>ALIM can help:</strong> We can connect you with IP lawyers who offer pro bono or reduced-rate services for Malaysian artists.</p>'
+    }
+  ];
+
+  function renderFlowchart() {
+    var container = document.getElementById('flowchart-container');
+    container.innerHTML = '';
+
+    flowSteps.forEach(function (step, i) {
+      var node = document.createElement('div');
+      node.innerHTML =
+        '<div class="flowchart-node" data-step="' + i + '" role="button" tabindex="0" aria-expanded="false" aria-label="' + step.title + '">' +
+          '<div class="fc-row">' +
+            '<div class="fc-badge" style="background:' + step.color + '">' + step.icon + '</div>' +
+            '<div class="fc-main"><h3>' + step.title + '</h3><p>' + step.summary + '</p></div>' +
+            '<svg class="flowchart-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>' +
+          '</div>' +
+        '</div>' +
+        '<div class="flowchart-detail" data-detail="' + i + '">' + step.detail + '</div>' +
+        (i < flowSteps.length - 1 ? '<div class="flowchart-connector"></div>' : '');
+      container.appendChild(node);
+    });
+
+    container.querySelectorAll('.flowchart-node').forEach(function (node) {
+      var handler = function () {
+        var stepIndex = node.dataset.step;
+        var detail = container.querySelector('.flowchart-detail[data-detail="' + stepIndex + '"]');
+        var chevron = node.querySelector('.flowchart-chevron');
+        var isOpen = detail.classList.contains('open');
+
+        container.querySelectorAll('.flowchart-detail').forEach(function (d) { d.classList.remove('open'); });
+        container.querySelectorAll('.flowchart-chevron').forEach(function (c) { c.style.transform = ''; });
+        container.querySelectorAll('.flowchart-node').forEach(function (n) { n.setAttribute('aria-expanded', 'false'); });
+
+        if (!isOpen) {
+          detail.classList.add('open');
+          chevron.style.transform = 'rotate(180deg)';
+          node.setAttribute('aria-expanded', 'true');
+        }
+      };
+      node.addEventListener('click', handler);
+      node.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+    });
+  }
+
+  renderFlowchart();
+
+  /* ================================================================
+     6. MYTH BUSTERS FLIP CARDS
+     ================================================================ */
+  var myths = [
+    {
+      myth: '"I need to register my copyright for it to be valid"',
+      truth: 'Copyright is automatic in Malaysia. The moment you create an original work in a tangible form, it is protected under Section 7 of the Copyright Act 1987. No registration, filing, or fees are required.'
+    },
+    {
+      myth: '"If there\'s no © symbol, it\'s not copyrighted"',
+      truth: 'The copyright symbol is NOT required for protection under Malaysian law. It is a useful notice to others, but its absence does not mean the work is free to use. Protection is automatic.'
+    },
+    {
+      myth: '"I can use anything as long as I credit the original creator"',
+      truth: 'Giving credit does NOT equal having permission. Attribution is a moral right issue, but using someone\'s work still requires a licence or must fall under a fair dealing exception. "Credit" and "permission" are two different things.'
+    },
+    {
+      myth: '"Copyright protects my ideas and concepts"',
+      truth: 'Copyright only protects the expression of ideas, not the ideas themselves. Your specific song is protected, but the idea of writing a love ballad is not. If you want to protect an idea or invention, consider patents or trade secrets.'
+    },
+    {
+      myth: '"If I post my work online, it becomes public domain"',
+      truth: 'Publishing online does NOT put your work in the public domain. Your copyright is fully intact when you post on Instagram, YouTube, Spotify, or anywhere else. Public access is not the same as public domain.'
+    },
+    {
+      myth: '"Copyright lasts forever"',
+      truth: 'Copyright has a fixed duration. In Malaysia, for literary and musical works, it lasts for the life of the author plus 50 years. After that, the work enters the public domain and can be freely used by anyone.'
+    }
+  ];
+
+  var mythsFlippedCount = 0;
+  var mythsFlippedEl = document.getElementById('myths-flipped');
+
+  function renderMyths() {
+    var grid = document.getElementById('myths-grid');
+    grid.innerHTML = '';
+
+    myths.forEach(function (m, i) {
+      var card = document.createElement('div');
+      card.className = 'flip-card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', 'Click to reveal the truth about: ' + m.myth);
+      card.innerHTML =
+        '<div class="flip-card-inner">' +
+          '<div class="flip-card-front">' +
+            '<span class="fc-tag">Myth</span>' +
+            '<p class="myth-text">' + m.myth + '</p>' +
+            '<p class="myth-hint">Click to reveal truth</p>' +
+          '</div>' +
+          '<div class="flip-card-back">' +
+            '<span class="fc-tag truth">Truth</span>' +
+            '<p class="truth-text">' + m.truth + '</p>' +
+          '</div>' +
+        '</div>';
+
+      var flipped = false;
+      var flipHandler = function () {
+        card.classList.toggle('flipped');
+        if (!flipped) {
+          flipped = true;
+          mythsFlippedCount++;
+          mythsFlippedEl.textContent = mythsFlippedCount;
+        }
+      };
+      card.addEventListener('click', flipHandler);
+      card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flipHandler(); } });
+
+      grid.appendChild(card);
+    });
+  }
+
+  renderMyths();
+
+})();
+</script>
+</body>
+</html>

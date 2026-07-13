@@ -1,1201 +1,310 @@
 <!doctype html>
-<!--
-  ALIM.my — REDESIGN MOCKUP v2
-  Direction: Editorial brutalism / Malaysian art-law manifesto
-  Built as a single-file mockup for review. Production build would split assets.
--->
-<html lang="en" class="scroll-smooth">
+<!-- ALIM.my · THE DOSSIER PRINTS ITSELF · Home. Content 1:1 with live site; warm-print dossier design system (assets/alim.css + assets/alim.js). -->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ALIM — Art × Law Initiative Malaysia</title>
-<meta name="description" content="A legal clinic for Malaysia's creative communities. Confidential advice. Policy advocacy. Education.">
-<meta property="og:title" content="ALIM — Art × Law Initiative Malaysia">
+<title>ALIM.my · Legal Support for Malaysia's Creative Communities</title>
+<meta name="description" content="Art x Law Initiative Malaysia · championing legal rights for Malaysia's creative communities through confidential advice, policy advocacy, and education.">
+<meta property="og:title" content="ALIM.my · Art × Law Initiative Malaysia">
 <meta property="og:description" content="A non-profit legal clinic for Malaysia's creative communities. Confidential advice. Policy advocacy. Education.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://alim-enhanced.vercel.app/">
-<meta name="twitter:card" content="summary_large_image">
-<script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          serif: ['Fraunces', 'Georgia', 'serif'],
-          sans:  ['"Instrument Sans"', 'ui-sans-serif', 'system-ui'],
-          mono:  ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        }
-      }
-    }
-  }
-</script>
-<style>
-  :root{
-    --paper:        #F2EBDD;   /* warm vellum */
-    --paper-2:      #ECE4D2;   /* deeper paper for cards */
-    --paper-3:      #E5DBC4;   /* rules, borders */
-    --ink:          #1A1612;   /* warm black */
-    --ink-2:        #3C342A;   /* secondary text */
-    --ink-3:        #6B5F4E;   /* tertiary text */
-    --vermillion:   #D8311F;   /* manifesto red */
-    --vermillion-2: #B5261A;   /* hover/depth */
-    --ochre:        #B8862E;   /* heritage gold */
-    --sage:         #4D5747;   /* tertiary accent */
-  }
-
-  /* Inverted/night charter */
-  html.charter{
-    --paper:   #15120D;
-    --paper-2: #1F1B14;
-    --paper-3: #2A2519;
-    --ink:     #F2EBDD;
-    --ink-2:   #C9BFA8;
-    --ink-3:   #897E68;
-  }
-
-  html, body{ background: var(--paper); color: var(--ink); }
-  body{
-    font-family: 'Instrument Sans', ui-sans-serif, system-ui;
-    font-feature-settings: "ss01", "ss02", "cv11";
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-
-  /* Paper texture overlay (subtle grain) */
-  body::before{
-    content:"";
-    position: fixed; inset:0;
-    pointer-events:none; z-index: 1;
-    opacity:.35; mix-blend-mode: multiply;
-    background-image:
-      radial-gradient(rgba(26,22,18,.12) 1px, transparent 1px),
-      radial-gradient(rgba(26,22,18,.08) 1px, transparent 1px);
-    background-size: 3px 3px, 7px 7px;
-    background-position: 0 0, 1px 1px;
-  }
-  html.charter body::before{ opacity:.18; mix-blend-mode: screen;
-    background-image:
-      radial-gradient(rgba(242,235,221,.10) 1px, transparent 1px),
-      radial-gradient(rgba(242,235,221,.06) 1px, transparent 1px);
-  }
-
-  /* Display utilities */
-  .display{
-    font-family: 'Fraunces', Georgia, serif;
-    font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 760;
-    letter-spacing: -0.025em;
-    line-height: 0.92;
-  }
-  .display-italic{
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 460;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-  }
-  .editorial{
-    font-family: 'Fraunces', Georgia, serif;
-    font-variation-settings: "opsz" 36, "SOFT" 50, "wght" 500;
-    letter-spacing: -0.005em;
-  }
-  .mono{ font-family: 'JetBrains Mono', monospace; }
-  .label{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-3);
-  }
-
-  /* Editorial divider */
-  .rule{ border-color: var(--paper-3); }
-  .rule-ink{ border-color: rgba(26,22,18,.18); }
-  html.charter .rule-ink{ border-color: rgba(242,235,221,.14); }
-
-  /* Hairline rule used between sections */
-  .hr-thin{ height:1px; background:linear-gradient(90deg, transparent, var(--paper-3) 12%, var(--paper-3) 88%, transparent); }
-  html.charter .hr-thin{ background:linear-gradient(90deg, transparent, rgba(242,235,221,.18) 12%, rgba(242,235,221,.18) 88%, transparent); }
-
-  /* Marquee ticker */
-  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  .marquee-track{ animation: marquee 60s linear infinite; }
-
-  /* Reveal on scroll */
-  .reveal{ opacity:0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-  .reveal.in{ opacity:1; transform: none; }
-  .reveal.d1{ transition-delay: .08s }
-  .reveal.d2{ transition-delay: .16s }
-  .reveal.d3{ transition-delay: .24s }
-  .reveal.d4{ transition-delay: .32s }
-
-  /* Underline link with serif character */
-  .ulink{ position:relative; display:inline-flex; align-items:baseline; gap:.4ch; }
-  .ulink::after{
-    content:""; position:absolute; left:0; right:0; bottom:-2px;
-    height:1px; background: currentColor; opacity:.6;
-    transform: scaleX(1); transform-origin: right center;
-    transition: transform .4s cubic-bezier(.7,0,.2,1);
-  }
-  .ulink:hover::after{ transform: scaleX(0); transform-origin: right center; }
-  .ulink::before{
-    content:""; position:absolute; left:0; right:0; bottom:-2px;
-    height:1px; background: currentColor;
-    transform: scaleX(0); transform-origin: left center;
-    transition: transform .4s cubic-bezier(.7,0,.2,1) .05s;
-  }
-  .ulink:hover::before{ transform: scaleX(1); }
-
-  /* Buttons */
-  .btn{
-    display:inline-flex; align-items:center; gap:.6rem;
-    padding: 14px 22px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: .14em; text-transform: uppercase;
-    border-radius: 999px;
-    transition: transform .35s cubic-bezier(.7,0,.2,1), background .25s ease, color .25s ease, border-color .25s ease;
-  }
-  .btn-primary{ background: var(--ink); color: var(--paper); }
-  .btn-primary:hover{ background: var(--vermillion); transform: translateY(-2px); }
-  .btn-ghost{ border:1px solid currentColor; color: var(--ink); }
-  .btn-ghost:hover{ background: var(--ink); color: var(--paper); transform: translateY(-2px); }
-  .btn-red{ background: var(--vermillion); color: var(--paper); }
-  .btn-red:hover{ background: var(--ink); transform: translateY(-2px); }
-
-  /* Number marker */
-  .marker{
-    font-family: 'Fraunces', serif;
-    font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 320;
-    font-style: italic;
-    color: var(--vermillion);
-  }
-
-  /* Card */
-  .card{
-    background: var(--paper-2);
-    border: 1px solid var(--paper-3);
-    border-radius: 4px;
-    padding: 28px;
-    position: relative;
-    transition: transform .5s cubic-bezier(.16,1,.3,1), border-color .35s ease, background .35s ease;
-  }
-  .card:hover{ transform: translateY(-4px); border-color: var(--ink-3); }
-  .card-corner{
-    position:absolute; top:14px; right:14px;
-    width:18px; height:18px;
-    border-top:1px solid var(--ink-3); border-right:1px solid var(--ink-3);
-    opacity:.5;
-  }
-
-  /* Ink blot cursor */
-  .ink-dot{
-    position: fixed; left:0; top:0;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--vermillion); pointer-events:none;
-    transform: translate(-50%, -50%); z-index: 80;
-    mix-blend-mode: multiply;
-    transition: width .25s ease, height .25s ease, opacity .25s ease;
-  }
-  html.charter .ink-dot{ mix-blend-mode: screen; }
-  .ink-dot.lg{ width: 32px; height: 32px; opacity:.7 }
-
-  /* Drop cap */
-  .dropcap::first-letter{
-    font-family: 'Fraunces', serif;
-    font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 800;
-    float: left;
-    font-size: 5.4em;
-    line-height: .85;
-    padding-right: .12em;
-    padding-top: .08em;
-    color: var(--vermillion);
-  }
-
-  /* Custom underline highlight (manifesto) */
-  .hl{
-    background-image: linear-gradient(transparent 65%, rgba(216,49,31,.22) 65%);
-    padding: 0 .12em;
-  }
-
-  /* Selection */
-  ::selection{ background: var(--vermillion); color: var(--paper); }
-
-  /* Hero columns marginalia behaviour */
-  .colrule{
-    border-left:1px solid var(--paper-3);
-  }
-
-  /* Quote glyph */
-  .qmark{
-    font-family: 'Fraunces', serif;
-    font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 700;
-    font-style: italic;
-    color: var(--vermillion);
-    line-height: .6;
-  }
-
-  /* Tag chip */
-  .chip{
-    display:inline-flex; align-items:center; gap:.5ch;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px; font-weight: 500;
-    letter-spacing: .12em; text-transform: uppercase;
-    color: var(--ink-2);
-    padding: 5px 10px;
-    border: 1px solid var(--paper-3);
-    border-radius: 999px;
-    background: transparent;
-  }
-
-  /* Index column */
-  .idx{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--ink-3);
-  }
-
-  /* Hover image scrim */
-  .case-card{ transition: transform .6s cubic-bezier(.16,1,.3,1); }
-  .case-card:hover{ transform: translateY(-6px); }
-  .case-img{ transition: transform 1.2s cubic-bezier(.16,1,.3,1), filter .6s ease; filter: saturate(.85) contrast(1.05); }
-  .case-card:hover .case-img{ transform: scale(1.04); filter: saturate(1) contrast(1.05); }
-
-  /* Stamp */
-  .stamp{
-    display:inline-flex; align-items:center; justify-content:center;
-    border:1.5px solid var(--vermillion); color: var(--vermillion);
-    padding: 6px 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
-    transform: rotate(-3deg);
-    border-radius: 2px;
-  }
-
-  /* Headline ornament */
-  .ornament{
-    color: var(--vermillion);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "wght" 400;
-  }
-
-  /* Big number callouts */
-  .stat{
-    font-family: 'Fraunces', serif;
-    font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 720;
-    line-height: .85;
-    letter-spacing: -0.03em;
-  }
-
-  /* Form */
-  .field{
-    width:100%; background: transparent;
-    border:0; border-bottom:1px solid var(--paper-3);
-    padding: 14px 2px;
-    font-family: 'Instrument Sans', sans-serif;
-    font-size: 16px; color: var(--ink);
-    transition: border-color .3s ease;
-  }
-  .field:focus{ outline: none; border-bottom-color: var(--vermillion); }
-  .field::placeholder{ color: var(--ink-3); }
-
-  /* Hide scrollbar in marquee */
-  .no-scrollbar::-webkit-scrollbar{ display:none }
-  .no-scrollbar{ -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* The "fold" decoration */
-  .fold{
-    position:absolute; top:0; right:0;
-    width: 0; height: 0;
-    border-style: solid;
-    border-width: 0 36px 36px 0;
-    border-color: transparent var(--paper-3) transparent transparent;
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/alim.css">
 </head>
+<body data-pillar="advice">
+<a class="skip-link" href="#main">Skip to content</a>
 
-<body class="antialiased">
-
-<!-- Ink dot cursor -->
-<div id="dot" class="ink-dot hidden md:block"></div>
-
-<!-- ============================================================ -->
-<!-- 0. TOP TICKER                                                  -->
-<!-- ============================================================ -->
-<div class="border-b rule" style="border-color: var(--paper-3); background: var(--paper-2);">
-  <div class="overflow-hidden">
-    <div class="marquee-track flex whitespace-nowrap py-2.5">
-      <!-- duplicated for seamless loop -->
-      <div class="flex shrink-0 items-center">
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Issue 04 — Q2 2026</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Filed from Kuala Lumpur</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">In defence of makers, builders, dreamers</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">A non-profit legal clinic</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Volunteer counsel since 2024</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">★ Creative Worker Register — now open</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">The Docket — three cases this quarter</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">★ Counsel roster — pick up a file</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-      </div>
-      <div class="flex shrink-0 items-center" aria-hidden="true">
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Issue 04 — Q2 2026</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Filed from Kuala Lumpur</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">In defence of makers, builders, dreamers</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">A non-profit legal clinic</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">Volunteer counsel since 2024</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">★ Creative Worker Register — now open</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--ink-2)">The Docket — three cases this quarter</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-        <span class="mono text-[11px] tracking-[0.18em] uppercase px-6" style="color:var(--vermillion)">★ Counsel roster — pick up a file</span><span class="mono text-[11px]" style="color:var(--ink-3)">/</span>
-      </div>
-    </div>
+<!-- §0 TICKER -->
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 1. NAV / MASTHEAD                                              -->
-<!-- ============================================================ -->
-<header class="sticky top-0 z-50 border-b rule" style="background: color-mix(in oklab, var(--paper) 86%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-color: var(--paper-3);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14">
-    <div class="flex items-center justify-between h-[68px]">
-      <a href="#top" class="flex items-baseline gap-2 group">
-        <span class="display text-[28px] leading-none" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style: italic;">Alim</span>
-        <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:var(--ink-3)">·my</span>
-        <span class="hidden md:inline-block mono text-[10px] tracking-[0.22em] uppercase ml-3 pl-3 border-l rule-ink pt-1" style="color:var(--ink-3)">Art × Law Initiative Malaysia</span>
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-7">
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="/register/">Register</a>
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="/cases/">Docket</a>
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="/lawyers/">Counsel</a>
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="/structure/">Structure</a>
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="#help">Help</a>
-        <a class="ulink mono text-[12px] tracking-[0.18em] uppercase" href="#about">About</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <button id="theme-toggle" aria-label="Toggle charter theme" class="hidden md:inline-flex items-center justify-center h-9 w-9 rounded-full border rule-ink" style="border-color: var(--paper-3);">
-          <svg id="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
-          </svg>
-        </button>
-        <a href="#help" class="btn btn-red">
-          Get Legal Help
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </a>
-      </div>
+<!-- §1 NAV / MASTHEAD -->
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="get-help/">Get Help</a>
+      <a href="our-work/">Our Work</a>
+      <a href="resources/">Resources</a>
+      <a href="join-us/">Join the Movement</a>
+      <a href="about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="get-help/">Get Legal Help <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
   </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="get-help/">Get Help</a>
+    <a href="our-work/">Our Work</a>
+    <a href="resources/">Resources</a>
+    <a href="join-us/">Join the Movement</a>
+    <a href="about-alim/">About Us</a>
+    <a href="request-consultation/">Request a Consultation</a>
+  </nav>
 </header>
 
-<main id="top">
-
-<!-- ============================================================ -->
-<!-- 2. HERO                                                        -->
-<!-- ============================================================ -->
-<section class="relative">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-12 md:pt-20 pb-16 md:pb-24">
-
-    <!-- top meta row -->
-    <div class="reveal grid grid-cols-12 gap-6 items-end">
-      <div class="col-span-12 md:col-span-5 flex items-center gap-4">
-        <span class="stamp">Vol. 04 / 2026</span>
-        <span class="label">A quarterly dossier</span>
-      </div>
-      <div class="hidden md:flex md:col-span-7 items-end justify-between">
-        <div class="label">§ Hero — 02 / Manifesto</div>
-        <div class="label">Page 001 of ∞</div>
-      </div>
+<main id="main">
+<!-- §2 HERO · THE PLATE -->
+<section id="stage" aria-label="Manifesto">
+  <div class="pin">
+    <div id="plate-tilt">
+      <canvas id="plate" aria-hidden="true"></canvas>
+      <div id="plate-fallback" aria-hidden="true"></div>
     </div>
-
-    <div class="hr-thin my-8"></div>
-
-    <!-- Headline grid -->
-    <div class="grid grid-cols-12 gap-6 md:gap-8">
-
-      <!-- Left marginalia -->
-      <aside class="hidden md:block col-span-3 colrule pl-6 pt-2">
-        <p class="label mb-4">§ 01 — On purpose</p>
-        <p class="editorial text-[15px] leading-[1.55]" style="color:var(--ink-2)">
-          Alim is a legal clinic for Malaysia's creative communities. <span class="hl">Independent.</span> Non-profit. Unaffiliated with any studio, gallery, label, or publisher. Run by volunteer counsel who believe that <em>the right to make</em> is worth defending — first in private, then, if pressed, in court.
-        </p>
-        <div class="hr-thin my-6"></div>
-        <p class="label mb-3">§ 02 — Filed by</p>
-        <ul class="space-y-1.5 text-[13px]" style="color:var(--ink-2)">
-          <li class="flex items-baseline gap-3"><span class="idx w-6">01</span><span>Raul Lee, Adv.</span></li>
-          <li class="flex items-baseline gap-3"><span class="idx w-6">02</span><span>Volunteer Counsel Pool</span></li>
-          <li class="flex items-baseline gap-3"><span class="idx w-6">03</span><span>Friends of the Court</span></li>
-        </ul>
-      </aside>
-
-      <!-- Headline -->
-      <div class="col-span-12 md:col-span-9">
-        <h1 class="reveal d1 display text-[64px] sm:text-[96px] md:text-[128px] lg:text-[160px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 760;">
-          Art is
-          <span class="display-italic ornament">protected</span>
-          speech.
-        </h1>
-        <h2 class="reveal d2 display text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px] mt-2 md:mt-4" style="font-variation-settings:'opsz' 144,'SOFT' 80,'wght' 360; font-style: italic; color: var(--ink-2);">
-          Some lawyers think&nbsp;so&nbsp;too.
-        </h2>
-
-        <!-- Sub + CTAs -->
-        <div class="reveal d3 mt-10 md:mt-14 grid grid-cols-12 gap-6 md:gap-8 items-end">
-          <div class="col-span-12 md:col-span-7">
-            <p class="editorial text-[18px] md:text-[20px] leading-[1.55] max-w-[58ch]" style="color:var(--ink-2)">
-              We give Malaysia's artists, musicians, designers, writers, filmmakers and craftspeople the legal cover they're routinely denied — quietly, confidentially, and (where it matters) loudly. Free initial consult. No retainer. No PR.
-            </p>
-          </div>
-          <div class="col-span-12 md:col-span-5 flex flex-col md:items-end gap-4">
-            <div class="flex flex-wrap gap-3">
-              <a href="#help" class="btn btn-primary">Request a consult <span aria-hidden>→</span></a>
-              <a href="#join" class="btn btn-ghost">Volunteer counsel</a>
-            </div>
-            <p class="mono text-[11px] tracking-[0.16em] uppercase" style="color:var(--ink-3)">
-              Average response: <span style="color:var(--ink)">under 48 hrs</span>
-            </p>
-          </div>
+    <div class="wrap hero-inner">
+      <div class="hero-meta">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <a class="stamp" href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener" style="text-decoration:none">★ As featured in The Star</a>
+          <span class="label">The ALIM Dossier</span>
+        </div>
+        <div style="text-align:right">
+          <span class="label" style="display:block">§ 01 · Manifesto</span>
+          <span class="label" style="display:block;margin-top:4px">Filed from Kuala Lumpur</span>
         </div>
       </div>
-    </div>
-
-    <!-- Bottom stat row -->
-    <div class="reveal d4 mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-t pt-8" style="border-color: var(--paper-3);">
-      <div>
-        <div class="stat text-[56px] md:text-[72px]">120+</div>
-        <p class="label mt-2">Consults answered</p>
-      </div>
-      <div>
-        <div class="stat text-[56px] md:text-[72px]">37</div>
-        <p class="label mt-2">Volunteer counsel</p>
-      </div>
-      <div>
-        <div class="stat text-[56px] md:text-[72px]">04</div>
-        <p class="label mt-2">Policy submissions</p>
-      </div>
-      <div>
-        <div class="stat text-[56px] md:text-[72px]"><span style="color:var(--vermillion)">RM 0</span></div>
-        <p class="label mt-2">Cost to the artist</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- giant background numeral -->
-  <div aria-hidden="true" class="hidden lg:block pointer-events-none absolute -right-10 -bottom-10 z-0 select-none" style="font-family:'Fraunces',serif; font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 240; font-style: italic; font-size: 540px; line-height:.8; color: var(--paper-3);">04</div>
-</section>
-
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 2.5  WHAT'S NEW — Q2 2026                                     -->
-<!-- ============================================================ -->
-<section class="relative" style="background: var(--paper-2);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-28">
-    <div class="reveal flex items-baseline justify-between mb-10 md:mb-14">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ Q2</span>
-        <span class="label">Open this quarter</span>
-      </div>
-      <span class="label hidden md:block">Drafted 17 May 2026</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-
-      <a href="https://www.instagram.com/kuarts.festival" target="_blank" rel="noopener" class="card group" style="background: #9dd1ee; color: var(--ink);">
-        <span class="card-corner"></span>
-        <p class="label mb-3" style="color:var(--vermillion)">Field · 12–14 June</p>
-        <h3 class="display text-[28px]" style="font-variation-settings:'opsz' 144,'wght' 720;">Kuantan Arts <em class="display-italic ornament">Festival</em></h3>
-        <p class="text-[14px] leading-[1.55] mt-3" style="color:var(--ink-2)">ReformArtsi × ALIM at Pahang's first arts festival. Karl on artists' rights and arts-community organising. Jalan Besar, free for all.</p>
-        <p class="mono text-[11px] tracking-[0.16em] uppercase mt-5" style="color:var(--ink-3)">@kuarts.festival →</p>
-      </a>
-
-      <a href="/register/" class="card group">
-        <span class="card-corner"></span>
-        <p class="label mb-3" style="color:var(--vermillion)">New · Flagship</p>
-        <h3 class="display text-[28px]" style="font-variation-settings:'opsz' 144,'wght' 720;">Creative Worker <em class="display-italic ornament">Register</em></h3>
-        <p class="text-[14px] leading-[1.55] mt-3" style="color:var(--ink-2)">Three minutes. Add your name to the roll. Power the case for Gig Workers Act inclusion.</p>
-        <p class="mono text-[11px] tracking-[0.16em] uppercase mt-5" style="color:var(--ink-3)">/register →</p>
-      </a>
-
-      <a href="/cases/" class="card group">
-        <span class="card-corner"></span>
-        <p class="label mb-3">Watching brief</p>
-        <h3 class="display text-[28px]" style="font-variation-settings:'opsz' 144,'wght' 720;">The <em class="display-italic ornament">Docket</em></h3>
-        <p class="text-[14px] leading-[1.55] mt-3" style="color:var(--ink-2)">Three cases reshaping creative-rights law this quarter. MACP defamation. Mentega Terbang. MyIPO JR.</p>
-        <p class="mono text-[11px] tracking-[0.16em] uppercase mt-5" style="color:var(--ink-3)">/cases →</p>
-      </a>
-
-      <a href="/lawyers/" class="card group">
-        <span class="card-corner"></span>
-        <p class="label mb-3" style="color:var(--vermillion)">For counsel</p>
-        <h3 class="display text-[28px]" style="font-variation-settings:'opsz' 144,'wght' 720;">Counsel <em class="display-italic ornament">Roster</em></h3>
-        <p class="text-[14px] leading-[1.55] mt-3" style="color:var(--ink-2)">Pick up one file a quarter, three a year, or be on call. Pro bono hours count toward CPD.</p>
-        <p class="mono text-[11px] tracking-[0.16em] uppercase mt-5" style="color:var(--ink-3)">/lawyers →</p>
-      </a>
-
-      <a href="/structure/" class="card group">
-        <span class="card-corner"></span>
-        <p class="label mb-3">Internal · Draft</p>
-        <h3 class="display text-[28px]" style="font-variation-settings:'opsz' 144,'wght' 720;">Two-stream <em class="display-italic ornament">Structure</em></h3>
-        <p class="text-[14px] leading-[1.55] mt-3" style="color:var(--ink-2)">Proposed operational model for the 25 May meeting. Policy stream + intake stream + shared undercarriage.</p>
-        <p class="mono text-[11px] tracking-[0.16em] uppercase mt-5" style="color:var(--ink-3)">/structure →</p>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 3. THE CHARTER (manifesto pull-quote)                          -->
-<!-- ============================================================ -->
-<section id="about" class="relative">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal flex items-baseline justify-between mb-12 md:mb-16">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ I</span>
-        <span class="label">The Charter</span>
-      </div>
-      <span class="label hidden md:block">Filed 14 Aug 2024</span>
-    </div>
-
-    <div class="grid grid-cols-12 gap-8">
-      <div class="col-span-12 md:col-span-2">
-        <div class="qmark text-[200px] md:text-[260px] -mt-8 -ml-2 md:-ml-4">“</div>
-      </div>
-      <div class="col-span-12 md:col-span-9 md:col-start-3">
-        <p class="reveal d1 display-italic text-[36px] sm:text-[48px] md:text-[60px] lg:text-[72px]" style="line-height: 1.04;">
-          Every artist deserves a lawyer. Not when they get sued — but the day they sign their first contract, paint their first wall, post their first track.
-        </p>
-
-        <div class="hr-thin my-10"></div>
-
-        <div class="reveal d2 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <p class="editorial text-[16px] leading-[1.6] dropcap" style="color:var(--ink-2)">
-            We exist because the gap between Malaysian creative practice and Malaysian creative law is too wide, too quiet, and too lopsided. Galleries have lawyers. Labels have lawyers. Studios have lawyers. The artist usually has Google.
-          </p>
-          <p class="editorial text-[16px] leading-[1.6]" style="color:var(--ink-2)">
-            We close that gap with three instruments: <span class="hl">private counsel</span> for the artist who needs it now; <span class="hl">policy submissions</span> when the law itself is the wound; and <span class="hl">free education</span> so the next generation never has to learn this through litigation.
-          </p>
-          <p class="editorial text-[16px] leading-[1.6]" style="color:var(--ink-2)">
-            None of this is charity. <em>It is repair.</em> A creative class that knows its rights is a country that can afford a culture. Malaysia can afford a culture. We are simply doing the bookkeeping.
-          </p>
-        </div>
-
-        <div class="reveal d3 mt-12 flex flex-wrap items-center gap-4">
-          <span class="chip">IP & Copyright</span>
-          <span class="chip">Defamation</span>
-          <span class="chip">Contract Review</span>
-          <span class="chip">Censorship & Speech</span>
-          <span class="chip">Public Art Permits</span>
-          <span class="chip">Royalty Disputes</span>
-          <span class="chip">Platform Takedowns</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 4. HOW WE HELP (dossier cards)                                 -->
-<!-- ============================================================ -->
-<section id="help" class="relative" style="background: var(--paper-2);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal flex items-end justify-between mb-12 md:mb-16">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ II</span>
+      <div class="hero-grid">
+        <aside class="marginalia reveal">
+          <span class="label">§ On purpose</span>
+          Alim is a legal clinic for Malaysia's creative communities. <strong>Independent.</strong> Non-profit. Run by volunteer counsel who believe <em>the right to make</em> is worth defending, first in private, then, if pressed, in public.
+        </aside>
         <div>
-          <p class="label">Three Instruments</p>
-          <h3 class="display text-[40px] md:text-[56px] mt-2" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720;">How we help.</h3>
+          <h1 id="h1">
+            <span class="linemask"><span>Art is</span></span>
+            <span class="linemask"><span><span class="word-final">protected</span> speech.</span></span>
+          </h1>
+          <p class="hero-sub reveal" style="--d:2">Some lawyers think so too.</p>
+          <p class="hero-para reveal" style="--d:3">ALIM gives Malaysia's artists, musicians, designers, writers and filmmakers the confidential legal cover they're routinely denied. Free advice. Policy advocacy. Education. No retainer. No PR.</p>
+          <div class="hero-ctas reveal" style="--d:4">
+            <a class="btn btn-primary" href="get-help/" data-magnet>Get Legal Help →</a>
+            <a class="btn btn-ghost" href="join-us/" data-magnet>Support Our Work</a>
+            <span class="hero-note">Response within 48 hours</span>
+          </div>
+          <div class="stat-row reveal" style="--d:5">
+            <div class="stat"><b>500+</b><s>Creatives reached</s></div>
+            <div class="stat"><b>20+</b><s>Events &amp; workshops</s></div>
+            <div class="stat"><b>30+</b><s>Partner orgs</s></div>
+            <div class="stat red"><b>100%</b><s>Pro bono, always</s></div>
+          </div>
         </div>
       </div>
-      <a href="#help" class="hidden md:inline-flex ulink mono text-[12px] tracking-[0.18em] uppercase">Full case index →</a>
     </div>
+    <div id="numeral" aria-hidden="true">§</div>
+    <div class="scroll-cue mono">Scroll · the press is running</div>
+  </div>
+</section>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-
-      <!-- Card 01 -->
-      <article class="reveal d1 card flex flex-col" style="background: var(--paper)">
-        <div class="card-corner"></div>
-        <div class="flex items-baseline justify-between mb-8">
-          <span class="marker text-[64px] leading-none">01</span>
-          <span class="label">File ALM/A</span>
-        </div>
-        <h4 class="display text-[28px] md:text-[32px] mb-3" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700;">Confidential <em class="display-italic ornament">legal advice.</em></h4>
-        <p class="editorial text-[15px] leading-[1.6] flex-1" style="color:var(--ink-2)">
-          One-to-one counsel for IP, contract review, defamation threats, takedowns, and disputes with galleries, platforms, or producers. First consult is free. Everything that follows is privileged.
-        </p>
-        <ul class="mt-6 space-y-2 text-[13px]" style="color:var(--ink-2)">
-          <li class="flex items-baseline gap-3"><span class="idx">01</span> Copyright & moral rights</li>
-          <li class="flex items-baseline gap-3"><span class="idx">02</span> Contract reads (commission, agency, label)</li>
-          <li class="flex items-baseline gap-3"><span class="idx">03</span> Defamation & cease-and-desist</li>
-          <li class="flex items-baseline gap-3"><span class="idx">04</span> Platform takedown counter-notices</li>
-        </ul>
-        <div class="hr-thin my-6"></div>
-        <a href="#help" class="ulink mono text-[12px] tracking-[0.18em] uppercase self-start" style="color:var(--vermillion)">Open a file →</a>
+<!-- §3 HOW WE HELP -->
+<section class="pad" id="help">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="bar">What we do</span>
+        <h2>How we help</h2>
+      </div>
+      <a class="ulink mono" href="how-we-can-help/" data-magnet>Learn more <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="grid grid-3">
+      <article class="card" style="--pillar:var(--vermillion)">
+        <span class="idx">01 / Advice</span>
+        <h3>Confidential legal advice</h3>
+        <p>Free, private consultations on the problems creatives actually face: contracts, IP, performance and venue agreements, freelance disputes, and freedom of expression.</p>
       </article>
-
-      <!-- Card 02 -->
-      <article class="reveal d2 card flex flex-col" style="background: var(--paper)">
-        <div class="card-corner"></div>
-        <div class="flex items-baseline justify-between mb-8">
-          <span class="marker text-[64px] leading-none">02</span>
-          <span class="label">File ALM/P</span>
-        </div>
-        <h4 class="display text-[28px] md:text-[32px] mb-3" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700;">Policy <em class="display-italic ornament">advocacy.</em></h4>
-        <p class="editorial text-[15px] leading-[1.6] flex-1" style="color:var(--ink-2)">
-          When the wound is the law itself, we write submissions, brief MPs, and join coalitions. We've filed on copyright reform, the Communications & Multimedia Act, and public-art permits. Quietly when it works; loudly when it doesn't.
-        </p>
-        <ul class="mt-6 space-y-2 text-[13px]" style="color:var(--ink-2)">
-          <li class="flex items-baseline gap-3"><span class="idx">01</span> Submissions to MCMC, KKMM, MyIPO</li>
-          <li class="flex items-baseline gap-3"><span class="idx">02</span> Roundtables with creative bodies</li>
-          <li class="flex items-baseline gap-3"><span class="idx">03</span> Coalition briefs (CMA, Akta Hasutan)</li>
-          <li class="flex items-baseline gap-3"><span class="idx">04</span> Test-case strategy</li>
-        </ul>
-        <div class="hr-thin my-6"></div>
-        <a href="#work" class="ulink mono text-[12px] tracking-[0.18em] uppercase self-start" style="color:var(--vermillion)">Read the briefs →</a>
+      <article class="card" style="--pillar:var(--indigo)">
+        <span class="idx">02 / Advocacy</span>
+        <h3>Policy advocacy</h3>
+        <p>We speak into the legal conversations that shape creative livelihoods, so the rules that govern making are written with makers in the room.</p>
       </article>
-
-      <!-- Card 03 -->
-      <article class="reveal d3 card flex flex-col" style="background: var(--paper)">
-        <div class="card-corner"></div>
-        <div class="flex items-baseline justify-between mb-8">
-          <span class="marker text-[64px] leading-none">03</span>
-          <span class="label">File ALM/E</span>
-        </div>
-        <h4 class="display text-[28px] md:text-[32px] mb-3" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700;">Educational <em class="display-italic ornament">resources.</em></h4>
-        <p class="editorial text-[15px] leading-[1.6] flex-1" style="color:var(--ink-2)">
-          Plain-language primers, downloadable contract templates, and the ARTXLAW workshop series. So that the next painter, beat-maker, and zine-publisher in the country never has to learn this the way the last one did.
-        </p>
-        <ul class="mt-6 space-y-2 text-[13px]" style="color:var(--ink-2)">
-          <li class="flex items-baseline gap-3"><span class="idx">01</span> Plain-Bahasa rights primers</li>
-          <li class="flex items-baseline gap-3"><span class="idx">02</span> Contract templates (commission, split, sync)</li>
-          <li class="flex items-baseline gap-3"><span class="idx">03</span> ARTXLAW Workshop Series</li>
-          <li class="flex items-baseline gap-3"><span class="idx">04</span> Small Claim Drafter <span class="stamp" style="font-size:9px; padding:2px 6px; transform:rotate(-2deg)">Beta</span></li>
-        </ul>
-        <div class="hr-thin my-6"></div>
-        <a href="#resources" class="ulink mono text-[12px] tracking-[0.18em] uppercase self-start" style="color:var(--vermillion)">Visit the library →</a>
+      <article class="card" style="--pillar:var(--ochre)">
+        <span class="idx">03 / Education</span>
+        <h3>Educational resources</h3>
+        <p>Plain-language guides, interactive tools, and workshops that put the law within reach, in English and Bahasa Malaysia.</p>
       </article>
     </div>
   </div>
 </section>
 
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 5. CASE FILE (featured work)                                   -->
-<!-- ============================================================ -->
-<section id="work" class="relative">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal flex items-end justify-between mb-12 md:mb-16">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ III</span>
-        <div>
-          <p class="label">From the Docket</p>
-          <h3 class="display text-[40px] md:text-[56px] mt-2" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720;">Case files <em class="display-italic ornament">in motion.</em></h3>
-        </div>
+<!-- §4 COMMUNITY IN ACTION -->
+<section class="pad tint" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="bar" style="--pillar:var(--indigo)">Events &amp; workshops</span>
+        <h2>Community in action</h2>
       </div>
-      <a href="#work" class="hidden md:inline-flex ulink mono text-[12px] tracking-[0.18em] uppercase">All cases →</a>
+      <a class="ulink mono" href="our-work/" data-magnet>View all our work <span aria-hidden="true">→</span></a>
     </div>
-
-    <div class="grid grid-cols-12 gap-6 md:gap-8">
-
-      <!-- Featured -->
-      <article class="reveal d1 case-card col-span-12 md:col-span-7 group cursor-pointer">
-        <div class="relative overflow-hidden border rule" style="border-color: var(--paper-3); aspect-ratio: 5 / 4; background: var(--paper-3);">
-          <!-- SVG illustration as case image (mural) -->
-          <svg viewBox="0 0 600 480" class="case-img absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <defs>
-              <linearGradient id="wallg" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#E5DBC4"/>
-                <stop offset="100%" stop-color="#C8B998"/>
-              </linearGradient>
-              <pattern id="brick" width="40" height="14" patternUnits="userSpaceOnUse">
-                <rect width="40" height="14" fill="url(#wallg)"/>
-                <line x1="0" y1="0" x2="40" y2="0" stroke="#A99974" stroke-width=".5"/>
-                <line x1="20" y1="7" x2="20" y2="14" stroke="#A99974" stroke-width=".5"/>
-                <line x1="0" y1="7" x2="20" y2="7" stroke="#A99974" stroke-width=".5"/>
-              </pattern>
-            </defs>
-            <rect width="600" height="480" fill="url(#brick)"/>
-            <!-- mural shapes -->
-            <circle cx="180" cy="180" r="120" fill="#D8311F" opacity=".88"/>
-            <path d="M280 280 Q360 160 460 240 T560 220" stroke="#1A1612" stroke-width="22" fill="none" stroke-linecap="round"/>
-            <rect x="320" y="100" width="180" height="40" fill="#B8862E" transform="rotate(-6 410 120)"/>
-            <text x="60" y="420" font-family="Fraunces" font-style="italic" font-size="56" font-weight="700" fill="#1A1612">tanah&nbsp;ini</text>
-            <text x="60" y="450" font-family="JetBrains Mono" font-size="14" letter-spacing="2" fill="#1A1612">// rmk@kl·2024</text>
-          </svg>
-
-          <div class="absolute top-4 left-4 stamp">Filed</div>
-          <div class="absolute bottom-4 right-4 mono text-[10px] tracking-[0.18em] uppercase px-2 py-1" style="background:var(--ink); color:var(--paper);">04 / 2024 → present</div>
+    <div class="grid grid-3">
+      <a class="card" href="our-work/" style="text-decoration:none;padding:0;overflow:hidden">
+        <img src="../assets/events/kuantan-arts-fest.jpeg" alt="Kuantan Arts Festival" style="aspect-ratio:16/10;object-fit:cover" onerror="this.style.display='none'">
+        <div style="padding:22px">
+          <span class="stamp">Upcoming</span>
+          <h3 style="margin:14px 0 6px">Kuantan Arts Festival · KUARTS</h3>
+          <p class="mono" style="font-size:12px;color:var(--ink-3)">12–14 June 2026</p>
         </div>
-        <div class="mt-6">
-          <p class="label mb-2">Case File 04 — Public Art / Speech</p>
-          <h4 class="display text-[32px] md:text-[42px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 700;">Protecting a muralist's right to <em class="display-italic ornament">expression.</em></h4>
-          <p class="editorial mt-4 text-[16px] leading-[1.6] max-w-[60ch]" style="color:var(--ink-2)">
-            A Klang-based muralist was issued a takedown notice over a piece commissioned by a community council. We pulled the file, briefed counsel, and got the work re-installed within ten days. No press, no panic, no fee.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="chip">Public art</span><span class="chip">Local council</span><span class="chip">Free expression</span>
-          </div>
+      </a>
+      <a class="card" href="our-work/" style="text-decoration:none;padding:0;overflow:hidden">
+        <img src="../assets/events/march-2026-arts-revolution.jpeg" alt="Arts, Crafts and Revolution" style="aspect-ratio:16/10;object-fit:cover" onerror="this.style.display='none'">
+        <div style="padding:22px">
+          <h3 style="margin:0 0 6px">Arts, Crafts &amp; Revolution</h3>
+          <p class="mono" style="font-size:12px;color:var(--ink-3)">March 2026</p>
         </div>
-      </article>
+      </a>
+      <a class="card" href="our-work/" style="text-decoration:none;padding:0;overflow:hidden">
+        <img src="../assets/events/sept-panel.jpeg" alt="Art and Law Panel Discussion" style="aspect-ratio:16/10;object-fit:cover" onerror="this.style.display='none'">
+        <div style="padding:22px">
+          <h3 style="margin:0 0 6px">Art &amp; Law Panel Discussion</h3>
+          <p class="mono" style="font-size:12px;color:var(--ink-3)">September 2025</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
-      <!-- Side stack -->
-      <div class="col-span-12 md:col-span-5 flex flex-col gap-6">
-        <article class="reveal d2 case-card group cursor-pointer border rule p-5" style="border-color: var(--paper-3);">
-          <div class="flex items-baseline justify-between">
-            <span class="marker text-[44px] leading-none">05</span>
-            <span class="label">Music / Royalties</span>
-          </div>
-          <h4 class="display text-[24px] md:text-[28px] mt-2" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700;">A producer's split, recovered.</h4>
-          <p class="editorial mt-2 text-[14.5px] leading-[1.55]" style="color:var(--ink-2)">An indie producer was shorted on writer's share for a track that went viral on TikTok. Reviewed the agreement, drafted a recovery letter, settled in 21 days.</p>
-          <div class="hr-thin my-4"></div>
-          <span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">21 days · settled · privileged</span>
-        </article>
-
-        <article class="reveal d3 case-card group cursor-pointer border rule p-5" style="border-color: var(--paper-3);">
-          <div class="flex items-baseline justify-between">
-            <span class="marker text-[44px] leading-none">06</span>
-            <span class="label">Speech / Defamation</span>
-          </div>
-          <h4 class="display text-[24px] md:text-[28px] mt-2" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700;">A zine, threatened — then defended.</h4>
-          <p class="editorial mt-2 text-[14.5px] leading-[1.55]" style="color:var(--ink-2)">A KL zine received a defamation letter from a developer over a satirical illustration. We answered. They walked.</p>
-          <div class="hr-thin my-4"></div>
-          <span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">9 days · withdrawn · no apology</span>
-        </article>
-
-        <article class="reveal d4 case-card group cursor-pointer border rule p-5" style="border-color: var(--paper-3); background: var(--ink); color: var(--paper);">
-          <div class="flex items-baseline justify-between">
-            <span class="marker text-[44px] leading-none" style="color:var(--vermillion)">★</span>
-            <span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--paper);opacity:.7">Open file</span>
-          </div>
-          <h4 class="display text-[24px] md:text-[28px] mt-2" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 700; color: var(--paper);">Yours, perhaps.</h4>
-          <p class="editorial mt-2 text-[14.5px] leading-[1.55]" style="opacity:.8">We open new files every week. If the docket can hold yours, we'll say so within 48 hours.</p>
-          <div class="hr-thin my-4" style="background: linear-gradient(90deg, transparent, rgba(242,235,221,.3), transparent);"></div>
-          <a href="#help" class="ulink mono text-[11px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">Request a consult →</a>
-        </article>
+<!-- §5 IMPACT STORY -->
+<section class="pad" id="impact">
+  <div class="wrap">
+    <div class="grid grid-2" style="align-items:center;gap:44px">
+      <div class="reveal">
+        <span class="bar">Impact story</span>
+        <h2 class="editorial" style="font-size:clamp(28px,4vw,44px);line-height:1.05;margin:16px 0 0;letter-spacing:-.02em">Protecting a muralist's right to expression.</h2>
+        <p class="prose" style="margin-top:18px">When a public mural drew a takedown threat, ALIM stepped in with confidential advice and quiet mediation, no courtroom, no press. The work stayed up; the artist kept their rights. This is most of what we do: pressure resolved before it ever becomes a case.</p>
+        <a class="btn" href="our-work/" data-magnet style="margin-top:26px">Read more stories →</a>
+      </div>
+      <div class="card reveal" style="--d:1;padding:0;overflow:hidden">
+        <img src="../assets/mural-alim.png" alt="ALIM mural" style="width:100%;display:block" onerror="this.style.display='none';this.parentElement.style.minHeight='320px';this.parentElement.style.background='linear-gradient(150deg,var(--vermillion),var(--ochre))'">
       </div>
     </div>
   </div>
 </section>
 
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 6. RESOURCES / ARTXLAW SERIES                                  -->
-<!-- ============================================================ -->
-<section id="resources" class="relative" style="background: var(--paper-2);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal grid grid-cols-12 gap-8 mb-12 md:mb-16">
-      <div class="col-span-12 md:col-span-7 flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ IV</span>
-        <div>
-          <p class="label">Free, plain-language</p>
-          <h3 class="display text-[40px] md:text-[56px] mt-2" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720;">The <em class="display-italic ornament">resource</em> library.</h3>
-        </div>
+<!-- §6 FROM OUR INSTAGRAM -->
+<section class="pad tint" id="instagram">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="bar" style="--pillar:var(--ochre)">@artxlawmas</span>
+        <h2>From our Instagram</h2>
       </div>
-      <p class="editorial col-span-12 md:col-span-5 self-end text-[16px] leading-[1.6]" style="color:var(--ink-2)">
-        Templates and primers we'd give a friend. Drafted by lawyers, edited for makers. Use them, fork them, send them on. Feedback only sharpens them.
-      </p>
+      <a class="ulink mono" href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener" data-magnet>Follow @artxlawmas <span aria-hidden="true">→</span></a>
     </div>
-
-    <!-- Resource list -->
-    <ul class="rule border-t" style="border-color: var(--paper-3);">
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">01</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">Commission contract — visual artist edition</h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">A baseline agreement for paid commissions. Bilingual (EN/BM). Annotated.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">PDF · 12 pages</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Download →</span>
-      </li>
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">02</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">Split sheet — for collaborators</h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">A one-page split agreement for music, design, and writing collaborations.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">PDF · 1 page</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Download →</span>
-      </li>
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">03</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">Defamation letter — first response template</h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">A measured, lawyer-grade reply that buys time without escalating.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">DOCX · 2 pages</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Download →</span>
-      </li>
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">04</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">Plain-Bahasa primer — copyright in Malaysia</h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">What you own the second you make it; what you don't; what you have to register; what you don't.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">Article · 8 min</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Read →</span>
-      </li>
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">05</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">Small Claim Drafter <span class="stamp" style="font-size:9px; padding:2px 6px;">Beta</span></h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">Walks you through a small-claim filing in under 15 minutes. Outputs a print-ready draft.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">Tool · web</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Open →</span>
-      </li>
-
-      <li class="reveal grid grid-cols-12 gap-4 md:gap-8 items-baseline border-b rule py-6 md:py-8 hover:bg-[var(--paper)] transition-colors group" style="border-color: var(--paper-3); cursor:pointer;">
-        <span class="col-span-2 md:col-span-1 idx">06</span>
-        <div class="col-span-7 md:col-span-6">
-          <h4 class="display text-[22px] md:text-[28px]" style="font-variation-settings:'opsz' 96,'SOFT' 30,'wght' 600;">ARTXLAW workshop — recordings</h4>
-          <p class="text-[13.5px] mt-1" style="color:var(--ink-2)">Three sessions covering contract literacy, IP basics, and what to do when things go sideways.</p>
-        </div>
-        <span class="hidden md:block md:col-span-2 chip">Video · 3 × 45 min</span>
-        <span class="col-span-3 md:col-span-3 mono text-[12px] tracking-[0.16em] uppercase text-right group-hover:text-[var(--vermillion)] transition-colors">Watch →</span>
-      </li>
-
-    </ul>
-
-  </div>
-</section>
-
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 7. VOICES / TESTIMONIAL                                        -->
-<!-- ============================================================ -->
-<section class="relative">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal flex items-baseline justify-between mb-12">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ V</span>
-        <span class="label">Voices on file</span>
-      </div>
-      <span class="label hidden md:block">Identifying details redacted by request</span>
-    </div>
-
-    <div class="grid grid-cols-12 gap-8 md:gap-12">
-
-      <blockquote class="reveal d1 col-span-12 md:col-span-6 border-l-4 pl-6 md:pl-8" style="border-color: var(--vermillion);">
-        <p class="display-italic text-[26px] md:text-[32px] leading-[1.2]" style="color:var(--ink);">
-          “The label sent a letter that read like the world was ending. Alim sent one back that read like Tuesday. The world stopped ending.”
-        </p>
-        <footer class="mt-6 flex items-center gap-3">
-          <div class="h-9 w-9 rounded-full" style="background: var(--ochre);"></div>
-          <div>
-            <p class="mono text-[12px] tracking-[0.16em] uppercase">— S.R.</p>
-            <p class="text-[12.5px]" style="color:var(--ink-3)">Producer, Petaling Jaya</p>
-          </div>
-        </footer>
-      </blockquote>
-
-      <blockquote class="reveal d2 col-span-12 md:col-span-6 border-l-4 pl-6 md:pl-8" style="border-color: var(--ink);">
-        <p class="display-italic text-[26px] md:text-[32px] leading-[1.2]" style="color:var(--ink);">
-          “I was 23, painting a wall, then suddenly arguing with the council in language I didn't speak. They translated for me. Then they translated for the council.”
-        </p>
-        <footer class="mt-6 flex items-center gap-3">
-          <div class="h-9 w-9 rounded-full" style="background: var(--vermillion);"></div>
-          <div>
-            <p class="mono text-[12px] tracking-[0.16em] uppercase">— A.K.</p>
-            <p class="text-[12.5px]" style="color:var(--ink-3)">Muralist, Klang</p>
-          </div>
-        </footer>
-      </blockquote>
-
+    <div class="ig-grid grid" style="grid-template-columns:repeat(2,1fr)">
+      <a class="ig" href="https://www.instagram.com/p/DVF_EnzEUdB/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-01.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DUUn7z5gW_-/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-02.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DUNp6J9CdCm/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-03.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DUAUTXXgcaR/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-04.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DT2WPWEiZVz/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-05.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DTt3OCjkl7E/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-06.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DTtzcCXkrYm/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-07.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DTklWAqjFvu/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-08.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DTU7yzRgTOO/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-09.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DS2CtetgTpP/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-10.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DRwKrjpjCwP/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-11.jpg" alt="ALIM on Instagram" width="512" height="640" loading="lazy" onerror="this.remove()"></a>
+      <a class="ig" href="https://www.instagram.com/p/DRb405ogcyf/" target="_blank" rel="noopener" aria-label="Instagram post"><img src="assets/instagram/ig-12.jpg" alt="ALIM on Instagram" width="640" height="640" loading="lazy" onerror="this.remove()"></a>
     </div>
   </div>
 </section>
 
-<div class="hr-thin"></div>
-
-<!-- ============================================================ -->
-<!-- 8. JOIN THE MOVEMENT — split CTA                                -->
-<!-- ============================================================ -->
-<section id="join" class="relative">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-20 md:py-32">
-
-    <div class="reveal mb-12 md:mb-16">
-      <div class="flex items-baseline gap-4">
-        <span class="marker text-[44px] md:text-[64px]">§ VI</span>
-        <div>
-          <p class="label">Two doors</p>
-          <h3 class="display text-[40px] md:text-[56px] mt-2" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720;">Pick your <em class="display-italic ornament">door.</em></h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-stretch">
-
-      <!-- Door A: I need a lawyer -->
-      <div class="reveal d1 relative p-8 md:p-12 border rule" style="border-color: var(--paper-3); background: var(--paper-2);">
-        <div class="fold"></div>
-        <p class="label mb-3">Door A — for makers</p>
-        <h4 class="display text-[36px] md:text-[48px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720;">I need a <em class="display-italic ornament">lawyer.</em></h4>
-        <p class="editorial text-[16px] leading-[1.6] mt-4 max-w-[42ch]" style="color:var(--ink-2)">
-          Tell us as little or as much as you like. Privileged from the moment you hit send. Reply within 48 hours. Free first consult. No retainer.
-        </p>
-
-        <form id="intake-form" class="mt-8 space-y-1" onsubmit="return submitIntake(event)">
-          <input id="if-name" class="field" type="text" placeholder="Your name (or pseudonym)" required />
-          <input id="if-email" class="field" type="email" placeholder="Best email to reply to" required />
-          <select id="if-kind" class="field" style="background: transparent;" required>
-            <option value="">What kind of file is this?</option>
-            <option>Contract review</option>
-            <option>Defamation / cease-and-desist</option>
-            <option>IP / copyright</option>
-            <option>Public art / permits</option>
-            <option>Royalties / split dispute</option>
-            <option>Something else</option>
-          </select>
-          <textarea id="if-msg" class="field" rows="4" placeholder="One paragraph. We'll read it carefully." required></textarea>
-          <div class="pt-4 flex items-center gap-4">
-            <button type="submit" class="btn btn-primary">Open a file →</button>
-            <span id="if-status" class="mono text-[11px] tracking-[0.16em] uppercase" style="color:var(--ink-3)">Privileged from the moment you hit send</span>
-          </div>
-        </form>
-      </div>
-
-      <!-- Door B: I am a lawyer -->
-      <div class="reveal d2 relative p-8 md:p-12 border" style="border-color: var(--ink); background: var(--ink); color: var(--paper);">
-        <p class="label mb-3" style="color: rgba(242,235,221,.6)">Door B — for counsel</p>
-        <h4 class="display text-[36px] md:text-[48px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 720; color: var(--paper);">I am a <em class="display-italic ornament" style="color:var(--vermillion);">lawyer.</em></h4>
-        <p class="editorial text-[16px] leading-[1.6] mt-4 max-w-[44ch]" style="color: rgba(242,235,221,.85);">
-          We're 37 volunteer counsel and growing. Pick up one file a quarter, or three a year, or just be on call when a colleague needs a sanity check. Pro bono hours count toward MyLawyer CPD.
-        </p>
-
-        <ul class="mt-8 space-y-3">
-          <li class="flex items-baseline gap-3"><span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">01</span><span class="text-[15px]">Vetted intake from our pipeline</span></li>
-          <li class="flex items-baseline gap-3"><span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">02</span><span class="text-[15px]">Senior counsel mentorship</span></li>
-          <li class="flex items-baseline gap-3"><span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">03</span><span class="text-[15px]">Quarterly creative-law CLE</span></li>
-          <li class="flex items-baseline gap-3"><span class="mono text-[10px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">04</span><span class="text-[15px]">Pick the matters that fit you</span></li>
-        </ul>
-
-        <div class="hr-thin my-8" style="background: linear-gradient(90deg, transparent, rgba(242,235,221,.25), transparent);"></div>
-
-        <a href="https://forms.gle/mqLLeJGYbtKQoiVs8" target="_blank" rel="noopener" class="btn" style="background: var(--vermillion); color: var(--paper);">
-          Volunteer counsel →
-        </a>
-      </div>
-
-    </div>
-
-    <!-- "Donate / Support" inline strip -->
-    <div class="reveal d3 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 items-baseline border-t pt-8" style="border-color: var(--paper-3);">
-      <p class="label">Or just keep us running.</p>
-      <p class="editorial text-[16px] leading-[1.55] md:col-span-2" style="color:var(--ink-2)">
-        We don't bill artists. We do still pay for filing fees, software, and the occasional very strong coffee. <a href="mailto:artxlawinitiative@gmail.com?subject=Support%20the%20clinic" class="ulink" style="color:var(--vermillion)">Support the clinic →</a>
-      </p>
+<!-- §7 JOIN THE MOVEMENT -->
+<section class="pad" id="join">
+  <div class="wrap-narrow" style="text-align:center">
+    <span class="bar" style="--pillar:var(--indigo)">Get involved</span>
+    <h2 class="display" style="font-size:clamp(34px,6vw,68px);margin:18px 0 0">Be a part of the solution.</h2>
+    <p class="prose" style="margin:18px auto 0;max-width:52ch">Art should not exist in a legal vacuum. Every creative deserves to know their rights, and the movement only stands because people hold it up.</p>
+    <div class="hero-ctas" style="justify-content:center;margin-top:28px">
+      <span class="btn btn-ghost" aria-disabled="true" style="cursor:not-allowed;opacity:.6">Donate <span class="stamp" style="transform:none;margin-left:.6ch">Coming soon</span></span>
+      <a class="btn btn-primary" href="https://forms.gle/mqLLeJGYbtKQoiVs8" target="_blank" rel="noopener" data-magnet>Volunteer →</a>
     </div>
   </div>
 </section>
+</main>
 
-<!-- ============================================================ -->
-<!-- 9. CLOSING SPREAD                                              -->
-<!-- ============================================================ -->
-<section class="relative" style="background: var(--ink); color: var(--paper);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-24 md:py-40">
-
-    <div class="grid grid-cols-12 gap-8 items-end">
-      <div class="col-span-12 md:col-span-8">
-        <p class="label mb-6" style="color: rgba(242,235,221,.55)">— A closing note</p>
-        <h3 class="display text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 740; line-height: .96;">
-          Make the work.
-          <span class="display-italic" style="color:var(--vermillion)">We'll keep the&nbsp;ground</span>
-          under your feet.
-        </h3>
+<!-- FOOTER -->
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px"><a class="ulink" href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener">★ Featured in The Star →</a></p>
       </div>
-      <div class="col-span-12 md:col-span-4">
-        <p class="editorial text-[16px] leading-[1.6]" style="color: rgba(242,235,221,.8)">
-          Alim is small on purpose. We answer every message ourselves. If you've read this far, you're already part of the docket — whether you write back or not.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#help" class="btn" style="background: var(--paper); color: var(--ink);">Open a file →</a>
-          <a href="mailto:artxlawinitiative@gmail.com" class="btn" style="border:1px solid var(--paper); color: var(--paper);">Email us</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- 10. FOOTER (catalog)                                           -->
-<!-- ============================================================ -->
-<footer class="relative" style="background: var(--paper-2);">
-  <div class="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 py-16">
-
-    <div class="grid grid-cols-12 gap-8 mb-14">
-      <!-- Wordmark + colophon -->
-      <div class="col-span-12 md:col-span-4">
-        <div class="flex items-baseline gap-2 mb-4">
-          <span class="display text-[42px] leading-none" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style: italic;">Alim</span>
-          <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:var(--ink-3)">·my</span>
-        </div>
-        <p class="editorial text-[15px] leading-[1.6] max-w-[34ch]" style="color:var(--ink-2)">
-          Art × Law Initiative Malaysia. A non-profit legal clinic for Malaysia's creative communities. Filed from Kuala Lumpur. Run by volunteer counsel.
-        </p>
-        <div class="mt-6 flex items-center gap-3">
-          <span class="stamp">EST. 2024</span>
-          <span class="label">Registered, MY</span>
-        </div>
-      </div>
-
-      <!-- Nav columns -->
-      <div class="col-span-6 md:col-span-2">
-        <p class="label mb-4">Navigate</p>
-        <ul class="space-y-2.5 text-[14px]">
-          <li><a class="ulink" href="#help">Get Help</a></li>
-          <li><a class="ulink" href="#work">Our Work</a></li>
-          <li><a class="ulink" href="#resources">Resources</a></li>
-          <li><a class="ulink" href="#join">Join</a></li>
-          <li><a class="ulink" href="#about">About</a></li>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="get-help/">Get Help</a></li>
+          <li><a href="our-work/">Our Work</a></li>
+          <li><a href="mission/">Our Charter</a></li>
+          <li><a href="resources/">Resources</a></li>
+          <li><a href="join-us/">Join the Movement</a></li>
         </ul>
       </div>
-
-      <div class="col-span-6 md:col-span-2">
-        <p class="label mb-4">Reading room</p>
-        <ul class="space-y-2.5 text-[14px]">
-          <li><a class="ulink" href="#">The Charter (PDF)</a></li>
-          <li><a class="ulink" href="#">Mission</a></li>
-          <li><a class="ulink" href="#">Annual reports</a></li>
-          <li><a class="ulink" href="#">Privacy policy</a></li>
-          <li><a class="ulink" href="#">Terms of service</a></li>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="about-alim/">About Us</a></li>
+          <li><a href="faq/">FAQ</a></li>
+          <li><a href="privacy/">Privacy Policy</a></li>
+          <li><a href="terms-of-service/">Terms of Service</a></li>
+          <li><a href="sitemap/">Sitemap</a></li>
         </ul>
       </div>
-
-      <div class="col-span-12 md:col-span-4">
-        <p class="label mb-4">Correspondence</p>
-        <ul class="space-y-2.5 text-[14px]">
-          <li>
-            <a class="ulink" href="mailto:artxlawinitiative@gmail.com">artxlawinitiative@gmail.com</a>
-          </li>
-          <li>
-            <a class="ulink" href="https://instagram.com/artxlawmas" target="_blank" rel="noopener">Instagram — @artxlawmas</a>
-          </li>
-          <li>
-            <a class="ulink" href="#">Press & speaking — desk@alim.my</a>
-          </li>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
         </ul>
-
-        <div class="hr-thin my-6"></div>
-        <p class="label mb-3">Subscribe — quarterly dispatch</p>
-        <form id="news-form" class="flex items-center gap-2 border-b" style="border-color: var(--paper-3);" onsubmit="return submitNews(event)">
-          <input id="news-email" class="field !border-0 !py-2" type="email" placeholder="email@where.we.find.you" required />
-          <button type="submit" class="mono text-[12px] tracking-[0.18em] uppercase" style="color:var(--vermillion)">Send →</button>
-        </form>
-        <span id="news-status" class="mono text-[10.5px] tracking-[0.18em] uppercase block mt-2" style="color:var(--ink-3)"></span>
       </div>
     </div>
-
-    <div class="hr-thin mb-6"></div>
-
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">
-        © 2026 Art × Law Initiative Malaysia · No artists were billed in the making of this site.
-      </p>
-      <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">
-        Set in <span style="color:var(--ink)">Fraunces</span>, <span style="color:var(--ink)">Instrument Sans</span> & <span style="color:var(--ink)">JetBrains Mono</span>.
-      </p>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
     </div>
-
   </div>
 </footer>
 
-</main>
-
-<script>
-  // ===== Reveal on scroll =====
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // ===== Ink-dot cursor =====
-  const dot = document.getElementById('dot');
-  let mx = innerWidth/2, my = innerHeight/2, dx = mx, dy = my;
-  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  addEventListener('mouseleave', () => dot.style.opacity = '0');
-  addEventListener('mouseenter', () => dot.style.opacity = '');
-  function tick(){
-    dx += (mx - dx) * 0.18;
-    dy += (my - dy) * 0.18;
-    dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
-    requestAnimationFrame(tick);
-  }
-  tick();
-  document.querySelectorAll('a, button, .case-card, .card, [role=button]').forEach(el => {
-    el.addEventListener('mouseenter', () => dot.classList.add('lg'));
-    el.addEventListener('mouseleave', () => dot.classList.remove('lg'));
-  });
-
-  // ===== Theme (paper / charter) =====
-  const root = document.documentElement;
-  const tt = document.getElementById('theme-toggle');
-  tt?.addEventListener('click', () => {
-    root.classList.toggle('charter');
-    const charter = root.classList.contains('charter');
-    tt.setAttribute('aria-pressed', charter ? 'true' : 'false');
-  });
-
-  // ===== Intake form -> mailto (privileged + private; no third-party processor) =====
-  window.submitIntake = function(e){
-    e.preventDefault();
-    const name = document.getElementById('if-name').value.trim();
-    const email = document.getElementById('if-email').value.trim();
-    const kind = document.getElementById('if-kind').value.trim();
-    const msg  = document.getElementById('if-msg').value.trim();
-    const status = document.getElementById('if-status');
-    if(!name || !email || !kind || !msg){ status.textContent = 'Please fill all fields.'; status.style.color = 'var(--vermillion)'; return false; }
-    const subject = `[ALIM intake] ${kind} — ${name}`;
-    const body = `Name: ${name}\nReply to: ${email}\nFile type: ${kind}\n\n${msg}\n\n— Sent from alim.my/enhanced`;
-    const url = `mailto:artxlawinitiative@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    status.textContent = 'Opening your email client…';
-    status.style.color = 'var(--ink-2)';
-    window.location.href = url;
-    return false;
-  };
-  window.submitNews = function(e){
-    e.preventDefault();
-    const em = document.getElementById('news-email').value.trim();
-    const status = document.getElementById('news-status');
-    if(!em){ return false; }
-    const url = `mailto:artxlawinitiative@gmail.com?subject=${encodeURIComponent('Subscribe — quarterly dispatch')}&body=${encodeURIComponent('Please add me to the quarterly dispatch: ' + em)}`;
-    status.textContent = 'Opening your email client to confirm.';
-    window.location.href = url;
-    return false;
-  };
-
-  // ===== Magnetic buttons (subtle) =====
-  document.querySelectorAll('.btn').forEach(b => {
-    b.addEventListener('mousemove', (e) => {
-      const r = b.getBoundingClientRect();
-      const x = e.clientX - (r.left + r.width/2);
-      const y = e.clientY - (r.top + r.height/2);
-      b.style.transform = `translate(${x*0.12}px, ${y*0.18}px) translateY(-2px)`;
-    });
-    b.addEventListener('mouseleave', () => { b.style.transform = ''; });
-  });
-</script>
-
+<div id="dot" aria-hidden="true"></div>
+<style>
+/* home-only: instagram tile + coming-soon */
+.ig{ position:relative; display:block; aspect-ratio:1; background:linear-gradient(150deg,var(--vermillion) 0%,var(--ochre) 100%); text-decoration:none; overflow:hidden; border:1px solid var(--rule); }
+.ig img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transition:transform .55s cubic-bezier(.2,.7,.2,1), filter .3s; }
+.ig:hover img{ transform:scale(1.06); filter:brightness(.68); }
+.ig::after{ content:"↗ @artxlawmas"; position:absolute; left:0; right:0; bottom:0; padding:9px 11px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em; color:#fff; background:linear-gradient(0deg,rgba(26,22,18,.85),rgba(26,22,18,0)); opacity:0; transform:translateY(6px); transition:opacity .25s, transform .25s; z-index:2; pointer-events:none; }
+.ig:hover::after{ opacity:1; transform:translateY(0); }
+@media(min-width:640px){ .ig-grid{ grid-template-columns:repeat(3,1fr)!important; } }
+@media(min-width:980px){ .ig-grid{ grid-template-columns:repeat(6,1fr)!important; } }
+</style>
+<script src="assets/alim.js"></script>
 </body>
 </html>

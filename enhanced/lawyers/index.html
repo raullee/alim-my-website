@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Counsel Roster — ALIM</title>
+<meta name="description" content="Join ALIM's volunteer counsel pool. Pick the matters that fit you. Pro bono hours count toward CPD.">
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Instrument+Sans:ital,wght@0,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --paper:#F2EBDD; --paper-2:#ECE4D2; --paper-3:#E5DBC4; --ink:#1A1612; --ink-2:#3C342A; --ink-3:#6B5F4E; --vermillion:#D8311F; --ochre:#B8862E; }
+  html,body{ background:var(--ink); color:var(--paper); }
+  body{ font-family:'Instrument Sans',ui-sans-serif,system-ui; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 760; letter-spacing:-0.025em; line-height:.92; }
+  .display-italic{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 460; line-height:.95; }
+  .editorial{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 36,"SOFT" 50,"wght" 500; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .label{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,235,221,.55); }
+  .ornament{ color:var(--vermillion); font-family:'Fraunces',serif; font-style:italic; }
+  .stat{ font-family:'Fraunces',serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 720; line-height:.85; letter-spacing:-0.03em; }
+  .field{ width:100%; background:transparent; border:0; border-bottom:1px solid rgba(242,235,221,.18); padding:14px 2px; font-family:'Instrument Sans',sans-serif; font-size:16px; color:var(--paper); }
+  .field:focus{ outline:none; border-bottom-color:var(--vermillion); }
+  .field::placeholder{ color:rgba(242,235,221,.45); }
+  .field option{ color:var(--ink); }
+  .btn{ display:inline-flex; align-items:center; gap:.6rem; padding:14px 22px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; transition:transform .3s,background .25s,color .25s; }
+  .btn-red{ background:var(--vermillion); color:var(--paper); }
+  .btn-red:hover{ background:var(--paper); color:var(--ink); transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid var(--paper); color:var(--paper); }
+  .btn-ghost:hover{ background:var(--paper); color:var(--ink); transform:translateY(-2px); }
+  .pill{ display:inline-flex; padding:7px 14px; border:1px solid rgba(242,235,221,.18); border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; user-select:none; background:rgba(255,255,255,.02); color:rgba(242,235,221,.85); }
+  .pill input{ display:none; }
+  .pill:has(input:checked){ background:var(--vermillion); color:var(--paper); border-color:var(--vermillion); }
+  .hr-thin{ height:1px; background:linear-gradient(90deg, transparent, rgba(242,235,221,.18) 12%, rgba(242,235,221,.18) 88%, transparent); }
+  ::selection{ background:var(--vermillion); color:var(--paper); }
+  .stamp{ border:1.5px solid var(--vermillion); color:var(--vermillion); padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; transform:rotate(-3deg); border-radius:2px; display:inline-flex; }
+  .check{ display:flex; align-items:flex-start; gap:.75rem; padding:14px 0; border-bottom:1px solid rgba(242,235,221,.18); }
+  .check input{ margin-top:5px; accent-color: var(--vermillion); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="border-b" style="border-color:rgba(242,235,221,.14); background: rgba(15,12,8,.6); backdrop-filter:blur(18px);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2">
+      <span class="display text-[24px]" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style:italic; color:var(--paper);">Alim</span>
+      <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:rgba(242,235,221,.55)">·my / counsel</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" style="color:var(--paper)" href="/">Home</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" style="color:var(--paper)" href="/cases/">Cases</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" style="color:var(--paper)" href="/register/">Register</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" style="color:var(--paper)" href="/structure/">Structure</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-6 md:px-10 py-12 md:py-20">
+
+  <section class="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-24">
+    <div class="col-span-12 md:col-span-8">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="stamp">Bar Roll 01 / 2026</span>
+        <span class="label">Counsel onboarding</span>
+      </div>
+      <h1 class="display text-[44px] sm:text-[72px] md:text-[96px]">
+        Stand
+        <span class="display-italic ornament">with</span>
+        the makers.
+      </h1>
+      <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-8 max-w-[58ch]" style="color:rgba(242,235,221,.8)">
+        ALIM handles 3–4 legal queries a week. One IP lawyer (Anisa) is pro bono and at capacity. We need <strong>more</strong>. Pick up one file a quarter, or three a year, or just be on call when a colleague needs a sanity check.
+      </p>
+      <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-4 max-w-[58ch]" style="color:rgba(242,235,221,.8)">
+        Vetted intake. Senior mentorship. Quarterly creative-law CLE. <span style="color:var(--vermillion)">Pro bono hours count toward your CPD.</span>
+      </p>
+    </div>
+    <aside class="col-span-12 md:col-span-4 md:border-l pl-0 md:pl-8 pt-2" style="border-color:rgba(242,235,221,.14);">
+      <p class="label mb-4">Current load</p>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <div class="stat text-[36px]" style="color:var(--vermillion)">3–4</div>
+          <p class="label mt-1">Queries / week</p>
+        </div>
+        <div>
+          <div class="stat text-[36px]">37</div>
+          <p class="label mt-1">Counsel so far</p>
+        </div>
+        <div>
+          <div class="stat text-[36px]">80</div>
+          <p class="label mt-1">PROFIMA / yr alone</p>
+        </div>
+        <div>
+          <div class="stat text-[36px]" style="color:var(--vermillion)">0</div>
+          <p class="label mt-1">Cost to artist</p>
+        </div>
+      </div>
+      <div class="hr-thin my-6"></div>
+      <p class="text-[13px] leading-[1.55]" style="color:rgba(242,235,221,.55)">If you're a pupil or paralegal: scroll to "Junior counsel" at the bottom — there's a separate track.</p>
+    </aside>
+  </section>
+
+  <!-- The shortlist of cases needing counsel -->
+  <section class="border-t border-b py-10 mb-16 md:mb-20" style="border-color:rgba(242,235,221,.14);">
+    <p class="label mb-6">Files on the desk this quarter</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 border" style="border-color:rgba(242,235,221,.14); background:rgba(255,255,255,.02);">
+        <p class="mono text-[10px] tracking-[0.22em] uppercase" style="color:var(--vermillion)">URGENT</p>
+        <h3 class="display text-[22px] mt-3">MACP defamation suit</h3>
+        <p class="text-[14px] leading-[1.6] mt-3" style="color:rgba(242,235,221,.75)">USD 2M defamation claim against a group of activist musicians. Heading to mediation. Lead counsel needs reinforcement.</p>
+        <p class="mono text-[10px] mt-4 tracking-[0.18em] uppercase" style="color:rgba(242,235,221,.45)">Defamation · Mediation · Music industry</p>
+      </div>
+      <div class="p-6 border" style="border-color:rgba(242,235,221,.14); background:rgba(255,255,255,.02);">
+        <p class="mono text-[10px] tracking-[0.22em] uppercase" style="color:var(--vermillion)">ACTIVE</p>
+        <h3 class="display text-[22px] mt-3">Mentega Terbang defence</h3>
+        <p class="text-[14px] leading-[1.6] mt-3" style="color:rgba(242,235,221,.75)">Constitutional / freedom-of-expression litigation. Need expert witnesses (avant-garde, EU). Karl coordinating.</p>
+        <p class="mono text-[10px] mt-4 tracking-[0.18em] uppercase" style="color:rgba(242,235,221,.45)">Constitutional · Free expression · Film</p>
+      </div>
+      <div class="p-6 border" style="border-color:rgba(242,235,221,.14); background:rgba(255,255,255,.02);">
+        <p class="mono text-[10px] tracking-[0.22em] uppercase" style="color:var(--vermillion)">WATCHING BRIEF</p>
+        <h3 class="display text-[22px] mt-3">MyIPO JR (CMOs)</h3>
+        <p class="text-[14px] leading-[1.6] mt-3" style="color:rgba(242,235,221,.75)">Judicial review by MACP/PPM/RPM against MyIPO transparency guidelines. November court date. Looking for interveners.</p>
+        <p class="mono text-[10px] mt-4 tracking-[0.18em] uppercase" style="color:rgba(242,235,221,.45)">Admin law · IP · Royalties</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FORM -->
+  <section class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-3">
+      <span class="display text-[60px] md:text-[88px] display-italic ornament">§ I</span>
+      <p class="label mt-2">The Roll</p>
+      <p class="editorial text-[15px] leading-[1.55] mt-6" style="color:rgba(242,235,221,.7)">Four minutes. You'll get a confirmation reply with senior counsel introductions.</p>
+    </div>
+
+    <form id="law-form" class="col-span-12 md:col-span-9 space-y-8" onsubmit="return submitLaw(event)">
+
+      <div>
+        <p class="label mb-3">A. Who you are</p>
+        <input id="l-name" class="field" type="text" placeholder="Full name" required />
+        <input id="l-email" class="field" type="email" placeholder="Best email" required />
+        <input id="l-phone" class="field" type="tel" placeholder="Phone / WhatsApp" required />
+        <input id="l-firm" class="field" type="text" placeholder="Firm or chambers (or 'Independent')" required />
+      </div>
+
+      <div>
+        <p class="label mb-3">B. Bar status</p>
+        <input id="l-bar" class="field" type="text" placeholder="Bar admission year + jurisdiction (e.g. 2018, MY)" required />
+        <input id="l-cert" class="field" type="text" placeholder="Sijil Annual valid until (or N/A)" />
+      </div>
+
+      <div>
+        <p class="label mb-4">C. Expertise <span style="color:rgba(242,235,221,.55); text-transform:none; letter-spacing:0;">— tick all that apply</span></p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="checkbox" name="exp" value="IP / Copyright">IP / Copyright</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Defamation">Defamation</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Contract / Commercial">Contract</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Constitutional / Public law">Constitutional</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Employment / Industrial">Employment</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Public art / Permits / Licensing">Public art / Permits</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Music royalties / CMOs">Music royalties</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Film / Distribution">Film / Distribution</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Arbitration / Mediation">Arbitration</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Litigation (civil)">Litigation</label>
+          <label class="pill"><input type="checkbox" name="exp" value="Tax / NGO / Charities">Tax / NGO</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="label mb-4">D. Capacity per quarter</p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="radio" name="cap" value="On-call only" required>On-call only</label>
+          <label class="pill"><input type="radio" name="cap" value="1 file / qtr">1 file</label>
+          <label class="pill"><input type="radio" name="cap" value="2–3 files / qtr">2–3 files</label>
+          <label class="pill"><input type="radio" name="cap" value="4+ files / qtr">4+ files</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="label mb-4">E. Working languages</p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="checkbox" name="lang" value="BM">Bahasa Malaysia</label>
+          <label class="pill"><input type="checkbox" name="lang" value="English">English</label>
+          <label class="pill"><input type="checkbox" name="lang" value="Mandarin">Mandarin</label>
+          <label class="pill"><input type="checkbox" name="lang" value="Tamil">Tamil</label>
+          <label class="pill"><input type="checkbox" name="lang" value="Cantonese">Cantonese</label>
+          <label class="pill"><input type="checkbox" name="lang" value="Other">Other</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="label mb-4">F. Mentorship</p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="radio" name="ment" value="Senior — willing to mentor" required>Senior — willing to mentor</label>
+          <label class="pill"><input type="radio" name="ment" value="Mid-level">Mid-level</label>
+          <label class="pill"><input type="radio" name="ment" value="Junior — seeking mentorship">Junior — seeking mentorship</label>
+          <label class="pill"><input type="radio" name="ment" value="Pupil / paralegal">Pupil / paralegal</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="label mb-3">G. Anything else we should know</p>
+        <textarea id="l-note" class="field" rows="3" placeholder="Notable cases, languages of the bar you'd address, conflicts you'd want to flag."></textarea>
+      </div>
+
+      <div>
+        <p class="label mb-3">H. Consent</p>
+        <label class="check">
+          <input type="checkbox" id="lc-roster" required>
+          <span class="text-[15px]" style="color:rgba(242,235,221,.85)">Add me to ALIM's volunteer counsel roster. Match me to files in my expertise. <em>(Required.)</em></span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="lc-cle">
+          <span class="text-[15px]" style="color:rgba(242,235,221,.85)">Invite me to quarterly creative-law CLE / training-of-trainers (Anisa-led IP track is in planning).</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="lc-news">
+          <span class="text-[15px]" style="color:rgba(242,235,221,.85)">Counsel-only dispatch (case notes, policy developments, judicial-review tracker).</span>
+        </label>
+      </div>
+
+      <div class="pt-2 flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn btn-red">Join the roll →</button>
+        <a href="https://forms.gle/mqLLeJGYbtKQoiVs8" target="_blank" rel="noopener" class="btn btn-ghost">Use legacy Google Form</a>
+        <span id="l-status" class="mono text-[11px] tracking-[0.16em] uppercase" style="color:rgba(242,235,221,.55)">Privileged from the moment you hit send</span>
+      </div>
+
+    </form>
+  </section>
+
+</main>
+
+<footer class="border-t py-10 mt-16" style="border-color:rgba(242,235,221,.14);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:rgba(242,235,221,.55)">© 2026 Art × Law Initiative Malaysia · Counsel roster v1</p>
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:rgba(242,235,221,.55)">Pro bono hours count toward CPD</p>
+  </div>
+</footer>
+
+<script>
+  function submitLaw(e){
+    e.preventDefault();
+    const v = id => (document.getElementById(id)||{}).value || '';
+    const rad = name => (document.querySelector(`input[name="${name}"]:checked`)||{}).value || '';
+    const multi = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i=>i.value).join(', ');
+    const chk = id => document.getElementById(id).checked ? 'Yes' : 'No';
+    if(!document.getElementById('lc-roster').checked){
+      const s=document.getElementById('l-status'); s.textContent='Consent (H.1) is required.'; s.style.color='var(--vermillion)'; return false;
+    }
+    const subject = `[ALIM Counsel] ${v('l-name')} — ${rad('cap')}`;
+    const body =
+`COUNSEL ONBOARDING
+
+A. Identity
+  Name:    ${v('l-name')}
+  Email:   ${v('l-email')}
+  Phone:   ${v('l-phone')}
+  Firm:    ${v('l-firm')}
+
+B. Bar status
+  Admission:      ${v('l-bar')}
+  Sijil Annual:   ${v('l-cert')}
+
+C. Expertise:    ${multi('exp')}
+D. Capacity:     ${rad('cap')}
+E. Languages:    ${multi('lang')}
+F. Mentorship:   ${rad('ment')}
+
+G. Notes
+  ${v('l-note')}
+
+H. Consents
+  Add to roster:        ${chk('lc-roster')}
+  Invite to CLE:        ${chk('lc-cle')}
+  Counsel dispatch:     ${chk('lc-news')}
+
+— Submitted via alim-enhanced.vercel.app/lawyers/
+`;
+    window.location.href = `mailto:artxlawinitiative@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const s=document.getElementById('l-status'); s.textContent='Opening your email client to send…'; s.style.color='rgba(242,235,221,.85)';
+    return false;
+  }
+</script>
+
+</body>
+</html>

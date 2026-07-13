@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Worker Register — ALIM</title>
+<meta name="description" content="Join Malaysia's first registry of non-platform creative workers. Building the numerical case for inclusion under the Gig Workers Act.">
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Instrument+Sans:ital,wght@0,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --paper:#F2EBDD; --paper-2:#ECE4D2; --paper-3:#E5DBC4; --ink:#1A1612; --ink-2:#3C342A; --ink-3:#6B5F4E; --vermillion:#D8311F; --vermillion-2:#B5261A; --ochre:#B8862E; }
+  html,body{ background:var(--paper); color:var(--ink); }
+  body{ font-family:'Instrument Sans',ui-sans-serif,system-ui; -webkit-font-smoothing:antialiased; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.3; mix-blend-mode:multiply;
+    background-image: radial-gradient(rgba(26,22,18,.10) 1px, transparent 1px), radial-gradient(rgba(26,22,18,.06) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px; background-position: 0 0, 1px 1px; }
+  .display{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 760; letter-spacing:-0.025em; line-height:.92; }
+  .display-italic{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 460; line-height:.95; }
+  .editorial{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 36,"SOFT" 50,"wght" 500; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .label{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); }
+  .marker{ font-family:'Fraunces',serif; font-style:italic; color:var(--vermillion); font-variation-settings:"opsz" 144,"wght" 320; }
+  .ornament{ color:var(--vermillion); font-family:'Fraunces',serif; font-style:italic; font-variation-settings:"opsz" 144,"wght" 400; }
+  .hl{ background-image: linear-gradient(transparent 65%, rgba(216,49,31,.22) 65%); padding:0 .12em; }
+  .stamp{ display:inline-flex; align-items:center; justify-content:center; border:1.5px solid var(--vermillion); color:var(--vermillion); padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; transform:rotate(-3deg); border-radius:2px; }
+  .stat{ font-family:'Fraunces',serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 720; line-height:.85; letter-spacing:-0.03em; }
+  .field{ width:100%; background:transparent; border:0; border-bottom:1px solid var(--paper-3); padding:14px 2px; font-family:'Instrument Sans',sans-serif; font-size:16px; color:var(--ink); transition:border-color .3s; }
+  .field:focus{ outline:none; border-bottom-color:var(--vermillion); }
+  .field::placeholder{ color:var(--ink-3); }
+  .btn{ display:inline-flex; align-items:center; gap:.6rem; padding:14px 22px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; transition:transform .3s,background .25s,color .25s; }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:var(--vermillion); transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid currentColor; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+  .chip{ display:inline-flex; align-items:center; gap:.5ch; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); padding:5px 10px; border:1px solid var(--paper-3); border-radius:999px; }
+  .hr-thin{ height:1px; background:linear-gradient(90deg, transparent, var(--paper-3) 12%, var(--paper-3) 88%, transparent); }
+  ::selection{ background:var(--vermillion); color:var(--paper); }
+  .check{ display:flex; align-items:flex-start; gap:.75rem; padding:14px 0; border-bottom:1px solid var(--paper-3); }
+  .check input{ margin-top:5px; accent-color: var(--vermillion); }
+  .pill{ display:inline-flex; padding:7px 14px; border:1px solid var(--paper-3); border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; user-select:none; background:var(--paper-2); }
+  .pill input{ display:none; }
+  .pill:has(input:checked){ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="border-b" style="border-color:var(--paper-3); background: color-mix(in oklab, var(--paper) 86%, transparent); backdrop-filter:blur(18px);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2">
+      <span class="display text-[24px]" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style:italic;">Alim</span>
+      <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:var(--ink-3)">·my / register</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/">Home</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/cases/">Cases</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/lawyers/">Lawyers</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/structure/">Structure</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-6 md:px-10 py-12 md:py-20 relative" style="z-index:2;">
+
+  <!-- HERO -->
+  <section class="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-24">
+    <div class="col-span-12 md:col-span-8">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="stamp">Reg. 01 / 2026</span>
+        <span class="label">Creative Worker Registry</span>
+      </div>
+      <h1 class="display text-[44px] sm:text-[72px] md:text-[96px]" style="font-variation-settings:'opsz' 144,'SOFT' 30,'wght' 760;">
+        Count
+        <span class="display-italic ornament">me</span>
+        in.
+      </h1>
+      <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-8 max-w-[58ch]" style="color:var(--ink-2)">
+        Malaysia is drafting a <span class="hl">Gig Workers Act</span>. Platform workers (Grab, foodpanda, Lalamove) are inside. Creative workers — visual artists, musicians, filmmakers, dancers, designers, illustrators, writers, theatre — are <em>not</em>. Yet.
+      </p>
+      <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-4 max-w-[58ch]" style="color:var(--ink-2)">
+        ALIM has been proposed by the community to act as the high-level representative body for the creative sector. To lobby the minister effectively, we need numbers. <strong>This is the number.</strong>
+      </p>
+    </div>
+    <aside class="col-span-12 md:col-span-4 md:border-l pl-0 md:pl-8 pt-2" style="border-color:var(--paper-3);">
+      <p class="label mb-4">What you get</p>
+      <ul class="space-y-3 text-[15px]" style="color:var(--ink-2)">
+        <li class="flex gap-3"><span class="mono text-[11px]" style="color:var(--vermillion)">01</span><span>Counted in ALIM's submissions to the ministry</span></li>
+        <li class="flex gap-3"><span class="mono text-[11px]" style="color:var(--vermillion)">02</span><span>First in line for e-Aduan access once we win inclusion</span></li>
+        <li class="flex gap-3"><span class="mono text-[11px]" style="color:var(--vermillion)">03</span><span>Priority queue for ALIM legal clinic intake</span></li>
+        <li class="flex gap-3"><span class="mono text-[11px]" style="color:var(--vermillion)">04</span><span>Quarterly dispatch on what's moving in the sector</span></li>
+      </ul>
+      <div class="hr-thin my-6"></div>
+      <p class="label mb-2">Privacy</p>
+      <p class="text-[13px] leading-[1.6]" style="color:var(--ink-3)">No IC, no income proof, no IRS-style invasiveness. You can register under a stage name. The point is to count, not to surveil.</p>
+    </aside>
+  </section>
+
+  <!-- LIVE COUNT (placeholder; manual update for now) -->
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-t border-b py-10 mb-16 md:mb-24" style="border-color:var(--paper-3);">
+    <div>
+      <div class="stat text-[44px] md:text-[60px]"><span style="color:var(--vermillion)">0</span></div>
+      <p class="label mt-2">Registered (live)</p>
+    </div>
+    <div>
+      <div class="stat text-[44px] md:text-[60px]">9</div>
+      <p class="label mt-2">Sectors covered</p>
+    </div>
+    <div>
+      <div class="stat text-[44px] md:text-[60px]">≈ 4</div>
+      <p class="label mt-2">Queries / week</p>
+    </div>
+    <div>
+      <div class="stat text-[44px] md:text-[60px]">RM 0</div>
+      <p class="label mt-2">To register</p>
+    </div>
+  </section>
+
+  <!-- THE FORM -->
+  <section class="grid grid-cols-12 gap-6 md:gap-10">
+    <div class="col-span-12 md:col-span-3">
+      <span class="marker text-[60px] md:text-[88px]">§ I</span>
+      <p class="label mt-2">The Register</p>
+      <p class="editorial text-[15px] leading-[1.55] mt-6" style="color:var(--ink-2)">
+        Three minutes. We will read what you write. You will get a confirmation reply.
+      </p>
+    </div>
+
+    <form id="reg-form" class="col-span-12 md:col-span-9 space-y-8" onsubmit="return submitReg(event)">
+
+      <!-- Identity -->
+      <div>
+        <p class="label mb-3">A. Who you are</p>
+        <input id="r-name" class="field" type="text" placeholder="Name (legal or stage)" required />
+        <input id="r-email" class="field" type="email" placeholder="Best email to reply to" required />
+        <input id="r-phone" class="field" type="tel" placeholder="WhatsApp number (+60…)" required />
+        <input id="r-city" class="field" type="text" placeholder="City / State (e.g. Kuala Lumpur, Selangor)" required />
+      </div>
+
+      <!-- Sector -->
+      <div>
+        <p class="label mb-4">B. Primary practice <span style="color:var(--ink-3); text-transform:none; letter-spacing:0;">— pick one</span></p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="radio" name="sector" value="Visual arts" required>Visual arts</label>
+          <label class="pill"><input type="radio" name="sector" value="Film">Film</label>
+          <label class="pill"><input type="radio" name="sector" value="Music">Music</label>
+          <label class="pill"><input type="radio" name="sector" value="Dance">Dance</label>
+          <label class="pill"><input type="radio" name="sector" value="Theatre">Theatre</label>
+          <label class="pill"><input type="radio" name="sector" value="Graphic design">Graphic design</label>
+          <label class="pill"><input type="radio" name="sector" value="Illustration">Illustration</label>
+          <label class="pill"><input type="radio" name="sector" value="Writing / publishing">Writing</label>
+          <label class="pill"><input type="radio" name="sector" value="Crafts">Crafts</label>
+          <label class="pill"><input type="radio" name="sector" value="Other">Other</label>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div>
+        <p class="label mb-4">C. Years practising</p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="radio" name="years" value="<1 yr" required>&lt; 1 yr</label>
+          <label class="pill"><input type="radio" name="years" value="1–3 yrs">1–3 yrs</label>
+          <label class="pill"><input type="radio" name="years" value="3–7 yrs">3–7 yrs</label>
+          <label class="pill"><input type="radio" name="years" value="7–15 yrs">7–15 yrs</label>
+          <label class="pill"><input type="radio" name="years" value="15+ yrs">15+ yrs</label>
+        </div>
+      </div>
+
+      <!-- Income bracket -->
+      <div>
+        <p class="label mb-4">D. Approximate annual income from your practice (RM)</p>
+        <div class="flex flex-wrap gap-2">
+          <label class="pill"><input type="radio" name="income" value="0–10k" required>0–10k</label>
+          <label class="pill"><input type="radio" name="income" value="10–30k">10–30k</label>
+          <label class="pill"><input type="radio" name="income" value="30–60k">30–60k</label>
+          <label class="pill"><input type="radio" name="income" value="60–120k">60–120k</label>
+          <label class="pill"><input type="radio" name="income" value="120k+">120k+</label>
+          <label class="pill"><input type="radio" name="income" value="Prefer not to say">Prefer not to say</label>
+        </div>
+        <p class="text-[12px] mt-3" style="color:var(--ink-3)">Used only in aggregate for ministry submissions. Never tied to your name in any external document.</p>
+      </div>
+
+      <!-- Pain point -->
+      <div>
+        <p class="label mb-4">E. Have you been hit by a wage dispute, unfair deduction, or contract problem?</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <label class="pill"><input type="radio" name="hit" value="Yes — recently" required>Yes — recently</label>
+          <label class="pill"><input type="radio" name="hit" value="Yes — in the past">Yes — past</label>
+          <label class="pill"><input type="radio" name="hit" value="No, but witnessed">No, witnessed</label>
+          <label class="pill"><input type="radio" name="hit" value="No">No</label>
+        </div>
+        <textarea id="r-story" class="field" rows="3" placeholder="One sentence if relevant (optional)."></textarea>
+      </div>
+
+      <!-- Consents -->
+      <div>
+        <p class="label mb-3">F. Consent</p>
+        <label class="check">
+          <input type="checkbox" id="c-rep" required>
+          <span class="text-[15px]" style="color:var(--ink-2)">I authorise ALIM to include me in its <strong>count</strong> of Malaysian non-platform creative workers when lobbying for inclusion under the Gig Workers Act. <em>(Required.)</em></span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="c-eaduan">
+          <span class="text-[15px]" style="color:var(--ink-2)">If/when access to the e-Aduan dispute system is won, contact me with how to file.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="c-news">
+          <span class="text-[15px]" style="color:var(--ink-2)">Add me to ALIM's quarterly dispatch.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="c-clinic">
+          <span class="text-[15px]" style="color:var(--ink-2)">I am open to being contacted if my case might be useful as a representative example (always pseudonymised in public; never without my written go-ahead).</span>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn btn-primary">Register →</button>
+        <a href="/" class="btn btn-ghost">Back to home</a>
+        <span id="r-status" class="mono text-[11px] tracking-[0.16em] uppercase" style="color:var(--ink-3)">Privileged from the moment you hit send</span>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- Why this matters footer -->
+  <section class="border-t mt-20 pt-10" style="border-color:var(--paper-3);">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <p class="label mb-3">Why a register</p>
+        <p class="editorial text-[16px] leading-[1.6]" style="color:var(--ink-2)">Government doesn't move on stories. It moves on numbers attached to constituencies. ALIM needs a roll to be credible.</p>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <p class="label mb-3">What we won't do</p>
+        <p class="editorial text-[16px] leading-[1.6]" style="color:var(--ink-2)">Sell, share, or publish your data. Hand it to a CMO. Use it for a political campaign. Tie your income to your name in any external document.</p>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <p class="label mb-3">Questions</p>
+        <p class="editorial text-[16px] leading-[1.6]" style="color:var(--ink-2)">Reply to your confirmation email, or write to <a href="mailto:artxlawinitiative@gmail.com" class="hl">artxlawinitiative@gmail.com</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t py-10 mt-10" style="background:var(--paper-2); border-color:var(--paper-3);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">© 2026 Art × Law Initiative Malaysia · Filed from Kuala Lumpur</p>
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">A non-profit legal clinic · Run by volunteer counsel</p>
+  </div>
+</footer>
+
+<script>
+  function submitReg(e){
+    e.preventDefault();
+    const v = id => (document.getElementById(id)||{}).value || '';
+    const rad = name => (document.querySelector(`input[name="${name}"]:checked`)||{}).value || '';
+    const chk = id => document.getElementById(id).checked ? 'Yes' : 'No';
+    if(!document.getElementById('c-rep').checked){
+      const s=document.getElementById('r-status'); s.textContent='Consent (F.1) is required.'; s.style.color='var(--vermillion)'; return false;
+    }
+    const subject = `[ALIM Register] ${rad('sector')} — ${v('r-name')}`;
+    const body =
+`REGISTRATION — Creative Worker
+
+A. Identity
+  Name:       ${v('r-name')}
+  Email:      ${v('r-email')}
+  WhatsApp:   ${v('r-phone')}
+  Location:   ${v('r-city')}
+
+B. Primary sector:   ${rad('sector')}
+C. Years practising: ${rad('years')}
+D. Annual income:    ${rad('income')}
+E. Hit by dispute:   ${rad('hit')}
+   Story:            ${v('r-story')}
+
+F. Consents
+  Count me in lobbying: ${chk('c-rep')}
+  e-Aduan follow-up:    ${chk('c-eaduan')}
+  Quarterly dispatch:   ${chk('c-news')}
+  Representative use:   ${chk('c-clinic')}
+
+— Submitted via alim-enhanced.vercel.app/register/
+`;
+    window.location.href = `mailto:artxlawinitiative@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const s=document.getElementById('r-status'); s.textContent='Opening your email client to send…'; s.style.color='var(--ink-2)';
+    return false;
+  }
+</script>
+
+</body>
+</html>

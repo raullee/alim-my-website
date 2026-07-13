@@ -1,0 +1,586 @@
+<!doctype html>
+<!-- ALIM.my · Gig Workers Act 2025 (Act 872) · dossier re-skin of /resources/gig-workers-act-2025. Source of truth: resources/gig-workers-act-2025/index.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gig Workers Act 2025 · ALIM.my</title>
+<meta name="description" content="Plain-language guide to Malaysia's Gig Workers Act 2025 (Act 872). How to use the eAduan-Gig portal, the dispute resolution flow, and when court still applies.">
+<meta property="og:title" content="Gig Workers Act 2025 · ALIM.my">
+<meta property="og:description" content="The first port of call for any Malaysian gig worker is now the eAduan-Gig portal. What changed, who is covered, and how to file a complaint.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://alim.my/resources/gig-workers-act-2025/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/alim.css">
+<style>
+  /* ---- Page-local tool UI (dossier tokens only) ---- */
+  .crumbs{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:26px; }
+  .crumbs a{ color:var(--ink-3); text-decoration:none; }
+  .crumbs a:hover{ color:var(--pillar); }
+  .crumbs span{ color:var(--ink); }
+  .dossier-head .stamp{ display:inline-block; margin-bottom:18px; }
+
+  /* 4-step flow */
+  .gw-steps{ display:grid; gap:12px; }
+  .gw-step-head{ display:flex; gap:16px; align-items:flex-start; margin-bottom:12px; }
+  .gw-step-num{ flex:none; width:44px; height:44px; display:grid; place-items:center; background:var(--pillar); color:#F2EBDD; font-family:'Literata',Georgia,serif; font-variation-settings:"opsz" 40,"wght" 640; font-size:22px; }
+  .gw-step-head h3{ margin:2px 0 6px; }
+  .gw-warn{ color:var(--vermillion); font-size:13.5px; line-height:1.55; margin-top:10px; }
+  .gw-arrow{ text-align:center; font-family:'JetBrains Mono',monospace; color:var(--ink-3); font-size:20px; line-height:1; padding:2px 0; }
+  .gw-stack{ display:grid; gap:20px; }
+
+  /* Check / cross lists */
+  .checklist,.crosslist{ list-style:none; margin:0; padding:0; font-size:14.5px; color:var(--ink-2); line-height:1.5; }
+  .checklist li,.crosslist li{ position:relative; padding:8px 0 8px 28px; }
+  .checklist li::before{ content:"\2713"; position:absolute; left:0; top:8px; color:var(--pillar); font-weight:700; }
+  .crosslist li::before{ content:"\2717"; position:absolute; left:0; top:8px; color:var(--vermillion); font-weight:700; }
+
+  /* Video frame */
+  .gw-video{ border:1px solid var(--rule); background:var(--paper-2); padding:14px; }
+  .gw-video video{ width:100%; aspect-ratio:16/9; display:block; }
+
+  /* Coverage quiz */
+  .gw-qs{ display:grid; gap:22px; }
+  .gw-q-text{ font-size:15px; font-weight:600; color:var(--ink); margin:0 0 10px; line-height:1.5; }
+  .gw-q-choices{ display:flex; gap:12px; }
+  .gw-opt{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:10px 22px; border:1.5px solid var(--rule); background:var(--paper); color:var(--ink-2); cursor:pointer; transition:border-color .2s,background-color .2s,color .2s; }
+  .gw-opt:hover{ border-color:var(--ink); }
+  .gw-opt.sel-yes{ border-color:var(--pillar); background:color-mix(in srgb,var(--pillar) 14%,var(--paper)); color:var(--ink); }
+  .gw-opt.sel-no{ border-color:var(--riso-green); background:color-mix(in srgb,var(--riso-green) 14%,var(--paper)); color:var(--ink); }
+  .gw-meter-wrap{ margin-top:26px; }
+  .gw-meter-labels{ display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
+  .gw-meter-track{ height:14px; background:var(--paper-3); border:1px solid var(--rule); }
+  .gw-meter-fill{ height:100%; width:0%; background:var(--riso-green); transition:width .8s var(--ease-print),background-color .5s; }
+  .gw-result{ margin-top:22px; background:var(--paper); border:1px solid var(--rule); border-left:3px solid var(--pillar); padding:18px 20px; }
+  .gw-result b{ font-family:'Literata',Georgia,serif; font-variation-settings:"opsz" 28,"wght" 620; font-size:18px; }
+  .res-good{ color:var(--riso-green); }
+  .res-mid{ color:var(--riso-marigold); }
+  .res-bad{ color:var(--vermillion); }
+  .hidden{ display:none; }
+
+  /* Grievance template */
+  .template{ background:var(--paper-3); border:1px solid var(--rule); padding:22px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px; line-height:1.7; white-space:pre-wrap; max-height:420px; overflow-y:auto; color:var(--ink-2); }
+</style>
+</head>
+<body data-pillar="education">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+  </div>
+</div>
+
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="../../index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../get-help/">Get Help</a>
+      <a href="../../our-work/">Our Work</a>
+      <a href="../../resources/" aria-current="page">Resources</a>
+      <a href="../../join-us/">Join the Movement</a>
+      <a href="../../about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="../../request-consultation/">Request a Consultation <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="../../get-help/">Get Help</a>
+    <a href="../../our-work/">Our Work</a>
+    <a href="../../resources/">Resources</a>
+    <a href="../../join-us/">Join the Movement</a>
+    <a href="../../about-alim/">About Us</a>
+    <a href="../../request-consultation/">Request a Consultation</a>
+  </nav>
+</header>
+
+<main id="main">
+<!-- DOSSIER HEADER -->
+<section class="dossier-head">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> / <a href="../index.html">Resources</a> / <span>Gig Workers Act 2025</span>
+    </nav>
+    <div class="dossier-meta">
+      <span class="bar">In force April 2026 · Act 872</span>
+      <div style="text-align:right">
+        <span class="label">§ File · Gig Economy</span>
+        <span class="label" style="display:block;margin-top:4px">Pillar 03 · Education</span>
+      </div>
+    </div>
+    <span class="stamp">New · 2026</span>
+    <h1 class="page-h1">Gig Workers Act <em>2025</em>.</h1>
+    <p class="page-lede">After years of pressure from gig workers, unions, and civil society, Parliament finally passed the Gig Workers Act 2025 (Act 872). 1.64 million Malaysians now have a free, official complaint route at eaduan-gig.mohr.gov.my, plus a dedicated Tribunal. Here is what changed, who is covered, and how to use it.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://eaduan-gig.mohr.gov.my" target="_blank" rel="noopener" data-magnet>Open eAduan-Gig portal →</a>
+      <a class="btn" href="#walkthrough" data-magnet>How to file a complaint</a>
+    </div>
+  </div>
+  <div class="page-emblem" aria-hidden="true">872</div>
+</section>
+
+<!-- WHAT CHANGED -->
+<section class="pad reveal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">Six things to know</span><h2>What changed</h2></div></div>
+    <p class="prose" style="margin:-24px 0 40px">Six things every gig worker should know.</p>
+    <div class="grid grid-2">
+      <article class="card">
+        <span class="idx">01</span>
+        <h3>Gig workers are now legally recognised</h3>
+        <p>For the first time, the law defines a "gig worker" as a person with a service agreement performing work for earnings; separate from "employee" and "independent contractor". You are not invisible anymore.</p>
+      </article>
+      <article class="card">
+        <span class="idx">02</span>
+        <h3>Written service agreement is now mandatory</h3>
+        <p>Section 4 requires the contracting entity to give you a written agreement covering scope, earnings, working conditions, and termination. No more "verbal arrangement" loopholes.</p>
+      </article>
+      <article class="card">
+        <span class="idx">03</span>
+        <h3>Free complaint portal: eAduan-Gig</h3>
+        <p>eaduan-gig.mohr.gov.my is run by the Department of Labour (JTKSM). Target resolution: 21 working days. Email support: gigkesuma@mohr.gov.my. This should be your first port of call.</p>
+      </article>
+      <article class="card">
+        <span class="idx">04</span>
+        <h3>A dedicated Gig Workers Tribunal</h3>
+        <p>If conciliation fails, your case goes to the Tribunal. Awards are binding. Hearings are public. Awards are issued within 30 days of hearing.</p>
+      </article>
+      <article class="card">
+        <span class="idx">05</span>
+        <h3>Lawyers cannot represent at the Tribunal</h3>
+        <p>Section 38 prohibits advocates and solicitors from representing parties at the Tribunal. You represent yourself, or you can be helped by a family member, a trade association official, or an authorised employee. The system is designed to be DIY.</p>
+      </article>
+      <article class="card">
+        <span class="idx">06</span>
+        <h3>Real teeth: RM50,000 fine + 2 years jail</h3>
+        <p>Section 45: failure to comply with a Tribunal award is a criminal offence; up to RM50,000 fine, 2 years imprisonment, or both. Plus RM500 for each continuing day. The contracting entity has skin in the game.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE QUIZ -->
+<section class="pad tint reveal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">Self-check</span><h2>Are you covered?</h2></div></div>
+    <p class="prose" style="margin:-24px 0 34px">Five quick questions. The Act applies based on the substance of your work, not just the label on your contract.</p>
+    <div class="card" id="quiz-block">
+      <div id="quiz-questions" class="gw-qs"></div>
+      <div class="gw-meter-wrap">
+        <div class="gw-meter-labels"><span id="quiz-counter">0/5</span><span>Coverage indicators</span></div>
+        <div class="gw-meter-track"><div id="quiz-meter" class="gw-meter-fill"></div></div>
+      </div>
+      <div id="quiz-result" class="gw-result hidden"></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 4-STEP FLOW -->
+<section class="pad reveal" id="flow">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">The sequence</span><h2>The 4-step path</h2></div></div>
+    <p class="prose" style="margin:-24px 0 40px">By law, you must follow this sequence. You cannot jump straight to the Tribunal.</p>
+    <div class="gw-steps">
+      <article class="card">
+        <div class="gw-step-head">
+          <span class="gw-step-num">1</span>
+          <div>
+            <h3>Internal grievance with the contracting entity</h3>
+            <span class="label" style="display:block">Section 17 · 30 days</span>
+          </div>
+        </div>
+        <p>Send a written complaint to the contracting entity (Grab, FoodPanda, Lalamove, an event organiser, etc.). They must initiate and resolve via their internal grievance mechanism within 30 days.</p>
+        <p class="gw-warn">⚠ Skip this step if your contracting entity is an individual or sole proprietor; go directly to Step 2.</p>
+      </article>
+      <div class="gw-arrow" aria-hidden="true">↓</div>
+      <article class="card">
+        <div class="gw-step-head">
+          <span class="gw-step-num">2</span>
+          <div>
+            <h3>Conciliation via eAduan-Gig portal</h3>
+            <span class="label" style="display:block">Section 18-19 · ~21 working days target</span>
+          </div>
+        </div>
+        <p>File at <a class="ulink" href="https://eaduan-gig.mohr.gov.my" target="_blank" rel="noopener" style="color:var(--pillar)">eaduan-gig.mohr.gov.my</a>. The Conciliator (Industrial Relations Department) tries to settle. If settlement is reached, it gets recorded; if not, the Conciliator refers to the Tribunal.</p>
+      </article>
+      <div class="gw-arrow" aria-hidden="true">↓</div>
+      <article class="card">
+        <div class="gw-step-head">
+          <span class="gw-step-num">3</span>
+          <div>
+            <h3>Gig Workers Tribunal</h3>
+            <span class="label" style="display:block">Section 24+ · Award within 30 days of hearing</span>
+          </div>
+        </div>
+        <p>Public hearing. You represent yourself or get help from a family member, an authorised employee of the contracting entity, or an official of a registered gig workers' association. Lawyers are not allowed.</p>
+      </article>
+      <div class="gw-arrow" aria-hidden="true">↓</div>
+      <article class="card">
+        <div class="gw-step-head">
+          <span class="gw-step-num">4</span>
+          <div>
+            <h3>Award &amp; enforcement</h3>
+            <span class="label" style="display:block">Section 42-45</span>
+          </div>
+        </div>
+        <p>Award is binding. Refusal to comply is a criminal offence; RM50,000 fine, 2 years jail, plus RM500 per continuing day. There is a limited right of appeal to the High Court (Section 44).</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO WALKTHROUGH -->
+<section class="pad tint reveal" id="video">
+  <div class="wrap-narrow">
+    <div class="sec-head"><div><span class="bar">Watch</span><h2>6-minute walkthrough</h2></div></div>
+    <p class="prose" style="margin:-24px 0 34px">A plain-language guide produced for ALIM's gig worker programme.</p>
+    <div class="gw-video">
+      <video controls preload="metadata" playsinline poster="">
+        <source src="./assets/guide-en.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="grid grid-2" style="margin-top:20px">
+      <a class="card" href="./assets/eaduan-quick-guide.pdf" download style="text-decoration:none">
+        <span class="idx">PDF</span>
+        <h3>9-page quick guide (PDF)</h3>
+        <p>Cover the eAduan-Gig portal in 9 visual pages. Free download.</p>
+      </a>
+      <a class="card" href="./assets/eaduan-detailed-guide.pdf" download style="text-decoration:none">
+        <span class="idx">PDF</span>
+        <h3>15-page detailed guide (PDF)</h3>
+        <p>Detailed walk-through covering the 3-step empowerment journey. Free download.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WALKTHROUGH -->
+<section class="pad reveal" id="walkthrough">
+  <div class="wrap-narrow">
+    <div class="sec-head"><div><span class="bar">Practical guide</span><h2>How to file at eAduan-Gig</h2></div></div>
+    <div class="gw-stack">
+      <article class="card">
+        <h3>Before you start, gather:</h3>
+        <ul class="checklist" style="margin-top:14px">
+          <li>Your IC / passport number</li>
+          <li>Service agreement (or screenshots of T&amp;Cs you accepted on the app)</li>
+          <li>Earnings statements / payment screenshots showing the unpaid amount or wrong calculation</li>
+          <li>Communication history (WhatsApp, in-app chat, email)</li>
+          <li>Evidence of your internal grievance (if applicable) and the entity's response or non-response</li>
+          <li>For deactivation cases: notice or message about the suspension</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Step-by-step</h3>
+        <div class="prose" style="margin-top:14px">
+          <ol>
+            <li>Go to <a href="https://eaduan-gig.mohr.gov.my" target="_blank" rel="noopener">eaduan-gig.mohr.gov.my</a> and register an account using your IC and a working email.</li>
+            <li>Select complaint category: unpaid earnings, deactivation, breach of agreement, or other.</li>
+            <li>Identify the contracting entity by registered name (not just the app brand). Use SSM lookup if unsure.</li>
+            <li>Describe the dispute factually. Include dates, amounts, what you delivered, and what was promised.</li>
+            <li>Upload your evidence as PDFs or clear screenshots. Label each file (e.g., "01_service_agreement.pdf").</li>
+            <li>State the remedy you want: the specific amount, reinstatement of your account, or compliance with a contract term.</li>
+            <li>Submit. Save your reference number. JTKSM aims to resolve within 21 working days.</li>
+            <li>If you don't hear back in 14 working days, email gigkesuma@mohr.gov.my with your reference number.</li>
+          </ol>
+        </div>
+      </article>
+      <article class="card">
+        <h3>Sample Section 17 internal grievance letter</h3>
+        <p style="font-size:13px;color:var(--ink-3);margin:8px 0 16px;line-height:1.6">Send this BEFORE filing at eAduan-Gig (only required if your contracting entity is a company, not an individual or sole proprietor).</p>
+        <pre class="template" id="grievance-template">[Your full name]
+[Your IC number]
+[Your address]
+[Date]
+
+To: [Contracting entity registered name]
+Re: COMPLAINT OF DISPUTE UNDER SECTION 17 OF THE GIG WORKERS ACT 2025
+
+Dear Sir or Madam,
+
+I am a gig worker who has entered into a service agreement with you dated [date]. Pursuant to Section 17 of the Gig Workers Act 2025, I hereby lodge a complaint of dispute and require you to initiate and resolve this dispute through your internal grievance mechanism within thirty (30) days from the date of this letter.
+
+The dispute concerns:
+1. [Describe the issue clearly; e.g. unpaid earnings of RM[amount] for services rendered between [dates]]
+2. [Reference the relevant clause of the service agreement]
+3. [State what response you have received from the entity to date, if any]
+
+I request the following remedy:
+- [Specific amount or action required]
+
+Should you fail to resolve this dispute within thirty (30) days, I will refer the matter to the Conciliator under Section 18 via the eAduan-Gig portal at eaduan-gig.mohr.gov.my, and subsequently to the Gig Workers Tribunal if necessary.
+
+Please acknowledge receipt of this letter within seven (7) days.
+
+Yours faithfully,
+
+[Signature]
+[Your full name]
+[Phone] / [Email]</pre>
+        <div style="margin-top:16px">
+          <button type="button" class="btn copy-template-btn" data-magnet>Copy template</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN PORTAL WONT HELP -->
+<section class="pad tint reveal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">The limits</span><h2>When the portal will not help</h2></div></div>
+    <p class="prose" style="margin:-24px 0 40px">The new system has limits. In these cases, the Magistrate's Court, through the small claims procedure, remains your route.</p>
+    <div class="grid grid-2">
+      <article class="card">
+        <h3>When the Tribunal cannot hear you</h3>
+        <ul class="crosslist" style="margin-top:14px">
+          <li>You don't satisfy the legal definition of "gig worker" (no service agreement, one-off informal arrangement)</li>
+          <li>Your dispute pre-dates the Act (matters before April 2026)</li>
+          <li>The matter is excluded from Tribunal jurisdiction (Section 33(2)): criminal offences, social security under Part VIII</li>
+          <li>You need to claim damages outside the Act's scope (defamation by client, harassment, etc.)</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>When you need civil enforcement</h3>
+        <p>If the Tribunal awards in your favour but the contracting entity refuses to pay, the criminal penalties (Section 45) punish them, but you may still need to enforce the award as a civil judgment debt to actually receive your money. That happens through the courts.</p>
+      </article>
+    </div>
+    <article class="card" style="margin-top:20px;text-align:center">
+      <p>For Small Claims (Form 198) cases under RM5,000, the bilingual self-help tool <strong style="color:var(--ink)">MatSelamat</strong> can generate your court documents.</p>
+      <p style="margin-top:14px"><a class="ulink" href="https://matselamat.com" target="_blank" rel="noopener" style="color:var(--pillar);justify-content:center">matselamat.com →</a></p>
+    </article>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="pad reveal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">References</span><h2>Resources</h2></div></div>
+    <div class="grid grid-2">
+      <a class="card" href="https://eaduan-gig.mohr.gov.my" target="_blank" rel="noopener" style="text-decoration:none">
+        <h3>eAduan-Gig portal</h3><p>eaduan-gig.mohr.gov.my</p>
+      </a>
+      <a class="card" href="https://www.mohr.gov.my/aktapekerjagig2025/assets/documents/Act%20872.pdf" target="_blank" rel="noopener" style="text-decoration:none">
+        <h3>Full text of Act 872 (PDF)</h3><p>mohr.gov.my</p>
+      </a>
+      <a class="card" href="https://jtksm.mohr.gov.my/en/services/labour-complaint/acts-guidelines" target="_blank" rel="noopener" style="text-decoration:none">
+        <h3>JTKSM acts and guidelines</h3><p>jtksm.mohr.gov.my</p>
+      </a>
+      <a class="card" href="mailto:gigkesuma@mohr.gov.my" style="text-decoration:none">
+        <h3>Portal technical support</h3><p>gigkesuma@mohr.gov.my</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER + SHARE -->
+<section class="pad tint reveal">
+  <div class="wrap-narrow" style="text-align:center">
+    <p class="form-note" style="max-width:62ch;margin:0 auto 30px">This page is published by ALIM.my as a free public-interest resource. It is not legal advice. Each case is different. If you need representation in matters outside the Tribunal's jurisdiction, consult a licensed advocate and solicitor.</p>
+    <span class="bar">Spread the word</span>
+    <h2 class="display" style="font-size:clamp(28px,4.5vw,50px);margin:16px 0 0">Help us reach more gig workers.</h2>
+    <p class="prose" style="margin:16px auto 0;max-width:54ch">Share this page. The more workers know about Act 872, the harder it is for anyone to ignore it.</p>
+    <div class="hero-ctas" style="justify-content:center;margin-top:24px">
+      <a class="btn" href="https://wa.me/?text=Gig%20Workers%20Act%202025%2C%20your%20new%20rights%3A%20https%3A%2F%2Falim.my%2Fresources%2Fgig-workers-act-2025%2F" target="_blank" rel="noopener" data-magnet>Share on WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section class="pad reveal">
+  <div class="wrap-narrow" style="text-align:center">
+    <span class="bar">Need a person?</span>
+    <h2 class="display" style="font-size:clamp(28px,4.5vw,50px);margin:16px 0 0">A guide can only take you so far.</h2>
+    <div class="hero-ctas" style="justify-content:center;margin-top:24px">
+      <a class="btn btn-primary" href="../../get-help/" data-magnet>Get legal help →</a>
+      <a class="btn btn-ghost" href="../index.html" data-magnet>Back to resources</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px"><a class="ulink" href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener">★ Featured in The Star →</a></p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../../get-help/">Get Help</a></li>
+          <li><a href="../../our-work/">Our Work</a></li>
+          <li><a href="../../mission/">Our Charter</a></li>
+          <li><a href="../../resources/">Resources</a></li>
+          <li><a href="../../join-us/">Join the Movement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="../../about-alim/">About Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+          <li><a href="../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../terms-of-service/">Terms of Service</a></li>
+          <li><a href="../../sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="dot" aria-hidden="true"></div>
+<script src="../../assets/alim.js"></script>
+<script>
+/* ===========================================================================
+   Gig Workers Act 2025 · page tools. Ported 1:1 from the source page.
+   Coverage quiz (5 questions, meter, verdict) + grievance letter copy.
+   =========================================================================== */
+(function () {
+  "use strict";
+
+  /* ---- Coverage quiz (data + logic identical to source) ---- */
+  var quizQs = [
+    'Do you perform services through a digital platform (Grab, FoodPanda, Lalamove, etc.) OR have a written/digital service agreement with a contracting party?',
+    'Are you paid based on tasks or jobs completed (per delivery, per ride, per gig), rather than a monthly salary?',
+    'Do you provide the service personally (not through your own employees)?',
+    'Is the service performed in Malaysia?',
+    'Is your dispute about earnings, deactivation, or terms of the agreement (not, say, a personal injury or copyright matter)?'
+  ];
+  var qAns = new Array(quizQs.length).fill(null);
+  var qBlock = document.getElementById('quiz-questions');
+
+  function answerQuestion(i, yes, btn) {
+    qAns[i] = yes;
+    btn.parentElement.querySelectorAll('.gw-opt').forEach(function (b) {
+      b.classList.remove('sel-yes', 'sel-no');
+    });
+    btn.classList.add(yes ? 'sel-yes' : 'sel-no');
+    var yesCount = qAns.filter(function (a) { return a === true; }).length;
+    var pct = (yesCount / quizQs.length) * 100;
+    var meter = document.getElementById('quiz-meter');
+    meter.style.width = pct + '%';
+    meter.style.background = pct >= 80 ? '#22c55e' : pct >= 60 ? '#eab308' : '#ef4444';
+    document.getElementById('quiz-counter').textContent = yesCount + '/' + quizQs.length;
+    if (qAns.every(function (a) { return a !== null; })) {
+      renderResult(yesCount);
+    }
+  }
+
+  function renderResult(yesCount) {
+    var r = document.getElementById('quiz-result');
+    r.classList.remove('hidden');
+    var cls, verdict, detail;
+    if (yesCount >= 4) {
+      cls = 'res-good';
+      verdict = 'Likely covered by Act 872.';
+      detail = 'You probably have rights under the Gig Workers Act 2025. Start with Step 1 (internal grievance) if your contracting entity is a company, or skip to Step 2 (eAduan-Gig portal) if it is an individual or sole proprietor.';
+    } else if (yesCount >= 2) {
+      cls = 'res-mid';
+      verdict = 'Possibly covered, case-by-case.';
+      detail = 'Some indicators are missing. Try filing at eAduan-Gig anyway; JTKSM will assess. If they decide you are not a gig worker under the Act, your dispute may need to go through the courts instead.';
+    } else {
+      cls = 'res-bad';
+      verdict = 'Probably outside the Act.';
+      detail = 'Your situation may not fit the legal definition of "gig worker." You may need to pursue your dispute through the courts (Small Claims for amounts under RM5,000, or higher courts above that). Tools like MatSelamat can help you self-represent.';
+    }
+    while (r.firstChild) r.removeChild(r.firstChild);
+    var b = document.createElement('b');
+    b.className = cls;
+    b.textContent = verdict;
+    var d = document.createElement('div');
+    d.style.marginTop = '8px';
+    d.style.fontSize = '14px';
+    d.style.color = 'var(--ink-2)';
+    d.textContent = detail;
+    r.appendChild(b);
+    r.appendChild(d);
+  }
+
+  if (qBlock) {
+    quizQs.forEach(function (q, i) {
+      var wrap = document.createElement('div');
+      wrap.className = 'gw-q';
+      var p = document.createElement('p');
+      p.className = 'gw-q-text';
+      p.textContent = (i + 1) + '. ' + q;
+      var choices = document.createElement('div');
+      choices.className = 'gw-q-choices';
+      var yesBtn = document.createElement('button');
+      yesBtn.type = 'button';
+      yesBtn.className = 'gw-opt';
+      yesBtn.textContent = 'Yes';
+      yesBtn.addEventListener('click', function () { answerQuestion(i, true, yesBtn); });
+      var noBtn = document.createElement('button');
+      noBtn.type = 'button';
+      noBtn.className = 'gw-opt';
+      noBtn.textContent = 'No';
+      noBtn.addEventListener('click', function () { answerQuestion(i, false, noBtn); });
+      choices.appendChild(yesBtn);
+      choices.appendChild(noBtn);
+      wrap.appendChild(p);
+      wrap.appendChild(choices);
+      qBlock.appendChild(wrap);
+    });
+  }
+
+  /* ---- Copy grievance template ---- */
+  document.querySelectorAll('.copy-template-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tpl = document.getElementById('grievance-template');
+      if (!tpl) return;
+      var text = tpl.textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        var original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = original; }, 2000);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1039 @@
+<!doctype html>
+<!-- ALIM.my · Understanding Contracts. Rebuilt 1:1 from resources/understanding-contracts/index.html into the dossier design system. Source of truth: that file's sections + interactive tools (contract anatomy, red-flag detector, deep-dive tabs, negotiation ranking, FAQ). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Understanding Contracts · ALIM.my</title>
+<meta name="description" content="Interactive guide to understanding contracts for Malaysian creatives. Learn to read, negotiate, and protect yourself with contracts under Malaysian law.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/alim.css">
+<style>
+  /* ===== PAGE-SCOPED TOOL UI (dossier tokens only) ===== */
+  .hidden{ display:none !important; }
+
+  /* Breadcrumb */
+  .crumb{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .crumb a{ text-decoration:none; color:var(--ink-3); }
+  .crumb a:hover{ color:var(--pillar); }
+  .crumb .sep{ color:var(--rule); padding:0 .5ch; }
+  .crumb [aria-current]{ color:var(--pillar); }
+
+  /* Reference chips in the dossier head */
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--rule); padding:5px 10px; }
+
+  /* Section intro line */
+  .sec-intro{ font-size:16px; line-height:1.65; color:var(--ink-2); max-width:64ch; margin:0 0 34px; }
+
+  /* ===== 1. CONTRACT ANATOMY ===== */
+  .anat-grid{ display:grid; gap:26px; grid-template-columns:1fr; }
+  @media(min-width:980px){ .anat-grid{ grid-template-columns:1.6fr 1fr; align-items:start; } }
+  .contract-doc{ position:relative; background:var(--paper-2); border:1px solid var(--rule-soft); }
+  .contract-doc::after{ content:""; position:absolute; top:8px; right:8px; width:14px; height:14px; border-top:1.5px solid var(--ink-3); border-right:1.5px solid var(--ink-3); }
+  .doc-head{ padding:22px; border-bottom:1px solid var(--rule); text-align:center; }
+  .doc-head .lab{ display:block; }
+  .doc-head h3{ font-family:'Literata',serif; font-size:19px; margin:6px 0 0; color:var(--ink); }
+  .contract-section{ padding:16px 22px; border-left:3px solid transparent; cursor:pointer; transition:background .35s var(--ease-print), border-color .3s; outline-offset:-2px; }
+  .contract-section:hover,.contract-section.active{ border-left-color:var(--pillar); background:var(--paper-3); }
+  .contract-section.active{ border-left-color:var(--vermillion); }
+  .section-number{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4px; }
+  .contract-section h4{ font-family:'Literata',serif; font-size:18px; margin:0; color:var(--ink); }
+  .clause-text{ font-size:14px; color:var(--ink-2); line-height:1.6; margin:.4em 0 0; }
+  .explanation-panel{ max-height:0; overflow:hidden; opacity:0; padding:0 22px; transition:max-height .5s var(--ease-print), opacity .4s, padding .4s; }
+  .explanation-panel.open{ max-height:520px; opacity:1; padding:4px 22px 20px; }
+  .anat-why{ border-left:2px solid var(--pillar); background:var(--paper); padding:14px 16px; }
+  .why-lab{ display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--pillar); margin-bottom:6px; }
+  .anat-why p{ margin:0; font-size:14px; line-height:1.65; color:var(--ink-2); }
+  .anat-why strong{ color:var(--ink); }
+
+  .anat-side{ display:grid; gap:18px; }
+  @media(min-width:980px){ .anat-side{ position:sticky; top:90px; } }
+  .check-list{ display:grid; gap:12px; margin-top:16px; }
+  .check-item{ display:flex; align-items:center; gap:12px; font-size:14px; color:var(--ink-2); cursor:pointer; }
+  .check-box{ width:20px; height:20px; border:1.5px solid var(--rule); display:grid; place-items:center; flex:none; transition:border-color .25s, background .25s; }
+  .check-box svg{ width:12px; height:12px; color:var(--paper); }
+  .meter-head{ display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+  .meter{ height:8px; background:var(--rule-soft); overflow:hidden; }
+  .meter>i{ display:block; height:100%; width:0; background:var(--pillar); transition:width .5s var(--ease-print); }
+  .protip p{ margin:0; font-size:14px; line-height:1.65; color:var(--ink-2); }
+  .protip strong{ color:var(--ink); }
+
+  /* ===== 2. RED FLAG DETECTOR ===== */
+  .rf-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  #rf-score{ color:var(--pillar); }
+  .rf-clause{ position:relative; background:var(--paper-2); border:1px solid var(--rule-soft); padding:28px; margin:20px 0; }
+  .rf-clause .lab{ display:block; margin-bottom:12px; }
+  #rf-clause-text{ font-family:'Literata',serif; font-size:20px; line-height:1.5; color:var(--ink); margin:0; }
+  .rf-ratings{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:18px; }
+  .rating-btn{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; padding:12px 24px; border:1.5px solid; background:var(--paper); cursor:pointer; transition:background .2s, color .2s, transform .2s; }
+  .rating-btn:hover{ transform:translateY(-2px); }
+  .rating-btn.safe{ border-color:var(--riso-green); color:var(--riso-green); }
+  .rating-btn.safe:hover,.rating-btn.safe.selected{ background:var(--riso-green); color:var(--paper); }
+  .rating-btn.caution{ border-color:var(--ochre); color:var(--ochre); }
+  .rating-btn.caution:hover,.rating-btn.caution.selected{ background:var(--ochre); color:var(--ink); }
+  .rating-btn.danger{ border-color:var(--vermillion); color:var(--vermillion); }
+  .rating-btn.danger:hover,.rating-btn.danger.selected{ background:var(--vermillion); color:var(--paper); }
+  .rf-feedback{ background:var(--paper-2); border:1px solid var(--rule-soft); border-left:3px solid var(--pillar); padding:20px; margin-bottom:18px; }
+  .rf-fb-row{ display:flex; gap:14px; align-items:flex-start; }
+  #rf-fb-icon{ font-family:'JetBrains Mono',monospace; font-size:22px; line-height:1; flex:none; }
+  #rf-fb-verdict{ font-weight:700; margin:0 0 4px; }
+  #rf-fb-explanation{ font-size:14px; color:var(--ink-2); line-height:1.65; margin:0; }
+  .rf-next{ text-align:center; }
+  .rf-results{ background:var(--paper-2); border:1px solid var(--rule-soft); padding:44px; text-align:center; }
+  .score-circle{ width:120px; height:120px; border-radius:50%; display:grid; place-items:center; margin:0 auto 24px; position:relative; background:conic-gradient(var(--pillar) var(--score-pct,0%), var(--rule-soft) var(--score-pct,0%)); }
+  .score-circle::after{ content:""; position:absolute; width:94px; height:94px; border-radius:50%; background:var(--paper-2); }
+  .score-circle span{ position:relative; z-index:1; font-family:'Literata',serif; font-size:30px; color:var(--ink); }
+  #rf-result-title{ font-family:'Literata',serif; font-size:26px; margin:0 0 8px; color:var(--ink); }
+  #rf-result-desc{ color:var(--ink-2); max-width:44ch; margin:0 auto 26px; line-height:1.6; }
+
+  /* ===== 3. DEEP DIVE TABS ===== */
+  .tabs{ display:flex; gap:2px; border-bottom:1px solid var(--rule); margin-bottom:28px; overflow-x:auto; }
+  .tab-btn{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; padding:13px 16px; border:none; border-bottom:2px solid transparent; background:none; color:var(--ink-3); cursor:pointer; white-space:nowrap; transition:color .2s, border-color .2s; }
+  .tab-btn:hover{ color:var(--ink); }
+  .tab-btn.active{ color:var(--pillar); border-bottom-color:var(--pillar); }
+  .tab-content{ display:none; }
+  .tab-content.active{ display:grid; gap:22px; animation:tabfade .4s var(--ease-print); }
+  @keyframes tabfade{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+  .numlist{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .numlist li{ display:flex; gap:14px; align-items:flex-start; }
+  .numlist .n{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--pillar); flex:none; padding-top:2px; }
+  .numlist li>div{ font-size:14.5px; line-height:1.6; color:var(--ink-2); }
+  .numlist strong{ color:var(--ink); }
+  .benchmark{ font-size:14.5px; line-height:1.65; color:var(--ink-2); margin:14px 0 0; }
+  .benchmark strong{ color:var(--ink); }
+
+  /* ===== 4. NEGOTIATION RANKING ===== */
+  .rank-list{ display:grid; gap:12px; }
+  .rank-item{ display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--paper-2); border:1px solid var(--rule-soft); cursor:grab; user-select:none; transition:border-color .25s, transform .25s; }
+  .rank-item:hover{ border-color:var(--pillar); transform:translateX(4px); }
+  .rank-item:active{ cursor:grabbing; }
+  .rank-item.dragging{ opacity:.5; transform:scale(.98); }
+  .rank-number{ width:32px; height:32px; display:grid; place-items:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; background:var(--rule-soft); color:var(--ink); flex:none; transition:background .25s, color .25s; }
+  .rank-item.placed .rank-number{ background:var(--pillar); color:var(--paper); }
+  .rank-item.correct-pos .rank-number{ background:var(--riso-green); color:var(--paper); }
+  .rank-label{ flex:1; font-size:14.5px; color:var(--ink); }
+  .rank-item svg{ width:20px; height:20px; color:var(--ink-3); flex:none; }
+  .rank-actions{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:26px; }
+  .rank-note{ background:var(--paper-2); border:1px solid var(--rule-soft); border-left:3px solid var(--pillar); padding:22px; margin-top:26px; }
+  .rank-note.answer{ border-left-color:var(--indigo); }
+  #rank-fb-text{ font-weight:700; margin:0 0 4px; }
+  #rank-fb-detail{ font-size:14px; color:var(--ink-2); line-height:1.65; margin:0; }
+</style>
+</head>
+<body data-pillar="education">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+  </div>
+</div>
+
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="../../index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../get-help/">Get Help</a>
+      <a href="../../our-work/">Our Work</a>
+      <a href="../../resources/" aria-current="page">Resources</a>
+      <a href="../../join-us/">Join the Movement</a>
+      <a href="../../about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="../../request-consultation/">Request a Consultation <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="../../get-help/">Get Help</a>
+    <a href="../../our-work/">Our Work</a>
+    <a href="../../resources/">Resources</a>
+    <a href="../../join-us/">Join the Movement</a>
+    <a href="../../about-alim/">About Us</a>
+    <a href="../../request-consultation/">Request a Consultation</a>
+  </nav>
+</header>
+
+<main id="main">
+<!-- DOSSIER HEADER -->
+<section class="dossier-head">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Resources</a><span class="sep">/</span><span aria-current="page">Understanding Contracts</span>
+    </nav>
+    <div class="dossier-meta" style="margin-top:28px">
+      <span class="bar">Interactive guide</span>
+      <div style="text-align:right">
+        <span class="label">§ File · Contracts</span>
+        <span class="label" style="display:block;margin-top:4px">Pillar 03 · Education</span>
+      </div>
+    </div>
+    <h1 class="page-h1">Understanding <em>contracts</em>.</h1>
+    <p class="page-lede">A comprehensive, interactive guide for Malaysia's artists and creatives. Learn to read a contract, negotiate the terms that matter, and protect yourself under Malaysian law.</p>
+    <div class="chips">
+      <span class="chip">Contracts Act 1950</span>
+      <span class="chip">Copyright Act 1987</span>
+      <span class="chip">Interactive</span>
+      <span class="chip">15 min read</span>
+    </div>
+  </div>
+  <div class="page-emblem" aria-hidden="true">01</div>
+</section>
+
+<!-- 1. CONTRACT ANATOMY -->
+<section class="pad reveal" id="sec-anatomy">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">Section 01</span><h2>Anatomy of a contract</h2></div></div>
+    <p class="sec-intro">Click any clause in this sample contract to understand what it means and why it matters. Each one you open ticks off the checklist.</p>
+
+    <div class="anat-grid">
+      <!-- Contract document -->
+      <div class="contract-doc">
+        <div class="doc-head">
+          <span class="label">Sample Agreement</span>
+          <h3>Creative Services Agreement</h3>
+        </div>
+
+        <div class="contract-section" data-anatomy="parties" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-parties">
+          <div class="section-number">Clause 1</div>
+          <h4>Parties to the Agreement</h4>
+          <p class="clause-text">This Agreement is entered into between <strong>Client Sdn Bhd</strong> (Company No. 123456-X) ("the Client") and <strong>Ahmad bin Ismail</strong> (NRIC: 900101-14-XXXX) ("the Artist")...</p>
+        </div>
+        <div id="explain-parties" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p>Under the <strong>Malaysian Contracts Act 1950 (Section 10)</strong>, every valid contract needs clearly identified, competent parties. Always verify the company registration number on SSM's website. If they use a Sdn Bhd, your contract is with the <em>company</em>, not the individual directors -- this matters if they don't pay.</p>
+          </div>
+        </div>
+
+        <div class="contract-section" data-anatomy="scope" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-scope">
+          <div class="section-number">Clause 2</div>
+          <h4>Scope of Work</h4>
+          <p class="clause-text">The Artist shall deliver: (a) 5 original illustrations, (b) 2 rounds of revisions, (c) final files in PNG and AI format. Delivery within 30 days of signing...</p>
+        </div>
+        <div id="explain-scope" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p>A vague scope is the #1 cause of disputes. If the contract says "design work" without specifics, the client can keep asking for more. Always insist on: <strong>exact deliverables, number of revisions, file formats, and deadlines</strong>. Under Section 29 of the Contracts Act 1950, agreements that are uncertain are void.</p>
+          </div>
+        </div>
+
+        <div class="contract-section" data-anatomy="payment" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-payment">
+          <div class="section-number">Clause 3</div>
+          <h4>Payment Terms</h4>
+          <p class="clause-text">Total fee: RM5,000. Payment schedule: 50% deposit upon signing, 50% upon final delivery. Late payment shall incur 1.5% monthly interest...</p>
+        </div>
+        <div id="explain-payment" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p><strong>Never start work without a deposit.</strong> A 50/50 split is standard; some artists use 50/25/25 for longer projects. The late payment interest clause protects you -- without it, you'd need to go to court to claim interest. For claims under RM5,000, you can use the <strong>Small Claims Tribunal</strong> (fast and no lawyer needed).</p>
+          </div>
+        </div>
+
+        <div class="contract-section" data-anatomy="ip" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-ip">
+          <div class="section-number">Clause 4</div>
+          <h4>Intellectual Property</h4>
+          <p class="clause-text">Upon full payment, the Client shall receive a non-exclusive license to use the Work for the purposes specified in Schedule A. The Artist retains all copyright ownership...</p>
+        </div>
+        <div id="explain-ip" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p>This is THE most important clause. Under Malaysia's <strong>Copyright Act 1987</strong>, you automatically own the copyright to your work. A <strong>license</strong> lets the client use it; an <strong>assignment</strong> transfers ownership forever. Always prefer licensing over assignment. If they insist on full assignment, charge significantly more -- you're selling a permanent asset.</p>
+          </div>
+        </div>
+
+        <div class="contract-section" data-anatomy="termination" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-termination">
+          <div class="section-number">Clause 5</div>
+          <h4>Termination</h4>
+          <p class="clause-text">Either party may terminate this Agreement with 14 days written notice. Upon termination, the Client shall pay for all work completed to date. Kill fee: 25% of remaining balance...</p>
+        </div>
+        <div id="explain-termination" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p>A termination clause protects both sides. The <strong>kill fee</strong> (25% here) compensates you for turning down other work. Watch out for clauses that let the client terminate without paying anything -- that's a major red flag. Also ensure that termination requires <strong>written</strong> notice, not just a WhatsApp message that can be disputed later.</p>
+          </div>
+        </div>
+
+        <div class="contract-section" data-anatomy="disputes" role="button" tabindex="0" aria-expanded="false" aria-controls="explain-disputes">
+          <div class="section-number">Clause 6</div>
+          <h4>Dispute Resolution</h4>
+          <p class="clause-text">Any dispute arising shall first be referred to mediation at the Asian International Arbitration Centre (AIAC). This Agreement is governed by the laws of Malaysia...</p>
+        </div>
+        <div id="explain-disputes" class="explanation-panel" role="region">
+          <div class="anat-why">
+            <span class="why-lab">Why this matters</span>
+            <p>Mediation is cheaper and faster than court. The <strong>AIAC</strong> (Asian International Arbitration Centre) in KL handles creative disputes. Always ensure the governing law is <strong>Malaysian law</strong> -- foreign companies sometimes slip in foreign jurisdiction clauses, which means you'd need to sue in another country. Also check: who pays mediation/arbitration fees?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="anat-side">
+        <div class="card">
+          <h3 style="margin-top:0">Contract checklist</h3>
+          <div class="check-list" id="anatomy-checklist">
+            <label class="check-item" data-check="parties"><span class="check-box"></span> Parties identified</label>
+            <label class="check-item" data-check="scope"><span class="check-box"></span> Scope clearly defined</label>
+            <label class="check-item" data-check="payment"><span class="check-box"></span> Payment terms set</label>
+            <label class="check-item" data-check="ip"><span class="check-box"></span> IP ownership clear</label>
+            <label class="check-item" data-check="termination"><span class="check-box"></span> Termination clause present</label>
+            <label class="check-item" data-check="disputes"><span class="check-box"></span> Dispute resolution included</label>
+          </div>
+          <div style="margin-top:22px">
+            <div class="meter-head"><span>Sections explored</span><span id="checklist-count">0/6</span></div>
+            <div class="meter"><i id="checklist-bar" style="width:0%"></i></div>
+          </div>
+        </div>
+        <div class="card protip">
+          <span class="bar">Pro tip</span>
+          <p style="margin-top:16px">Under Section 10 of the Contracts Act 1950, a valid contract needs: <strong>offer, acceptance, consideration, and intention to create legal relations.</strong> An oral agreement IS legally binding in Malaysia -- but good luck proving what was agreed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. RED FLAG DETECTOR -->
+<section class="pad tint reveal" id="sec-redflag">
+  <div class="wrap-narrow">
+    <div class="sec-head"><div><span class="bar">Section 02</span><h2>Red flag detector</h2></div></div>
+    <p class="sec-intro">Real clauses from Malaysian creative contracts. Rate each one: is it safe, worth caution, or a red flag?</p>
+
+    <div id="redflag-game">
+      <!-- Playing -->
+      <div id="rf-playing">
+        <div class="rf-head">
+          <span>Clause <span id="rf-current">1</span> of <span id="rf-total">8</span></span>
+          <span>Score: <span id="rf-score">0</span></span>
+        </div>
+        <div class="meter" style="margin-bottom:8px"><i id="rf-progress-bar" style="width:12.5%"></i></div>
+
+        <div id="rf-clause-card" class="rf-clause">
+          <span class="label">Contract Clause</span>
+          <p id="rf-clause-text"></p>
+        </div>
+
+        <div class="rf-ratings">
+          <button class="rating-btn safe" data-rating="safe" aria-label="Rate as safe">Safe</button>
+          <button class="rating-btn caution" data-rating="caution" aria-label="Rate as caution">Caution</button>
+          <button class="rating-btn danger" data-rating="danger" aria-label="Rate as danger">Red Flag</button>
+        </div>
+
+        <div id="rf-feedback" class="rf-feedback hidden">
+          <div class="rf-fb-row">
+            <span id="rf-fb-icon"></span>
+            <div>
+              <p id="rf-fb-verdict"></p>
+              <p id="rf-fb-explanation"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="rf-next-wrap" class="rf-next hidden">
+          <button id="rf-next-btn" class="btn btn-primary" data-magnet>Next clause →</button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="rf-results" class="rf-results hidden">
+        <div class="score-circle" style="--score-pct:0%">
+          <span id="rf-final-score">0/8</span>
+        </div>
+        <h3 id="rf-result-title"></h3>
+        <p id="rf-result-desc"></p>
+        <button id="rf-retry" class="btn btn-primary" data-magnet>Try again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DEEP DIVE TABS -->
+<section class="pad reveal" id="sec-deepdive">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="bar">Section 03</span><h2>Contract deep dives</h2></div></div>
+    <p class="sec-intro">Specific guidance for different types of creative contracts in Malaysia.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="performance" role="tab" aria-selected="true">Performance / Gig</button>
+      <button class="tab-btn" data-tab="commission" role="tab" aria-selected="false">Commission &amp; Licensing</button>
+      <button class="tab-btn" data-tab="label" role="tab" aria-selected="false">Record Label</button>
+      <button class="tab-btn" data-tab="freelance" role="tab" aria-selected="false">Freelance Services</button>
+    </div>
+
+    <!-- Performance -->
+    <div class="tab-content active" id="tab-performance" role="tabpanel">
+      <article class="card">
+        <h3 style="margin-top:0">Key clauses to watch</h3>
+        <ol class="numlist">
+          <li><span class="n">01</span><div><strong>Performance fee &amp; payment timing</strong> -- Get paid before or on the night. "Net 30" for a gig means you might never see the money. Insist on 50% deposit minimum.</div></li>
+          <li><span class="n">02</span><div><strong>Cancellation clause</strong> -- If the venue cancels within 7 days, you should still get 50-100% of the fee. Your time was blocked. Include a "rain or shine" clause for outdoor events.</div></li>
+          <li><span class="n">03</span><div><strong>Recording &amp; livestream rights</strong> -- Does the venue plan to record or livestream? Under the Copyright Act 1987, your live performance has separate performers' rights. Charge extra for recording permissions.</div></li>
+          <li><span class="n">04</span><div><strong>Liability &amp; insurance</strong> -- Who's responsible if equipment gets damaged? What about injuries? Make sure the venue has public liability insurance and it's stated in the contract.</div></li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3 style="margin-top:0">Negotiation tips</h3>
+        <div class="prose" style="max-width:none">
+          <ul>
+            <li>Always get sound/tech rider requirements in writing as part of the contract</li>
+            <li>Negotiate separate fees for soundcheck time if it's on a different day</li>
+            <li>Include a clause for reasonable accommodation/transport for out-of-town gigs</li>
+            <li>Specify set times, load-in times, and whether there's a curfew</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card">
+        <span class="bar">What's fair · Malaysian benchmark</span>
+        <p class="benchmark">For KL/Selangor venues: Solo acts RM500-2,000/night, bands RM2,000-8,000/night (2026 rates). Always add 50% for corporate events. Festival rates should include a day rate + per diem. Don't accept "exposure" as payment -- <strong>Section 2(d) of the Contracts Act 1950</strong> requires "consideration" (something of value) for a valid contract.</p>
+      </article>
+    </div>
+
+    <!-- Commission & Licensing -->
+    <div class="tab-content" id="tab-commission" role="tabpanel">
+      <article class="card">
+        <h3 style="margin-top:0">Key clauses to watch</h3>
+        <ol class="numlist">
+          <li><span class="n">01</span><div><strong>License vs. Assignment</strong> -- A license lets the client use your work; assignment transfers ownership. Under the Copyright Act 1987, copyright assignment must be in writing. If the contract says "all rights assigned," you lose the work forever.</div></li>
+          <li><span class="n">02</span><div><strong>Scope of license</strong> -- Limit by: territory (Malaysia only vs. worldwide), duration (1 year vs. perpetuity), medium (print only vs. all media), and exclusivity (exclusive vs. non-exclusive).</div></li>
+          <li><span class="n">03</span><div><strong>Moral rights</strong> -- Under Section 25 of the Copyright Act 1987, you have the right to be credited as the creator and to object to distortion of your work. These moral rights exist even if you assign copyright. Never waive them.</div></li>
+          <li><span class="n">04</span><div><strong>Revision limits</strong> -- Specify exactly how many revision rounds are included. Additional revisions should be charged at an hourly rate stated in the contract.</div></li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3 style="margin-top:0">Negotiation tips</h3>
+        <div class="prose" style="max-width:none">
+          <ul>
+            <li>Price licensing based on usage: a small business Instagram post vs. a national billboard campaign are very different values</li>
+            <li>Retain the right to use commissioned work in your portfolio</li>
+            <li>Include a "revert clause" -- if the client doesn't use the work within 12 months, rights revert to you</li>
+            <li>Charge a premium (2-5x) for exclusive licenses vs. non-exclusive</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card">
+        <span class="bar">What's fair · Malaysian benchmark</span>
+        <p class="benchmark">Commission pricing: Illustration RM800-5,000 per piece (depending on complexity and usage). Licensing: charge 20-40% of the commission fee per year for ongoing use. Full copyright assignment: 3-5x the commission fee. These are guidelines -- your rate depends on experience, demand, and the client's budget.</p>
+      </article>
+    </div>
+
+    <!-- Record Label -->
+    <div class="tab-content" id="tab-label" role="tabpanel">
+      <article class="card">
+        <h3 style="margin-top:0">Key clauses to watch</h3>
+        <ol class="numlist">
+          <li><span class="n">01</span><div><strong>Master ownership</strong> -- Who owns the master recordings? Traditional deals: the label owns masters. Modern approach: artist retains masters, label gets exclusive license for a set period (3-7 years). This is the single biggest financial decision of your music career.</div></li>
+          <li><span class="n">02</span><div><strong>Royalty splits &amp; accounting</strong> -- Standard artist royalty: 15-25% of net receipts for major labels, 50/50 for indie. Insist on quarterly statements and the right to audit. "Net receipts" can be manipulated -- demand clear definitions of deductions.</div></li>
+          <li><span class="n">03</span><div><strong>Album commitment / option clauses</strong> -- A "3 album + 2 option" deal means the label can lock you in for 5 albums over potentially 10+ years. Option clauses should have minimum commitment terms from the label (marketing spend, release timeline).</div></li>
+          <li><span class="n">04</span><div><strong>360 deal terms</strong> -- Many Malaysian labels now want a cut of live performance, merchandise, and endorsements. If you agree, the percentage should be lower (5-15%) and the label must actively contribute to those revenue streams.</div></li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3 style="margin-top:0">Negotiation tips</h3>
+        <div class="prose" style="max-width:none">
+          <ul>
+            <li>Never sign a record deal without a lawyer reviewing it. Full stop.</li>
+            <li>Push for a "sunset clause" -- the label's percentage decreases over time</li>
+            <li>Negotiate reversion of masters after a specific period (5-10 years is fair)</li>
+            <li>Ensure you retain songwriting/publishing rights separately from recording rights</li>
+            <li>Get approval rights over release dates, artwork, and marketing plans</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card">
+        <span class="bar">What's fair · Malaysian benchmark</span>
+        <p class="benchmark">Malaysian indie labels: 50/50 profit split after recoupment, 3-5 year term, artist retains masters after term. Advances: RM5,000-50,000 per album (indie). Always calculate: will the advance be recouped from your royalties? If yes, you're essentially getting a loan. Make sure the recoupment formula is clear and doesn't include "cross-collateralisation" (using one album's debt against another's earnings).</p>
+      </article>
+    </div>
+
+    <!-- Freelance Services -->
+    <div class="tab-content" id="tab-freelance" role="tabpanel">
+      <article class="card">
+        <h3 style="margin-top:0">Key clauses to watch</h3>
+        <ol class="numlist">
+          <li><span class="n">01</span><div><strong>Independent contractor vs. employee</strong> -- Ensure the contract clearly states you're an independent contractor. If you're treated as an employee (fixed hours, provided equipment, exclusive work), you may have rights under the Employment Act 1955 -- and the client has obligations like EPF, SOCSO.</div></li>
+          <li><span class="n">02</span><div><strong>Non-compete clauses</strong> -- Be very careful. A clause preventing you from working with "competitors" for 2+ years can cripple your career. Under Malaysian law, overly broad non-competes may be unenforceable, but legal challenges are expensive.</div></li>
+          <li><span class="n">03</span><div><strong>Scope creep protection</strong> -- Include a clear change order process: any work beyond the original scope requires a written amendment with additional fees agreed before work begins.</div></li>
+          <li><span class="n">04</span><div><strong>Indemnification</strong> -- Watch for clauses requiring you to "indemnify and hold harmless" the client for everything. Limit your liability to the total contract value. Never accept unlimited liability.</div></li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3 style="margin-top:0">Negotiation tips</h3>
+        <div class="prose" style="max-width:none">
+          <ul>
+            <li>Use milestone-based payments rather than lump sum at completion</li>
+            <li>Include a "pause clause" -- if the client ghosts for 30 days, the project is deemed complete and final payment is due</li>
+            <li>Retain all work product until final payment is received (this is your leverage)</li>
+            <li>Add an SST exemption note if your annual revenue is below the RM500,000 threshold</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card">
+        <span class="bar">What's fair · Malaysian benchmark</span>
+        <p class="benchmark">Freelance rates vary widely. Graphic design: RM80-250/hour. Web development: RM100-400/hour. Photography: RM1,500-8,000/day. Videography: RM2,000-15,000/project. Always charge project rates (not hourly) for creative work where possible -- hourly penalises efficiency. Payment terms: Net 14 is ideal, Net 30 is acceptable, anything beyond is unfair to freelancers.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. NEGOTIATION RANKING -->
+<section class="pad tint reveal" id="sec-negotiation">
+  <div class="wrap-narrow">
+    <div class="sec-head"><div><span class="bar">Section 04</span><h2>Negotiation priorities</h2></div></div>
+    <p class="sec-intro">When reviewing a contract, what should you negotiate first? Drag to rank these from most to least important, then check against our recommended order.</p>
+
+    <div id="negotiation-game">
+      <div id="rank-list" class="rank-list" role="list" aria-label="Drag to reorder negotiation priorities"></div>
+
+      <div class="rank-actions">
+        <button id="rank-check" class="btn btn-primary" data-magnet>Check my order</button>
+        <button id="rank-reset" class="btn" data-magnet>Shuffle &amp; reset</button>
+      </div>
+
+      <div id="rank-feedback" class="rank-note hidden">
+        <p id="rank-fb-text"></p>
+        <p id="rank-fb-detail"></p>
+      </div>
+
+      <div id="rank-answer" class="rank-note answer hidden">
+        <span class="bar" style="--pillar:var(--indigo)">Recommended priority order</span>
+        <div class="prose" style="max-width:none;margin-top:16px">
+          <ol>
+            <li><strong>Payment terms &amp; amounts</strong> -- Money first. Everything else is secondary if you're not getting paid fairly.</li>
+            <li><strong>Intellectual property / ownership</strong> -- This determines the long-term value of your work. Once assigned, it's gone.</li>
+            <li><strong>Scope of work</strong> -- Clear boundaries prevent scope creep and protect your time.</li>
+            <li><strong>Termination &amp; kill fee</strong> -- Your safety net. What happens if things go wrong?</li>
+            <li><strong>Timeline &amp; deadlines</strong> -- Unrealistic timelines lead to burnout and subpar work.</li>
+            <li><strong>Non-compete / exclusivity</strong> -- Limit how much this contract restricts your other opportunities.</li>
+            <li><strong>Dispute resolution</strong> -- Important but usually standard. Mediation first is always best.</li>
+            <li><strong>Confidentiality terms</strong> -- Usually reasonable, but check the duration and scope.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. FAQ -->
+<section class="pad reveal" id="sec-faq">
+  <div class="wrap-narrow">
+    <div class="sec-head"><div><span class="bar">Section 05</span><h2>Frequently asked questions</h2></div></div>
+    <p class="sec-intro">Common questions about contracts for Malaysian creatives.</p>
+
+    <div class="faq">
+      <details>
+        <summary><span class="q-idx">01</span><span>Do I need a written contract for every gig?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p>Legally, no. Under the Malaysian Contracts Act 1950, oral agreements are valid and enforceable (except for land-related contracts, which must be in writing). However, <strong>practically, yes -- always get it in writing.</strong></p>
+          <p style="margin-top:12px">The problem with oral agreements isn't legality; it's <strong>proof</strong>. In a dispute, it becomes your word against theirs. Even a simple email confirmation or WhatsApp message confirming the key terms (fee, date, scope) is better than nothing. For anything above RM1,000, use a proper written agreement.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">02</span><span>Can I negotiate a standard contract?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p><strong>Absolutely. There's no such thing as a "standard" non-negotiable contract.</strong> When someone says "this is our standard contract," what they mean is "this is the version that's best for us." Everything is negotiable.</p>
+          <p style="margin-top:12px">Common negotiation points: payment terms, IP ownership, scope limits, revision rounds, and termination conditions. Start by marking up the contract with your requested changes and send it back. The worst they can say is no. If they refuse to negotiate any terms at all, that itself is a red flag about the working relationship.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">03</span><span>What if I already signed something unfair?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p>Don't panic. You may have options:</p>
+          <ul style="margin-top:8px;list-style:none;padding:0">
+            <li style="margin-top:8px"><strong>1. Check for unconscionability</strong> -- Under Malaysian contract law, terms that are grossly unfair may be voidable, especially if there was unequal bargaining power (e.g., a major label vs. a 19-year-old first-time artist).</li>
+            <li style="margin-top:8px"><strong>2. Look for breach by the other side</strong> -- If the other party hasn't upheld their obligations, you may have grounds to terminate.</li>
+            <li style="margin-top:8px"><strong>3. Renegotiate</strong> -- Approach the other party professionally. Many businesses prefer to renegotiate rather than lose a creative partner.</li>
+            <li style="margin-top:8px"><strong>4. Seek legal advice</strong> -- <a href="../../get-help/">Contact ALIM</a> or the Legal Aid Department for free guidance.</li>
+          </ul>
+          <p style="margin-top:12px">Under <strong>Section 19 of the Contracts Act 1950</strong>, contracts made under coercion, undue influence, fraud, or misrepresentation are voidable.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">04</span><span>How long should a contract be?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p>Length doesn't equal quality. A one-page contract that covers the essentials is better than a 50-page document full of confusing legalese.</p>
+          <p style="margin-top:12px">For most freelance creative work, <strong>2-5 pages</strong> is sufficient. It should cover: parties, scope, payment, IP, termination, and dispute resolution. Record label contracts tend to be longer (15-40 pages) due to the complexity of rights involved. If a contract is very long, focus on the commercial terms first (money, rights, duration) before the legal boilerplate.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">05</span><span>What's the difference between a license and an assignment?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p>Think of it like a house:</p>
+          <ul style="margin-top:8px;list-style:none;padding:0">
+            <li style="margin-top:8px"><strong>License = renting out a room.</strong> You still own the house. The tenant (client) can use the room under agreed conditions (duration, purpose). You can license the same work to multiple clients (if non-exclusive).</li>
+            <li style="margin-top:8px"><strong>Assignment = selling the house.</strong> The buyer (client) now owns it completely. You can't use it anymore without their permission. It's permanent and irreversible (unless the assignment contract says otherwise).</li>
+          </ul>
+          <p style="margin-top:12px">Under the <strong>Copyright Act 1987 (Section 27)</strong>, copyright assignment must be in writing and signed. Always prefer licensing. If a client demands assignment, charge 3-5x your normal rate -- you're selling an asset, not renting a service.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">06</span><span>Do WhatsApp agreements count as contracts?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p><strong>Yes, they can.</strong> Under the Electronic Commerce Act 2006 and the Contracts Act 1950, electronic communications (including WhatsApp messages) can form a valid contract if the essential elements are present: offer, acceptance, consideration, and intention to create legal relations.</p>
+          <p style="margin-top:12px">Malaysian courts have recognised WhatsApp messages as evidence in contract disputes. However, a proper written agreement is always stronger. If you must agree via WhatsApp, send a summary message listing all key terms and get explicit confirmation ("I agree to these terms"). Screenshot and back up everything.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span class="q-idx">07</span><span>What should I do if a client refuses to pay?</span><span class="q-sign">+</span></summary>
+        <div class="a">
+          <p>Step-by-step escalation:</p>
+          <ol style="margin-top:8px;padding-left:20px">
+            <li style="margin-top:8px"><strong>Send a formal demand letter</strong> -- Give them 14 days to pay. Be professional but firm. Mention that you will pursue legal action.</li>
+            <li style="margin-top:8px"><strong>Send a lawyer's letter</strong> -- This often resolves 80% of payment disputes. The cost is typically RM200-500.</li>
+            <li style="margin-top:8px"><strong>Small Claims Tribunal</strong> -- For claims up to RM5,000. No lawyer needed, filing fee is only RM10. Fast resolution (usually within 60 days). Try our <a href="../../small-claim-drafter/">Small Claim Drafter</a> tool.</li>
+            <li style="margin-top:8px"><strong>Magistrate's Court</strong> -- For claims RM5,001-RM100,000. You'll need a lawyer.</li>
+            <li style="margin-top:8px"><strong>Sessions Court</strong> -- For claims above RM100,000.</li>
+          </ol>
+          <p style="margin-top:12px">Prevention is better than cure: always get a deposit, use milestone payments, and retain work product until final payment.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pad tint reveal" id="sec-cta">
+  <div class="wrap-narrow" style="text-align:center">
+    <span class="bar">Need more help?</span>
+    <h2 class="display" style="font-size:clamp(30px,5vw,58px);margin:18px 0 0">If you have a contract that needs a second read.</h2>
+    <p class="prose" style="margin:16px auto 0;max-width:56ch">If you have a contract you need reviewed, or you're unsure about terms you've been offered, reach out to ALIM. All consultations are free and confidential.</p>
+    <div class="hero-ctas" style="justify-content:center;margin-top:28px">
+      <a class="btn btn-primary" href="../../get-help/" data-magnet>Get legal help →</a>
+      <a class="btn btn-ghost" href="../index.html" data-magnet>Back to resources</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px"><a class="ulink" href="https://www.thestar.com.my/lifestyle/culture/2025/07/05/039art-x-law-offers-free-legal-support-to-help-artists-navigate-legal-jargon" target="_blank" rel="noopener">★ Featured in The Star →</a></p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../../get-help/">Get Help</a></li>
+          <li><a href="../../our-work/">Our Work</a></li>
+          <li><a href="../../mission/">Our Charter</a></li>
+          <li><a href="../../resources/">Resources</a></li>
+          <li><a href="../../join-us/">Join the Movement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="../../about-alim/">About Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+          <li><a href="../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../terms-of-service/">Terms of Service</a></li>
+          <li><a href="../../sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="dot" aria-hidden="true"></div>
+<script src="../../assets/alim.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ========== 1. CONTRACT ANATOMY ========== */
+  var anatomySections = document.querySelectorAll('.contract-section');
+  var checkedSections = new Set();
+
+  anatomySections.forEach(function (section) {
+    var handler = function () {
+      var key = section.dataset.anatomy;
+      var panel = section.nextElementSibling;
+      var isOpen = panel.classList.contains('open');
+
+      document.querySelectorAll('.explanation-panel').forEach(function (p) { p.classList.remove('open'); });
+      anatomySections.forEach(function (s) {
+        s.classList.remove('active');
+        s.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        panel.classList.add('open');
+        section.classList.add('active');
+        section.setAttribute('aria-expanded', 'true');
+      }
+
+      if (!checkedSections.has(key)) {
+        checkedSections.add(key);
+        var checkLabel = document.querySelector('[data-check="' + key + '"]');
+        if (checkLabel) {
+          var box = checkLabel.querySelector('.check-box');
+          box.style.borderColor = 'var(--pillar)';
+          box.style.background = 'var(--pillar)';
+          box.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
+        }
+        var count = checkedSections.size;
+        document.getElementById('checklist-count').textContent = count + '/6';
+        document.getElementById('checklist-bar').style.width = (count / 6 * 100) + '%';
+      }
+    };
+
+    section.addEventListener('click', handler);
+    section.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+    });
+  });
+
+  /* ========== 2. RED FLAG DETECTOR ========== */
+  var rfClauses = [
+    {
+      text: '"All intellectual property created during the engagement shall belong exclusively to the Client."',
+      answer: 'danger',
+      explanation: 'This is a full IP assignment clause. Under Malaysia\'s Copyright Act 1987, you automatically own your creative work. This clause strips that away entirely. If you agree, you lose all rights to reuse, display, or profit from your own work. Negotiate for a license instead, or charge significantly more for full assignment.'
+    },
+    {
+      text: '"Payment shall be made within 30 days of invoice."',
+      answer: 'safe',
+      explanation: 'Net 30 is a standard and reasonable payment term in Malaysia. It gives the client a fair window to process payment. For freelancers, Net 14 is better, but Net 30 is acceptable. Make sure to add a late payment interest clause (e.g., 1.5% per month) to incentivise timely payment.'
+    },
+    {
+      text: '"The Artist waives all moral rights in connection with the Work."',
+      answer: 'danger',
+      explanation: 'Moral rights under Section 25 of the Copyright Act 1987 include your right to be credited and to prevent distortion of your work. Waiving moral rights means the client could remove your name, alter your work beyond recognition, or use it in ways you find objectionable -- and you\'d have no legal recourse. Never waive moral rights.'
+    },
+    {
+      text: '"Either party may terminate with 14 days written notice."',
+      answer: 'safe',
+      explanation: 'A mutual termination clause with reasonable notice is a sign of a fair contract. 14 days is standard. Make sure it also specifies payment for work completed to date and includes a kill fee for the remaining scope. Written notice creates a clear paper trail.'
+    },
+    {
+      text: '"The Client may use the work in perpetuity across all media, territories, and formats, whether now known or hereafter devised."',
+      answer: 'caution',
+      explanation: 'The breadth of this license is concerning. "Perpetuity" means forever. "All media... hereafter devised" means any future technology. While not necessarily a red flag (some projects require broad licenses), the compensation should reflect this unlimited usage. If they\'re paying a one-time flat fee for perpetual worldwide rights, negotiate for a higher fee or royalty structure.'
+    },
+    {
+      text: '"Confidentiality obligations survive termination for 2 years."',
+      answer: 'safe',
+      explanation: 'A 2-year confidentiality survival period is reasonable and standard. It protects legitimate business secrets. Just make sure the definition of "confidential information" is reasonable and doesn\'t prevent you from showing the work in your portfolio (negotiate a portfolio exception).'
+    },
+    {
+      text: '"The Artist shall not work with any competing clients, brands, or entities in the same industry for a period of 3 years following termination."',
+      answer: 'danger',
+      explanation: 'A 3-year non-compete is extremely aggressive and could effectively end your career in that industry. While Malaysian courts may not enforce overly broad non-competes (per Section 28 of the Contracts Act 1950 which renders restraint of trade agreements void), legal challenges are expensive and stressful. Push back hard: limit to 6 months maximum, narrow the definition of "competing," or refuse entirely.'
+    },
+    {
+      text: '"Disputes shall be resolved through mediation at the Asian International Arbitration Centre (AIAC) before either party may commence court proceedings."',
+      answer: 'safe',
+      explanation: 'Mediation-first clauses are excellent. Mediation is cheaper, faster, and more collaborative than court proceedings. The AIAC in Kuala Lumpur is a respected institution. This clause means you won\'t be dragged straight into expensive litigation. It\'s a green flag that shows the other party prefers to resolve disputes fairly.'
+    }
+  ];
+
+  var rfIndex = 0, rfScore = 0, rfAnswered = false;
+  var rfCurrentEl = document.getElementById('rf-current');
+  var rfTotalEl = document.getElementById('rf-total');
+  var rfScoreEl = document.getElementById('rf-score');
+  var rfClauseText = document.getElementById('rf-clause-text');
+  var rfProgressBarEl = document.getElementById('rf-progress-bar');
+  var rfFeedback = document.getElementById('rf-feedback');
+  var rfNextWrap = document.getElementById('rf-next-wrap');
+  var rfPlaying = document.getElementById('rf-playing');
+  var rfResults = document.getElementById('rf-results');
+
+  rfTotalEl.textContent = rfClauses.length;
+
+  function loadClause() {
+    rfAnswered = false;
+    rfCurrentEl.textContent = rfIndex + 1;
+    rfClauseText.textContent = rfClauses[rfIndex].text;
+    rfProgressBarEl.style.width = ((rfIndex + 1) / rfClauses.length * 100) + '%';
+    rfFeedback.classList.add('hidden');
+    rfNextWrap.classList.add('hidden');
+    document.querySelectorAll('.rating-btn').forEach(function (b) { b.classList.remove('selected'); });
+  }
+  loadClause();
+
+  document.querySelectorAll('.rating-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (rfAnswered) return;
+      rfAnswered = true;
+
+      var rating = btn.dataset.rating;
+      var clause = rfClauses[rfIndex];
+      var correct = rating === clause.answer;
+
+      btn.classList.add('selected');
+      if (correct) rfScore++;
+      rfScoreEl.textContent = rfScore;
+
+      var icon = document.getElementById('rf-fb-icon');
+      var verdict = document.getElementById('rf-fb-verdict');
+      var explanation = document.getElementById('rf-fb-explanation');
+
+      if (correct) {
+        icon.textContent = '✓';
+        icon.style.color = 'var(--riso-green)';
+        verdict.textContent = 'Correct!';
+        verdict.style.color = 'var(--riso-green)';
+      } else {
+        icon.textContent = '✗';
+        icon.style.color = 'var(--vermillion)';
+        verdict.textContent = 'Not quite. This is: ' + clause.answer.charAt(0).toUpperCase() + clause.answer.slice(1);
+        verdict.style.color = 'var(--vermillion)';
+      }
+      explanation.textContent = clause.explanation;
+      rfFeedback.classList.remove('hidden');
+      rfNextWrap.classList.remove('hidden');
+    });
+  });
+
+  document.getElementById('rf-next-btn').addEventListener('click', function () {
+    rfIndex++;
+    if (rfIndex >= rfClauses.length) {
+      showRfResults();
+    } else {
+      loadClause();
+    }
+  });
+
+  function showRfResults() {
+    rfPlaying.classList.add('hidden');
+    rfResults.classList.remove('hidden');
+
+    var pct = Math.round(rfScore / rfClauses.length * 100);
+    document.getElementById('rf-final-score').textContent = rfScore + '/' + rfClauses.length;
+    document.querySelector('.score-circle').style.setProperty('--score-pct', pct + '%');
+
+    var title = document.getElementById('rf-result-title');
+    var desc = document.getElementById('rf-result-desc');
+
+    if (pct >= 88) {
+      title.textContent = 'Contract Law Expert!';
+      desc.textContent = 'You clearly know your way around a contract. You\'d make a solid negotiator for any creative deal in Malaysia.';
+    } else if (pct >= 63) {
+      title.textContent = 'Solid Awareness';
+      desc.textContent = 'You\'ve got a good foundation. A few more reads through this guide and you\'ll spot red flags in your sleep.';
+    } else if (pct >= 38) {
+      title.textContent = 'Getting There';
+      desc.textContent = 'You caught some key issues but missed a few. Review the contract anatomy section above and try again.';
+    } else {
+      title.textContent = 'Time to Study Up';
+      desc.textContent = 'Don\'t worry -- that\'s exactly why this guide exists. Read through each section above and come back for another round.';
+    }
+  }
+
+  document.getElementById('rf-retry').addEventListener('click', function () {
+    rfIndex = 0; rfScore = 0;
+    rfScoreEl.textContent = 0;
+    rfPlaying.classList.remove('hidden');
+    rfResults.classList.add('hidden');
+    loadClause();
+  });
+
+  /* ========== 3. TABS ========== */
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      document.querySelectorAll('.tab-content').forEach(function (c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ========== 4. NEGOTIATION RANKING ========== */
+  var rankItems = [
+    { id: 'payment', label: 'Payment terms & amounts', correctRank: 1 },
+    { id: 'ip', label: 'Intellectual property / ownership', correctRank: 2 },
+    { id: 'scope', label: 'Scope of work', correctRank: 3 },
+    { id: 'termination', label: 'Termination & kill fee', correctRank: 4 },
+    { id: 'timeline', label: 'Timeline & deadlines', correctRank: 5 },
+    { id: 'noncompete', label: 'Non-compete / exclusivity', correctRank: 6 },
+    { id: 'disputes', label: 'Dispute resolution', correctRank: 7 },
+    { id: 'confidentiality', label: 'Confidentiality terms', correctRank: 8 }
+  ];
+
+  var currentOrder = [];
+  var rankList = document.getElementById('rank-list');
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function renderRankList() {
+    rankList.innerHTML = '';
+    currentOrder.forEach(function (item, idx) {
+      var el = document.createElement('div');
+      el.className = 'rank-item';
+      el.draggable = true;
+      el.dataset.id = item.id;
+      el.setAttribute('role', 'listitem');
+      el.setAttribute('aria-label', 'Priority ' + (idx + 1) + ': ' + item.label);
+      el.innerHTML = '<span class="rank-number">' + (idx + 1) + '</span><span class="rank-label">' + item.label + '</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"></path></svg>';
+      rankList.appendChild(el);
+    });
+    setupDragDrop();
+  }
+
+  function setupDragDrop() {
+    var dragEl = null;
+    var items = rankList.querySelectorAll('.rank-item');
+
+    items.forEach(function (item) {
+      item.addEventListener('dragstart', function (e) {
+        dragEl = item;
+        item.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      item.addEventListener('dragend', function () {
+        if (dragEl) dragEl.classList.remove('dragging');
+        dragEl = null;
+        currentOrder = Array.prototype.slice.call(rankList.querySelectorAll('.rank-item')).map(function (el) { return rankItems.find(function (r) { return r.id === el.dataset.id; }); });
+        rankList.querySelectorAll('.rank-item').forEach(function (el, i) {
+          el.querySelector('.rank-number').textContent = i + 1;
+          el.setAttribute('aria-label', 'Priority ' + (i + 1) + ': ' + el.querySelector('.rank-label').textContent);
+        });
+      });
+      item.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        var rect = item.getBoundingClientRect();
+        var midY = rect.top + rect.height / 2;
+        if (e.clientY < midY) {
+          rankList.insertBefore(dragEl, item);
+        } else {
+          rankList.insertBefore(dragEl, item.nextSibling);
+        }
+      });
+    });
+
+    // Touch support
+    var touchItem = null;
+    items.forEach(function (item) {
+      item.addEventListener('touchstart', function (e) {
+        touchItem = item;
+        item.classList.add('dragging');
+      }, { passive: true });
+      item.addEventListener('touchmove', function (e) {
+        if (!touchItem) return;
+        e.preventDefault();
+        var touchY = e.touches[0].clientY;
+        var elements = Array.prototype.slice.call(rankList.querySelectorAll('.rank-item:not(.dragging)'));
+        for (var k = 0; k < elements.length; k++) {
+          var el = elements[k];
+          var rect = el.getBoundingClientRect();
+          if (touchY < rect.top + rect.height / 2) {
+            rankList.insertBefore(touchItem, el);
+            break;
+          } else if (el === elements[elements.length - 1]) {
+            rankList.appendChild(touchItem);
+          }
+        }
+      }, { passive: false });
+      item.addEventListener('touchend', function () {
+        if (touchItem) {
+          touchItem.classList.remove('dragging');
+          currentOrder = Array.prototype.slice.call(rankList.querySelectorAll('.rank-item')).map(function (el) { return rankItems.find(function (r) { return r.id === el.dataset.id; }); });
+          rankList.querySelectorAll('.rank-item').forEach(function (el, i) {
+            el.querySelector('.rank-number').textContent = i + 1;
+          });
+          touchItem = null;
+        }
+      });
+    });
+  }
+
+  currentOrder = shuffle(rankItems);
+  renderRankList();
+
+  document.getElementById('rank-check').addEventListener('click', function () {
+    currentOrder = Array.prototype.slice.call(rankList.querySelectorAll('.rank-item')).map(function (el) { return rankItems.find(function (r) { return r.id === el.dataset.id; }); });
+
+    var correctCount = 0;
+    var items = rankList.querySelectorAll('.rank-item');
+    items.forEach(function (el, idx) {
+      var item = currentOrder[idx];
+      el.classList.add('placed');
+      if (item.correctRank === idx + 1) {
+        el.classList.add('correct-pos');
+        correctCount++;
+      }
+    });
+
+    var fb = document.getElementById('rank-feedback');
+    var fbText = document.getElementById('rank-fb-text');
+    var fbDetail = document.getElementById('rank-fb-detail');
+    fb.classList.remove('hidden');
+
+    if (correctCount === rankItems.length) {
+      fbText.textContent = 'Perfect order! You nailed the negotiation priorities.';
+      fbText.style.color = 'var(--riso-green)';
+      fbDetail.textContent = 'You clearly understand what matters most when reviewing a creative contract.';
+    } else if (correctCount >= 5) {
+      fbText.textContent = correctCount + '/' + rankItems.length + ' in the right position. Very close!';
+      fbText.style.color = 'var(--ochre)';
+      fbDetail.textContent = 'Check the recommended order below to see the full rationale.';
+    } else {
+      fbText.textContent = correctCount + '/' + rankItems.length + ' in the right position.';
+      fbText.style.color = 'var(--vermillion)';
+      fbDetail.textContent = 'No worries -- check the recommended order below. The key insight: always negotiate money and IP first.';
+    }
+
+    document.getElementById('rank-answer').classList.remove('hidden');
+  });
+
+  document.getElementById('rank-reset').addEventListener('click', function () {
+    currentOrder = shuffle(rankItems);
+    renderRankList();
+    document.getElementById('rank-feedback').classList.add('hidden');
+    document.getElementById('rank-answer').classList.add('hidden');
+  });
+
+})();
+</script>
+</body>
+</html>

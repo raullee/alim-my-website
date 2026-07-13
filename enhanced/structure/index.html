@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Structure — ALIM</title>
+<meta name="description" content="Proposed two-stream operational model for ALIM. Working draft for the 25 May 2026 meeting.">
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Instrument+Sans:ital,wght@0,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --paper:#F2EBDD; --paper-2:#ECE4D2; --paper-3:#E5DBC4; --ink:#1A1612; --ink-2:#3C342A; --ink-3:#6B5F4E; --vermillion:#D8311F; --ochre:#B8862E; --sage:#4D5747; }
+  html,body{ background:var(--paper); color:var(--ink); }
+  body{ font-family:'Instrument Sans',ui-sans-serif,system-ui; -webkit-font-smoothing:antialiased; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.3; mix-blend-mode:multiply;
+    background-image: radial-gradient(rgba(26,22,18,.10) 1px, transparent 1px), radial-gradient(rgba(26,22,18,.06) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px; }
+  .display{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 760; letter-spacing:-0.025em; line-height:.92; }
+  .display-italic{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 460; line-height:.95; }
+  .editorial{ font-family:'Fraunces',Georgia,serif; font-variation-settings:"opsz" 36,"SOFT" 50,"wght" 500; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .label{ font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); }
+  .ornament{ color:var(--vermillion); font-family:'Fraunces',serif; font-style:italic; }
+  .hl{ background-image: linear-gradient(transparent 65%, rgba(216,49,31,.22) 65%); padding:0 .12em; }
+  .stamp{ display:inline-flex; border:1.5px solid var(--vermillion); color:var(--vermillion); padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; transform:rotate(-3deg); border-radius:2px; }
+  ::selection{ background:var(--vermillion); color:var(--paper); }
+  .stream{ background:var(--paper-2); border:1px solid var(--paper-3); padding:32px; border-radius:4px; }
+  .stream.policy{ border-top:4px solid var(--vermillion); }
+  .stream.ops{ border-top:4px solid var(--ink); }
+  .stream.shared{ border-top:4px solid var(--ochre); }
+  .role{ padding:14px 0; border-bottom:1px dashed var(--paper-3); display:grid; grid-template-columns: 1fr auto; gap:1rem; align-items:baseline; }
+  .role:last-child{ border-bottom:0; }
+  .role h4{ font-family:'Fraunces',serif; font-variation-settings:"opsz" 36,"wght" 600; font-size:18px; }
+  .role .who{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); }
+  .role .who.open{ color:var(--vermillion); }
+  .role p{ font-size:14px; color:var(--ink-2); margin-top:4px; line-height:1.55; grid-column:1/-1; }
+  .step{ display:flex; gap:1rem; align-items:flex-start; padding:12px 0; }
+  .step .n{ font-family:'Fraunces',serif; font-style:italic; color:var(--vermillion); font-size:28px; line-height:1; flex:0 0 40px; }
+</style>
+</head>
+<body class="antialiased">
+
+<header class="border-b" style="border-color:var(--paper-3); background: color-mix(in oklab, var(--paper) 86%, transparent); backdrop-filter:blur(18px);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2">
+      <span class="display text-[24px]" style="font-variation-settings:'opsz' 144,'SOFT' 100,'wght' 720; font-style:italic;">Alim</span>
+      <span class="mono text-[10px] tracking-[0.22em] uppercase pt-1" style="color:var(--ink-3)">·my / structure</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/">Home</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/register/">Register</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/lawyers/">Counsel</a>
+      <a class="mono text-[12px] tracking-[0.18em] uppercase" href="/cases/">Docket</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-6 md:px-10 py-12 md:py-20 relative" style="z-index:2;">
+
+  <section class="mb-12 md:mb-16">
+    <div class="flex items-center gap-4 mb-6">
+      <span class="stamp">Draft v0.1</span>
+      <span class="label">For discussion · 25 May 2026 meeting</span>
+    </div>
+    <h1 class="display text-[44px] sm:text-[72px] md:text-[104px]">
+      Two
+      <span class="display-italic ornament">streams,</span>
+      one clinic.
+    </h1>
+    <p class="editorial text-[18px] md:text-[20px] leading-[1.55] mt-8 max-w-[68ch]" style="color:var(--ink-2)">
+      The 17 May AGM agreed in principle on a two-stream model: <span class="hl">policy / advocacy</span> running on a quarterly cadence, and <span class="hl">day-to-day intake</span> running on a weekly cadence, with a shared infrastructure layer underneath. This is a working draft for Nanda to iterate on. Open slots are marked <span style="color:var(--vermillion); font-weight:600;">in red</span>.
+    </p>
+  </section>
+
+  <!-- Streams -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+
+    <div class="stream policy">
+      <p class="label mb-2">Stream A</p>
+      <h2 class="display text-[34px]">Policy &amp; <span class="display-italic ornament">Advocacy</span></h2>
+      <p class="text-[14px] mt-2" style="color:var(--ink-3)">Cadence: quarterly · Output: position papers, judicial briefs, ministry engagement</p>
+
+      <div class="mt-6">
+        <div class="role"><h4>Policy Lead</h4><span class="who open">Open</span><p>Owns the policy roadmap: Gig Workers Act inclusion, music royalty reform, gallery practices, moral-rights enforcement track. Reports to board quarterly.</p></div>
+        <div class="role"><h4>Litigation Coordinator</h4><span class="who">Karl + Fahri</span><p>Drives intervention strategy on judicial reviews (MyIPO JR), constitutional defence (Mentega Terbang), and high-stakes defamation defence (MACP).</p></div>
+        <div class="role"><h4>Government Affairs</h4><span class="who open">Open</span><p>Single point of contact for ministry, MyIPO, Balai Seni Negara, and the proposed Gig Workers Commission.</p></div>
+        <div class="role"><h4>Research / Brief Writer</h4><span class="who open">Open</span><p>Drafts position papers, comparative-law memos (Arts Law Centre AU), and submission templates. Works with Greek Worker Council collaborator.</p></div>
+      </div>
+    </div>
+
+    <div class="stream ops">
+      <p class="label mb-2">Stream B</p>
+      <h2 class="display text-[34px]">Intake &amp; <span class="display-italic ornament">Triage</span></h2>
+      <p class="text-[14px] mt-2" style="color:var(--ink-3)">Cadence: weekly · Output: artist consults, lawyer match, file follow-up · SLA: 14 days non-urgent</p>
+
+      <div class="mt-6">
+        <div class="role"><h4>Operations Lead</h4><span class="who open">Open</span><p>Owns the weekly cycle. Triage queue, lawyer match, SLA enforcement, file closure. The job most at risk of burnout — must be designed for delegation.</p></div>
+        <div class="role"><h4>IP Track Lead</h4><span class="who">Anisa (capped)</span><p>Currently the bottleneck. Must train others (training-of-trainers session). Hours protected from week-to-week triage.</p></div>
+        <div class="role"><h4>Counsel Matching</h4><span class="who open">Open</span><p>Runs the Amicus + ALIM lawyer database, matches files to volunteer counsel by expertise, capacity, and language.</p></div>
+        <div class="role"><h4>Pro Se Tools</h4><span class="who">Raul (in-kind)</span><p>Small Claim Drafter (MatSelamat) and similar self-help tools for the 30–40% of intake that can be resolved without counsel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared layer -->
+  <section class="stream shared mb-10">
+    <p class="label mb-2">Shared infrastructure</p>
+    <h2 class="display text-[34px]">The <span class="display-italic ornament">undercarriage.</span></h2>
+    <p class="text-[14px] mt-2" style="color:var(--ink-3)">Both streams depend on these functions. Underbuilt right now.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 mt-6">
+      <div class="role"><h4>CLBG Registration</h4><span class="who">Fahri + Fareez Shah</span><p>Two-week sprint to complete Company Limited by Guarantee filing. Unlocks grants &amp; bank engagement.</p></div>
+      <div class="role"><h4>Finance / Treasury</h4><span class="who open">Open</span><p>Books, grant reporting, monthly burn, stipend disbursement, donor receipts.</p></div>
+      <div class="role"><h4>Communications</h4><span class="who">Fahri (interim)</span><p>Social, statistics, content. Will be powered by data from the registry &amp; intake pipeline.</p></div>
+      <div class="role"><h4>Technology / Web</h4><span class="who">Raul</span><p>alim.my, registry, counsel roster, docket, intake pipeline, analytics. <strong>Stipend proposed.</strong></p></div>
+      <div class="role"><h4>Partnerships</h4><span class="who">Karl + Nick + Marisa</span><p>Balai Seni Negara, PROFIMA, Karyawan, MyDance Alliance, Reformasi, grassroots Arts Council.</p></div>
+      <div class="role"><h4>Office / Venue</h4><span class="who open">Open</span><p>The new June office space: listening room, coffee, podcasting booths. Self-sustaining centre — needs an operator.</p></div>
+    </div>
+  </section>
+
+  <!-- Flow -->
+  <section class="border-t pt-10 mb-10" style="border-color:var(--paper-3);">
+    <p class="label mb-6">How a query moves through</p>
+    <h2 class="display text-[34px] mb-6">From <span class="display-italic ornament">DM</span> to <span class="display-italic ornament">closure.</span></h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div>
+        <div class="step"><span class="n">01</span><div><h4 class="font-semibold">Intake</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">Form on alim.my, WhatsApp to the clinic line, or referral from a partner body (PROFIMA, Karyawan, etc.). Logged with a file number.</p></div></div>
+        <div class="step"><span class="n">02</span><div><h4 class="font-semibold">Triage (within 48 hrs)</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">Ops Lead classifies: pro-se workable, needs counsel, or strategic (policy implication).</p></div></div>
+        <div class="step"><span class="n">03</span><div><h4 class="font-semibold">Routing</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">→ Pro-se tool (Small Claim Drafter etc.), → matched volunteer counsel from roster, or → escalated to Stream A if it could move policy.</p></div></div>
+      </div>
+      <div>
+        <div class="step"><span class="n">04</span><div><h4 class="font-semibold">First reply (within 14 days)</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">Substantive first response. Arts Law Centre of Australia SLA adopted as benchmark.</p></div></div>
+        <div class="step"><span class="n">05</span><div><h4 class="font-semibold">Follow-through</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">Counsel and intake correspondent owns the file to closure or referral. Status tracked weekly.</p></div></div>
+        <div class="step"><span class="n">06</span><div><h4 class="font-semibold">De-identified data → Stream A</h4><p class="text-[14px] mt-1" style="color:var(--ink-2)">Closed files anonymised; patterns feed the policy roadmap and quarterly dispatch.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next moves -->
+  <section class="border-t pt-10" style="border-color:var(--paper-3);">
+    <p class="label mb-4">Open questions for 25 May 2026 meeting</p>
+    <ol class="space-y-4 list-decimal pl-6 max-w-[68ch]" style="color:var(--ink-2)">
+      <li>Confirm two-stream model in principle and approve role titles above.</li>
+      <li>Who fills the four "Open" roles? Internal recruitment first; external second.</li>
+      <li>Subscription-based model after a free period (Arts Law Centre AU pattern) — what is the free period? 12 months? Per artist or per file?</li>
+      <li>CLBG vs Society vs LLP — confirm CLBG remains the route. Fahri's two-week sprint target.</li>
+      <li>Stipend framework: technology &amp; infrastructure honorarium for Raul; other roles to be assessed.</li>
+      <li>What does "ALIM acts as representative body" require in writing? Letter to Minister? MOU with Reformasi-led grassroots Arts Council?</li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="border-t py-10 mt-16" style="background:var(--paper-2); border-color:var(--paper-3);">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">© 2026 Art × Law Initiative Malaysia · Internal working draft</p>
+    <p class="mono text-[10.5px] tracking-[0.18em] uppercase" style="color:var(--ink-3)">Maintainer: Nanda · Drafted 17 May 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
