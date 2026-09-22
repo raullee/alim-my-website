@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Legislation Library · ALIM.my</title>
+<meta name="description" content="Start with what you&#x27;re doing. A searchable library of the Malaysian law that reaches artists: copyright, censorship, licensing, employment and heritage, sourced from the Attorney General&#x27;s Chambers.">
+<link rel="canonical" href="https://alim.my/legislation/">
+<meta property="og:title" content="Legislation Library · ALIM.my">
+<meta property="og:description" content="Start with what you&#x27;re doing. A searchable library of the Malaysian law that reaches artists: copyright, censorship, licensing, employment and heritage, sourced from the Attorney General&#x27;s Chambers.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/alim.css">
+<style>
+.lg-chip{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; background:var(--paper); color:var(--ink-3);
+  border:1.5px solid var(--rule); padding:6px 11px; cursor:pointer; white-space:nowrap;
+  text-decoration:none; display:inline-block;
+  transition:background .15s ease,color .15s ease,border-color .15s ease; }
+.lg-chip:hover{ color:var(--ink); border-color:var(--ink-3); }
+.lg-chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.lg-chip.lg-alt{ border-style:dashed; }
+.lg-chiprow{ display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; align-items:center;
+  flex-wrap:nowrap; }
+.lg-chiprow>.label{ flex:0 0 auto; padding-right:4px; }
+.lg-wrapchips{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.lg-search{ width:100%; font-family:'Archivo',sans-serif; font-size:16px; color:var(--ink);
+  background:var(--paper-2); border:1.5px solid var(--ink); padding:15px 44px 15px 16px; }
+.lg-search:focus{ outline:2px solid var(--pillar); outline-offset:2px; }
+.lg-searchwrap{ position:relative; }
+.lg-slash{ position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3);
+  border:1px solid var(--rule); padding:2px 7px; pointer-events:none; }
+.lg-tools{ position:sticky; top:0; z-index:60; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:18px 0 14px; margin-bottom:26px; }
+.lg-ink{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; padding:3px 8px; color:#FFFFFF; display:inline-block;
+  font-weight:500; }
+.lg-card{ display:block; text-decoration:none; }
+.lg-card[hidden],[hidden]{ display:none !important; }
+.lg-card h3{ font-size:19px; margin:10px 0 6px; line-height:1.25; }
+.lg-card .lg-meta{ font-family:'JetBrains Mono',monospace; font-size:11px;
+  color:var(--ink-3); letter-spacing:.04em; }
+.lg-sec{ display:grid; grid-template-columns:5rem 1fr; gap:12px; padding:9px 0;
+  border-bottom:1px solid var(--rule-soft); font-size:14.5px; align-items:baseline; }
+.lg-sec:last-child{ border-bottom:0; }
+.lg-num{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--pillar);
+  letter-spacing:.04em; }
+.lg-num.lg-topic{ color:var(--ink-3); }
+.lg-arr{ max-height:460px; overflow-y:auto; padding-right:10px; margin-top:14px; }
+.lg-hit{ display:block; text-decoration:none; background:var(--paper-2);
+  border:1px solid var(--rule-soft); padding:11px 14px; }
+.lg-hit:hover{ border-color:var(--ink-3); }
+mark{ background:rgba(216,49,31,.22); color:inherit; padding:0 2px; }
+details.lg-fold>summary{ cursor:pointer; list-style:none; display:flex;
+  justify-content:space-between; align-items:center; gap:12px; }
+details.lg-fold>summary::-webkit-details-marker{ display:none; }
+.lg-warn{ border-left:4px solid var(--pillar); background:var(--paper-2);
+  padding:14px 18px; font-size:14px; line-height:1.6; color:var(--ink-2); }
+.lg-warn.lg-old{ border-left-color:var(--vermillion); }
+.lg-prov{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--rule);
+  background:var(--paper-2); padding:14px 18px; margin-top:22px; }
+.lg-prov .lg-provtag{ font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; white-space:nowrap;
+  border:1.5px solid var(--ink-3); color:var(--ink-3); }
+.lg-prov[data-tone="good"] .lg-provtag{ border-color:var(--riso-green); color:var(--riso-green); }
+.lg-prov[data-tone="warn"] .lg-provtag{ border-color:var(--vermillion); color:var(--vermillion); }
+.lg-prov p{ margin:0; font-size:13px; line-height:1.6; color:var(--ink-2); }
+/* the review bar: two buttons, and nothing else to think about */
+.lg-rev{ position:sticky; top:0; z-index:70; background:var(--ink); color:var(--paper);
+  padding:12px 0; margin-bottom:0; }
+.lg-rev .wrap{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.lg-rev-who{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; opacity:.75; flex:1 1 auto; }
+.lg-rev-btn{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; padding:11px 18px; min-height:44px; cursor:pointer;
+  border:1.5px solid var(--paper); background:transparent; color:var(--paper); }
+.lg-rev-btn.lg-yes{ background:var(--paper); color:var(--ink); font-weight:500; }
+.lg-rev-btn:disabled{ opacity:.45; cursor:default; }
+.lg-rev textarea{ width:100%; margin-top:10px; padding:12px; font-family:'Archivo',sans-serif;
+  font-size:15px; border:1.5px solid var(--paper); background:var(--ink); color:var(--paper); }
+.lg-rev a{ color:var(--paper); }
+.lg-revdone{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.08em; }
+.lg-rev-ask{ flex:1 1 100%; font-size:14px; line-height:1.55; margin:0 0 4px; }
+.lg-rev-ask small{ display:block; opacity:.7; font-size:12.5px; margin-top:4px; }
+.lg-rev-change{ background:none; border:0; color:var(--paper); opacity:.7;
+  text-decoration:underline; cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:11px; letter-spacing:.06em; padding:6px 0; }
+@media(max-width:600px){ .lg-rev .wrap{ gap:8px } .lg-rev-btn{ flex:1 1 40%; text-align:center } }
+.lg-notice p{ font-size:13.5px; line-height:1.7; color:var(--ink-2); margin:12px 0 0; }
+.lg-notice p.lg-notice-cta{ color:var(--ink); font-size:14.5px; margin-top:16px; }
+
+/* answer chain: a numbered docket, which is what this site already is */
+.lg-step{ display:grid; grid-template-columns:2.6rem 1fr; gap:16px; padding:18px 0;
+  border-top:1px solid var(--rule-soft); }
+.lg-step:first-of-type{ border-top:0; }
+.lg-step-n{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--pillar);
+  padding-top:3px; letter-spacing:.06em; }
+.lg-step h4{ font-family:'Literata',Georgia,serif; font-size:18px; font-weight:normal;
+  margin:0 0 3px; line-height:1.3; }
+.lg-step h4 a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+.lg-step h4 a:hover{ border-bottom-color:var(--pillar); }
+.lg-step .lg-ref{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3);
+  letter-spacing:.06em; }
+.lg-step p{ font-size:14.5px; line-height:1.65; color:var(--ink-2); margin:8px 0 0; }
+.lg-roleb{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); border:1px solid var(--rule);
+  padding:1px 6px; margin-right:5px; display:inline-block; }
+.lg-step[data-dim="1"]{ opacity:.62; }
+.lg-step[data-dim="1"] .lg-roleb{ opacity:.8; }
+
+/* framework matrix */
+.lg-matrix{ width:100%; border-collapse:collapse; font-size:13px; }
+.lg-matrix th,.lg-matrix td{ border:1px solid var(--rule); padding:0; text-align:center; }
+.lg-matrix thead th{ background:var(--paper-2); font-family:'JetBrains Mono',monospace;
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:500;
+  color:var(--ink-3); padding:10px 8px; vertical-align:bottom; line-height:1.3;
+  min-width:78px; }
+.lg-matrix tbody th{ background:var(--paper-2); text-align:left; padding:12px 14px;
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; font-weight:500; white-space:nowrap; position:sticky; left:0;
+  z-index:2; }
+.lg-cell{ display:block; text-decoration:none; padding:16px 6px;
+  font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--ink);
+  transition:background .15s ease; }
+.lg-cell:hover{ background:var(--paper-3); }
+.lg-cell[data-n="0"]{ color:var(--ink-3); opacity:.4; }
+.lg-matrixscroll{ overflow-x:auto; border:1px solid var(--rule); }
+.lg-tabs{ display:flex; gap:0; border-bottom:2px solid var(--ink); margin-bottom:26px;
+  overflow-x:auto; }
+.lg-tab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; padding:12px 18px; cursor:pointer; background:none;
+  border:0; color:var(--ink-3); white-space:nowrap; }
+.lg-tab[aria-selected="true"]{ background:var(--ink); color:var(--paper); }
+@media(max-width:600px){ .lg-sec{ grid-template-columns:4rem 1fr; }
+  .lg-step{ grid-template-columns:2rem 1fr; gap:10px; } }
+
+@media print{
+  #ticker,#nav,#foot,#dot,.lg-tools,.lg-tabs,.lg-chip,.skip-link{ display:none !important; }
+  body::after{ display:none; }
+  .lg-step{ break-inside:avoid; }
+  a{ text-decoration:none; color:#000; }
+  .page-emblem{ display:none; }
+}
+</style>
+</head>
+<body data-pillar="education">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+  </div>
+</div>
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="../index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="../get-help/">Get Help</a>
+      <a href="../our-work/">Our Work</a>
+      <a href="../resources/" aria-current="page">Resources</a>
+      <a href="../join-us/">Join the Movement</a>
+      <a href="../about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="../get-help/">Get Legal Help <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="../get-help/">Get Help</a>
+    <a href="../our-work/">Our Work</a>
+    <a href="../resources/">Resources</a>
+    <a href="../join-us/">Join the Movement</a>
+    <a href="../about-alim/">About Us</a>
+    <a href="../request-consultation/">Request a Consultation</a>
+  </nav>
+</header>
+<main id="main">
+<section class="dossier-head">
+  <div class="wrap">
+    <div class="dossier-meta">
+      <span class="bar">Know your rights</span>
+      <div style="text-align:right">
+        <span class="label">§ File · Legislation</span>
+        <span class="label" style="display:block;margin-top:4px">Pillar 03 · Education</span>
+      </div>
+    </div>
+    <h1 class="page-h1">The law that governs <em>the arts</em>.</h1>
+    <p class="page-lede">You don't need to know which Act to look for. Say what you're doing, or
+      what's gone wrong, and we'll show you the laws that reach it, in the order they reach you.
+      Everything here is the Attorney General's Chambers' own text, and every page tells you how old
+      that text is. If you'd rather talk to a person, that's what
+      <a class="ulink" href="../get-help/">Get Help</a> is for.</p>
+    <div class="stat-row" style="margin-top:26px">
+      <div class="stat red"><b>19</b><s>situations mapped</s></div>
+      <div class="stat"><b>67</b><s>laws &amp; codes</s></div>
+      <div class="stat"><b>90</b><s>full texts hosted here</s></div>
+      <div class="stat"><b>5,582</b><s>sections searchable</s></div>
+    </div>
+  </div>
+  <div class="page-emblem" aria-hidden="true">03</div>
+</section>
+
+<section class="pad-sm"><div class="wrap">
+  <div class="lg-tools">
+    <div class="lg-searchwrap">
+      <input id="q" class="lg-search" type="search" autocomplete="off" spellcheck="false"
+        placeholder="What are you doing? Try &ldquo;DJing&rdquo;, &ldquo;busking&rdquo;, &ldquo;client won&rsquo;t pay&rdquo;, &ldquo;Act 332&rdquo;">
+      <span class="lg-slash" aria-hidden="true">/</span>
+    </div>
+    <div class="lg-wrapchips" style="margin-top:12px">
+      <span class="label" style="padding-right:4px">Try</span><button class="lg-chip lg-alt" data-try="DJing">DJing</button><button class="lg-chip lg-alt" data-try="busking">busking</button><button class="lg-chip lg-alt" data-try="MCMC">MCMC</button><button class="lg-chip lg-alt" data-try="moral rights">moral rights</button><button class="lg-chip lg-alt" data-try="client won&#x27;t pay">client won&#x27;t pay</button><button class="lg-chip lg-alt" data-try="foreign artist">foreign artist</button><button class="lg-chip lg-alt" data-try="mural">mural</button><button class="lg-chip lg-alt" data-try="sell merch">sell merch</button><button class="lg-chip lg-alt" data-try="Act 332">Act 332</button>
+    </div>
+  </div>
+
+  <div id="results" hidden>
+    <div id="answer"></div>
+    <div id="refine" hidden style="margin:22px 0 30px"></div>
+    <div id="instrhits"></div>
+    <div id="sechitswrap" hidden style="margin-top:34px">
+      <span class="bar">Matching sections</span>
+      <div id="sechits" style="display:grid;gap:8px;margin-top:14px"></div>
+    </div>
+    <div id="noresult" hidden></div>
+  </div>
+
+  <div id="browse">
+    <div class="lg-tabs" role="tablist">
+      <button class="lg-tab" role="tab" data-view="scenarios" aria-selected="true">What are you doing?</button>
+      <button class="lg-tab" role="tab" data-view="framework" aria-selected="false">The big picture</button>
+      <button class="lg-tab" role="tab" data-view="instruments" aria-selected="false">The full list</button>
+    </div>
+
+    <div data-panel="scenarios">
+      <p class="label" style="margin-bottom:16px">19 things people come to us about</p>
+      <div class="grid grid-3"><a class="card lg-card" href="doing/dj-club-night/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>DJ a club night</h3><p class="lg-meta" style="margin-bottom:8px">14 steps</p><p>You are playing other people&#x27;s recordings to a paying room. Three separate licences, one venue licence, a state layer, and a &hellip;</p></a><a class="card lg-card" href="doing/post-set-online/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Post a set, reel or performance video</h3><p class="lg-meta" style="margin-bottom:8px">9 steps</p><p>Uploading is reproduction and communication to the public, and then four separate speech regimes sit on top of it.&hellip;</p></a><a class="card lg-card" href="doing/busking/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Busk or perform in the street</h3><p class="lg-meta" style="margin-bottom:8px">7 steps</p><p>The rule that decides whether you can play is almost always your own council&#x27;s by-law, and nobody publishes those in one plac&hellip;</p></a><a class="card lg-card" href="doing/release-track/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Release and distribute a track</h3><p class="lg-meta" style="margin-bottom:8px">9 steps</p><p>Ownership, registration and the two separate rights in every recording.&hellip;</p></a><a class="card lg-card" href="doing/sync-licence/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Licence a song for an ad, film or game</h3><p class="lg-meta" style="margin-bottom:8px">7 steps</p><p>Two permissions, usually from two different owners, and a blanket licence is neither of them.&hellip;</p></a><a class="card lg-card" href="doing/documentary/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Shoot and screen a film or documentary</h3><p class="lg-meta" style="margin-bottom:8px">10 steps</p><p>Approval is the gate, a FINAS licence is the price of admission, and possession alone is an offence.&hellip;</p></a><a class="card lg-card" href="doing/exhibit-sell-art/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Exhibit and sell your work</h3><p class="lg-meta" style="margin-bottom:8px">8 steps</p><p>Selling the object is not selling the copyright, and the commission clause decides who owned it in the first place.&hellip;</p></a><a class="card lg-card" href="doing/mural/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Paint a mural or install work in public space</h3><p class="lg-meta" style="margin-bottom:8px">7 steps</p><p>Your copyright survives on someone else&#x27;s wall. What the owner may then do to it is the fight.&hellip;</p></a><a class="card lg-card" href="doing/publish-book/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Publish a book or zine</h3><p class="lg-meta" style="margin-bottom:8px">9 steps</p><p>Printing needs a licence, publishing needs a permit, and the Minister can prohibit the result outright.&hellip;</p></a><a class="card lg-card" href="doing/stage-show/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Stage a play, gig or live show</h3><p class="lg-meta" style="margin-bottom:8px">12 steps</p><p>Two sets of performing rights, a venue licence, a duty on admissions, and the question of what your cast actually are.&hellip;</p></a><a class="card lg-card" href="doing/merch-online/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div><h3>Sell merch, prints or downloads online</h3><p class="lg-meta" style="margin-bottom:8px">10 steps</p><p>The moment you take money online you are a seller, and there is a disclosure rule almost no artist store complies with.&hellip;</p></a><a class="card lg-card" href="doing/management-deal/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div><h3>Sign a management, label or agency deal</h3><p class="lg-meta" style="margin-bottom:8px">8 steps</p><p>** `What you assign you do not get back. And the clause that looks like a life sentence is often weaker than it reads, though&hellip;</p></a><a class="card lg-card" href="doing/foreign-artist/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Bring a foreign artist into Malaysia</h3><p class="lg-meta" style="margin-bottom:8px">8 steps</p><p>Two gates, one tax, and the administrative one is the constraint on your timeline.&hellip;</p></a><a class="card lg-card" href="doing/brand-deal/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Take a brand deal as a creator</h3><p class="lg-meta" style="margin-bottom:8px">10 steps</p><p>Advertising standards reach you personally, and the brand&#x27;s terms usually take the copyright in what you made.&hellip;</p></a><a class="card lg-card" href="doing/run-organisation/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Run an arts organisation or collective</h3><p class="lg-meta" style="margin-bottom:8px">10 steps</p><p>A collective that never chose a vehicle is already a partnership, with liabilities it never agreed to.&hellip;</p></a><a class="card lg-card" href="doing/unpaid/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Chase an unpaid fee or invoice</h3><p class="lg-meta" style="margin-bottom:8px">10 steps</p><p>Being owed money is common, and it is fixable more often than people expect. Where you go to get it depends on what you were &hellip;</p></a><a class="card lg-card" href="doing/arrested/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Stopped, raided, shut down or arrested</h3><p class="lg-meta" style="margin-bottom:8px">12 steps</p><p>This is a frightening place to be, and it usually has more give in it than it feels like. Most of these turn on a licence con&hellip;</p></a><a class="card lg-card" href="doing/someone-used-my-work/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div><h3>Someone used your work without asking</h3><p class="lg-meta" style="margin-bottom:8px">12 steps</p><p>Before anything else, check that you own it. Most of these come apart on ownership rather than on the copying, and s.26(2) of&hellip;</p></a><a class="card lg-card" href="doing/archive/"><div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div><h3>Archive, conserve or exhibit heritage material</h3><p class="lg-meta" style="margin-bottom:8px">8 steps</p><p>Listing constrains the owner, export catches the unaware, and copyright outlives everyone who could give permission.&hellip;</p></a></div>
+    </div>
+
+    <div data-panel="framework" hidden>
+      <div class="sec-head"><div><span class="bar">Three aims, ten fields</span>
+        <h2>The whole library on one grid</h2></div></div>
+      <p class="prose" style="margin-bottom:22px">Every law here is tagged by what it's for and who
+        it reaches. The numbers are live filters, so click one to see what's behind it.</p>
+      <div class="lg-matrixscroll">
+        <table class="lg-matrix">
+          <thead><tr><th style="text-align:left">Aim &#8595; / Field &#8594;</th><th>Visual arts</th><th>Music</th><th>Film &amp; TV</th><th>Performing arts</th><th>Literature, writing &amp; publishing</th><th>Fashion &amp; craft</th><th>Digital &amp; media</th><th>Museum &amp; archiving</th><th>Content creation</th><th>Everything else</th><th>All</th></tr></thead>
+          <tbody><tr><th><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></th><td><a class="lg-cell" data-n="40" href="?view=instruments&amp;obj=socio&amp;seg=visual">40</a></td><td><a class="lg-cell" data-n="41" href="?view=instruments&amp;obj=socio&amp;seg=music">41</a></td><td><a class="lg-cell" data-n="38" href="?view=instruments&amp;obj=socio&amp;seg=film">38</a></td><td><a class="lg-cell" data-n="40" href="?view=instruments&amp;obj=socio&amp;seg=performing">40</a></td><td><a class="lg-cell" data-n="32" href="?view=instruments&amp;obj=socio&amp;seg=literature">32</a></td><td><a class="lg-cell" data-n="33" href="?view=instruments&amp;obj=socio&amp;seg=fashion">33</a></td><td><a class="lg-cell" data-n="32" href="?view=instruments&amp;obj=socio&amp;seg=digital">32</a></td><td><a class="lg-cell" data-n="34" href="?view=instruments&amp;obj=socio&amp;seg=museum">34</a></td><td><a class="lg-cell" data-n="36" href="?view=instruments&amp;obj=socio&amp;seg=content">36</a></td><td><a class="lg-cell" data-n="34" href="?view=instruments&amp;obj=socio&amp;seg=others">34</a></td><td><a class="lg-cell" data-n="51" href="?view=instruments&amp;obj=socio"><strong>51</strong></a></td></tr><tr><th><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></th><td><a class="lg-cell" data-n="7" href="?view=instruments&amp;obj=ip&amp;seg=visual">7</a></td><td><a class="lg-cell" data-n="7" href="?view=instruments&amp;obj=ip&amp;seg=music">7</a></td><td><a class="lg-cell" data-n="4" href="?view=instruments&amp;obj=ip&amp;seg=film">4</a></td><td><a class="lg-cell" data-n="5" href="?view=instruments&amp;obj=ip&amp;seg=performing">5</a></td><td><a class="lg-cell" data-n="4" href="?view=instruments&amp;obj=ip&amp;seg=literature">4</a></td><td><a class="lg-cell" data-n="8" href="?view=instruments&amp;obj=ip&amp;seg=fashion">8</a></td><td><a class="lg-cell" data-n="6" href="?view=instruments&amp;obj=ip&amp;seg=digital">6</a></td><td><a class="lg-cell" data-n="4" href="?view=instruments&amp;obj=ip&amp;seg=museum">4</a></td><td><a class="lg-cell" data-n="4" href="?view=instruments&amp;obj=ip&amp;seg=content">4</a></td><td><a class="lg-cell" data-n="8" href="?view=instruments&amp;obj=ip&amp;seg=others">8</a></td><td><a class="lg-cell" data-n="12" href="?view=instruments&amp;obj=ip"><strong>12</strong></a></td></tr><tr><th><span class="lg-ink" style="background:#574281">Artistic freedom</span></th><td><a class="lg-cell" data-n="16" href="?view=instruments&amp;obj=freedom&amp;seg=visual">16</a></td><td><a class="lg-cell" data-n="15" href="?view=instruments&amp;obj=freedom&amp;seg=music">15</a></td><td><a class="lg-cell" data-n="16" href="?view=instruments&amp;obj=freedom&amp;seg=film">16</a></td><td><a class="lg-cell" data-n="13" href="?view=instruments&amp;obj=freedom&amp;seg=performing">13</a></td><td><a class="lg-cell" data-n="13" href="?view=instruments&amp;obj=freedom&amp;seg=literature">13</a></td><td><a class="lg-cell" data-n="9" href="?view=instruments&amp;obj=freedom&amp;seg=fashion">9</a></td><td><a class="lg-cell" data-n="15" href="?view=instruments&amp;obj=freedom&amp;seg=digital">15</a></td><td><a class="lg-cell" data-n="11" href="?view=instruments&amp;obj=freedom&amp;seg=museum">11</a></td><td><a class="lg-cell" data-n="17" href="?view=instruments&amp;obj=freedom&amp;seg=content">17</a></td><td><a class="lg-cell" data-n="10" href="?view=instruments&amp;obj=freedom&amp;seg=others">10</a></td><td><a class="lg-cell" data-n="24" href="?view=instruments&amp;obj=freedom"><strong>24</strong></a></td></tr>
+            <tr><th>Laws per field</th><td><a class="lg-cell" data-n="50" href="?view=instruments&amp;seg=visual">50</a></td><td><a class="lg-cell" data-n="52" href="?view=instruments&amp;seg=music">52</a></td><td><a class="lg-cell" data-n="49" href="?view=instruments&amp;seg=film">49</a></td><td><a class="lg-cell" data-n="47" href="?view=instruments&amp;seg=performing">47</a></td><td><a class="lg-cell" data-n="42" href="?view=instruments&amp;seg=literature">42</a></td><td><a class="lg-cell" data-n="42" href="?view=instruments&amp;seg=fashion">42</a></td><td><a class="lg-cell" data-n="45" href="?view=instruments&amp;seg=digital">45</a></td><td><a class="lg-cell" data-n="40" href="?view=instruments&amp;seg=museum">40</a></td><td><a class="lg-cell" data-n="48" href="?view=instruments&amp;seg=content">48</a></td><td><a class="lg-cell" data-n="43" href="?view=instruments&amp;seg=others">43</a></td>
+              <td><a class="lg-cell" data-n="67" href="?view=instruments">67</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid grid-3" style="margin-top:26px"><div class="card">
+      <span class="lg-ink" style="background:#00663A">Socio-economic rights</span>
+      <p style="margin-top:12px">Getting paid, getting a contract, getting home safe: the law that governs an arts career as work.</p></div><div class="card">
+      <span class="lg-ink" style="background:#005A90">Intellectual property rights</span>
+      <p style="margin-top:12px">Owning, licensing and enforcing what you make.</p></div><div class="card">
+      <span class="lg-ink" style="background:#574281">Artistic freedom</span>
+      <p style="margin-top:12px">The law that decides what may be made, shown, published, performed or said, and what happens when the state says no.</p></div></div>
+    </div>
+
+    <div data-panel="instruments" hidden>
+      <div style="display:grid;gap:8px;margin-bottom:22px">
+        <div class="lg-chiprow"><span class="label">Objective</span><button class="lg-chip" data-filter="obj" data-value="socio" aria-pressed="false">Socio-economic rights</button><button class="lg-chip" data-filter="obj" data-value="ip" aria-pressed="false">Intellectual property rights</button><button class="lg-chip" data-filter="obj" data-value="freedom" aria-pressed="false">Artistic freedom</button></div>
+        <div class="lg-chiprow"><span class="label">Segment</span><button class="lg-chip" data-filter="seg" data-value="visual" aria-pressed="false">Visual arts</button><button class="lg-chip" data-filter="seg" data-value="music" aria-pressed="false">Music</button><button class="lg-chip" data-filter="seg" data-value="film" aria-pressed="false">Film &amp; TV</button><button class="lg-chip" data-filter="seg" data-value="performing" aria-pressed="false">Performing arts</button><button class="lg-chip" data-filter="seg" data-value="literature" aria-pressed="false">Literature, writing &amp; publishing</button><button class="lg-chip" data-filter="seg" data-value="fashion" aria-pressed="false">Fashion &amp; craft</button><button class="lg-chip" data-filter="seg" data-value="digital" aria-pressed="false">Digital &amp; media</button><button class="lg-chip" data-filter="seg" data-value="museum" aria-pressed="false">Museum &amp; archiving</button><button class="lg-chip" data-filter="seg" data-value="content" aria-pressed="false">Content creation</button><button class="lg-chip" data-filter="seg" data-value="others" aria-pressed="false">Everything else</button></div>
+        <div class="lg-chiprow"><span class="label">Depth</span><button class="lg-chip" data-filter="tier" data-value="1" aria-pressed="false">Core</button><button class="lg-chip" data-filter="tier" data-value="2" aria-pressed="false">Situational</button><button class="lg-chip" data-filter="tier" data-value="3" aria-pressed="false">Background</button>
+          <button id="clear" class="lg-chip lg-alt">Clear all</button></div>
+      </div>
+      <p id="count" class="label" style="margin-bottom:16px"></p>
+      <div id="grid" class="grid grid-3"><a class="card lg-card" href="act-840/"
+  data-id="act-840" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Anti-Sexual Harassment Act 2022</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 840 · as at Oct 2022</p>
+  <p>Creates a Tribunal for Anti-Sexual Harassment open to complaints outside the employment relationship. For the arts that is decisive: the har&hellip;</p>
+</a><a class="card lg-card" href="cmos/"
+  data-id="cmos" data-obj="ip socio"
+  data-seg="music performing" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Collecting societies</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Licensing bodies</p>
+  <p>Public performance and broadcast of music in Malaysia is licensed through declared licensing bodies, and there is more than one because ther&hellip;</p>
+</a><a class="card lg-card" href="act-588/"
+  data-id="act-588" data-obj="freedom"
+  data-seg="digital content music film literature visual" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Communications and Multimedia Act 1998</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 588 · as at Jan 2006</p>
+  <p>The statute that governs everything published online in Malaysia. Section 233 (improper use of network facilities: offensive, indecent, obsc&hellip;</p>
+</a><a class="card lg-card" href="cmcf-content-code/"
+  data-id="cmcf-content-code" data-obj="freedom"
+  data-seg="film digital content music literature" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Content Code</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Industry code</p>
+  <p>Registered under s.213 of the Communications and Multimedia Act 1998, so compliance is a defence and it is the operative standard applied to&hellip;</p>
+</a><a class="card lg-card" href="act-136/"
+  data-id="act-136" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Contracts Act 1950</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 136 · as at Jan 2006</p>
+  <p>Every commission, gig, residency, publishing deal, sync licence and band agreement is a contract, and this is the Act that decides whether o&hellip;</p>
+</a><a class="card lg-card" href="act-332/"
+  data-id="act-332" data-obj="ip"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Copyright Act 1987</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 332 · as at Jun 2022</p>
+  <p>The single most important statute for anyone who makes anything in Malaysia. It decides what counts as a protected work, who owns it first, &hellip;</p>
+</a><a class="card lg-card" href="act-593/"
+  data-id="act-593" data-obj="freedom socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Criminal Procedure Code</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 593 · as at Jul 2023</p>
+  <p>What is supposed to happen to you between being stopped and being charged. Section 28A is the one to know: you must be told the grounds of y&hellip;</p>
+</a><a class="card lg-card" href="act-286/"
+  data-id="act-286" data-obj="freedom socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Defamation Act 1957</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 286 · as at Jan 2006</p>
+  <p>Cuts both ways for the arts: it is the statute used against critics, reviewers, documentary makers and commentators, and it is also the stat&hellip;</p>
+</a><a class="card lg-card" href="act-265/"
+  data-id="act-265" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Employment Act 1955</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 265 · as at Aug 2023</p>
+  <p>Since the 2022 amendments took effect on 1 January 2023 the Act covers all employees regardless of wage, with some provisions capped. It mat&hellip;</p>
+</a><a class="card lg-card" href="fedcon/"
+  data-id="fedcon" data-obj="freedom socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Federal Constitution</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Constitution</p>
+  <p>Article 10(1)(a) guarantees freedom of speech and expression, and Article 10(2)(a) lets Parliament restrict it on grounds including security&hellip;</p>
+</a><a class="card lg-card" href="act-620/"
+  data-id="act-620" data-obj="freedom"
+  data-seg="film content digital" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Film Censorship Act 2002</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 620 · as at Jan 2006</p>
+  <p>No film may be distributed, exhibited or possessed in Malaysia unless the Board of Film Censors has approved it. That includes short films, &hellip;</p>
+</a><a class="card lg-card" href="act-872/"
+  data-id="act-872" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Gig Workers Act 2025</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 872 · as at Dec 2025</p>
+  <p>The first Malaysian statute written for people who are not employees, and in large part an arts statute. Its Schedule names the work directl&hellip;</p>
+</a><a class="card lg-card" href="act-866/"
+  data-id="act-866" data-obj="freedom socio"
+  data-seg="digital content literature visual" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Online Safety Act 2025</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 866 · as at May 2025</p>
+  <p>The newest and least-tested speech instrument. It imposes duties on licensed service providers to deal with defined harmful content, which i&hellip;</p>
+</a><a class="card lg-card" href="act-574/"
+  data-id="act-574" data-obj="freedom"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Penal Code</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 574 · as at Jul 2023</p>
+  <p>The general criminal law, and the home of the provisions most often turned on artists: obscenity (ss.292 to 294, which reach obscene objects&hellip;</p>
+</a><a class="card lg-card" href="act-301/"
+  data-id="act-301" data-obj="freedom"
+  data-seg="literature visual content" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Printing Presses and Publications Act 1984</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 301 · as at Sep 2012</p>
+  <p>Printing presses need a licence and publications need a permit, both at the Minister&#x27;s absolute discretion, and the Minister may prohibit a &hellip;</p>
+</a><a class="card lg-card" href="act-15/"
+  data-id="act-15" data-obj="freedom"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Sedition Act 1948</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 15 · as at Jan 2006</p>
+  <p>Criminalises words with a seditious tendency, including bringing hatred or contempt against a ruler or government, and questioning the entre&hellip;</p>
+</a><a class="card lg-card" href="act-789/"
+  data-id="act-789" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Self-Employment Social Security Act 2017</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 789 · as at Oct 2021</p>
+  <p>The self-employed social security scheme administered by PERKESO. This is the only realistic injury and disability cover for a freelance art&hellip;</p>
+</a><a class="card lg-card" href="state-entertainment/"
+  data-id="state-entertainment" data-obj="freedom socio"
+  data-seg="music performing film visual" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>State entertainment enactments</h3>
+  <p class="lg-meta" style="margin-bottom:8px">State law</p>
+  <p>Entertainment licensing sits on the State List, so outside Kuala Lumpur the rules that decide whether a show can happen are state enactments&hellip;</p>
+</a><a class="card lg-card" href="act-92/"
+  data-id="act-92" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Subordinate Courts Act 1948</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 92 · as at Jan 2023</p>
+  <p>There is no Small Claims Act in Malaysia; people look for one and do not find it. The small claims procedure runs in the Magistrates&#x27; Court,&hellip;</p>
+</a><a class="card lg-card" href="syariah-criminal/"
+  data-id="syariah-criminal" data-obj="freedom"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Syariah criminal enactments</h3>
+  <p class="lg-meta" style="margin-bottom:8px">State law</p>
+  <p>Each state has its own Syariah criminal offences enactment, applying to Muslims, and these reach performance, dress, conduct and content. Fo&hellip;</p>
+</a><a class="card lg-card" href="act-815/"
+  data-id="act-815" data-obj="ip"
+  data-seg="fashion visual music digital content others" data-tier="1">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Trademarks Act 2019</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 815 · as at Mar 2022</p>
+  <p>Brand names, logos, band names, label names, festival names, clothing labels. Registration gives a monopoly in the registered classes; witho&hellip;</p>
+</a><a class="card lg-card" href="berne/"
+  data-id="berne" data-obj="ip"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Berne Convention</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Treaty</p>
+  <p>Malaysia acceded in 1990. Berne is why a Malaysian work is automatically protected in every other member state without registration or forma&hellip;</p>
+</a><a class="card lg-card" href="act-611/"
+  data-id="act-611" data-obj="socio"
+  data-seg="film performing music content" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Child Act 2001</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 611 · as at Jul 2023</p>
+  <p>Child performers. Anyone casting, filming or staging a child, and anyone putting a child on a channel, is inside this Act. It also carries t&hellip;</p>
+</a><a class="card lg-card" href="act-350/"
+  data-id="act-350" data-obj="socio"
+  data-seg="film performing music content" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Children and Young Persons (Employment) Act 1966</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 350 · as at Jan 2019</p>
+  <p>The specific permission regime for employing children and young persons, including in public entertainment. A child&#x27;s appearance in a film, &hellip;</p>
+</a><a class="card lg-card" href="act-777/"
+  data-id="act-777" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Companies Act 2016</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 777 · as at Aug 2022</p>
+  <p>The vehicle statute. Sdn Bhd for a production company or label, and the company limited by guarantee in s.45 for an arts non-profit. It is t&hellip;</p>
+</a><a class="card lg-card" href="act-599/"
+  data-id="act-599" data-obj="socio"
+  data-seg="fashion visual music content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Consumer Protection Act 1999</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 599 · as at Nov 2021</p>
+  <p>Applies to artists as sellers, which any merch table, print drop or online store makes you. The e-commerce regulations impose mandatory disc&hellip;</p>
+</a><a class="card lg-card" href="act-452/"
+  data-id="act-452" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Employees Provident Fund Act 1991</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 452 · as at Jul 2022</p>
+  <p>EPF. The 2024 introduction of voluntary contribution routes for the self-employed made this newly relevant to freelance artists, who otherwi&hellip;</p>
+</a><a class="card lg-card" href="act-4/"
+  data-id="act-4" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Employees&#x27; Social Security Act 1969</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 4 · as at Oct 2024</p>
+  <p>SOCSO for employees. Relevant to arts organisations, venues, galleries and production companies as employers, and to any artist who is in tr&hellip;</p>
+</a><a class="card lg-card" href="act-493/"
+  data-id="act-493" data-obj="freedom socio"
+  data-seg="music performing film" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Entertainment (Federal Territory of Kuala Lumpur) Act 1992</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 493 · as at Feb 2013</p>
+  <p>The entertainment licensing statute for the Federal Territory of Kuala Lumpur. A public performance, a gig, a club night or a ticketed show &hellip;</p>
+</a><a class="card lg-card" href="act-244/"
+  data-id="act-244" data-obj="freedom socio"
+  data-seg="film content" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>FINAS Act 1981</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 244 · as at Aug 2013</p>
+  <p>Establishes FINAS and, through the licensing provisions, makes it an offence to carry on film production, distribution or exhibition without&hellip;</p>
+</a><a class="card lg-card" href="act-836/"
+  data-id="act-836" data-obj="ip socio"
+  data-seg="fashion visual others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Geographical Indications Act 2022</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 836 · as at Mar 2022</p>
+  <p>The instrument for craft and heritage products tied to a place. Songket, batik, pua kumbu, Sarawak and Sabah craft traditions, regional food&hellip;</p>
+</a><a class="card lg-card" href="act-155/"
+  data-id="act-155" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Immigration Act 1959/63</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 155 · as at Jan 2006</p>
+  <p>Foreign artists performing in Malaysia and Malaysian artists hosting them. A performance is work, so a social visit pass is the wrong pass, &hellip;</p>
+</a><a class="card lg-card" href="act-53/"
+  data-id="act-53" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Income Tax Act 1967</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 53 · as at Jan 2026</p>
+  <p>Two provisions dominate arts practice. Section 4 and the badges of trade decide whether an artist&#x27;s income is taxable business income. Secti&hellip;</p>
+</a><a class="card lg-card" href="act-552/"
+  data-id="act-552" data-obj="ip"
+  data-seg="fashion visual digital others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Industrial Designs Act 1996</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 552 · as at Jan 2013</p>
+  <p>Protects the look of a mass-produced article: the shape of a chair, the cut and ornament of a garment, jewellery, packaging, a product&#x27;s for&hellip;</p>
+</a><a class="card lg-card" href="act-177/"
+  data-id="act-177" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Industrial Relations Act 1967</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 177 · as at Nov 2021</p>
+  <p>Unfair dismissal. Section 20 is the route for an arts worker dismissed without just cause or excuse, and the claim goes to the Industrial Co&hellip;</p>
+</a><a class="card lg-card" href="act-171/"
+  data-id="act-171" data-obj="freedom socio"
+  data-seg="music performing visual fashion" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Local Government Act 1976</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 171 · as at Dec 2012</p>
+  <p>The source of local authority power to make by-laws, which is where busking permits, hawker and stall licences for craft markets, street art&hellip;</p>
+</a><a class="card lg-card" href="act-336/"
+  data-id="act-336" data-obj="freedom socio"
+  data-seg="music performing visual" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Minor Offences Act 1955</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 336 · as at Jan 2006</p>
+  <p>The busking statute. Begging and public nuisance offences here, read with local council by-laws, are how street performance is actually poli&hellip;</p>
+</a><a class="card lg-card" href="act-629/"
+  data-id="act-629" data-obj="socio"
+  data-seg="museum literature film" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>National Archives Act 2003</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 629 · as at Jan 2006</p>
+  <p>Governs public records, their transfer to the National Archives and their disposal. Central to any archival arts practice, to researchers se&hellip;</p>
+</a><a class="card lg-card" href="act-645/"
+  data-id="act-645" data-obj="freedom socio"
+  data-seg="museum visual others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>National Heritage Act 2005</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 645 · as at Jun 2006</p>
+  <p>Heritage listing, national heritage objects, and controls on the export and alteration of heritage items. It reaches artists working with he&hellip;</p>
+</a><a class="card lg-card" href="act-724/"
+  data-id="act-724" data-obj="socio freedom"
+  data-seg="visual museum" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>National Visual Arts Development Board Act 2011</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 724 · as at Jun 2015</p>
+  <p>Constitutes the National Art Gallery&#x27;s governing board and its statutory functions. The instrument behind national collection decisions, acq&hellip;</p>
+</a><a class="card lg-card" href="act-514/"
+  data-id="act-514" data-obj="socio"
+  data-seg="performing film music visual" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Occupational Safety and Health Act 1994</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 514 · as at Jun 2024</p>
+  <p>Applies to every workplace, which includes a set, a stage, a rigging plot, a workshop and a studio. The 2022 amendments extended coverage an&hellip;</p>
+</a><a class="card lg-card" href="act-736/"
+  data-id="act-736" data-obj="freedom"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Peaceful Assembly Act 2012</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 736 · as at Dec 2019</p>
+  <p>Governs any assembly, which on the authorities&#x27; reading can include a performance, a gathering, a vigil or a participatory work in a public &hellip;</p>
+</a><a class="card lg-card" href="act-709/"
+  data-id="act-709" data-obj="socio freedom"
+  data-seg="digital content museum others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Personal Data Protection Act 2010</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 709 · as at Jul 2023</p>
+  <p>Applies to anyone processing personal data commercially: a mailing list, a ticketing database, a gallery&#x27;s collector records, an archive of &hellip;</p>
+</a><a class="card lg-card" href="puspal/"
+  data-id="puspal" data-obj="freedom socio"
+  data-seg="music performing film" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>PUSPAL</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Guidelines</p>
+  <p>Every foreign performer and every foreign film crew shooting in Malaysia needs PUSPAL clearance before the immigration pass issues. The guid&hellip;</p>
+</a><a class="card lg-card" href="act-832/"
+  data-id="act-832" data-obj="socio freedom"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Societies Act 1966 (Revised - 2021)</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 832 · as at Nov 2021</p>
+  <p>The other vehicle for an arts collective: a registered society. Cheaper and faster than a CLBG, but the Registrar has wide powers over regis&hellip;</p>
+</a><a class="card lg-card" href="act-378/"
+  data-id="act-378" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Stamp Act 1949</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 378 · as at Jan 2026</p>
+  <p>Instruments have to be stamped to be admissible in evidence. An assignment of copyright, a management agreement or a commission contract tha&hellip;</p>
+</a><a class="card lg-card" href="wppt/"
+  data-id="wppt" data-obj="ip"
+  data-seg="music performing" data-tier="2">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>WPPT</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Treaty</p>
+  <p>The international floor for performers&#x27; and producers&#x27; rights, and the source of the performers&#x27; rights provisions inserted into the Copyrig&hellip;</p>
+</a><a class="card lg-card" href="act-653/"
+  data-id="act-653" data-obj="socio"
+  data-seg="performing music visual" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Akademi Seni Budaya Dan Warisan Kebangsaan Act 2006</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 653 · as at Aug 2006</p>
+  <p>Establishes ASWARA, the national academy for arts, culture and heritage. Relevant to arts education, accreditation and the public training p&hellip;</p>
+</a><a class="card lg-card" href="act-646/"
+  data-id="act-646" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Arbitration Act 2005</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 646 · as at Nov 2018</p>
+  <p>Most arts contracts that contain a dispute clause point at AIAC arbitration. This Act decides whether that clause bites, whether a court mus&hellip;</p>
+</a><a class="card lg-card" href="act-67/"
+  data-id="act-67" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Civil Law Act 1956</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 67 · as at Oct 2019</p>
+  <p>Imports English common law and equity where there is no local statute, which is how passing off, breach of confidence and much of the law an&hellip;</p>
+</a><a class="card lg-card" href="act-563/"
+  data-id="act-563" data-obj="freedom socio"
+  data-seg="digital content" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Computer Crimes Act 1997</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 563 · as at Dec 2011</p>
+  <p>Unauthorised access and modification of computer material. Relevant to net art, glitch and hacking-adjacent practice, to anyone scraping or &hellip;</p>
+</a><a class="card lg-card" href="act-91/"
+  data-id="act-91" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Courts of Judicature Act 1964</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 91 · as at Nov 2024</p>
+  <p>Which court, what it can order, and what can be appealed. Background, but it decides whether a claim is worth bringing at all.&hellip;</p>
+</a><a class="card lg-card" href="act-300/"
+  data-id="act-300" data-obj="socio ip"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Distribution Act 1958</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 300 · as at Jan 2006</p>
+  <p>Copyright lasts fifty years past the author&#x27;s death, so it is an estate asset. This Act governs intestate distribution for non-Muslims and d&hellip;</p>
+</a><a class="card lg-card" href="act-658/"
+  data-id="act-658" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Electronic Commerce Act 2006</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 658 · as at Nov 2012</p>
+  <p>Makes electronic contracts, signatures and records legally effective. This is the answer to whether a deal done over WhatsApp or a licence s&hellip;</p>
+</a><a class="card lg-card" href="act-103/"
+  data-id="act-103" data-obj="socio"
+  data-seg="music performing film" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Entertainments Duty Act 1953</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 103 · as at Dec 2023</p>
+  <p>Entertainments duty on paid admissions, levied at state level. It is a real line item on a ticketed show&#x27;s budget and is frequently missed b&hellip;</p>
+</a><a class="card lg-card" href="act-200/"
+  data-id="act-200" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>House to House and Street Collections Act 1947</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 200 · as at Jan 2006</p>
+  <p>Public fundraising, street collections and house-to-house appeals need a licence. Relevant to benefit gigs, community arts fundraising and a&hellip;</p>
+</a><a class="card lg-card" href="act-254/"
+  data-id="act-254" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Limitation Act 1953</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 254 · as at Sep 2019</p>
+  <p>Six years for contract and tort. Unpaid invoices, unaccounted royalties and infringement claims all die on this clock, and arts disputes are&hellip;</p>
+</a><a class="card lg-card" href="act-743/"
+  data-id="act-743" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Limited Liability Partnerships Act 2012</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 743 · as at Aug 2022</p>
+  <p>The LLP is the practical middle form for a small studio, collective or production partnership: limited liability without the full compliance&hellip;</p>
+</a><a class="card lg-card" href="marrakesh/"
+  data-id="marrakesh" data-obj="ip socio"
+  data-seg="literature museum" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Marrakesh Treaty</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Treaty</p>
+  <p>The basis for the authorised entity exceptions in Malaysian copyright law, which let accessible-format copies be made and shared without the&hellip;</p>
+</a><a class="card lg-card" href="act-88/"
+  data-id="act-88" data-obj="freedom"
+  data-seg="film literature content digital" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#574281">Artistic freedom</span></div>
+  <h3>Official Secrets Act 1972</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 88 · as at Jan 2006</p>
+  <p>Matters to documentary, investigative and archival work. A document classified as an official secret carries a mandatory custodial sentence,&hellip;</p>
+</a><a class="card lg-card" href="act-606/"
+  data-id="act-606" data-obj="ip"
+  data-seg="music film" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Optical Discs Act 2000</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 606 · as at Jan 2006</p>
+  <p>Licensing and marking regime for the manufacture of optical discs. Legacy now, but still the live instrument for physical CD, vinyl-adjacent&hellip;</p>
+</a><a class="card lg-card" href="act-135/"
+  data-id="act-135" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Partnership Act 1961</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 135 · as at Jun 2006</p>
+  <p>Bands, collectives and studios that never signed anything are usually partnerships by operation of law, with joint and several liability and&hellip;</p>
+</a><a class="card lg-card" href="act-291/"
+  data-id="act-291" data-obj="ip"
+  data-seg="digital others fashion" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span></div>
+  <h3>Patents Act 1983</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 291 · as at Nov 2023</p>
+  <p>Rarely the arts&#x27; first port of call, but it matters for makers who invent: instrument and pedal builders, textile and materials processes, s&hellip;</p>
+</a><a class="card lg-card" href="act-807/"
+  data-id="act-807" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Service Tax Act 2018</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 807 · as at Jan 2025</p>
+  <p>Service tax reaches a number of arts-adjacent supplies once the registration threshold is crossed, and the scope has been widened repeatedly&hellip;</p>
+</a><a class="card lg-card" href="act-137/"
+  data-id="act-137" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Specific Relief Act 1950</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 137 · as at Jan 2006</p>
+  <p>The remedies statute that sits behind Contracts Act claims: specific performance, injunctions, rescission and rectification. It is what you &hellip;</p>
+</a><a class="card lg-card" href="act-730/"
+  data-id="act-730" data-obj="ip socio"
+  data-seg="fashion visual others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#005A90">Intellectual property rights</span><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Trade Descriptions Act 2011</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 730 · as at Jan 2022</p>
+  <p>Makes it an offence to apply a false trade description to goods. In practice it is the consumer-protection sibling of trademark law and the &hellip;</p>
+</a><a class="card lg-card" href="act-262/"
+  data-id="act-262" data-obj="socio"
+  data-seg="visual music film performing literature fashion digital museum content others" data-tier="3">
+  <div style="display:flex;flex-wrap:wrap;gap:5px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+  <h3>Trade Unions Act 1959</h3>
+  <p class="lg-meta" style="margin-bottom:8px">Act 262 · as at Sep 2024</p>
+  <p>Registration and regulation of trade unions. The statute any future arts or performers&#x27; union or guild would have to be built inside.&hellip;</p>
+</a></div>
+      <p id="empty" hidden class="prose" style="text-align:center;padding:60px 0">Nothing matches
+        those filters. Clear them and start again.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="pad tint"><div class="wrap">
+  <div class="grid grid-2">
+    <div class="card">
+      <span class="bar">Known gap</span>
+      <h3 style="margin-top:14px">What's not in here yet</h3>
+      <p style="margin-top:10px">Entertainment licensing, public order by-laws and Syariah criminal
+        offences sit on the State List, so the rules that decide whether a show can happen differ in
+        every state and are not published on the federal portal at all. Neither are most local
+        authority by-laws.</p>
+      <p style="margin-top:10px">That gap is the single biggest one in any Malaysian legal resource
+        for the arts, this one included. Building it out state by state is a standing ALIM research
+        task, and the pages here say so rather than pretend otherwise.</p>
+    </div>
+    <div class="card">
+      <span class="bar">Method</span>
+      <h3 style="margin-top:14px">How this library is kept honest</h3>
+      <p style="margin-top:10px">Every Act number, title and consolidation date is read from the AGC
+        catalogue, not from memory. Where AGC publishes a consolidated &ldquo;as at&rdquo; text, that
+        is the copy shown here, not the original enactment.</p>
+      <p style="margin-top:10px">Section numbers under <em>What to read first</em> are extracted from
+        the PDF itself. Where a number could not be confirmed, the entry is labelled <em>topic</em>
+        rather than carrying a number we guessed. Where AGC publishes only a scan with no text layer,
+        the page says so instead of showing an empty list.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="pad-sm"><div class="wrap-narrow"><div class="card lg-notice" style="padding:28px">
+<span class="bar">Important notice</span>
+<p>This page is published by ALIM (Art &times; Law Initiative Malaysia) as general legal
+information for Malaysia&rsquo;s creative communities. It is not legal advice. It does not take
+your circumstances into account, and reading it does not create a solicitor-client relationship
+with ALIM or with anyone associated with it.</p>
+<p>The law changes. Each Act reproduced here is the Attorney General&rsquo;s Chambers&rsquo;
+consolidated reprint and carries the date it was consolidated to; amendments made after that date
+do not appear in the text, and the authoritative version of any Malaysian law is the one published
+in the Federal Gazette. Subsidiary legislation, state enactments and local authority by-laws may
+also apply to your situation and are largely outside this library.</p>
+<p>Please do not act, or decide not to act, on the strength of this page alone. Take advice from an
+advocate and solicitor on your own facts. To the extent permitted by law, ALIM and its contributors
+accept no liability for any loss arising from reliance on this page.</p>
+<p class="lg-notice-cta">If you have a live problem,
+<a class="ulink" href="../get-help/">talk to us</a>. It is free and confidential.</p>
+</div></div></section>
+</main>
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px;font-size:13px;line-height:1.55;color:var(--ink-3)">Legislation sourced from the Attorney General's Chambers, <a class="ulink" href="https://lom.agc.gov.my/" target="_blank" rel="noopener">lom.agc.gov.my</a>. Catalogue checked 2026-09-21; pages generated 2026-09-21. The authoritative text of any Malaysian law is the version published in the Federal Gazette.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../get-help/">Get Help</a></li>
+          <li><a href="../our-work/">Our Work</a></li>
+          <li><a href="../mission/">Our Charter</a></li>
+          <li><a href="../resources/">Resources</a></li>
+          <li><a href="../legislation/">Legislation Library</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="../about-alim/">About Us</a></li>
+          <li><a href="../faq/">FAQ</a></li>
+          <li><a href="../privacy/">Privacy Policy</a></li>
+          <li><a href="../terms-of-service/">Terms of Service</a></li>
+          <li><a href="../sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
+    </div>
+  </div>
+</footer>
+<div id="dot" aria-hidden="true"></div>
+<script src="../assets/alim.js"></script>
+
+<script>
+(function(){
+  var q=document.getElementById('q'),
+      results=document.getElementById('results'),browse=document.getElementById('browse'),
+      answer=document.getElementById('answer'),refine=document.getElementById('refine'),
+      instrhits=document.getElementById('instrhits'),
+      sechits=document.getElementById('sechits'),sechitswrap=document.getElementById('sechitswrap'),
+      noresult=document.getElementById('noresult'),
+      grid=document.getElementById('grid'),cards=[].slice.call(grid.children),
+      count=document.getElementById('count'),empty=document.getElementById('empty'),
+      IDX=null,SECS=null,VOCAB=[],
+      active={obj:new Set(),seg:new Set(),tier:new Set()},
+      role=null,view='scenarios';
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  /* "act"/"akta" are dropped so "Act 332" resolves on the number alone, and
+     one-character fragments go too: "won't" tokenises to won + t, and a bare
+     "t" matched nothing and killed the whole query under AND semantics. */
+  var STOP={act:1,akta:1,the:1,a:1,an:1,and:1,or:1,of:1,for:1,to:1,in:1,on:1,at:1,
+    is:1,are:1,was:1,were:1,be:1,been:1,my:1,me:1,i:1,we:1,our:1,you:1,your:1,
+    it:1,its:1,this:1,that:1,these:1,those:1,with:1,by:1,from:1,about:1,
+    do:1,does:1,did:1,can:1,will:1,would:1,should:1,have:1,has:1,had:1,get:1,
+    not:1,no:1,but:1,if:1,how:1,what:1,when:1,where:1,who:1,am:1,as:1,so:1,up:1,
+    someone:1,something:1,any:1,all:1,just:1,very:1,really:1,please:1,help:1};
+  function toks(s){return String(s).toLowerCase()
+    .replace(/[^a-z0-9]+/g,' ').trim().split(' ')
+    .filter(function(w){return w&&!STOP[w]&&w.length>1;});}
+
+  fetch('data/search.json').then(function(r){return r.json();}).then(function(j){
+    IDX=j;
+    var v={};
+    j.instruments.forEach(function(e){
+      e.tt.concat(e.at).forEach(function(w){if(w.length>2)v[w]=1;});});
+    j.scenarios.forEach(function(s){
+      s.tt.concat(s.at).forEach(function(w){if(w.length>2)v[w]=1;});});
+    VOCAB=Object.keys(v);
+    boot();
+  });
+
+  /* --- matching: whole words or word prefixes, never raw substrings.
+         "dj" used to match "a-dj-acent" and return three wrong Acts. --- */
+  /* Prefix match both ways so a plural finds its singular: the query "videos"
+     has to reach the alias "video", and "contracts" the alias "contract". */
+  function pm(list,t){
+    for(var i=0;i<list.length;i++){
+      var w=list[i];
+      if(w.indexOf(t)===0) return true;
+      if(t.length>3&&w.length>3&&t.indexOf(w)===0) return true;
+    }
+    return false;
+  }
+  function hitScore(tok,e){
+    var s=0;
+    if(pm(e.tt,tok)) s=45;
+    if(s<35&&pm(e.at,tok)) s=35;
+    if(e.num&&e.num.indexOf(tok)===0) s=Math.max(s,90);
+    if(s===0&&pm(e.wt,tok)) s=8;
+    return s;
+  }
+  function scoreInstruments(tk,phrase){
+    var out=[];
+    IDX.instruments.forEach(function(e){
+      var total=0,matched=0,strong=0;
+      for(var i=0;i<tk.length;i++){
+        var s=hitScore(tk[i],e);
+        if(s>0){matched++;total+=s;if(s>=35)strong++;}
+      }
+      /* needs one real hit on a title, alias or Act number, and has to cover
+         most of what was typed. A weak why-text brush alone is not a result. */
+      if(!strong||matched/tk.length<0.5) return;
+      total+=matched*10;
+      if(e.al.indexOf(phrase)>-1) total+=120;
+      if(e.t.toLowerCase()===phrase) total+=140;
+      total+=(e.tier===1?6:e.tier===2?3:0);
+      out.push([total,e]);
+    });
+    out.sort(function(a,b){return b[0]-a[0];});
+    return out;
+  }
+  function scoreScenarios(tk,phrase){
+    var out=[];
+    IDX.scenarios.forEach(function(s){
+      var total=0,matched=0,strong=0;
+      for(var i=0;i<tk.length;i++){
+        var t=tk[i],best=0;
+        if(pm(s.tt,t)) best=50;
+        if(best<40&&pm(s.at,t)) best=40;
+        if(best===0&&pm(s.lt,t)) best=6;
+        if(best>0){matched++;total+=best;if(best>=40)strong++;}
+      }
+      if(!strong||matched/tk.length<0.5) return;
+      total+=matched*10;
+      if(s.al.indexOf(phrase)>-1) total+=160;
+      out.push([total,s]);
+    });
+    out.sort(function(a,b){return b[0]-a[0];});
+    return out;
+  }
+
+  /* --- typo tolerance: "Djiing" still has to find DJing --- */
+  function lev(a,b,max){
+    if(Math.abs(a.length-b.length)>max) return max+1;
+    var prev=[],cur=[],i,j;
+    for(j=0;j<=b.length;j++) prev[j]=j;
+    for(i=1;i<=a.length;i++){
+      cur=[i]; var best=i;
+      for(j=1;j<=b.length;j++){
+        cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+        if(cur[j]<best)best=cur[j];
+      }
+      if(best>max) return max+1;
+      prev=cur.slice();
+    }
+    return prev[b.length];
+  }
+  function correct(tk){
+    var out=[],changed=false;
+    tk.forEach(function(t){
+      if(t.length<4||VOCAB.indexOf(t)>-1){out.push(t);return;}
+      var best=null,bd=3;
+      for(var i=0;i<VOCAB.length;i++){
+        var d=lev(t,VOCAB[i],2);
+        if(d<bd){bd=d;best=VOCAB[i];if(d===1)break;}
+      }
+      if(best){out.push(best);changed=true;}else out.push(t);
+    });
+    return changed?out:null;
+  }
+
+  function instrCard(e){
+    return '<a class="card lg-card" href="'+esc(e.id)+'/">'+
+      '<div style="display:flex;flex-wrap:wrap;gap:5px">'+e.ink+'</div>'+
+      '<h3>'+esc(e.t)+'</h3>'+
+      '<p class="lg-meta" style="margin-bottom:8px">'+esc(e.meta)+'</p>'+
+      '<p>'+esc(e.why)+'…</p></a>';
+  }
+  function renderAnswer(s){
+    var roles=s.roles||{},rk=Object.keys(roles);
+    var chips=rk.map(function(k){
+      return '<button class="lg-chip" data-role="'+esc(k)+'" aria-pressed="'+
+        (role===k?'true':'false')+'">'+esc(roles[k])+'</button>';}).join('');
+    if(chips) chips='<div class="lg-wrapchips" style="margin-top:18px">'+
+      '<span class="label" style="padding-right:4px">Narrow it down</span>'+chips+
+      '<button class="lg-chip lg-alt" data-role="" aria-pressed="'+(role?'false':'true')+
+      '">Show everything</button></div>';
+    var shown=0;
+    var steps=s.steps.map(function(st,i){
+      var on=!role||st.r.indexOf(role)>-1; if(on)shown++;
+      var badges=st.r.map(function(r){
+        return '<span class="lg-roleb">'+esc(roles[r]||r)+'</span>';}).join('');
+      return '<div class="lg-step" data-dim="'+(on?'0':'1')+'">'+
+        '<div class="lg-step-n">'+(i<9?'0':'')+(i+1)+'</div><div>'+
+        '<h4><a href="'+esc(st.ref)+'/">'+esc(st.t)+'</a></h4>'+
+        '<span class="lg-ref">'+esc(st.ref_label)+'</span>'+
+        '<p>'+esc(st.p)+'</p><div style="margin-top:9px">'+badges+'</div></div></div>';
+    }).join('');
+    var watch=s.watch?('<div class="card card-dark" style="padding:26px;margin-top:22px">'+
+      '<span class="stamp" style="color:var(--riso-marigold);border-color:var(--riso-marigold)">'+
+      'The one people miss</span><p style="font-size:15.5px;line-height:1.65;margin:14px 0 0">'+
+      esc(s.watch)+'</p></div>'):'';
+    return '<div class="card" style="padding:30px">'+
+      '<span class="bar">Answer</span>'+
+      '<h2 style="font-family:\'Literata\',Georgia,serif;font-size:clamp(26px,3.6vw,38px);'+
+      'font-weight:normal;margin:14px 0 8px;line-height:1.15">'+esc(s.t)+'</h2>'+
+      '<p class="prose" style="margin:0">'+esc(s.lede)+'</p>'+chips+
+      '<p class="label" style="margin:22px 0 4px">In this order · '+
+      (role?(shown+' of '+s.steps.length+' apply to you'):(s.steps.length+' steps'))+'</p>'+
+      '<div style="margin-top:6px">'+steps+'</div>'+
+      '<p class="label" style="margin-top:20px"><a class="ulink" href="doing/'+esc(s.id)+
+      '/">Open as its own page, printable and shareable →</a></p></div>'+watch;
+  }
+  function renderRefine(scens,instr,matched){
+    var bits=[];
+    var rel=((matched&&matched.related)||[]).map(function(id){
+      var f=IDX.scenarios.filter(function(x){return x.id===id;})[0];
+      return f?'<button class="lg-chip lg-alt" data-try="'+esc(f.t)+'">'+esc(f.t)+'</button>':'';
+    }).join('');
+    var others=scens.filter(function(s){return !matched||s.id!==matched.id;}).slice(0,3)
+      .map(function(s){return '<button class="lg-chip lg-alt" data-try="'+esc(s.t)+'">'+
+        esc(s.t)+'</button>';}).join('');
+    if(rel||others) bits.push('<div class="lg-wrapchips" style="margin-bottom:10px">'+
+      '<span class="label" style="padding-right:4px">Or you might mean</span>'+rel+others+'</div>');
+    var segs={};
+    instr.slice(0,14).forEach(function(e){
+      e.seg.forEach(function(s){segs[s]=(segs[s]||0)+1;});});
+    var top=Object.keys(segs).sort(function(a,b){return segs[b]-segs[a];}).slice(0,5);
+    if(top.length>1) bits.push('<div class="lg-wrapchips">'+
+      '<span class="label" style="padding-right:4px">Narrow by segment</span>'+
+      top.map(function(s){return '<a class="lg-chip" href="?view=instruments&seg='+
+        encodeURIComponent(s)+'">'+esc(IDX.segments[s])+'</a>';}).join('')+'</div>');
+    return bits.join('');
+  }
+
+  function search(raw){
+    var phrase=raw.trim().toLowerCase(),tk=toks(raw);
+    if(!tk.length||!IDX){results.hidden=true;browse.hidden=false;return;}
+    browse.hidden=true;results.hidden=false;
+    var sc=scoreScenarios(tk,phrase),ins=scoreInstruments(tk,phrase),note='';
+    if(!sc.length&&!ins.length){
+      var fixed=correct(tk);
+      if(fixed){
+        var fp=fixed.join(' ');
+        sc=scoreScenarios(fixed,fp);ins=scoreInstruments(fixed,fp);
+        if(sc.length||ins.length)
+          note='<p class="label" style="margin-bottom:16px">Showing results for <strong>'+
+            esc(fp)+'</strong></p>';
+      }
+    }
+    /* Lead with a scenario only when it beats the best single instrument.
+       "withholding tax" is the Income Tax Act, not a brush against a scenario
+       that happens to list "withholding payment" as one of its aliases. */
+    var scens=sc.map(function(x){return x[1];}),instr=ins.map(function(x){return x[1];});
+    var matched=(sc.length&&(!ins.length||sc[0][0]>=ins[0][0]))?sc[0][1]:null;
+    answer.innerHTML=note+(matched?renderAnswer(matched):'');
+    if(matched){
+      var inChain={};matched.steps.forEach(function(s){inChain[s.ref]=1;});
+      instr=instr.filter(function(e){return !inChain[e.id];});
+    }
+    instrhits.innerHTML=instr.length?
+      ('<div style="margin-top:'+(matched?'34px':'0')+'">'+
+       '<span class="bar">'+(matched?'Also relevant':'Laws and codes')+'</span>'+
+       '<div class="grid grid-3" style="margin-top:14px">'+
+       instr.slice(0,12).map(instrCard).join('')+'</div></div>'):'';
+    refine.innerHTML=renderRefine(scens,instr,matched);
+    refine.hidden=!refine.innerHTML;
+
+    sechits.innerHTML='';
+    if(phrase.length>=3&&SECS){
+      var hits=[],rx=new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'ig');
+      for(var i=0;i<SECS.length&&hits.length<25;i++)
+        if(SECS[i][3].toLowerCase().indexOf(phrase)>-1)hits.push(SECS[i]);
+      hits.forEach(function(h){
+        var a=document.createElement('a');
+        a.href=h[0]+'/';a.className='lg-hit';
+        a.innerHTML='<span class="lg-num">s.'+esc(h[2])+'</span> '+
+          esc(h[3]).replace(rx,function(m){return '<mark>'+m+'</mark>';})+
+          '<span class="label" style="display:block;margin-top:4px">'+esc(h[1])+'</span>';
+        sechits.appendChild(a);
+      });
+      sechitswrap.hidden=hits.length===0;
+    } else sechitswrap.hidden=true;
+
+    var none=!matched&&!instr.length&&sechitswrap.hidden;
+    noresult.hidden=!none;
+    if(none) noresult.innerHTML='<div class="card" style="padding:30px">'+
+      '<span class="bar">No match</span>'+
+      '<p class="prose" style="margin:14px 0 0">Nothing in the library matches <strong>'+
+      esc(raw)+'</strong>. This library is federal legislation plus the codes and treaties around '+
+      'it; state entertainment enactments and council by-laws are the known gap. Try one of these, '+
+      'or tell us what happened.</p><div class="lg-wrapchips" style="margin-top:18px">'+
+      IDX.scenarios.slice(0,6).map(function(s){
+        return '<button class="lg-chip lg-alt" data-try="'+esc(s.t)+'">'+esc(s.t)+'</button>';
+      }).join('')+'</div>'+
+      '<p class="label" style="margin-top:20px"><a class="ulink" href="../get-help/">'+
+      'Ask ALIM directly →</a></p></div>';
+  }
+
+  function has(set,csv){ if(!set.size)return true; var p=(csv||'').split(' ');
+    var it=set.values(),n;while(!(n=it.next()).done){if(p.indexOf(n.value)>-1)return true;}
+    return false; }
+  function paintFilters(){
+    var shown=0;
+    cards.forEach(function(c){
+      var ok=has(active.obj,c.dataset.obj)&&has(active.seg,c.dataset.seg)&&
+             has(active.tier,c.dataset.tier);
+      c.hidden=!ok; if(ok)shown++;
+    });
+    count.textContent=shown+(shown===1?' law or code':' laws and codes');
+    empty.hidden=shown>0;
+    document.querySelectorAll('.lg-chip[data-filter]').forEach(function(b){
+      b.setAttribute('aria-pressed',active[b.dataset.filter].has(b.dataset.value)?'true':'false');
+    });
+  }
+  function setView(v){
+    view=v;
+    document.querySelectorAll('.lg-tab').forEach(function(t){
+      t.setAttribute('aria-selected',t.dataset.view===v?'true':'false');});
+    document.querySelectorAll('[data-panel]').forEach(function(p){
+      p.hidden=p.dataset.panel!==v;});
+  }
+
+  document.addEventListener('click',function(ev){
+    var t=ev.target.closest('[data-try]');
+    if(t){q.value=t.dataset.try;role=null;search(q.value);sync();
+      q.scrollIntoView({block:'center',behavior:'smooth'});return;}
+    var r=ev.target.closest('[data-role]');
+    if(r&&results.contains(r)){role=r.dataset.role||null;search(q.value);return;}
+    var tab=ev.target.closest('.lg-tab');
+    if(tab){setView(tab.dataset.view);sync();return;}
+    var f=ev.target.closest('.lg-chip[data-filter]');
+    if(f){var k=f.dataset.filter,v=f.dataset.value;
+      if(active[k].has(v))active[k].delete(v);else active[k].add(v);
+      paintFilters();sync();return;}
+    if(ev.target.closest('#clear')){
+      active={obj:new Set(),seg:new Set(),tier:new Set()};paintFilters();sync();}
+  });
+  var t0;q.addEventListener('input',function(){
+    role=null;clearTimeout(t0);t0=setTimeout(function(){search(q.value);sync();},140);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();q.select();}
+    if(e.key==='Escape'&&document.activeElement===q){q.value='';search('');sync();q.blur();}
+  });
+
+  function sync(){
+    var p=new URLSearchParams();
+    if(q.value.trim())p.set('q',q.value.trim());
+    else{
+      if(view!=='scenarios')p.set('view',view);
+      active.obj.forEach(function(v){p.append('obj',v);});
+      active.seg.forEach(function(v){p.append('seg',v);});
+      active.tier.forEach(function(v){p.append('tier',v);});
+    }
+    var s=p.toString();
+    history.replaceState(null,'',s?('?'+s):location.pathname);
+  }
+  function boot(){
+    fetch('data/sections.json').then(function(r){return r.json();})
+      .then(function(j){SECS=j;if(q.value.trim())search(q.value);});
+    var p=new URLSearchParams(location.search);
+    p.getAll('obj').forEach(function(v){active.obj.add(v);});
+    p.getAll('seg').forEach(function(v){active.seg.add(v);});
+    p.getAll('tier').forEach(function(v){active.tier.add(v);});
+    paintFilters();
+    setView(p.get('view')||((p.get('obj')||p.get('seg')||p.get('tier'))?'instruments':'scenarios'));
+    if(p.get('q')){q.value=p.get('q');search(q.value);}
+  }
+})();
+</script>
+</body></html>

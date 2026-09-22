@@ -1,0 +1,813 @@
+ALIM legislation library — scenario claims for counsel review
+Each claim is one step of one scenario as it currently appears on alim.my.
+The hosted PDF for each Act is at legislation/pdf/<id>-bi.pdf and is the AGC
+consolidated reprint 'as at' the date shown. Amendments after that date are NOT
+in the hosted text, so check them separately.
+
+
+==============================================================================
+SCENARIO dj-club-night  |  DJ a club night
+LEDE: You are playing other people's recordings to a paying room. Three separate licences, one venue licence, a state layer, and a tax nobody budgets for.
+WATCH-CLAIM: The single most common failure is the room assuming one licence covers the music. It does not. MACP, PRISM and RPM are three separate rights held by three separate bodies.
+
+[dj-club-night#01] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: venue, promoter
+    CLAIM: Playing recorded music to a paying room needs public performance licences from more than one body: MACP for the composition, PRISM for the performers, RPM for the recording. A room holding one of the three is under-licensed, and the liability lands on whoever put the night on.
+
+[dj-club-night#02] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: dj, promoter, venue
+    CLAIM: Public performance and communication to the public are acts the copyright owner controls. Your own edits, bootlegs and mashups are derivative works: making one is a permission, playing it is a second, releasing it is a third.
+
+[dj-club-night#03] Entertainment (Federal Territory of Kuala Lumpur) Act 1992 (Act 493)  as-at 2013-02-01  pdf: legislation/pdf/act-493-bi.pdf
+    ROLES: venue, promoter
+    CLAIM: In Kuala Lumpur the premises needs an entertainment licence, and the conditions attached to it are where hours and content are actually controlled. The licence, not a statute, is usually what a shutdown is based on.
+
+[dj-club-night#04] State entertainment enactments (state_enactment)  as-at n/a  pdf: legislation/pdf/state-entertainment-bi.pdf
+    ROLES: venue, promoter
+    CLAIM: Outside KL the same power sits in state enactments and council by-laws, and they differ by state. Confirm the licensing position before you confirm the date.
+
+[dj-club-night#05] Local Government Act 1976 (Act 171)  as-at 2012-12-01  pdf: legislation/pdf/act-171-bi.pdf
+    ROLES: venue, promoter
+    CLAIM: Operating hours, amplified noise and premises licensing come from local authority by-laws made under this Act. If you are being moved on or closed early, this is usually why.
+
+[dj-club-night#06] Entertainments Duty Act 1953 (Act 103)  as-at 2023-12-30  pdf: legislation/pdf/act-103-bi.pdf
+    ROLES: promoter
+    CLAIM: Entertainments duty is charged on paid admissions and administered by the state. It is a real line on a ticketed show's budget and first-time promoters price the ticket without it.
+
+[dj-club-night#07] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: promoter
+    CLAIM: Book a non-resident DJ and s.109A withholding on payments to non-resident public entertainers is your liability as the payer, not the artist's. Failing to deduct makes you personally liable for the tax plus a 10 per cent increase.
+
+[dj-club-night#08] Immigration Act 1959/63 (Act 155)  as-at 2006-01-01  pdf: legislation/pdf/act-155-bi.pdf
+    ROLES: promoter
+    CLAIM: A performance is work, so a foreign DJ needs the right pass. A social visit pass is the wrong pass and the exposure runs to the person who brought them in.
+
+[dj-club-night#09] PUSPAL (guideline)  as-at n/a  pdf: legislation/pdf/puspal-bi.pdf
+    ROLES: promoter
+    CLAIM: Foreign performers also need PUSPAL clearance before the immigration pass issues, and that is usually the binding constraint on your timeline, not the pass itself.
+
+[dj-club-night#10] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: dj, promoter, venue
+    CLAIM: The booking is a contract whether or not anyone signed anything. Section 28 makes agreements in restraint of trade void, which is why most radius and exclusivity clauses in Malaysian booking agreements are weaker than they read.
+
+[dj-club-night#11] Occupational Safety and Health Act 1994 (Act 514)  as-at 2024-06-01  pdf: legislation/pdf/act-514-bi.pdf
+    ROLES: venue, promoter
+    CLAIM: A venue and a rig are a workplace. The 2022 amendments reach the principal, so a promoter cannot subcontract the safety risk down to the crew's own employer.
+
+[dj-club-night#12] Anti-Sexual Harassment Act 2022 (Act 840)  as-at 2022-10-18  pdf: legislation/pdf/act-840-bi.pdf
+    ROLES: dj, promoter, venue
+    CLAIM: The Tribunal takes complaints from outside an employment relationship, which is exactly the shape harm takes in nightlife: a freelancer and a gatekeeper who is not their employer.
+
+[dj-club-night#13] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: dj
+    CLAIM: Section 294 reaches an obscene song, ballad or words in or near a public place. It is the provision behind most complaints about what came out of the booth or the mic.
+
+[dj-club-night#14] Service Tax Act 2018 (Act 807)  as-at 2025-01-01  pdf: legislation/pdf/act-807-bi.pdf
+    ROLES: promoter, venue
+    CLAIM: Once past the registration threshold, event and related services can be taxable. The list is widened by order most years, so check the current schedule rather than a remembered figure.
+
+==============================================================================
+SCENARIO post-set-online  |  Post a set, reel or performance video
+LEDE: Uploading is reproduction and communication to the public, and then four separate speech regimes sit on top of it.
+WATCH-CLAIM: Removal and prosecution are different problems with different cures. Most artists prepare for the charge that rarely comes and have no plan for the takedown that does.
+
+[post-set-online#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: creator, organiser
+    CLAIM: A recorded set or a reel with music in it contains other people's recordings and compositions. Uploading is both reproduction and communication to the public, which is why content matching pulls sets down even when nobody complained.
+
+[post-set-online#02] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: creator, organiser
+    CLAIM: A licence the venue holds for the room does not travel with the video. Platform-level licensing covers some uses and not others, and never covers a full recorded set.
+
+[post-set-online#03] Communications and Multimedia Act 1998 (Act 588)  as-at 2006-01-01  pdf: legislation/pdf/act-588-bi.pdf
+    ROLES: creator
+    CLAIM: Section 233 is the provision most often used against people who post: offensive, indecent, obscene or menacing content, and content sent with intent to annoy. Penalties were raised in 2024. This is the MCMC route.
+
+[post-set-online#04] Content Code (industry_code)  as-at n/a  pdf: legislation/pdf/cmcf-content-code-bi.pdf
+    ROLES: creator
+    CLAIM: Registered under s.213 of the Communications and Multimedia Act, so compliance is a defence. Day to day it does more work than the Act: it is the standard platforms, broadcasters and advertisers actually apply when they decide whether your work goes out.
+
+[post-set-online#05] Online Safety Act 2025 (Act 866)  as-at 2025-05-22  pdf: legislation/pdf/act-866-bi.pdf
+    ROLES: creator, subject
+    CLAIM: In force from 1 January 2026. Your exposure here is not a charge, it is silent removal by a platform acting on a statutory duty, and a removal is far harder to appeal than a charge is to defend.
+
+[post-set-online#06] Film Censorship Act 2002 (Act 620)  as-at 2006-01-01  pdf: legislation/pdf/act-620-bi.pdf
+    ROLES: creator
+    CLAIM: If what you posted is a film, Board approval is the gate, and the Board reads film widely enough to catch shorts, music videos and festival material.
+
+[post-set-online#07] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: creator, organiser
+    CLAIM: Filming the room means processing other people's personal data. Breach notification and the data protection officer duty arrived with the 2024 amendments and are being enforced.
+
+[post-set-online#08] Defamation Act 1957 (Act 286)  as-at 2006-01-01  pdf: legislation/pdf/act-286-bi.pdf
+    ROLES: creator, subject
+    CLAIM: What you say over the top, or in the caption, is publication. It also cuts the other way: this is your statute if someone destroys your reputation in a post.
+
+[post-set-online#09] Federal Constitution (constitution)  as-at n/a  pdf: legislation/pdf/fedcon-bi.pdf
+    ROLES: creator
+    CLAIM: Article 10(1)(a) is the right every statute above restricts, and Article 10(2)(a) is the power they are made under. Every challenge to a takedown or a charge starts here.
+
+==============================================================================
+SCENARIO busking  |  Busk or perform in the street
+LEDE: Almost none of the rules that decide this are federal, and none of the ones that matter are on the government's legislation portal.
+WATCH-CLAIM: This is the clearest example of the gap in every Malaysian legal resource for the arts: the operative rule is a council by-law nobody publishes centrally.
+
+[busking#01] Local Government Act 1976 (Act 171)  as-at 2012-12-01  pdf: legislation/pdf/act-171-bi.pdf
+    ROLES: performer, organiser
+    CLAIM: The permit is a by-law made by the local council under this Act. DBKL, MBPJ and every other local authority licence busking separately and publish separately, so there is no national answer and none of it is on the federal portal.
+
+[busking#02] Minor Offences Act 1955 (Act 336)  as-at 2006-01-01  pdf: legislation/pdf/act-336-bi.pdf
+    ROLES: performer
+    CLAIM: Begging and public nuisance offences, read with those by-laws, are how street performance is actually policed. Whether you are performing or soliciting alms is the whole question and it gets decided on the street, not in a court.
+
+[busking#03] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: performer
+    CLAIM: Section 294 reaches an obscene song, ballad or words in or near a public place.
+
+[busking#04] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: performer
+    CLAIM: Performing other people's songs in public is a public performance. Enforcement against buskers is rare, but the right is real and organised street programmes get asked.
+
+[busking#05] Peaceful Assembly Act 2012 (Act 736)  as-at 2019-12-01  pdf: legislation/pdf/act-736-bi.pdf
+    ROLES: performer, organiser
+    CLAIM: A crowd that forms around you can be characterised as an assembly, and the notification requirement in s.9(1) survived the 2021 challenge even though s.9(5) did not.
+
+[busking#06] State entertainment enactments (state_enactment)  as-at n/a  pdf: legislation/pdf/state-entertainment-bi.pdf
+    ROLES: performer, organiser
+    CLAIM: Some states require an entertainment licence even for unamplified street performance.
+
+[busking#07] Federal Constitution (constitution)  as-at n/a  pdf: legislation/pdf/fedcon-bi.pdf
+    ROLES: performer
+    CLAIM: Article 10 is the backstop when a by-law written for hawkers is turned on expression.
+
+==============================================================================
+SCENARIO release-track  |  Release and distribute a track
+LEDE: Ownership, registration and the two separate rights in every recording.
+WATCH-CLAIM: Most Malaysian artists are members of nothing. The recording can be everywhere and the public performance money stays unclaimed because no one registered the work.
+
+[release-track#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: artist, label
+    CLAIM: Two rights live in every release: the composition and the sound recording, often owned by different people. Section 26 gives first ownership, s.26(2) quietly moves it for commissioned work and work made in employment, and s.27 requires assignments and exclusive licences to be in writing. Malaysia has no copyright registration: protection is automatic on fixation.
+
+[release-track#02] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: artist, label
+    CLAIM: Register with MACP as a writer and PRISM as a performer or you collect nothing from public performance and broadcast no matter how heavily you are played.
+
+[release-track#03] Trademarks Act 2019 (Act 815)  as-at 2022-03-18  pdf: legislation/pdf/act-815-bi.pdf
+    ROLES: artist, label
+    CLAIM: The artist name and the label name. Registration gives a monopoly in the registered classes; without it you are left with passing off, which is slower and harder to prove.
+
+[release-track#04] Berne Convention (treaty)  as-at n/a  pdf: legislation/pdf/berne-bi.pdf
+    ROLES: artist, label
+    CLAIM: You are protected in every member state automatically, with no registration or formality. That is the answer to whether you need to register your copyright overseas.
+
+[release-track#05] WPPT (treaty)  as-at n/a  pdf: legislation/pdf/wppt-bi.pdf
+    ROLES: artist
+    CLAIM: The international floor for performers' and producers' rights, and the source of the performers' rights provisions in the Copyright Act.
+
+[release-track#06] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: artist, label
+    CLAIM: Splits, producer points, the distribution deal and the label agreement are all contract. Section 28 makes restraint of trade void, which weakens most exclusivity.
+
+[release-track#07] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: artist, label
+    CLAIM: An assignment of copyright is an instrument. Unstamped, it can be shut out of evidence at the exact moment you need to prove who owns the record.
+
+[release-track#08] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: artist, label
+    CLAIM: Royalty income is income, and withholding applies to royalties paid out of Malaysia to non-residents.
+
+[release-track#09] Optical Discs Act 2000 (Act 606)  as-at 2006-01-01  pdf: legislation/pdf/act-606-bi.pdf
+    ROLES: label
+    CLAIM: Still the live instrument for a physical pressing run.
+
+==============================================================================
+SCENARIO sync-licence  |  Licence a song for an ad, film or game
+LEDE: Two permissions, usually from two different owners, and a blanket licence is neither of them.
+WATCH-CLAIM: The two-rights problem is where almost every Malaysian sync falls over: a brand clears the recording from a label and never clears the song from the writers.
+
+[sync-licence#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: artist, buyer
+    CLAIM: A sync needs two clearances: the composition and the sound recording. They are separate rights and frequently separate owners, and clearing one is worth nothing without the other. Section 27 requires an exclusive licence to be in writing.
+
+[sync-licence#02] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: buyer
+    CLAIM: A blanket public performance licence from MACP, PRISM or RPM is not a sync licence and never has been. Sync is negotiated directly with the owners.
+
+[sync-licence#03] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: artist, buyer
+    CLAIM: Term, territory, media, exclusivity and the most-negotiated clause of all: what happens on renewal.
+
+[sync-licence#04] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: artist, buyer
+    CLAIM: Stamp it. An unstamped licence is inadmissible until duty and penalty are paid.
+
+[sync-licence#05] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: artist, buyer
+    CLAIM: Withholding applies to royalties paid out of Malaysia to non-residents, and the payer carries the obligation.
+
+[sync-licence#06] Trademarks Act 2019 (Act 815)  as-at 2022-03-18  pdf: legislation/pdf/act-815-bi.pdf
+    ROLES: artist
+    CLAIM: Use of your artist name in the credit or the campaign is a separate question from use of the music.
+
+[sync-licence#07] Berne Convention (treaty)  as-at n/a  pdf: legislation/pdf/berne-bi.pdf
+    ROLES: artist
+    CLAIM: National treatment means a Malaysian work is protected in the buyer's territory without formality.
+
+==============================================================================
+SCENARIO documentary  |  Shoot and screen a film or documentary
+LEDE: Approval is the gate, a licence is the barrier to entry, and possession alone is an offence.
+WATCH-CLAIM: Section 6 of the Film Censorship Act catches possession. A finished unapproved cut sitting on your drive is already inside the offence.
+
+[documentary#01] Film Censorship Act 2002 (Act 620)  as-at 2006-01-01  pdf: legislation/pdf/act-620-bi.pdf
+    ROLES: filmmaker, exhibitor
+    CLAIM: No film may be distributed, exhibited or possessed unless the Board has approved it, and s.6 catches possession, not only exhibition. Festival and gallery screenings are inside it on the Board's own reading. The Appeal Committee is the first real remedy and filmmakers barely use it.
+
+[documentary#02] FINAS Act 1981 (Act 244)  as-at 2013-08-01  pdf: legislation/pdf/act-244-bi.pdf
+    ROLES: filmmaker
+    CLAIM: FINAS licensing makes it an offence to carry on film production, distribution or exhibition without a licence. This is the provision that has been used against independent documentary makers and it is the most-criticised barrier to entry in Malaysian film.
+
+[documentary#03] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: filmmaker
+    CLAIM: Archive footage, stills, music and the interview release you did not get. Clear it before the edit lock, not after.
+
+[documentary#04] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: filmmaker
+    CLAIM: Contributors are data subjects. Consent, retention and the security of your rushes are all inside the Act, and the 2024 amendments added breach notification.
+
+[documentary#05] Official Secrets Act 1972 (Act 88)  as-at 2006-01-01  pdf: legislation/pdf/act-88-bi.pdf
+    ROLES: filmmaker
+    CLAIM: A document classified as an official secret carries a mandatory custodial sentence and the Minister's certificate is conclusive as to classification, so there is no route to argue the material was innocuous.
+
+[documentary#06] Defamation Act 1957 (Act 286)  as-at 2006-01-01  pdf: legislation/pdf/act-286-bi.pdf
+    ROLES: filmmaker
+    CLAIM: Justification, fair comment and qualified privilege are the defences that matter to investigative work, and Malaysia has no serious-harm threshold, so the bar to suing you is low.
+
+[documentary#07] Immigration Act 1959/63 (Act 155)  as-at 2006-01-01  pdf: legislation/pdf/act-155-bi.pdf
+    ROLES: filmmaker
+    CLAIM: Foreign crew are working, not visiting.
+
+[documentary#08] PUSPAL (guideline)  as-at n/a  pdf: legislation/pdf/puspal-bi.pdf
+    ROLES: filmmaker
+    CLAIM: Foreign filming needs PUSPAL clearance, and the conditions attached are administrative rather than statutory, so they change without any amendment being gazetted.
+
+[documentary#09] Occupational Safety and Health Act 1994 (Act 514)  as-at 2024-06-01  pdf: legislation/pdf/act-514-bi.pdf
+    ROLES: filmmaker
+    CLAIM: A set is a workplace, and since 2022 the duty reaches the principal, not just the direct employer of the crew.
+
+[documentary#10] Printing Presses and Publications Act 1984 (Act 301)  as-at 2012-09-01  pdf: legislation/pdf/act-301-bi.pdf
+    ROLES: exhibitor
+    CLAIM: Programmes, catalogues and accompanying publications sit under a different regime again.
+
+==============================================================================
+SCENARIO exhibit-sell-art  |  Exhibit and sell your work
+LEDE: Selling the object is not selling the copyright, and the commission clause decides who owned it in the first place.
+WATCH-CLAIM: Section 26(2) is the clause that quietly transfers ownership of commissioned work. Read it before you accept the commission, not after you see it reprinted.
+
+[exhibit-sell-art#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: artist, gallery
+    CLAIM: Selling the physical work is not selling the copyright, and s.25 moral rights survive the sale. The trap is s.26(2): commissioned work and work made in the course of employment moves ownership unless you contract out of it, and almost nobody does.
+
+[exhibit-sell-art#02] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: artist, gallery
+    CLAIM: Consignment, commission percentage, insurance while held, and what happens when the gallery closes owing you for sold work.
+
+[exhibit-sell-art#03] Industrial Designs Act 1996 (Act 552)  as-at 2013-01-01  pdf: legislation/pdf/act-552-bi.pdf
+    ROLES: artist
+    CLAIM: If the work is industrially applied, s.7(6) of the Copyright Act cuts your copyright and registration under this Act becomes the protection. Designers fall into this gap constantly.
+
+[exhibit-sell-art#04] Consumer Protection Act 1999 (Act 599)  as-at 2021-11-01  pdf: legislation/pdf/act-599-bi.pdf
+    ROLES: artist, gallery
+    CLAIM: You are a seller. Implied guarantees, misleading conduct and the Tribunal for Consumer Claims all apply, and the Tribunal is cheap enough to be used against you.
+
+[exhibit-sell-art#05] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: artist, gallery
+    CLAIM: An assignment or an exclusive representation agreement is an instrument.
+
+[exhibit-sell-art#06] National Heritage Act 2005 (Act 645)  as-at 2006-06-01  pdf: legislation/pdf/act-645-bi.pdf
+    ROLES: artist, gallery
+    CLAIM: Heritage objects can be caught on export without anyone realising they were listed, and declaration constrains what an owner may do with their own property.
+
+[exhibit-sell-art#07] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: gallery
+    CLAIM: Collector and mailing list records are personal data.
+
+[exhibit-sell-art#08] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: artist
+    CLAIM: Whether your sales are taxable business income turns on the badges of trade, not on whether you call yourself a business.
+
+==============================================================================
+SCENARIO mural  |  Paint a mural or install work in public space
+LEDE: Your copyright survives on someone else's wall. What the owner may then do to it is the fight.
+WATCH-CLAIM: Commissioners routinely assume that paying for a mural buys the copyright and the right to alter it. Section 26(2) may give them the first; s.25 does not give them the second.
+
+[mural#01] Local Government Act 1976 (Act 171)  as-at 2012-12-01  pdf: legislation/pdf/act-171-bi.pdf
+    ROLES: artist, commissioner
+    CLAIM: Permission comes from the local authority under a by-law made under this Act, and the council can require removal. Get the permission in writing before the first coat.
+
+[mural#02] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: artist, commissioner
+    CLAIM: Copyright in the mural is yours even though the wall is not. Section 25 moral rights, including integrity, are where the argument lands when a wall is painted over or altered.
+
+[mural#03] National Heritage Act 2005 (Act 645)  as-at 2006-06-01  pdf: legislation/pdf/act-645-bi.pdf
+    ROLES: artist, commissioner
+    CLAIM: On or near a declared heritage site, what may be done to the fabric is controlled and the penalty falls on whoever did it.
+
+[mural#04] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: artist
+    CLAIM: The obscenity provisions and s.298A on religious disharmony are the two that reach public imagery.
+
+[mural#05] Minor Offences Act 1955 (Act 336)  as-at 2006-01-01  pdf: legislation/pdf/act-336-bi.pdf
+    ROLES: artist
+    CLAIM: Public nuisance, read with the by-law, is the everyday enforcement route.
+
+[mural#06] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: artist, commissioner
+    CLAIM: The commission agreement should say who owns the copyright, whether it can be altered or removed, and who is liable if the council objects.
+
+[mural#07] Federal Constitution (constitution)  as-at n/a  pdf: legislation/pdf/fedcon-bi.pdf
+    ROLES: artist
+    CLAIM: Article 10 when the objection is to the content rather than the paint.
+
+==============================================================================
+SCENARIO publish-book  |  Publish a book or zine
+LEDE: Printing needs a licence, publishing needs a permit, and the Minister can prohibit the result outright.
+WATCH-CLAIM: Section 7 of the Printing Presses and Publications Act is the prohibition power and it has been used against books and graphic novels. Reviewability is the remedy people forget they now have.
+
+[publish-book#01] Printing Presses and Publications Act 1984 (Act 301)  as-at 2012-09-01  pdf: legislation/pdf/act-301-bi.pdf
+    ROLES: publisher, author
+    CLAIM: Printing presses need a licence, publications need a permit, and the Minister may prohibit a publication outright. Zines, art books, catalogues, comics and independent presses are all inside this Act whether or not they think of themselves as publishers. The 2012 amendment removed the finality clause, so the Minister's decision is now judicially reviewable, and that is the opening.
+
+[publish-book#02] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: author, publisher
+    CLAIM: Duration, first ownership, and the publishing agreement. Section 27 requires an exclusive licence to be in writing, and a publishing deal is usually an exclusive licence.
+
+[publish-book#03] Defamation Act 1957 (Act 286)  as-at 2006-01-01  pdf: legislation/pdf/act-286-bi.pdf
+    ROLES: author, publisher
+    CLAIM: Memoir, reportage and anything naming a living person. Justification and fair comment are the defences; there is no serious-harm threshold here.
+
+[publish-book#04] Sedition Act 1948 (Act 15)  as-at 2006-01-01  pdf: legislation/pdf/act-15-bi.pdf
+    ROLES: author, publisher
+    CLAIM: Seditious tendency, with intention expressly irrelevant under s.3(3). That is what makes it dangerous to satire.
+
+[publish-book#05] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: author, publisher
+    CLAIM: Sections 292 to 294 on obscene books and objects, and ss.298 and 298A on religious feelings.
+
+[publish-book#06] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: author, publisher
+    CLAIM: The publishing agreement is an instrument.
+
+[publish-book#07] Marrakesh Treaty (treaty)  as-at n/a  pdf: legislation/pdf/marrakesh-bi.pdf
+    ROLES: publisher
+    CLAIM: The basis for the accessible-format exceptions, which is the answer when a library or a reader asks.
+
+[publish-book#08] Berne Convention (treaty)  as-at n/a  pdf: legislation/pdf/berne-bi.pdf
+    ROLES: author
+    CLAIM: Automatic protection in every member state, no formality required.
+
+[publish-book#09] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: author
+    CLAIM: Advances and royalties are income; the badges of trade decide the character.
+
+==============================================================================
+SCENARIO stage-show  |  Stage a play, gig or live show
+LEDE: Two sets of performing rights, a venue licence, a duty on admissions, and the question of what your cast actually are.
+WATCH-CLAIM: The employment question is upstream of everything. Get it wrong and you have also got the safety duty, the harassment forum and the tax treatment wrong.
+
+[stage-show#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: producer
+    CLAIM: The script and the music are separate permissions from separate owners, and a performing licence for one is not a licence for the other.
+
+[stage-show#02] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: producer, venue
+    CLAIM: Live and recorded music in the show engages the public performance rights administered by MACP, PRISM and RPM.
+
+[stage-show#03] Entertainment (Federal Territory of Kuala Lumpur) Act 1992 (Act 493)  as-at 2013-02-01  pdf: legislation/pdf/act-493-bi.pdf
+    ROLES: producer, venue
+    CLAIM: In Kuala Lumpur the venue needs an entertainment licence and the conditions attached are where content control actually happens.
+
+[stage-show#04] State entertainment enactments (state_enactment)  as-at n/a  pdf: legislation/pdf/state-entertainment-bi.pdf
+    ROLES: producer, venue
+    CLAIM: Outside KL, state enactments and council by-laws, which differ.
+
+[stage-show#05] Entertainments Duty Act 1953 (Act 103)  as-at 2023-12-30  pdf: legislation/pdf/act-103-bi.pdf
+    ROLES: producer
+    CLAIM: Entertainments duty on paid admissions, administered by the state with exemption practice that varies.
+
+[stage-show#06] Employment Act 1955 (Act 265)  as-at 2023-08-01  pdf: legislation/pdf/act-265-bi.pdf
+    ROLES: producer, performer
+    CLAIM: Whether the cast and crew are employees decides notice, leave, sick pay and which forum hears a complaint. Calling someone a freelancer does not make them one: control, integration and mutuality decide it.
+
+[stage-show#07] Gig Workers Act 2025 (Act 872)  as-at 2025-12-31  pdf: legislation/pdf/act-872-bi.pdf
+    ROLES: performer
+    CLAIM: If the engagement runs through a platform, the service agreement, the notice before deactivation, conciliation and the Tribunal are now statutory.
+
+[stage-show#08] Children and Young Persons (Employment) Act 1966 (Act 350)  as-at 2019-01-10  pdf: legislation/pdf/act-350-bi.pdf
+    ROLES: producer
+    CLAIM: Employment connected with public entertainment is separately regulated where a child is involved, and a parental release is not the whole answer.
+
+[stage-show#09] Child Act 2001 (Act 611)  as-at 2023-07-01  pdf: legislation/pdf/act-611-bi.pdf
+    ROLES: producer
+    CLAIM: The reporting duties that apply if a child on the production is at risk.
+
+[stage-show#10] Occupational Safety and Health Act 1994 (Act 514)  as-at 2024-06-01  pdf: legislation/pdf/act-514-bi.pdf
+    ROLES: producer, venue
+    CLAIM: Rigging, get-in, get-out and crowd. The duty reaches the principal since 2022.
+
+[stage-show#11] Anti-Sexual Harassment Act 2022 (Act 840)  as-at 2022-10-18  pdf: legislation/pdf/act-840-bi.pdf
+    ROLES: producer, performer
+    CLAIM: The Tribunal reaches conduct outside an employment relationship, which is how most theatre and music engagements are structured.
+
+[stage-show#12] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: performer, producer
+    CLAIM: Section 294 on obscene words in or near a public place, and ss.298 and 298A.
+
+==============================================================================
+SCENARIO merch-online  |  Sell merch, prints or downloads online
+LEDE: The moment you take money online you are a seller, and there is a disclosure rule almost no artist store complies with.
+WATCH-CLAIM: The e-commerce disclosure regulations are the quiet one. They are cheap to comply with and they are the first thing a complaint will point at.
+
+[merch-online#01] Consumer Protection Act 1999 (Act 599)  as-at 2021-11-01  pdf: legislation/pdf/act-599-bi.pdf
+    ROLES: seller, buyer
+    CLAIM: The Consumer Protection (Electronic Trade Transactions) Regulations 2012 require an online seller to display name, registration number and address. Most artist stores display none of it. Implied guarantees and the Tribunal for Consumer Claims apply either way.
+
+[merch-online#02] Trademarks Act 2019 (Act 815)  as-at 2022-03-18  pdf: legislation/pdf/act-815-bi.pdf
+    ROLES: seller
+    CLAIM: Your mark, and theirs. Putting someone else's logo on a shirt is the fastest route to a letter you cannot answer.
+
+[merch-online#03] Industrial Designs Act 1996 (Act 552)  as-at 2013-01-01  pdf: legislation/pdf/act-552-bi.pdf
+    ROLES: seller
+    CLAIM: The design of a mass-produced article is protected by registration, not by copyright, and novelty is destroyed by showing it first.
+
+[merch-online#04] Trade Descriptions Act 2011 (Act 730)  as-at 2022-01-11  pdf: legislation/pdf/act-730-bi.pdf
+    ROLES: seller
+    CLAIM: False trade description is the enforcement route against counterfeit merchandise, in both directions.
+
+[merch-online#05] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: seller
+    CLAIM: Artwork, photographs and fonts on the product. The licence you bought for a font often does not cover merchandise.
+
+[merch-online#06] Electronic Commerce Act 2006 (Act 658)  as-at 2012-11-01  pdf: legislation/pdf/act-658-bi.pdf
+    ROLES: seller, buyer
+    CLAIM: Electronic contracts and signatures are legally effective, so your checkout terms bind.
+
+[merch-online#07] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: seller
+    CLAIM: Customer records, mailing lists and the 2024 breach notification duty.
+
+[merch-online#08] Service Tax Act 2018 (Act 807)  as-at 2025-01-01  pdf: legislation/pdf/act-807-bi.pdf
+    ROLES: seller
+    CLAIM: Service tax reaches some supplies once you pass the threshold.
+
+[merch-online#09] Companies Act 2016 (Act 777)  as-at 2022-08-01  pdf: legislation/pdf/act-777-bi.pdf
+    ROLES: seller
+    CLAIM: The vehicle you sell through, and whether you chose one at all.
+
+[merch-online#10] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: seller
+    CLAIM: Business income, deductions, and the badges of trade.
+
+==============================================================================
+SCENARIO management-deal  |  Sign a management, label or agency deal
+LEDE: What you assign you do not get back, and the clause that looks like a life sentence is often void anyway.
+WATCH-CLAIM: Never sign an assignment where a licence would do. An assignment moves ownership; a licence lends it back on terms and ends.
+
+[management-deal#01] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: artist, counterparty
+    CLAIM: Section 28 makes agreements in restraint of trade void, which is why most exclusivity and post-term commission clauses in Malaysian artist agreements are weaker than they look. Sections 15, 16 and 20 cover coercion, undue influence and setting the contract aside.
+
+[management-deal#02] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: artist, counterparty
+    CLAIM: Section 27 requires assignments and exclusive licences to be in writing. Understand exactly what is assigned, for how long, and whether it reverts.
+
+[management-deal#03] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: artist, counterparty
+    CLAIM: Stamp it. Section 52 shuts an unstamped instrument out of evidence, and it is only curable before you need the document.
+
+[management-deal#04] Specific Relief Act 1950 (Act 137)  as-at 2006-01-01  pdf: legislation/pdf/act-137-bi.pdf
+    ROLES: artist
+    CLAIM: Damages are often not the remedy you want. Rescission, rectification and injunctions are here, and in arts disputes what you want is usually the work back or the deal undone.
+
+[management-deal#05] Limitation Act 1953 (Act 254)  as-at 2019-09-01  pdf: legislation/pdf/act-254-bi.pdf
+    ROLES: artist
+    CLAIM: Six years for contract, and s.29 postpones time where the claim was concealed by fraud, which is the usual argument when royalties were never reported.
+
+[management-deal#06] Arbitration Act 2005 (Act 646)  as-at 2018-11-01  pdf: legislation/pdf/act-646-bi.pdf
+    ROLES: artist, counterparty
+    CLAIM: An arbitration clause decides where the fight happens and whether a court must stay proceedings. Most Malaysian arts contracts point at AIAC without anyone reading it.
+
+[management-deal#07] Industrial Relations Act 1967 (Act 177)  as-at 2021-11-01  pdf: legislation/pdf/act-177-bi.pdf
+    ROLES: artist
+    CLAIM: If you were in truth an employee rather than a contracting artist, s.20 is the route and the clock is sixty days from dismissal.
+
+[management-deal#08] Gig Workers Act 2025 (Act 872)  as-at 2025-12-31  pdf: legislation/pdf/act-872-bi.pdf
+    ROLES: artist
+    CLAIM: If the counterparty is a platform, the new statutory protections may reach you. How 'platform' and 'service agreement' are read is exactly what ALIM should be pushing on.
+
+==============================================================================
+SCENARIO foreign-artist  |  Bring a foreign artist into Malaysia
+LEDE: Two gates, one tax, and the administrative one is the constraint on your timeline.
+WATCH-CLAIM: Budget the withholding into the fee from the first email. Renegotiating 15 per cent after the artist has agreed a net figure is where these deals die.
+
+[foreign-artist#01] PUSPAL (guideline)  as-at n/a  pdf: legislation/pdf/puspal-bi.pdf
+    ROLES: promoter, artist
+    CLAIM: PUSPAL clearance comes before the immigration pass, and its dress and conduct conditions are a live artistic freedom issue that appears in no statute. Administrative rules change without amendment, so check the current guidance rather than last year's.
+
+[foreign-artist#02] Immigration Act 1959/63 (Act 155)  as-at 2006-01-01  pdf: legislation/pdf/act-155-bi.pdf
+    ROLES: promoter, artist
+    CLAIM: A performance is work. The correct route is a Professional Visit Pass; a social visit pass is the wrong pass and the liability reaches the person who engaged them.
+
+[foreign-artist#03] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: promoter
+    CLAIM: Section 109A withholding on payments to non-resident public entertainers is the payer's liability. Fail to deduct and you are personally liable for the tax plus a 10 per cent increase.
+
+[foreign-artist#04] Entertainment (Federal Territory of Kuala Lumpur) Act 1992 (Act 493)  as-at 2013-02-01  pdf: legislation/pdf/act-493-bi.pdf
+    ROLES: promoter
+    CLAIM: The venue's entertainment licence and its conditions.
+
+[foreign-artist#05] State entertainment enactments (state_enactment)  as-at n/a  pdf: legislation/pdf/state-entertainment-bi.pdf
+    ROLES: promoter
+    CLAIM: Outside KL, the state enactment, and in Sabah and Sarawak a separate immigration control on top.
+
+[foreign-artist#06] Entertainments Duty Act 1953 (Act 103)  as-at 2023-12-30  pdf: legislation/pdf/act-103-bi.pdf
+    ROLES: promoter
+    CLAIM: Entertainments duty on the admissions.
+
+[foreign-artist#07] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: promoter, artist
+    CLAIM: The booking agreement, the rider, the cancellation terms and who carries the visa risk.
+
+[foreign-artist#08] Occupational Safety and Health Act 1994 (Act 514)  as-at 2024-06-01  pdf: legislation/pdf/act-514-bi.pdf
+    ROLES: promoter
+    CLAIM: Production safety, with the duty reaching you as principal.
+
+==============================================================================
+SCENARIO brand-deal  |  Take a brand deal as a creator
+LEDE: Advertising standards reach you personally, and the brand's terms usually take the copyright in what you made.
+WATCH-CLAIM: Read the intellectual property clause before the fee. A perpetual worldwide assignment for a one-month campaign is the standard opening position and it is negotiable.
+
+[brand-deal#01] Consumer Protection Act 1999 (Act 599)  as-at 2021-11-01  pdf: legislation/pdf/act-599-bi.pdf
+    ROLES: creator, brand
+    CLAIM: Misleading conduct and false representation reach an endorsement. Saying you use something you do not is inside this Act, not just inside a platform policy.
+
+[brand-deal#02] Content Code (industry_code)  as-at n/a  pdf: legislation/pdf/cmcf-content-code-bi.pdf
+    ROLES: creator, brand
+    CLAIM: The advertising parts of the Content Code apply to you, and compliance with it is a defence under s.213 of the Communications and Multimedia Act.
+
+[brand-deal#03] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: creator, brand
+    CLAIM: Who owns the content you made. The brand's standard terms usually take it outright, when a licence limited by term, territory and media would do.
+
+[brand-deal#04] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: creator, brand
+    CLAIM: Usage period, exclusivity, approvals, kill fee and whitelisting. Section 28 again on category exclusivity.
+
+[brand-deal#05] Communications and Multimedia Act 1998 (Act 588)  as-at 2006-01-01  pdf: legislation/pdf/act-588-bi.pdf
+    ROLES: creator
+    CLAIM: What you post in the campaign is still inside s.233.
+
+[brand-deal#06] Online Safety Act 2025 (Act 866)  as-at 2025-05-22  pdf: legislation/pdf/act-866-bi.pdf
+    ROLES: creator
+    CLAIM: Platform duties mean a campaign can be removed without anyone charging anyone.
+
+[brand-deal#07] Trademarks Act 2019 (Act 815)  as-at 2022-03-18  pdf: legislation/pdf/act-815-bi.pdf
+    ROLES: creator, brand
+    CLAIM: Your handle and your name as marks, and their marks in your content.
+
+[brand-deal#08] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: creator, brand
+    CLAIM: Audience data handed over as part of the deal is personal data and it is not yours to give.
+
+[brand-deal#09] Gig Workers Act 2025 (Act 872)  as-at 2025-12-31  pdf: legislation/pdf/act-872-bi.pdf
+    ROLES: creator
+    CLAIM: If the counterparty is a platform rather than a brand, the gig worker protections may reach the relationship.
+
+[brand-deal#10] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: creator
+    CLAIM: Payment in kind is still income. Gifted product has a value.
+
+==============================================================================
+SCENARIO run-organisation  |  Run an arts organisation or collective
+LEDE: A collective that never chose a vehicle is already a partnership, with liabilities it never agreed to.
+WATCH-CLAIM: Choose the vehicle before you take the first grant. Retrofitting a CLBG around money already received is the expensive way round.
+
+[run-organisation#01] Partnership Act 1961 (Act 135)  as-at 2006-06-01  pdf: legislation/pdf/act-135-bi.pdf
+    ROLES: founder, officer
+    CLAIM: Bands, collectives and studios that never signed anything are partnerships by operation of law, with joint and several liability and a default equal profit split they never agreed to. Section 26 arrives uninvited in most band disputes.
+
+[run-organisation#02] Companies Act 2016 (Act 777)  as-at 2022-08-01  pdf: legislation/pdf/act-777-bi.pdf
+    ROLES: founder
+    CLAIM: Section 45 company limited by guarantee is the non-profit form. It needs the Minister's licence to drop 'Berhad' and it cannot pay dividends; that is the trade-off for the charitable shape.
+
+[run-organisation#03] Societies Act 1966 (Revised - 2021) (Act 832)  as-at 2021-11-15  pdf: legislation/pdf/act-832-bi.pdf
+    ROLES: founder
+    CLAIM: A registered society is cheaper and faster, but the Registrar has wide powers over registration, rules and dissolution, which is a live freedom of association issue for politically engaged arts groups.
+
+[run-organisation#04] Limited Liability Partnerships Act 2012 (Act 743)  as-at 2022-08-01  pdf: legislation/pdf/act-743-bi.pdf
+    ROLES: founder
+    CLAIM: The limited liability partnership is the practical middle form for a small studio or production partnership.
+
+[run-organisation#05] House to House and Street Collections Act 1947 (Act 200)  as-at 2006-01-01  pdf: legislation/pdf/act-200-bi.pdf
+    ROLES: officer
+    CLAIM: Public fundraising, street collections and benefit gigs need a licence.
+
+[run-organisation#06] Employment Act 1955 (Act 265)  as-at 2023-08-01  pdf: legislation/pdf/act-265-bi.pdf
+    ROLES: officer
+    CLAIM: As an employer: notice, leave, the 2023 coverage of all employees, and the anti-discrimination provisions.
+
+[run-organisation#07] Occupational Safety and Health Act 1994 (Act 514)  as-at 2024-06-01  pdf: legislation/pdf/act-514-bi.pdf
+    ROLES: officer
+    CLAIM: As an occupier and a principal.
+
+[run-organisation#08] Anti-Sexual Harassment Act 2022 (Act 840)  as-at 2022-10-18  pdf: legislation/pdf/act-840-bi.pdf
+    ROLES: officer
+    CLAIM: A complaints route now exists that does not depend on an employment relationship. Have a policy before you need one.
+
+[run-organisation#09] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: officer
+    CLAIM: Member, donor and participant records.
+
+[run-organisation#10] Income Tax Act 1967 (Act 53)  as-at 2026-01-01  pdf: legislation/pdf/act-53-bi.pdf
+    ROLES: officer
+    CLAIM: Tax-exempt status is not automatic and is separate from the vehicle you chose.
+
+==============================================================================
+SCENARIO unpaid  |  Chase an unpaid fee or invoice
+LEDE: Which forum you are in depends entirely on what you were: employee, freelancer, gig worker or seller.
+WATCH-CLAIM: Work out which of the four you were before you write the first letter. Sending a civil letter of demand when you had a free statutory forum wastes the cheapest route you had.
+
+[unpaid#01] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: freelancer, seller
+    CLAIM: The contract exists even if nothing was signed: a WhatsApp thread and a delivered job is a contract. Section 74 gives compensation for loss caused by the breach.
+
+[unpaid#02] Gig Workers Act 2025 (Act 872)  as-at 2025-12-31  pdf: legislation/pdf/act-872-bi.pdf
+    ROLES: gig
+    CLAIM: If you worked through a platform, the written service agreement, the minimum notice before deactivation, conciliation and a dedicated Tribunal are now statutory rather than goodwill.
+
+[unpaid#03] Employment Act 1955 (Act 265)  as-at 2023-08-01  pdf: legislation/pdf/act-265-bi.pdf
+    ROLES: employee
+    CLAIM: If you were in truth an employee, the Labour Department route replaces suing, and it is free. Labelling you a freelancer does not make you one.
+
+[unpaid#04] Industrial Relations Act 1967 (Act 177)  as-at 2021-11-01  pdf: legislation/pdf/act-177-bi.pdf
+    ROLES: employee
+    CLAIM: For dismissal rather than unpaid wages: s.20, the Industrial Court, and sixty days from dismissal to file. Miss the clock and the claim is gone.
+
+[unpaid#05] Consumer Protection Act 1999 (Act 599)  as-at 2021-11-01  pdf: legislation/pdf/act-599-bi.pdf
+    ROLES: seller
+    CLAIM: The Tribunal for Consumer Claims is cheap and fast and does not need a lawyer. It cuts both ways: a client can use it on you.
+
+[unpaid#06] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: freelancer, seller
+    CLAIM: If there is a written agreement, it has to be stamped to go into evidence. Curable, but only before you need it.
+
+[unpaid#07] Limitation Act 1953 (Act 254)  as-at 2019-09-01  pdf: legislation/pdf/act-254-bi.pdf
+    ROLES: freelancer, employee, seller
+    CLAIM: Six years for contract and tort. Section 29 postpones time where the claim was concealed by fraud, which is the argument when royalties were never reported.
+
+[unpaid#08] Specific Relief Act 1950 (Act 137)  as-at 2006-01-01  pdf: legislation/pdf/act-137-bi.pdf
+    ROLES: freelancer
+    CLAIM: When money is not the remedy you want and you need the work back or the use stopped.
+
+[unpaid#09] Arbitration Act 2005 (Act 646)  as-at 2018-11-01  pdf: legislation/pdf/act-646-bi.pdf
+    ROLES: freelancer
+    CLAIM: If the agreement has an arbitration clause, that is where this goes, not to court.
+
+==============================================================================
+SCENARIO arrested  |  Stopped, raided, shut down or arrested
+LEDE: The basis is usually a licence condition or a by-law, not the speech offence everyone assumes it is.
+WATCH-CLAIM: Get the exact provision cited, in writing, before you argue anything. Half of these situations turn out to be a licensing decision that is reviewable rather than an offence that has to be defended.
+
+[arrested#01] Federal Constitution (constitution)  as-at n/a  pdf: legislation/pdf/fedcon-bi.pdf
+    ROLES: artist, organiser
+    CLAIM: Article 5 on liberty and Article 10 on expression. Every restriction below is an exercise of the Article 10(2) power and every challenge starts here.
+
+[arrested#02] Entertainment (Federal Territory of Kuala Lumpur) Act 1992 (Act 493)  as-at 2013-02-01  pdf: legislation/pdf/act-493-bi.pdf
+    ROLES: organiser
+    CLAIM: In practice a shutdown is usually enforced through the venue's entertainment licence and its conditions, not through a speech offence. That matters, because the remedy is different.
+
+[arrested#03] Local Government Act 1976 (Act 171)  as-at 2012-12-01  pdf: legislation/pdf/act-171-bi.pdf
+    ROLES: organiser
+    CLAIM: Council by-laws on hours, noise and premises are the other common basis.
+
+[arrested#04] Communications and Multimedia Act 1998 (Act 588)  as-at 2006-01-01  pdf: legislation/pdf/act-588-bi.pdf
+    ROLES: artist
+    CLAIM: Section 233 is the provision most often used over something posted.
+
+[arrested#05] Penal Code (Act 574)  as-at 2023-07-04  pdf: legislation/pdf/act-574-bi.pdf
+    ROLES: artist
+    CLAIM: Obscenity under ss.292 to 294, religious feelings under ss.298 and 298A, and statements conducing to public mischief under s.505.
+
+[arrested#06] Sedition Act 1948 (Act 15)  as-at 2006-01-01  pdf: legislation/pdf/act-15-bi.pdf
+    ROLES: artist
+    CLAIM: Seditious tendency, with intention expressly irrelevant.
+
+[arrested#07] Peaceful Assembly Act 2012 (Act 736)  as-at 2019-12-01  pdf: legislation/pdf/act-736-bi.pdf
+    ROLES: organiser
+    CLAIM: If it was characterised as an assembly rather than a performance.
+
+[arrested#08] Film Censorship Act 2002 (Act 620)  as-at 2006-01-01  pdf: legislation/pdf/act-620-bi.pdf
+    ROLES: artist, organiser
+    CLAIM: For anything screened, remembering that possession alone is inside s.6.
+
+[arrested#09] Printing Presses and Publications Act 1984 (Act 301)  as-at 2012-09-01  pdf: legislation/pdf/act-301-bi.pdf
+    ROLES: artist
+    CLAIM: For anything printed or published.
+
+[arrested#10] Syariah criminal enactments (state_enactment)  as-at n/a  pdf: legislation/pdf/syariah-criminal-bi.pdf
+    ROLES: artist
+    CLAIM: For Muslim artists a state Syariah enactment runs in parallel with all of the above, and work cleared federally can still be actionable there.
+
+[arrested#11] Official Secrets Act 1972 (Act 88)  as-at 2006-01-01  pdf: legislation/pdf/act-88-bi.pdf
+    ROLES: artist
+    CLAIM: If documents are involved and the classification question arises.
+
+==============================================================================
+SCENARIO someone-used-my-work  |  Someone used your work without asking
+LEDE: Infringement, passing off, or neither. Ownership is the first question and most claims die on it, not on the copying.
+WATCH-CLAIM: Send nothing before you have settled ownership. A letter of demand from someone who turns out not to own the work is worse than silence, and s.26(2) means that happens often.
+
+[someone-used-my-work#01] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: owner, accused
+    CLAIM: Three questions in order: is it a work the Act protects, do you actually own it, and is what they did one of the acts the owner controls. Section 26 gives first ownership and s.26(2) moves it for commissioned work and work made in employment, which is where most artists discover they are not the owner. There is no registration to fall back on; your evidence is files, dates and drafts.
+
+[someone-used-my-work#02] Trademarks Act 2019 (Act 815)  as-at 2022-03-18  pdf: legislation/pdf/act-815-bi.pdf
+    ROLES: owner, accused
+    CLAIM: If what was taken is a name, a logo or a get-up rather than a work, this is trademark territory, or passing off if you never registered. Different test, different remedy.
+
+[someone-used-my-work#03] Industrial Designs Act 1996 (Act 552)  as-at 2013-01-01  pdf: legislation/pdf/act-552-bi.pdf
+    ROLES: owner
+    CLAIM: If it is the shape or ornament of a mass-produced article, registration under this Act is the protection, and s.7(6) of the Copyright Act may already have cut the copyright you were relying on.
+
+[someone-used-my-work#04] Contracts Act 1950 (Act 136)  as-at 2006-01-01  pdf: legislation/pdf/act-136-bi.pdf
+    ROLES: owner, accused
+    CLAIM: If there was ever a brief, a quote or a deal, the stronger claim is often breach of contract rather than infringement. It is easier to prove and the damages are easier to calculate.
+
+[someone-used-my-work#05] Specific Relief Act 1950 (Act 137)  as-at 2006-01-01  pdf: legislation/pdf/act-137-bi.pdf
+    ROLES: owner
+    CLAIM: An injunction to stop the use is usually what you actually want, and damages are usually not enough. This is the Act that gives it.
+
+[someone-used-my-work#06] Collecting societies (collecting)  as-at n/a  pdf: legislation/pdf/cmos-bi.pdf
+    ROLES: owner
+    CLAIM: If the use is music being performed or broadcast, the route is the licensing bodies and their tariffs, not a lawsuit. A tariff dispute goes to the Copyright Tribunal.
+
+[someone-used-my-work#07] Communications and Multimedia Act 1998 (Act 588)  as-at 2006-01-01  pdf: legislation/pdf/act-588-bi.pdf
+    ROLES: owner
+    CLAIM: For online use, the platform takedown route, and s.233 where the use is abusive rather than commercial.
+
+[someone-used-my-work#08] Online Safety Act 2025 (Act 866)  as-at 2025-05-22  pdf: legislation/pdf/act-866-bi.pdf
+    ROLES: owner
+    CLAIM: Platform duties give a second removal route that does not need a court.
+
+[someone-used-my-work#09] Trade Descriptions Act 2011 (Act 730)  as-at 2022-01-11  pdf: legislation/pdf/act-730-bi.pdf
+    ROLES: owner
+    CLAIM: Where the copy is being sold as goods, false trade description is the enforcement route and it carries criminal penalties.
+
+[someone-used-my-work#10] Defamation Act 1957 (Act 286)  as-at 2006-01-01  pdf: legislation/pdf/act-286-bi.pdf
+    ROLES: owner, accused
+    CLAIM: If the use also misrepresents you or damages your reputation, that is a separate claim with its own defences.
+
+[someone-used-my-work#11] Stamp Act 1949 (Act 378)  as-at 2026-01-01  pdf: legislation/pdf/act-378-bi.pdf
+    ROLES: owner
+    CLAIM: If you prove title through an assignment, it has to be stamped before it goes into evidence.
+
+[someone-used-my-work#12] Limitation Act 1953 (Act 254)  as-at 2019-09-01  pdf: legislation/pdf/act-254-bi.pdf
+    ROLES: owner
+    CLAIM: Six years, and s.29 postpones time where the use was concealed. Artists usually find out late, so this is a live argument rather than a formality.
+
+==============================================================================
+SCENARIO archive  |  Archive, conserve or exhibit heritage material
+LEDE: Listing constrains the owner, export catches the unaware, and copyright outlives everyone who could give permission.
+WATCH-CLAIM: The orphan works problem has no clean Malaysian solution. Document your diligent search before you publish, because that record is the only mitigation available.
+
+[archive#01] National Heritage Act 2005 (Act 645)  as-at 2006-06-01  pdf: legislation/pdf/act-645-bi.pdf
+    ROLES: archivist, researcher
+    CLAIM: The National Heritage Register, declaration of sites and objects, and controls on export and alteration. Declaration constrains what an owner may do with their own property, and objects get caught on export without anyone realising they were listed.
+
+[archive#02] National Archives Act 2003 (Act 629)  as-at 2006-01-01  pdf: legislation/pdf/act-629-bi.pdf
+    ROLES: archivist, researcher
+    CLAIM: Public records, their transfer and disposal, and the access provisions. This decides what may lawfully be copied or exhibited from a public collection.
+
+[archive#03] Copyright Act 1987 (Act 332)  as-at 2022-06-30  pdf: legislation/pdf/act-332-bi.pdf
+    ROLES: archivist
+    CLAIM: Copyright outlives the author by fifty years, so most archive material is still in copyright and often has no traceable owner. Duration and first ownership are the two questions.
+
+[archive#04] Distribution Act 1958 (Act 300)  as-at 2006-01-01  pdf: legislation/pdf/act-300-bi.pdf
+    ROLES: archivist
+    CLAIM: When an artist dies intestate, this Act decides who inherits the catalogue, and therefore who can now give you permission.
+
+[archive#05] Marrakesh Treaty (treaty)  as-at n/a  pdf: legislation/pdf/marrakesh-bi.pdf
+    ROLES: archivist
+    CLAIM: The basis for making and sharing accessible-format copies without the rightholder's permission.
+
+[archive#06] Personal Data Protection Act 2010 (Act 709)  as-at 2023-07-01  pdf: legislation/pdf/act-709-bi.pdf
+    ROLES: archivist
+    CLAIM: Oral history, interviews and donor records are personal data, and consent given in 1998 may not cover publication in 2026.
+
+[archive#07] National Visual Arts Development Board Act 2011 (Act 724)  as-at 2015-06-15  pdf: legislation/pdf/act-724-bi.pdf
+    ROLES: archivist
+    CLAIM: The statutory framework behind national collection acquisition and disposal.
+
+[archive#08] Official Secrets Act 1972 (Act 88)  as-at 2006-01-01  pdf: legislation/pdf/act-88-bi.pdf
+    ROLES: researcher
+    CLAIM: Classified material, where the Minister's certificate is conclusive.

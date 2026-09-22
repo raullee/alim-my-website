@@ -1,0 +1,8 @@
+# reviews.json changes the moment someone taps a button, so it must never be
+# held by a browser or by the edge cache.
+<IfModule mod_headers.c>
+  <Files "reviews.json">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+  </Files>
+</IfModule>

@@ -1,2 +1,7 @@
-.vercel
 .DS_Store
+.vercel
+legislation/data/_catalogue.json
+legislation/data/reviews.json
+legislation/pdf/
+review/_reviewers.php
+review/review-links.md

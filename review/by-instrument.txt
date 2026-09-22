@@ -1,0 +1,55 @@
+act-103 (Entertainments Duty Act 1953): dj-club-night#06, stage-show#05, foreign-artist#06
+act-135 (Partnership Act 1961): run-organisation#01
+act-136 (Contracts Act 1950): dj-club-night#10, release-track#06, sync-licence#03, exhibit-sell-art#02, mural#06, management-deal#01, foreign-artist#07, brand-deal#04, unpaid#01, someone-used-my-work#04
+act-137 (Specific Relief Act 1950): management-deal#04, unpaid#08, someone-used-my-work#05
+act-15 (Sedition Act 1948): publish-book#04, arrested#06
+act-155 (Immigration Act 1959/63): dj-club-night#08, documentary#07, foreign-artist#02
+act-171 (Local Government Act 1976): dj-club-night#05, busking#01, mural#01, arrested#03
+act-177 (Industrial Relations Act 1967): management-deal#07, unpaid#04
+act-200 (House to House and Street Collections Act 1947): run-organisation#05
+act-244 (FINAS Act 1981): documentary#02
+act-254 (Limitation Act 1953): management-deal#05, unpaid#07, someone-used-my-work#12
+act-265 (Employment Act 1955): stage-show#06, run-organisation#06, unpaid#03
+act-286 (Defamation Act 1957): post-set-online#08, documentary#06, publish-book#03, someone-used-my-work#10
+act-300 (Distribution Act 1958): archive#04
+act-301 (Printing Presses and Publications Act 1984): documentary#10, publish-book#01, arrested#09
+act-332 (Copyright Act 1987): dj-club-night#02, post-set-online#01, release-track#01, sync-licence#01, documentary#03, exhibit-sell-art#01, mural#02, publish-book#02, stage-show#01, merch-online#05, management-deal#02, brand-deal#03, someone-used-my-work#01, archive#03
+act-336 (Minor Offences Act 1955): busking#02, mural#05
+act-350 (Children and Young Persons (Employment) Act 1966): stage-show#08
+act-378 (Stamp Act 1949): release-track#07, sync-licence#04, exhibit-sell-art#05, publish-book#06, management-deal#03, unpaid#06, someone-used-my-work#11
+act-493 (Entertainment (Federal Territory of Kuala Lumpur) Act 1992): dj-club-night#03, stage-show#03, foreign-artist#04, arrested#02
+act-514 (Occupational Safety and Health Act 1994): dj-club-night#11, documentary#09, stage-show#10, foreign-artist#08, run-organisation#07
+act-53 (Income Tax Act 1967): dj-club-night#07, release-track#08, sync-licence#05, exhibit-sell-art#08, publish-book#09, merch-online#10, foreign-artist#03, brand-deal#10, run-organisation#10
+act-552 (Industrial Designs Act 1996): exhibit-sell-art#03, merch-online#03, someone-used-my-work#03
+act-574 (Penal Code): dj-club-night#13, busking#03, mural#04, publish-book#05, stage-show#12, arrested#05
+act-588 (Communications and Multimedia Act 1998): post-set-online#03, brand-deal#05, arrested#04, someone-used-my-work#07
+act-599 (Consumer Protection Act 1999): exhibit-sell-art#04, merch-online#01, brand-deal#01, unpaid#05
+act-606 (Optical Discs Act 2000): release-track#09
+act-611 (Child Act 2001): stage-show#09
+act-620 (Film Censorship Act 2002): post-set-online#06, documentary#01, arrested#08
+act-629 (National Archives Act 2003): archive#02
+act-645 (National Heritage Act 2005): exhibit-sell-art#06, mural#03, archive#01
+act-646 (Arbitration Act 2005): management-deal#06, unpaid#09
+act-658 (Electronic Commerce Act 2006): merch-online#06
+act-709 (Personal Data Protection Act 2010): post-set-online#07, documentary#04, exhibit-sell-art#07, merch-online#07, brand-deal#08, run-organisation#09, archive#06
+act-724 (National Visual Arts Development Board Act 2011): archive#07
+act-730 (Trade Descriptions Act 2011): merch-online#04, someone-used-my-work#09
+act-736 (Peaceful Assembly Act 2012): busking#05, arrested#07
+act-743 (Limited Liability Partnerships Act 2012): run-organisation#04
+act-777 (Companies Act 2016): merch-online#09, run-organisation#02
+act-807 (Service Tax Act 2018): dj-club-night#14, merch-online#08
+act-815 (Trademarks Act 2019): release-track#03, sync-licence#06, merch-online#02, brand-deal#07, someone-used-my-work#02
+act-832 (Societies Act 1966 (Revised - 2021)): run-organisation#03
+act-840 (Anti-Sexual Harassment Act 2022): dj-club-night#12, stage-show#11, run-organisation#08
+act-866 (Online Safety Act 2025): post-set-online#05, brand-deal#06, someone-used-my-work#08
+act-872 (Gig Workers Act 2025): stage-show#07, management-deal#08, brand-deal#09, unpaid#02
+act-88 (Official Secrets Act 1972): documentary#05, arrested#11, archive#08
+berne (Berne Convention): release-track#04, sync-licence#07, publish-book#08
+cmcf-content-code (Content Code): post-set-online#04, brand-deal#02
+cmos (Collecting societies): dj-club-night#01, post-set-online#02, busking#04, release-track#02, sync-licence#02, stage-show#02, someone-used-my-work#06
+fedcon (Federal Constitution): post-set-online#09, busking#07, mural#07, arrested#01
+marrakesh (Marrakesh Treaty): publish-book#07, archive#05
+puspal (PUSPAL): dj-club-night#09, documentary#08, foreign-artist#01
+state-entertainment (State entertainment enactments): dj-club-night#04, busking#06, stage-show#04, foreign-artist#05
+syariah-criminal (Syariah criminal enactments): arrested#10
+wppt (WPPT): release-track#05

@@ -1,0 +1,942 @@
+# -*- coding: utf-8 -*-
+"""
+The intelligence layer over the ALIM legislation registry.
+
+Two things live here:
+
+  SCENARIOS   real-world things people in the arts actually do, each resolved
+              into the ordered chain of instruments that bite, with a note on
+              what each one does *in that situation* and which role it lands on.
+              This is the layer that answers "I am DJing a club night" — a
+              question no section heading in any Act contains.
+
+  ALIASES     the words people actually type, mapped onto instruments. "MCMC"
+              has to find the Communications and Multimedia Act; "233", "MACP",
+              "PDPA", "unfair dismissal" and "sync" all have to land somewhere.
+
+Every `ref` is validated against the live registry by tools/build.py, so a typo
+here fails the build rather than shipping a dead link.
+"""
+
+# ---------------------------------------------------------------------------
+# What people type -> what it should find.  Lower-case; matched on whole words
+# or word prefixes, never as a raw substring (that is how "dj" once matched
+# "a-dj-acent" three times and found nothing real).
+# ---------------------------------------------------------------------------
+ALIASES = {
+    "act-332": ["copyright", "hak cipta", "moral rights", "fair dealing", "infringement",
+                "royalties", "ownership", "licence", "licensing", "assignment", "performers",
+                "performer rights", "bootleg", "remix", "sample", "sampling", "mashup",
+                "public performance", "sync", "synchronisation", "plagiarism", "stolen",
+                "credit", "attribution", "orphan works", "derivative", "song", "lyrics",
+                "artwork", "my work", "stole", "copied", "no permission"],
+    "act-815": ["trademark", "trade mark", "brand", "logo", "band name", "artist name",
+                "label name", "passing off", "madrid", "myipo", "tm"],
+    "act-552": ["industrial design", "design registration", "product design", "pattern"],
+    "act-291": ["patent", "invention", "utility innovation"],
+    "act-836": ["geographical indication", "songket", "batik", "pua kumbu", "craft", "heritage craft"],
+    "act-606": ["optical disc", "cd", "dvd", "pressing", "replication", "piracy"],
+    "act-730": ["trade description", "counterfeit", "fake goods", "misdescription"],
+    "fedcon": ["constitution", "perlembagaan", "article 10", "free speech", "freedom of expression",
+               "fundamental liberties", "human rights"],
+    "act-588": ["mcmc", "cma", "communications and multimedia", "233", "s233", "section 233",
+                "online", "internet", "social media", "post", "posting", "platform",
+                "offensive content", "cyber", "suruhanjaya komunikasi"],
+    "act-866": ["online safety", "harmful content", "takedown", "take down", "removal",
+                "platform duty", "osa", "act 866", "mcmc", "removed", "deleted",
+                "suspended account", "banned online"],
+    "act-620": ["censorship", "lpf", "film censorship", "classification", "banned",
+                "board of film censors", "penapisan", "screening", "cut"],
+    "act-244": ["finas", "film licence", "shooting licence", "production licence",
+                "perbadanan kemajuan filem"],
+    "act-301": ["pppa", "printing press", "publication permit", "publishing permit",
+                "banned book", "printing presses and publications", "kdn"],
+    "act-15": ["sedition", "hasutan", "seditious"],
+    "act-286": ["defamation", "libel", "slander", "fitnah", "reputation", "review",
+                "bad review", "criticism"],
+    "act-574": ["penal code", "kanun keseksaan", "obscene", "obscenity", "298a", "505",
+                "religious feelings", "indecent", "criminal", "292", "294"],
+    "act-336": ["minor offences", "busking", "busker", "begging", "public nuisance", "street"],
+    "act-736": ["assembly", "protest", "gathering", "vigil", "himpunan", "peaceful assembly"],
+    "act-88": ["official secrets", "osa 1972", "classified", "leak", "whistle"],
+    "act-563": ["computer crimes", "hacking", "unauthorised access", "scraping", "hacked"],
+    "act-136": ["contract", "kontrak", "agreement", "breach", "consideration", "restraint of trade",
+                "exclusivity", "nda", "terms", "deal", "verbal agreement", "whatsapp agreement"],
+    "act-137": ["specific relief", "injunction", "rescission", "rectification", "stop order"],
+    "act-265": ["employment", "employee", "wages", "leave", "maternity", "paternity", "notice",
+                "termination", "overtime", "rest day", "labour", "buruh", "jtk"],
+    "act-872": ["gig worker", "gig", "platform worker", "freelance", "freelancer", "deactivation",
+                "eaduan", "act 872", "grab", "rider"],
+    "act-789": ["perkeso self employed", "self employment social security", "socso self employed",
+                "injury cover", "freelance insurance"],
+    "act-4": ["socso", "perkeso", "employment injury", "invalidity"],
+    "act-452": ["epf", "kwsp", "provident fund", "retirement"],
+    "act-177": ["industrial relations", "unfair dismissal", "dismissal", "sacked", "fired",
+                "section 20", "industrial court", "reinstatement"],
+    "act-262": ["trade union", "union", "kesatuan", "guild", "organise"],
+    "act-840": ["sexual harassment", "harassment", "gangguan seksual", "tribunal",
+                "misconduct", "me too", "abuse"],
+    "act-514": ["osha", "safety", "occupational safety", "accident", "rigging", "crew safety",
+                "dosh", "risk assessment"],
+    "act-611": ["child", "minor", "child protection", "kanak-kanak"],
+    "act-350": ["child performer", "child actor", "young person", "child employment"],
+    "act-599": ["consumer protection", "refund", "online seller", "ecommerce", "e-commerce",
+                "misleading", "tribunal for consumer claims", "ttpm", "shop", "store"],
+    "act-658": ["electronic commerce", "electronic signature", "esign", "digital signature",
+                "email contract", "whatsapp contract"],
+    "act-378": ["stamp duty", "stamping", "setem", "stamp", "adjudication", "lhdn stamp"],
+    "act-53": ["income tax", "tax", "withholding", "109a", "public entertainer", "lhdn",
+               "cukai", "badges of trade", "deductions"],
+    "act-807": ["service tax", "sst", "sales and service tax", "taxable service"],
+    "act-155": ["immigration", "visa", "work permit", "professional visit pass", "pvp",
+                "foreign artist", "imigresen", "pass"],
+    "act-709": ["pdpa", "personal data", "data protection", "privacy", "mailing list",
+                "database", "breach notification", "dpo", "consent"],
+    "act-254": ["limitation", "time bar", "too late", "six years", "deadline"],
+    "act-646": ["arbitration", "aiac", "dispute resolution", "arbitrate"],
+    "act-300": ["distribution act", "intestate", "estate", "inheritance", "died", "death",
+                "succession", "catalogue estate"],
+    "act-777": ["companies act", "sdn bhd", "clbg", "company limited by guarantee",
+                "incorporate", "ssm", "directors duties", "berhad"],
+    "act-832": ["societies", "society", "ros", "persatuan", "register a society", "collective"],
+    "act-743": ["llp", "limited liability partnership", "plt"],
+    "act-135": ["partnership", "band agreement", "collective agreement", "joint venture"],
+    "act-200": ["fundraising", "street collection", "donation", "benefit gig", "charity"],
+    "act-645": ["national heritage", "heritage", "warisan", "heritage site", "conservation",
+                "listed building", "artefact"],
+    "act-629": ["national archives", "archive", "arkib", "public records", "records"],
+    "act-724": ["national art gallery", "balai seni", "visual arts board", "national collection"],
+    "act-653": ["aswara", "arts education", "akademi seni"],
+    "act-493": ["entertainment licence", "kl entertainment", "dbkl", "club licence",
+                "venue licence", "place of entertainment"],
+    "act-171": ["local government", "by-law", "bylaw", "council", "mbpj", "mbsa", "mbsj",
+                "licence hawker", "noise", "operating hours", "premises"],
+    "act-103": ["entertainments duty", "ticket duty", "admission duty"],
+    "act-91": ["courts", "jurisdiction", "appeal", "high court"],
+    "act-67": ["civil law", "common law", "damages", "interest"],
+    "cmcf-content-code": ["content code", "cmcf", "content forum", "advertising standards",
+                          "broadcast standards", "mcmc", "self regulation"],
+    "puspal": ["puspal", "foreign artiste", "filming permit", "foreign performer clearance"],
+    "state-entertainment": ["state licence", "selangor", "penang", "johor", "sabah", "sarawak",
+                            "state enactment", "entertainment enactment"],
+    "syariah-criminal": ["syariah", "shariah", "jakim", "jais", "religious offence", "khalwat"],
+    "berne": ["berne", "international copyright", "overseas protection", "wipo"],
+    "wppt": ["wppt", "performers treaty", "neighbouring rights"],
+    "marrakesh": ["marrakesh", "accessible format", "braille", "print disabled", "accessibility"],
+    "cmos": ["macp", "prism", "rpm", "collecting society", "collective management",
+             "performing rights", "licensing body", "royalty collection", "ppm",
+             "public performance licence", "blanket licence"],
+}
+
+
+# ---------------------------------------------------------------------------
+# Scenarios.  steps = (instrument id, [roles it lands on], what it does here)
+# ---------------------------------------------------------------------------
+SCENARIOS = [
+
+dict(
+  id="dj-club-night", title="DJ a club night",
+  lede="You are playing other people's recordings to a paying room. Three separate licences, "
+       "one venue licence, a state layer, and a tax nobody budgets for.",
+  segments=["music", "performing"], objectives=["ip", "socio", "freedom"],
+  aliases=["dj", "djing", "deejay", "dj set", "spin", "spinning", "decks", "turntable",
+           "club", "club night", "nightclub", "rave", "party", "set", "residency", "selector",
+           "techno", "house music", "open format", "gig", "night", "promoter", "bar", "festival"],
+  roles={"dj": "I am the DJ", "promoter": "I am the promoter", "venue": "I am the venue"},
+  steps=[
+    ("cmos", ["venue", "promoter"],
+     "Playing recorded music to a paying room needs public performance licences from more than "
+     "one body: MACP for the composition, PRISM for the performers, RPM for the recording. A room "
+     "holding one of the three is under-licensed, and the liability lands on whoever put the night on."),
+    ("act-332", ["dj", "promoter", "venue"],
+     "Public performance and communication to the public are acts the copyright owner controls. "
+     "Your own edits, bootlegs and mashups are derivative works: making one is a permission, "
+     "playing it is a second, releasing it is a third."),
+    ("act-493", ["venue", "promoter"],
+     "In Kuala Lumpur the premises needs an entertainment licence, and the conditions attached to "
+     "it are where hours and content are actually controlled. The licence, not a statute, is "
+     "usually what a shutdown is based on."),
+    ("state-entertainment", ["venue", "promoter"],
+     "Outside KL the same power sits in state enactments and council by-laws, and they differ by "
+     "state. Confirm the licensing position before you confirm the date."),
+    ("act-171", ["venue", "promoter"],
+     "Operating hours, amplified noise and premises licensing come from local authority by-laws "
+     "made under this Act. If you are being moved on or closed early, this is usually why."),
+    ("act-103", ["promoter"],
+     "Entertainments duty is charged on paid admissions and administered by the state. It is a "
+     "real line on a ticketed show's budget and first-time promoters price the ticket without it."),
+    ("act-53", ["promoter"],
+     "Book a non-resident DJ and s.109A withholding on payments to non-resident public "
+     "entertainers is your liability as the payer, not the artist's. Failing to deduct makes you "
+     "personally liable for the tax plus a 10 per cent increase."),
+    ("act-155", ["promoter"],
+     "A performance is work, so a foreign DJ needs the right pass. A social visit pass is the "
+     "wrong pass and the exposure runs to the person who brought them in."),
+    ("puspal", ["promoter"],
+     "Foreign performers also need PUSPAL clearance before the immigration pass issues, and that "
+     "is usually the binding constraint on your timeline, not the pass itself."),
+    ("act-136", ["dj", "promoter", "venue"],
+     "The booking is a contract whether or not anyone signed anything. Section 28 makes agreements "
+     "in restraint of trade void, which is why most radius and exclusivity clauses in Malaysian "
+     "booking agreements are weaker than they read."),
+    ("act-514", ["venue", "promoter"],
+     "A venue and a rig are a workplace. The 2022 amendments reach the principal, so a promoter "
+     "cannot subcontract the safety risk down to the crew's own employer."),
+    ("act-840", ["dj", "promoter", "venue"],
+     "The Tribunal takes complaints from outside an employment relationship, which is exactly the "
+     "shape harm takes in nightlife: a freelancer and a gatekeeper who is not their employer."),
+    ("act-574", ["dj"],
+     "Section 294 reaches an obscene song, ballad or words in or near a public place. It is the "
+     "provision behind most complaints about what came out of the booth or the mic."),
+    ("act-807", ["promoter", "venue"],
+     "Once past the registration threshold, event and related services can be taxable. The list "
+     "is widened by order most years, so check the current schedule rather than a remembered figure."),
+  ],
+  watch="The single most common failure is the room assuming one licence covers the music. It does "
+        "not. MACP, PRISM and RPM are three separate rights held by three separate bodies.",
+  related=["post-set-online", "foreign-artist", "arrested"]),
+
+dict(
+  id="post-set-online", title="Post a set, reel or performance video",
+  lede="Uploading is reproduction and communication to the public, and then four separate speech "
+       "regimes sit on top of it.",
+  segments=["music", "content", "digital", "film"], objectives=["ip", "freedom"],
+  aliases=["upload", "post", "posting", "video", "reel", "reels", "youtube", "instagram", "tiktok",
+           "mixcloud", "soundcloud", "boiler room", "livestream", "live stream", "stream",
+           "set video", "content", "clip", "vlog", "podcast", "shorts", "mcmc", "233",
+           "section 233", "takedown", "taken down", "removed", "reported", "online",
+           "social media", "viral", "caption", "comment"],
+  roles={"creator": "I posted it", "organiser": "I ran the event", "subject": "I am in it"},
+  steps=[
+    ("act-332", ["creator", "organiser"],
+     "A recorded set or a reel with music in it contains other people's recordings and "
+     "compositions. Uploading is both reproduction and communication to the public, which is why "
+     "content matching pulls sets down even when nobody complained."),
+    ("cmos", ["creator", "organiser"],
+     "A licence the venue holds for the room does not travel with the video. Platform-level "
+     "licensing covers some uses and not others, and never covers a full recorded set."),
+    ("act-588", ["creator"],
+     "Section 233 is the provision most often used against people who post: offensive, indecent, "
+     "obscene or menacing content, and content sent with intent to annoy. Penalties were raised "
+     "in 2024. This is the MCMC route."),
+    ("cmcf-content-code", ["creator"],
+     "Registered under s.213 of the Communications and Multimedia Act, so compliance is a defence. "
+     "Day to day it does more work than the Act: it is the standard platforms, broadcasters and "
+     "advertisers actually apply when they decide whether your work goes out."),
+    ("act-866", ["creator", "subject"],
+     "In force from 1 January 2026. Your exposure here is not a charge, it is silent removal by a "
+     "platform acting on a statutory duty, and a removal is far harder to appeal than a charge is "
+     "to defend."),
+    ("act-620", ["creator"],
+     "If what you posted is a film, Board approval is the gate, and the Board reads film widely "
+     "enough to catch shorts, music videos and festival material."),
+    ("act-709", ["creator", "organiser"],
+     "Filming the room means processing other people's personal data. Breach notification and the "
+     "data protection officer duty arrived with the 2024 amendments and are being enforced."),
+    ("act-286", ["creator", "subject"],
+     "What you say over the top, or in the caption, is publication. It also cuts the other way: "
+     "this is your statute if someone destroys your reputation in a post."),
+    ("fedcon", ["creator"],
+     "Article 10(1)(a) is the right every statute above restricts, and Article 10(2)(a) is the "
+     "power they are made under. Every challenge to a takedown or a charge starts here."),
+  ],
+  watch="Removal and prosecution are different problems with different cures. Most artists prepare "
+        "for the charge that rarely comes and have no plan for the takedown that does.",
+  related=["dj-club-night", "brand-deal", "documentary"]),
+
+dict(
+  id="busking", title="Busk or perform in the street",
+  lede="Almost none of the rules that decide this are federal, and none of the ones that matter "
+       "are on the government's legislation portal.",
+  segments=["music", "performing", "visual"], objectives=["freedom", "socio"],
+  aliases=["busk", "busking", "busker", "street performance", "street performer", "street",
+           "public performance", "pasar seni", "central market", "sidewalk", "pavement",
+           "street musician", "perform in public"],
+  roles={"performer": "I am performing", "organiser": "I am organising it"},
+  steps=[
+    ("act-171", ["performer", "organiser"],
+     "The permit is a by-law made by the local council under this Act. DBKL, MBPJ and every other "
+     "local authority licence busking separately and publish separately, so there is no national "
+     "answer and none of it is on the federal portal."),
+    ("act-336", ["performer"],
+     "Begging and public nuisance offences, read with those by-laws, are how street performance is "
+     "actually policed. Whether you are performing or soliciting alms is the whole question and it "
+     "gets decided on the street, not in a court."),
+    ("act-574", ["performer"],
+     "Section 294 reaches an obscene song, ballad or words in or near a public place."),
+    ("cmos", ["performer"],
+     "Performing other people's songs in public is a public performance. Enforcement against "
+     "buskers is rare, but the right is real and organised street programmes get asked."),
+    ("act-736", ["performer", "organiser"],
+     "A crowd that forms around you can be characterised as an assembly, and the notification "
+     "requirement in s.9(1) survived the 2021 challenge even though s.9(5) did not."),
+    ("state-entertainment", ["performer", "organiser"],
+     "Some states require an entertainment licence even for unamplified street performance."),
+    ("fedcon", ["performer"],
+     "Article 10 is the backstop when a by-law written for hawkers is turned on expression."),
+  ],
+  watch="This is the clearest example of the gap in every Malaysian legal resource for the arts: "
+        "the operative rule is a council by-law nobody publishes centrally.",
+  related=["arrested", "stage-show", "mural"]),
+
+dict(
+  id="release-track", title="Release and distribute a track",
+  lede="Ownership, registration and the two separate rights in every recording.",
+  segments=["music"], objectives=["ip", "socio"],
+  aliases=["release", "distribute", "distribution", "spotify", "apple music", "distrokid",
+           "tunecore", "single", "album", "ep", "master", "streaming", "label", "put out",
+           "drop a track", "isrc", "upc"],
+  roles={"artist": "I am the artist", "label": "I am the label"},
+  steps=[
+    ("act-332", ["artist", "label"],
+     "Two rights live in every release: the composition and the sound recording, often owned by "
+     "different people. Section 26 gives first ownership, s.26(2) quietly moves it for commissioned "
+     "work and work made in employment, and s.27 requires assignments and exclusive licences to be "
+     "in writing. Malaysia has no copyright registration: protection is automatic on fixation."),
+    ("cmos", ["artist", "label"],
+     "Register with MACP as a writer and PRISM as a performer or you collect nothing from public "
+     "performance and broadcast no matter how heavily you are played."),
+    ("act-815", ["artist", "label"],
+     "The artist name and the label name. Registration gives a monopoly in the registered classes; "
+     "without it you are left with passing off, which is slower and harder to prove."),
+    ("berne", ["artist", "label"],
+     "You are protected in every member state automatically, with no registration or formality. "
+     "That is the answer to whether you need to register your copyright overseas."),
+    ("wppt", ["artist"],
+     "The international floor for performers' and producers' rights, and the source of the "
+     "performers' rights provisions in the Copyright Act."),
+    ("act-136", ["artist", "label"],
+     "Splits, producer points, the distribution deal and the label agreement are all contract. "
+     "Section 28 makes restraint of trade void, which weakens most exclusivity."),
+    ("act-378", ["artist", "label"],
+     "An assignment of copyright is an instrument. Unstamped, it can be shut out of evidence at "
+     "the exact moment you need to prove who owns the record."),
+    ("act-53", ["artist", "label"],
+     "Royalty income is income, and withholding applies to royalties paid out of Malaysia to "
+     "non-residents."),
+    ("act-606", ["label"],
+     "Still the live instrument for a physical pressing run."),
+  ],
+  watch="Most Malaysian artists are members of nothing. The recording can be everywhere and the "
+        "public performance money stays unclaimed because no one registered the work.",
+  related=["sync-licence", "management-deal", "dj-club-night"]),
+
+dict(
+  id="sync-licence", title="Licence a song for an ad, film or game",
+  lede="Two permissions, usually from two different owners, and a blanket licence is neither of them.",
+  segments=["music", "film", "digital"], objectives=["ip", "socio"],
+  aliases=["sync", "synchronisation", "synchronization", "licence a song", "license a song",
+           "ad music", "commercial", "soundtrack", "game music", "film music", "tv music",
+           "master use", "publishing"],
+  roles={"artist": "I own the music", "buyer": "I want to use the music"},
+  steps=[
+    ("act-332", ["artist", "buyer"],
+     "A sync needs two clearances: the composition and the sound recording. They are separate "
+     "rights and frequently separate owners, and clearing one is worth nothing without the other. "
+     "Section 27 requires an exclusive licence to be in writing."),
+    ("cmos", ["buyer"],
+     "A blanket public performance licence from MACP, PRISM or RPM is not a sync licence and never "
+     "has been. Sync is negotiated directly with the owners."),
+    ("act-136", ["artist", "buyer"],
+     "Term, territory, media, exclusivity and the most-negotiated clause of all: what happens on "
+     "renewal."),
+    ("act-378", ["artist", "buyer"],
+     "Stamp it. An unstamped licence is inadmissible until duty and penalty are paid."),
+    ("act-53", ["artist", "buyer"],
+     "Withholding applies to royalties paid out of Malaysia to non-residents, and the payer carries "
+     "the obligation."),
+    ("act-815", ["artist"],
+     "Use of your artist name in the credit or the campaign is a separate question from use of the "
+     "music."),
+    ("berne", ["artist"],
+     "National treatment means a Malaysian work is protected in the buyer's territory without "
+     "formality."),
+  ],
+  watch="The two-rights problem is where almost every Malaysian sync falls over: a brand clears "
+        "the recording from a label and never clears the song from the writers.",
+  related=["release-track", "management-deal", "brand-deal"]),
+
+dict(
+  id="documentary", title="Shoot and screen a film or documentary",
+  lede="Approval is the gate, a licence is the barrier to entry, and possession alone is an offence.",
+  segments=["film", "content"], objectives=["freedom", "ip", "socio"],
+  aliases=["film", "documentary", "doc", "shoot", "shooting", "filming", "screening", "festival",
+           "short film", "cinema", "feature", "crew", "production", "premiere", "director"],
+  roles={"filmmaker": "I am making it", "exhibitor": "I am showing it"},
+  steps=[
+    ("act-620", ["filmmaker", "exhibitor"],
+     "No film may be distributed, exhibited or possessed unless the Board has approved it, and "
+     "s.6 catches possession, not only exhibition. Festival and gallery screenings are inside it "
+     "on the Board's own reading. The Appeal Committee is the first real remedy and filmmakers "
+     "barely use it."),
+    ("act-244", ["filmmaker"],
+     "FINAS licensing makes it an offence to carry on film production, distribution or exhibition "
+     "without a licence. This is the provision that has been used against independent documentary "
+     "makers and it is the most-criticised barrier to entry in Malaysian film."),
+    ("act-332", ["filmmaker"],
+     "Archive footage, stills, music and the interview release you did not get. Clear it before "
+     "the edit lock, not after."),
+    ("act-709", ["filmmaker"],
+     "Contributors are data subjects. Consent, retention and the security of your rushes are all "
+     "inside the Act, and the 2024 amendments added breach notification."),
+    ("act-88", ["filmmaker"],
+     "A document classified as an official secret carries a mandatory custodial sentence and the "
+     "Minister's certificate is conclusive as to classification, so there is no route to argue the "
+     "material was innocuous."),
+    ("act-286", ["filmmaker"],
+     "Justification, fair comment and qualified privilege are the defences that matter to "
+     "investigative work, and Malaysia has no serious-harm threshold, so the bar to suing you is low."),
+    ("act-155", ["filmmaker"],
+     "Foreign crew are working, not visiting."),
+    ("puspal", ["filmmaker"],
+     "Foreign filming needs PUSPAL clearance, and the conditions attached are administrative rather "
+     "than statutory, so they change without any amendment being gazetted."),
+    ("act-514", ["filmmaker"],
+     "A set is a workplace, and since 2022 the duty reaches the principal, not just the direct "
+     "employer of the crew."),
+    ("act-301", ["exhibitor"],
+     "Programmes, catalogues and accompanying publications sit under a different regime again."),
+  ],
+  watch="Section 6 of the Film Censorship Act catches possession. A finished unapproved cut sitting "
+        "on your drive is already inside the offence.",
+  related=["post-set-online", "arrested", "stage-show"]),
+
+dict(
+  id="exhibit-sell-art", title="Exhibit and sell your work",
+  lede="Selling the object is not selling the copyright, and the commission clause decides who "
+       "owned it in the first place.",
+  segments=["visual", "fashion", "museum"], objectives=["ip", "socio"],
+  aliases=["exhibition", "exhibit", "gallery", "show", "art fair", "sell art", "commission",
+           "commissioned", "print", "painting", "sculpture", "collector", "artwork", "consignment",
+           "illustration", "illustrator", "portrait"],
+  roles={"artist": "I am the artist", "gallery": "I am the gallery or buyer"},
+  steps=[
+    ("act-332", ["artist", "gallery"],
+     "Selling the physical work is not selling the copyright, and s.25 moral rights survive the "
+     "sale. The trap is s.26(2): commissioned work and work made in the course of employment moves "
+     "ownership unless you contract out of it, and almost nobody does."),
+    ("act-136", ["artist", "gallery"],
+     "Consignment, commission percentage, insurance while held, and what happens when the gallery "
+     "closes owing you for sold work."),
+    ("act-552", ["artist"],
+     "If the work is industrially applied, s.7(6) of the Copyright Act cuts your copyright and "
+     "registration under this Act becomes the protection. Designers fall into this gap constantly."),
+    ("act-599", ["artist", "gallery"],
+     "You are a seller. Implied guarantees, misleading conduct and the Tribunal for Consumer Claims "
+     "all apply, and the Tribunal is cheap enough to be used against you."),
+    ("act-378", ["artist", "gallery"],
+     "An assignment or an exclusive representation agreement is an instrument."),
+    ("act-645", ["artist", "gallery"],
+     "Heritage objects can be caught on export without anyone realising they were listed, and "
+     "declaration constrains what an owner may do with their own property."),
+    ("act-709", ["gallery"],
+     "Collector and mailing list records are personal data."),
+    ("act-53", ["artist"],
+     "Whether your sales are taxable business income turns on the badges of trade, not on whether "
+     "you call yourself a business."),
+  ],
+  watch="Section 26(2) is the clause that quietly transfers ownership of commissioned work. Read it "
+        "before you accept the commission, not after you see it reprinted.",
+  related=["mural", "merch-online", "archive"]),
+
+dict(
+  id="mural", title="Paint a mural or install work in public space",
+  lede="Your copyright survives on someone else's wall. What the owner may then do to it is the fight.",
+  segments=["visual"], objectives=["ip", "freedom", "socio"],
+  aliases=["mural", "street art", "graffiti", "public art", "wall", "installation", "site specific",
+           "paint a wall", "commission a mural"],
+  roles={"artist": "I am the artist", "commissioner": "I commissioned it"},
+  steps=[
+    ("act-171", ["artist", "commissioner"],
+     "Permission comes from the local authority under a by-law made under this Act, and the council "
+     "can require removal. Get the permission in writing before the first coat."),
+    ("act-332", ["artist", "commissioner"],
+     "Copyright in the mural is yours even though the wall is not. Section 25 moral rights, "
+     "including integrity, are where the argument lands when a wall is painted over or altered."),
+    ("act-645", ["artist", "commissioner"],
+     "On or near a declared heritage site, what may be done to the fabric is controlled and the "
+     "penalty falls on whoever did it."),
+    ("act-574", ["artist"],
+     "The obscenity provisions and s.298A on religious disharmony are the two that reach public "
+     "imagery."),
+    ("act-336", ["artist"],
+     "Public nuisance, read with the by-law, is the everyday enforcement route."),
+    ("act-136", ["artist", "commissioner"],
+     "The commission agreement should say who owns the copyright, whether it can be altered or "
+     "removed, and who is liable if the council objects."),
+    ("fedcon", ["artist"],
+     "Article 10 when the objection is to the content rather than the paint."),
+  ],
+  watch="Commissioners routinely assume that paying for a mural buys the copyright and the right to "
+        "alter it. Section 26(2) may give them the first; s.25 does not give them the second.",
+  related=["exhibit-sell-art", "busking", "arrested"]),
+
+dict(
+  id="publish-book", title="Publish a book or zine",
+  lede="Printing needs a licence, publishing needs a permit, and the Minister can prohibit the "
+       "result outright.",
+  segments=["literature", "visual"], objectives=["freedom", "ip", "socio"],
+  aliases=["book", "zine", "publish", "publishing", "publisher", "isbn", "print", "printing",
+           "self publish", "novel", "poetry", "comic", "graphic novel", "anthology", "catalogue",
+           "manuscript", "author"],
+  roles={"author": "I wrote it", "publisher": "I am publishing it"},
+  steps=[
+    ("act-301", ["publisher", "author"],
+     "Printing presses need a licence, publications need a permit, and the Minister may prohibit a "
+     "publication outright. Zines, art books, catalogues, comics and independent presses are all "
+     "inside this Act whether or not they think of themselves as publishers. The 2012 amendment "
+     "removed the finality clause, so the Minister's decision is now judicially reviewable, and "
+     "that is the opening."),
+    ("act-332", ["author", "publisher"],
+     "Duration, first ownership, and the publishing agreement. Section 27 requires an exclusive "
+     "licence to be in writing, and a publishing deal is usually an exclusive licence."),
+    ("act-286", ["author", "publisher"],
+     "Memoir, reportage and anything naming a living person. Justification and fair comment are "
+     "the defences; there is no serious-harm threshold here."),
+    ("act-15", ["author", "publisher"],
+     "Seditious tendency, with intention expressly irrelevant under s.3(3). That is what makes it "
+     "dangerous to satire."),
+    ("act-574", ["author", "publisher"],
+     "Sections 292 to 294 on obscene books and objects, and ss.298 and 298A on religious feelings."),
+    ("act-378", ["author", "publisher"],
+     "The publishing agreement is an instrument."),
+    ("marrakesh", ["publisher"],
+     "The basis for the accessible-format exceptions, which is the answer when a library or a "
+     "reader asks."),
+    ("berne", ["author"],
+     "Automatic protection in every member state, no formality required."),
+    ("act-53", ["author"],
+     "Advances and royalties are income; the badges of trade decide the character."),
+  ],
+  watch="Section 7 of the Printing Presses and Publications Act is the prohibition power and it has "
+        "been used against books and graphic novels. Reviewability is the remedy people forget they now have.",
+  related=["exhibit-sell-art", "arrested", "archive"]),
+
+dict(
+  id="stage-show", title="Stage a play, gig or live show",
+  lede="Two sets of performing rights, a venue licence, a duty on admissions, and the question of "
+       "what your cast actually are.",
+  segments=["performing", "music"], objectives=["socio", "ip", "freedom"],
+  aliases=["theatre", "theater", "play", "stage", "production", "rehearsal", "musical", "dance",
+           "show", "concert", "live show", "ticketed", "venue", "cast", "crew", "run of show"],
+  roles={"producer": "I am producing", "performer": "I am performing", "venue": "I am the venue"},
+  steps=[
+    ("act-332", ["producer"],
+     "The script and the music are separate permissions from separate owners, and a performing "
+     "licence for one is not a licence for the other."),
+    ("cmos", ["producer", "venue"],
+     "Live and recorded music in the show engages the public performance rights administered by "
+     "MACP, PRISM and RPM."),
+    ("act-493", ["producer", "venue"],
+     "In Kuala Lumpur the venue needs an entertainment licence and the conditions attached are "
+     "where content control actually happens."),
+    ("state-entertainment", ["producer", "venue"],
+     "Outside KL, state enactments and council by-laws, which differ."),
+    ("act-103", ["producer"],
+     "Entertainments duty on paid admissions, administered by the state with exemption practice "
+     "that varies."),
+    ("act-265", ["producer", "performer"],
+     "Whether the cast and crew are employees decides notice, leave, sick pay and which forum hears "
+     "a complaint. Calling someone a freelancer does not make them one: control, integration and "
+     "mutuality decide it."),
+    ("act-872", ["performer"],
+     "If the engagement runs through a platform, the service agreement, the notice before "
+     "deactivation, conciliation and the Tribunal are now statutory."),
+    ("act-350", ["producer"],
+     "Employment connected with public entertainment is separately regulated where a child is "
+     "involved, and a parental release is not the whole answer."),
+    ("act-611", ["producer"],
+     "The reporting duties that apply if a child on the production is at risk."),
+    ("act-514", ["producer", "venue"],
+     "Rigging, get-in, get-out and crowd. The duty reaches the principal since 2022."),
+    ("act-840", ["producer", "performer"],
+     "The Tribunal reaches conduct outside an employment relationship, which is how most theatre "
+     "and music engagements are structured."),
+    ("act-574", ["performer", "producer"],
+     "Section 294 on obscene words in or near a public place, and ss.298 and 298A."),
+  ],
+  watch="The employment question is upstream of everything. Get it wrong and you have also got the "
+        "safety duty, the harassment forum and the tax treatment wrong.",
+  related=["dj-club-night", "foreign-artist", "unpaid"]),
+
+dict(
+  id="merch-online", title="Sell merch, prints or downloads online",
+  lede="The moment you take money online you are a seller, and there is a disclosure rule almost "
+       "no artist store complies with.",
+  segments=["fashion", "visual", "content", "music"], objectives=["socio", "ip"],
+  aliases=["merch", "merchandise", "shop", "store", "online store", "tshirt", "t-shirt", "hoodie",
+           "print sales", "ecommerce", "e-commerce", "shopify", "dropship", "sell online",
+           "bandcamp", "etsy", "stripe", "checkout"],
+  roles={"seller": "I am selling", "buyer": "I am buying"},
+  steps=[
+    ("act-599", ["seller", "buyer"],
+     "The Consumer Protection (Electronic Trade Transactions) Regulations 2012 require an online "
+     "seller to display name, registration number and address. Most artist stores display none of "
+     "it. Implied guarantees and the Tribunal for Consumer Claims apply either way."),
+    ("act-815", ["seller"],
+     "Your mark, and theirs. Putting someone else's logo on a shirt is the fastest route to a "
+     "letter you cannot answer."),
+    ("act-552", ["seller"],
+     "The design of a mass-produced article is protected by registration, not by copyright, and "
+     "novelty is destroyed by showing it first."),
+    ("act-730", ["seller"],
+     "False trade description is the enforcement route against counterfeit merchandise, in both "
+     "directions."),
+    ("act-332", ["seller"],
+     "Artwork, photographs and fonts on the product. The licence you bought for a font often does "
+     "not cover merchandise."),
+    ("act-658", ["seller", "buyer"],
+     "Electronic contracts and signatures are legally effective, so your checkout terms bind."),
+    ("act-709", ["seller"],
+     "Customer records, mailing lists and the 2024 breach notification duty."),
+    ("act-807", ["seller"],
+     "Service tax reaches some supplies once you pass the threshold."),
+    ("act-777", ["seller"],
+     "The vehicle you sell through, and whether you chose one at all."),
+    ("act-53", ["seller"],
+     "Business income, deductions, and the badges of trade."),
+  ],
+  watch="The e-commerce disclosure regulations are the quiet one. They are cheap to comply with and "
+        "they are the first thing a complaint will point at.",
+  related=["exhibit-sell-art", "brand-deal", "run-organisation"]),
+
+dict(
+  id="management-deal", title="Sign a management, label or agency deal",
+  lede="What you assign you do not get back, and the clause that looks like a life sentence is "
+       "often void anyway.",
+  segments=["music", "performing", "content", "literature"], objectives=["socio", "ip"],
+  aliases=["contract", "management", "manager", "label deal", "agency", "sign", "signing",
+           "deal", "agreement", "360 deal", "exclusive", "commission", "review my contract",
+           "terms", "publishing deal", "record deal", "should i sign", "before signing",
+           "band agreement", "band", "splits", "royalty split", "partnership agreement"],
+  roles={"artist": "I am the artist", "counterparty": "I am the manager or label"},
+  steps=[
+    ("act-136", ["artist", "counterparty"],
+     "Section 28 makes agreements in restraint of trade void, which is why most exclusivity and "
+     "post-term commission clauses in Malaysian artist agreements are weaker than they look. "
+     "Sections 15, 16 and 20 cover coercion, undue influence and setting the contract aside."),
+    ("act-332", ["artist", "counterparty"],
+     "Section 27 requires assignments and exclusive licences to be in writing. Understand exactly "
+     "what is assigned, for how long, and whether it reverts."),
+    ("act-378", ["artist", "counterparty"],
+     "Stamp it. Section 52 shuts an unstamped instrument out of evidence, and it is only curable "
+     "before you need the document."),
+    ("act-137", ["artist"],
+     "Damages are often not the remedy you want. Rescission, rectification and injunctions are "
+     "here, and in arts disputes what you want is usually the work back or the deal undone."),
+    ("act-254", ["artist"],
+     "Six years for contract, and s.29 postpones time where the claim was concealed by fraud, "
+     "which is the usual argument when royalties were never reported."),
+    ("act-646", ["artist", "counterparty"],
+     "An arbitration clause decides where the fight happens and whether a court must stay "
+     "proceedings. Most Malaysian arts contracts point at AIAC without anyone reading it."),
+    ("act-177", ["artist"],
+     "If you were in truth an employee rather than a contracting artist, s.20 is the route and the "
+     "clock is sixty days from dismissal."),
+    ("act-872", ["artist"],
+     "If the counterparty is a platform, the new statutory protections may reach you. How "
+     "'platform' and 'service agreement' are read is exactly what ALIM should be pushing on."),
+  ],
+  watch="Never sign an assignment where a licence would do. An assignment moves ownership; a licence "
+        "lends it back on terms and ends.",
+  related=["release-track", "unpaid", "sync-licence"]),
+
+dict(
+  id="foreign-artist", title="Bring a foreign artist into Malaysia",
+  lede="Two gates, one tax, and the administrative one is the constraint on your timeline.",
+  segments=["music", "performing", "film"], objectives=["socio", "freedom"],
+  aliases=["foreign artist", "foreign artiste", "international act", "booking", "tour", "visa",
+           "work permit", "foreign dj", "foreign band", "overseas artist", "import an act",
+           "professional visit pass"],
+  roles={"promoter": "I am the promoter", "artist": "I am the visiting artist"},
+  steps=[
+    ("puspal", ["promoter", "artist"],
+     "PUSPAL clearance comes before the immigration pass, and its dress and conduct conditions are "
+     "a live artistic freedom issue that appears in no statute. Administrative rules change without "
+     "amendment, so check the current guidance rather than last year's."),
+    ("act-155", ["promoter", "artist"],
+     "A performance is work. The correct route is a Professional Visit Pass; a social visit pass is "
+     "the wrong pass and the liability reaches the person who engaged them."),
+    ("act-53", ["promoter"],
+     "Section 109A withholding on payments to non-resident public entertainers is the payer's "
+     "liability. Fail to deduct and you are personally liable for the tax plus a 10 per cent increase."),
+    ("act-493", ["promoter"],
+     "The venue's entertainment licence and its conditions."),
+    ("state-entertainment", ["promoter"],
+     "Outside KL, the state enactment, and in Sabah and Sarawak a separate immigration control on top."),
+    ("act-103", ["promoter"],
+     "Entertainments duty on the admissions."),
+    ("act-136", ["promoter", "artist"],
+     "The booking agreement, the rider, the cancellation terms and who carries the visa risk."),
+    ("act-514", ["promoter"],
+     "Production safety, with the duty reaching you as principal."),
+  ],
+  watch="Budget the withholding into the fee from the first email. Renegotiating 15 per cent after "
+        "the artist has agreed a net figure is where these deals die.",
+  related=["dj-club-night", "stage-show", "documentary"]),
+
+dict(
+  id="brand-deal", title="Take a brand deal as a creator",
+  lede="Advertising standards reach you personally, and the brand's terms usually take the copyright "
+       "in what you made.",
+  segments=["content", "digital", "fashion"], objectives=["socio", "ip", "freedom"],
+  aliases=["brand deal", "sponsorship", "sponsored", "influencer", "ugc", "paid partnership",
+           "endorsement", "affiliate", "collab", "collaboration", "advertorial", "kol"],
+  roles={"creator": "I am the creator", "brand": "I am the brand or agency"},
+  steps=[
+    ("act-599", ["creator", "brand"],
+     "Misleading conduct and false representation reach an endorsement. Saying you use something "
+     "you do not is inside this Act, not just inside a platform policy."),
+    ("cmcf-content-code", ["creator", "brand"],
+     "The advertising parts of the Content Code apply to you, and compliance with it is a defence "
+     "under s.213 of the Communications and Multimedia Act."),
+    ("act-332", ["creator", "brand"],
+     "Who owns the content you made. The brand's standard terms usually take it outright, when a "
+     "licence limited by term, territory and media would do."),
+    ("act-136", ["creator", "brand"],
+     "Usage period, exclusivity, approvals, kill fee and whitelisting. Section 28 again on "
+     "category exclusivity."),
+    ("act-588", ["creator"],
+     "What you post in the campaign is still inside s.233."),
+    ("act-866", ["creator"],
+     "Platform duties mean a campaign can be removed without anyone charging anyone."),
+    ("act-815", ["creator", "brand"],
+     "Your handle and your name as marks, and their marks in your content."),
+    ("act-709", ["creator", "brand"],
+     "Audience data handed over as part of the deal is personal data and it is not yours to give."),
+    ("act-872", ["creator"],
+     "If the counterparty is a platform rather than a brand, the gig worker protections may reach "
+     "the relationship."),
+    ("act-53", ["creator"],
+     "Payment in kind is still income. Gifted product has a value."),
+  ],
+  watch="Read the intellectual property clause before the fee. A perpetual worldwide assignment for "
+        "a one-month campaign is the standard opening position and it is negotiable.",
+  related=["post-set-online", "merch-online", "management-deal"]),
+
+dict(
+  id="run-organisation", title="Run an arts organisation or collective",
+  lede="A collective that never chose a vehicle is already a partnership, with liabilities it never "
+       "agreed to.",
+  segments=["others", "visual", "performing", "museum"], objectives=["socio", "freedom"],
+  aliases=["ngo", "non profit", "nonprofit", "collective", "society", "company", "clbg",
+           "organisation", "organization", "register", "incorporate", "funding", "grant",
+           "committee", "board", "constitution", "ssm", "ros"],
+  roles={"founder": "I am setting it up", "officer": "I run it"},
+  steps=[
+    ("act-135", ["founder", "officer"],
+     "Bands, collectives and studios that never signed anything are partnerships by operation of "
+     "law, with joint and several liability and a default equal profit split they never agreed to. "
+     "Section 26 arrives uninvited in most band disputes."),
+    ("act-777", ["founder"],
+     "Section 45 company limited by guarantee is the non-profit form. It needs the Minister's "
+     "licence to drop 'Berhad' and it cannot pay dividends; that is the trade-off for the "
+     "charitable shape."),
+    ("act-832", ["founder"],
+     "A registered society is cheaper and faster, but the Registrar has wide powers over "
+     "registration, rules and dissolution, which is a live freedom of association issue for "
+     "politically engaged arts groups."),
+    ("act-743", ["founder"],
+     "The limited liability partnership is the practical middle form for a small studio or "
+     "production partnership."),
+    ("act-200", ["officer"],
+     "Public fundraising, street collections and benefit gigs need a licence."),
+    ("act-265", ["officer"],
+     "As an employer: notice, leave, the 2023 coverage of all employees, and the anti-discrimination "
+     "provisions."),
+    ("act-514", ["officer"],
+     "As an occupier and a principal."),
+    ("act-840", ["officer"],
+     "A complaints route now exists that does not depend on an employment relationship. Have a "
+     "policy before you need one."),
+    ("act-709", ["officer"],
+     "Member, donor and participant records."),
+    ("act-53", ["officer"],
+     "Tax-exempt status is not automatic and is separate from the vehicle you chose."),
+  ],
+  watch="Choose the vehicle before you take the first grant. Retrofitting a CLBG around money "
+        "already received is the expensive way round.",
+  related=["unpaid", "merch-online", "archive"]),
+
+dict(
+  id="unpaid", title="Chase an unpaid fee or invoice",
+  lede="Which forum you are in depends entirely on what you were: employee, freelancer, gig worker "
+       "or seller.",
+  segments=["others", "music", "visual", "performing", "content", "film", "literature", "fashion"],
+  objectives=["socio"],
+  aliases=["unpaid", "not paid", "invoice", "late payment", "owe", "owed", "debt", "chase",
+           "chasing", "wont pay", "won't pay", "will not pay", "money", "fee", "payment",
+           "outstanding", "non payment", "ghosted", "client", "customer", "never paid",
+           "small claims", "letter of demand", "lod", "refuses to pay", "withholding payment"],
+  roles={"freelancer": "I was a freelancer", "employee": "I was an employee",
+         "gig": "I worked through a platform", "seller": "I sold something"},
+  steps=[
+    ("act-136", ["freelancer", "seller"],
+     "The contract exists even if nothing was signed: a WhatsApp thread and a delivered job is a "
+     "contract. Section 74 gives compensation for loss caused by the breach."),
+    ("act-872", ["gig"],
+     "If you worked through a platform, the written service agreement, the minimum notice before "
+     "deactivation, conciliation and a dedicated Tribunal are now statutory rather than goodwill."),
+    ("act-265", ["employee"],
+     "If you were in truth an employee, the Labour Department route replaces suing, and it is free. "
+     "Labelling you a freelancer does not make you one."),
+    ("act-177", ["employee"],
+     "For dismissal rather than unpaid wages: s.20, the Industrial Court, and sixty days from "
+     "dismissal to file. Miss the clock and the claim is gone."),
+    ("act-599", ["seller"],
+     "The Tribunal for Consumer Claims is cheap and fast and does not need a lawyer. It cuts both "
+     "ways: a client can use it on you."),
+    ("act-378", ["freelancer", "seller"],
+     "If there is a written agreement, it has to be stamped to go into evidence. Curable, but only "
+     "before you need it."),
+    ("act-254", ["freelancer", "employee", "seller"],
+     "Six years for contract and tort. Section 29 postpones time where the claim was concealed by "
+     "fraud, which is the argument when royalties were never reported."),
+    ("act-137", ["freelancer"],
+     "When money is not the remedy you want and you need the work back or the use stopped."),
+    ("act-646", ["freelancer"],
+     "If the agreement has an arbitration clause, that is where this goes, not to court."),
+  ],
+  watch="Work out which of the four you were before you write the first letter. Sending a civil "
+        "letter of demand when you had a free statutory forum wastes the cheapest route you had.",
+  related=["management-deal", "stage-show", "run-organisation"]),
+
+dict(
+  id="arrested", title="Stopped, raided, shut down or arrested",
+  lede="The basis is usually a licence condition or a by-law, not the speech offence everyone "
+       "assumes it is.",
+  segments=["music", "performing", "visual", "film", "literature", "content"],
+  objectives=["freedom"],
+  aliases=["arrest", "arrested", "police", "raid", "raided", "remand", "bail", "shut down",
+           "shutdown", "stopped", "detained", "charged", "investigation", "statement",
+           "summons", "seized", "banned", "ditahan", "cancelled", "closed down", "warned",
+           "complaint against me", "reported to police", "gig", "show", "event",
+           "venue", "club", "performance"],
+  roles={"artist": "I am the artist", "organiser": "I am the organiser"},
+  steps=[
+    ("fedcon", ["artist", "organiser"],
+     "Article 5 on liberty and Article 10 on expression. Every restriction below is an exercise of "
+     "the Article 10(2) power and every challenge starts here."),
+    ("act-493", ["organiser"],
+     "In practice a shutdown is usually enforced through the venue's entertainment licence and its "
+     "conditions, not through a speech offence. That matters, because the remedy is different."),
+    ("act-171", ["organiser"],
+     "Council by-laws on hours, noise and premises are the other common basis."),
+    ("act-588", ["artist"],
+     "Section 233 is the provision most often used over something posted."),
+    ("act-574", ["artist"],
+     "Obscenity under ss.292 to 294, religious feelings under ss.298 and 298A, and statements "
+     "conducing to public mischief under s.505."),
+    ("act-15", ["artist"],
+     "Seditious tendency, with intention expressly irrelevant."),
+    ("act-736", ["organiser"],
+     "If it was characterised as an assembly rather than a performance."),
+    ("act-620", ["artist", "organiser"],
+     "For anything screened, remembering that possession alone is inside s.6."),
+    ("act-301", ["artist"],
+     "For anything printed or published."),
+    ("syariah-criminal", ["artist"],
+     "For Muslim artists a state Syariah enactment runs in parallel with all of the above, and work "
+     "cleared federally can still be actionable there."),
+    ("act-88", ["artist"],
+     "If documents are involved and the classification question arises."),
+  ],
+  watch="Get the exact provision cited, in writing, before you argue anything. Half of these "
+        "situations turn out to be a licensing decision that is reviewable rather than an offence "
+        "that has to be defended.",
+  related=["busking", "documentary", "post-set-online"]),
+
+dict(
+  id="someone-used-my-work", title="Someone used your work without asking",
+  lede="Infringement, passing off, or neither. Ownership is the first question and most claims "
+       "die on it, not on the copying.",
+  segments=["visual", "music", "film", "literature", "fashion", "content", "digital", "performing"],
+  objectives=["ip", "socio"],
+  aliases=["stolen", "stole", "copied", "copy", "took my song", "used my song", "used my work",
+           "took my work", "plagiarism", "plagiarised", "plagiarized", "ripped off", "rip off",
+           "infringement", "infringed", "without permission", "no credit", "uncredited",
+           "reposted", "repost", "bootleg", "fake", "song", "my work", "my art", "my design",
+           "someone used", "passing off", "counterfeit", "knock off", "artwork", "art",
+           "design", "photo", "image", "illustration", "track", "beat", "painting"],
+  roles={"owner": "I made the work", "accused": "I have been accused"},
+  steps=[
+    ("act-332", ["owner", "accused"],
+     "Three questions in order: is it a work the Act protects, do you actually own it, and is what "
+     "they did one of the acts the owner controls. Section 26 gives first ownership and s.26(2) "
+     "moves it for commissioned work and work made in employment, which is where most artists "
+     "discover they are not the owner. There is no registration to fall back on; your evidence is "
+     "files, dates and drafts."),
+    ("act-815", ["owner", "accused"],
+     "If what was taken is a name, a logo or a get-up rather than a work, this is trademark "
+     "territory, or passing off if you never registered. Different test, different remedy."),
+    ("act-552", ["owner"],
+     "If it is the shape or ornament of a mass-produced article, registration under this Act is "
+     "the protection, and s.7(6) of the Copyright Act may already have cut the copyright you were "
+     "relying on."),
+    ("act-136", ["owner", "accused"],
+     "If there was ever a brief, a quote or a deal, the stronger claim is often breach of contract "
+     "rather than infringement. It is easier to prove and the damages are easier to calculate."),
+    ("act-137", ["owner"],
+     "An injunction to stop the use is usually what you actually want, and damages are usually "
+     "not enough. This is the Act that gives it."),
+    ("cmos", ["owner"],
+     "If the use is music being performed or broadcast, the route is the licensing bodies and "
+     "their tariffs, not a lawsuit. A tariff dispute goes to the Copyright Tribunal."),
+    ("act-588", ["owner"],
+     "For online use, the platform takedown route, and s.233 where the use is abusive rather than "
+     "commercial."),
+    ("act-866", ["owner"],
+     "Platform duties give a second removal route that does not need a court."),
+    ("act-730", ["owner"],
+     "Where the copy is being sold as goods, false trade description is the enforcement route and "
+     "it carries criminal penalties."),
+    ("act-286", ["owner", "accused"],
+     "If the use also misrepresents you or damages your reputation, that is a separate claim with "
+     "its own defences."),
+    ("act-378", ["owner"],
+     "If you prove title through an assignment, it has to be stamped before it goes into evidence."),
+    ("act-254", ["owner"],
+     "Six years, and s.29 postpones time where the use was concealed. Artists usually find out "
+     "late, so this is a live argument rather than a formality."),
+  ],
+  watch="Send nothing before you have settled ownership. A letter of demand from someone who turns "
+        "out not to own the work is worse than silence, and s.26(2) means that happens often.",
+  related=["release-track", "sync-licence", "exhibit-sell-art"]),
+
+dict(
+  id="archive", title="Archive, conserve or exhibit heritage material",
+  lede="Listing constrains the owner, export catches the unaware, and copyright outlives everyone "
+       "who could give permission.",
+  segments=["museum", "visual", "literature", "film"], objectives=["socio", "ip", "freedom"],
+  aliases=["archive", "archiving", "museum", "heritage", "conservation", "conserve", "collection",
+           "records", "artefact", "artifact", "preservation", "oral history", "digitise",
+           "digitize", "repatriation"],
+  roles={"archivist": "I hold the material", "researcher": "I want access"},
+  steps=[
+    ("act-645", ["archivist", "researcher"],
+     "The National Heritage Register, declaration of sites and objects, and controls on export and "
+     "alteration. Declaration constrains what an owner may do with their own property, and objects "
+     "get caught on export without anyone realising they were listed."),
+    ("act-629", ["archivist", "researcher"],
+     "Public records, their transfer and disposal, and the access provisions. This decides what may "
+     "lawfully be copied or exhibited from a public collection."),
+    ("act-332", ["archivist"],
+     "Copyright outlives the author by fifty years, so most archive material is still in copyright "
+     "and often has no traceable owner. Duration and first ownership are the two questions."),
+    ("act-300", ["archivist"],
+     "When an artist dies intestate, this Act decides who inherits the catalogue, and therefore who "
+     "can now give you permission."),
+    ("marrakesh", ["archivist"],
+     "The basis for making and sharing accessible-format copies without the rightholder's permission."),
+    ("act-709", ["archivist"],
+     "Oral history, interviews and donor records are personal data, and consent given in 1998 may "
+     "not cover publication in 2026."),
+    ("act-724", ["archivist"],
+     "The statutory framework behind national collection acquisition and disposal."),
+    ("act-88", ["researcher"],
+     "Classified material, where the Minister's certificate is conclusive."),
+  ],
+  watch="The orphan works problem has no clean Malaysian solution. Document your diligent search "
+        "before you publish, because that record is the only mitigation available.",
+  related=["exhibit-sell-art", "publish-book", "documentary"]),
+]

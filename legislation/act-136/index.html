@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contracts Act 1950 · ALIM Legislation Library</title>
+<meta name="description" content="Every commission, gig, residency, publishing deal, sync licence and band agreement is a contract, and this is the Act that decides whether one exists, what…">
+<link rel="canonical" href="https://alim.my/legislation/act-136/">
+<meta property="og:title" content="Contracts Act 1950 · ALIM Legislation Library">
+<meta property="og:description" content="Every commission, gig, residency, publishing deal, sync licence and band agreement is a contract, and this is the Act that decides whether one exists, what…">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/alim.css">
+<style>
+.lg-chip{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; background:var(--paper); color:var(--ink-3);
+  border:1.5px solid var(--rule); padding:6px 11px; cursor:pointer; white-space:nowrap;
+  text-decoration:none; display:inline-block;
+  transition:background .15s ease,color .15s ease,border-color .15s ease; }
+.lg-chip:hover{ color:var(--ink); border-color:var(--ink-3); }
+.lg-chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.lg-chip.lg-alt{ border-style:dashed; }
+.lg-chiprow{ display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; align-items:center;
+  flex-wrap:nowrap; }
+.lg-chiprow>.label{ flex:0 0 auto; padding-right:4px; }
+.lg-wrapchips{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.lg-search{ width:100%; font-family:'Archivo',sans-serif; font-size:16px; color:var(--ink);
+  background:var(--paper-2); border:1.5px solid var(--ink); padding:15px 44px 15px 16px; }
+.lg-search:focus{ outline:2px solid var(--pillar); outline-offset:2px; }
+.lg-searchwrap{ position:relative; }
+.lg-slash{ position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3);
+  border:1px solid var(--rule); padding:2px 7px; pointer-events:none; }
+.lg-tools{ position:sticky; top:0; z-index:60; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:18px 0 14px; margin-bottom:26px; }
+.lg-ink{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; padding:3px 8px; color:#FFFFFF; display:inline-block;
+  font-weight:500; }
+.lg-card{ display:block; text-decoration:none; }
+.lg-card[hidden],[hidden]{ display:none !important; }
+.lg-card h3{ font-size:19px; margin:10px 0 6px; line-height:1.25; }
+.lg-card .lg-meta{ font-family:'JetBrains Mono',monospace; font-size:11px;
+  color:var(--ink-3); letter-spacing:.04em; }
+.lg-sec{ display:grid; grid-template-columns:5rem 1fr; gap:12px; padding:9px 0;
+  border-bottom:1px solid var(--rule-soft); font-size:14.5px; align-items:baseline; }
+.lg-sec:last-child{ border-bottom:0; }
+.lg-num{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--pillar);
+  letter-spacing:.04em; }
+.lg-num.lg-topic{ color:var(--ink-3); }
+.lg-arr{ max-height:460px; overflow-y:auto; padding-right:10px; margin-top:14px; }
+.lg-hit{ display:block; text-decoration:none; background:var(--paper-2);
+  border:1px solid var(--rule-soft); padding:11px 14px; }
+.lg-hit:hover{ border-color:var(--ink-3); }
+mark{ background:rgba(216,49,31,.22); color:inherit; padding:0 2px; }
+details.lg-fold>summary{ cursor:pointer; list-style:none; display:flex;
+  justify-content:space-between; align-items:center; gap:12px; }
+details.lg-fold>summary::-webkit-details-marker{ display:none; }
+.lg-warn{ border-left:4px solid var(--pillar); background:var(--paper-2);
+  padding:14px 18px; font-size:14px; line-height:1.6; color:var(--ink-2); }
+.lg-warn.lg-old{ border-left-color:var(--vermillion); }
+.lg-prov{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--rule);
+  background:var(--paper-2); padding:14px 18px; margin-top:22px; }
+.lg-prov .lg-provtag{ font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; white-space:nowrap;
+  border:1.5px solid var(--ink-3); color:var(--ink-3); }
+.lg-prov[data-tone="good"] .lg-provtag{ border-color:var(--riso-green); color:var(--riso-green); }
+.lg-prov[data-tone="warn"] .lg-provtag{ border-color:var(--vermillion); color:var(--vermillion); }
+.lg-prov p{ margin:0; font-size:13px; line-height:1.6; color:var(--ink-2); }
+/* the review bar: two buttons, and nothing else to think about */
+.lg-rev{ position:sticky; top:0; z-index:70; background:var(--ink); color:var(--paper);
+  padding:12px 0; margin-bottom:0; }
+.lg-rev .wrap{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.lg-rev-who{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; opacity:.75; flex:1 1 auto; }
+.lg-rev-btn{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; padding:11px 18px; min-height:44px; cursor:pointer;
+  border:1.5px solid var(--paper); background:transparent; color:var(--paper); }
+.lg-rev-btn.lg-yes{ background:var(--paper); color:var(--ink); font-weight:500; }
+.lg-rev-btn:disabled{ opacity:.45; cursor:default; }
+.lg-rev textarea{ width:100%; margin-top:10px; padding:12px; font-family:'Archivo',sans-serif;
+  font-size:15px; border:1.5px solid var(--paper); background:var(--ink); color:var(--paper); }
+.lg-rev a{ color:var(--paper); }
+.lg-revdone{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.08em; }
+.lg-rev-ask{ flex:1 1 100%; font-size:14px; line-height:1.55; margin:0 0 4px; }
+.lg-rev-ask small{ display:block; opacity:.7; font-size:12.5px; margin-top:4px; }
+.lg-rev-change{ background:none; border:0; color:var(--paper); opacity:.7;
+  text-decoration:underline; cursor:pointer; font-family:'JetBrains Mono',monospace;
+  font-size:11px; letter-spacing:.06em; padding:6px 0; }
+@media(max-width:600px){ .lg-rev .wrap{ gap:8px } .lg-rev-btn{ flex:1 1 40%; text-align:center } }
+.lg-notice p{ font-size:13.5px; line-height:1.7; color:var(--ink-2); margin:12px 0 0; }
+.lg-notice p.lg-notice-cta{ color:var(--ink); font-size:14.5px; margin-top:16px; }
+
+/* answer chain: a numbered docket, which is what this site already is */
+.lg-step{ display:grid; grid-template-columns:2.6rem 1fr; gap:16px; padding:18px 0;
+  border-top:1px solid var(--rule-soft); }
+.lg-step:first-of-type{ border-top:0; }
+.lg-step-n{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--pillar);
+  padding-top:3px; letter-spacing:.06em; }
+.lg-step h4{ font-family:'Literata',Georgia,serif; font-size:18px; font-weight:normal;
+  margin:0 0 3px; line-height:1.3; }
+.lg-step h4 a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+.lg-step h4 a:hover{ border-bottom-color:var(--pillar); }
+.lg-step .lg-ref{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-3);
+  letter-spacing:.06em; }
+.lg-step p{ font-size:14.5px; line-height:1.65; color:var(--ink-2); margin:8px 0 0; }
+.lg-roleb{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); border:1px solid var(--rule);
+  padding:1px 6px; margin-right:5px; display:inline-block; }
+.lg-step[data-dim="1"]{ opacity:.62; }
+.lg-step[data-dim="1"] .lg-roleb{ opacity:.8; }
+
+/* framework matrix */
+.lg-matrix{ width:100%; border-collapse:collapse; font-size:13px; }
+.lg-matrix th,.lg-matrix td{ border:1px solid var(--rule); padding:0; text-align:center; }
+.lg-matrix thead th{ background:var(--paper-2); font-family:'JetBrains Mono',monospace;
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:500;
+  color:var(--ink-3); padding:10px 8px; vertical-align:bottom; line-height:1.3;
+  min-width:78px; }
+.lg-matrix tbody th{ background:var(--paper-2); text-align:left; padding:12px 14px;
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; font-weight:500; white-space:nowrap; position:sticky; left:0;
+  z-index:2; }
+.lg-cell{ display:block; text-decoration:none; padding:16px 6px;
+  font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--ink);
+  transition:background .15s ease; }
+.lg-cell:hover{ background:var(--paper-3); }
+.lg-cell[data-n="0"]{ color:var(--ink-3); opacity:.4; }
+.lg-matrixscroll{ overflow-x:auto; border:1px solid var(--rule); }
+.lg-tabs{ display:flex; gap:0; border-bottom:2px solid var(--ink); margin-bottom:26px;
+  overflow-x:auto; }
+.lg-tab{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; padding:12px 18px; cursor:pointer; background:none;
+  border:0; color:var(--ink-3); white-space:nowrap; }
+.lg-tab[aria-selected="true"]{ background:var(--ink); color:var(--paper); }
+@media(max-width:600px){ .lg-sec{ grid-template-columns:4rem 1fr; }
+  .lg-step{ grid-template-columns:2rem 1fr; gap:10px; } }
+
+@media print{
+  #ticker,#nav,#foot,#dot,.lg-tools,.lg-tabs,.lg-chip,.skip-link{ display:none !important; }
+  body::after{ display:none; }
+  .lg-step{ break-inside:avoid; }
+  a{ text-decoration:none; color:#000; }
+  .page-emblem{ display:none; }
+}
+</style>
+</head>
+<body data-pillar="education">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="ticker" class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+    <span class="hot">In defence of makers, builders, dreamers</span><span>·</span>
+    <span>A non-profit legal clinic</span><span>·</span>
+    <span>Pro bono since 2025</span><span>·</span>
+    <span class="hot">★ As featured in The Star</span><span>·</span>
+    <span>Free &amp; confidential</span><span>·</span>
+    <span>Art × Law Initiative Malaysia</span><span>·</span>
+    <span class="hot">★ Know your rights</span><span>·</span>
+    <span>@artxlawmas</span><span>·</span>
+  </div>
+</div>
+<header id="nav">
+  <div class="wrap row">
+    <a class="wordmark" href="../../index.html" aria-label="ALIM home">
+      <span class="alim">Alim</span><span class="my">·my</span>
+      <span class="sub">Art × Law Initiative Malaysia</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../get-help/">Get Help</a>
+      <a href="../../our-work/">Our Work</a>
+      <a href="../../resources/" aria-current="page">Resources</a>
+      <a href="../../join-us/">Join the Movement</a>
+      <a href="../../about-alim/">About Us</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-toggle" aria-label="Toggle night charter" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.3 11.3 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.3-11.3 1.4-1.4"/></svg>
+      </button>
+      <a class="navcta" href="../../get-help/">Get Legal Help <span aria-hidden="true">→</span></a>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-nav" aria-label="Mobile">
+    <a href="../../get-help/">Get Help</a>
+    <a href="../../our-work/">Our Work</a>
+    <a href="../../resources/">Resources</a>
+    <a href="../../join-us/">Join the Movement</a>
+    <a href="../../about-alim/">About Us</a>
+    <a href="../../request-consultation/">Request a Consultation</a>
+  </nav>
+</header>
+<main id="main">
+<section class="dossier-head">
+  <div class="wrap">
+    <div class="dossier-meta">
+      <span class="bar">Federal Act · Core</span>
+      <div style="text-align:right">
+        <span class="label">§ File · Legislation</span>
+        <span class="label" style="display:block;margin-top:4px">Pillar 03 · Education</span>
+      </div>
+    </div>
+    <p class="label" style="margin:0 0 10px"><a class="ulink" href="../">&larr; Legislation library</a></p>
+    <h1 class="page-h1">Contracts Act 1950</h1>
+    <p class="page-lede" style="font-size:17px">CONTRACTS ACT 1950</p>
+    <p class="label" style="margin-top:6px">AKTA KONTRAK 1950</p>
+    <p class="label" style="margin-top:14px">Act 136 · consolidated to 1 Jan 2006 · 91 pp</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px"><span class="lg-ink" style="background:#00663A">Socio-economic rights</span></div>
+    <div class="lg-warn lg-old" style="margin:22px 0">This copy of the Act is 20 years old. Any amendment made since 1 January 2006 is <strong>not</strong> in this text. Check the <a class="ulink" href="https://lom.agc.gov.my/act-detail.php?act=136&amp;lang=BI" target="_blank" rel="noopener">AGC record</a> for later amendments.</div>
+  </div>
+  <div class="page-emblem" aria-hidden="true">03</div>
+</section>
+
+<section class="pad-sm"><div class="wrap-narrow">
+  <div class="sec-head"><div><span class="bar">Why it matters</span><h2>What this does to artists</h2></div></div>
+  <p class="prose">Every commission, gig, residency, publishing deal, sync licence and band agreement is a contract, and this is the Act that decides whether one exists, what it means and what happens when it is broken. Read with the Copyright Act for any deal touching rights.</p>
+</div></section>
+<section class="pad-sm"><div class="wrap-narrow">
+  <div class="card card-dark" style="padding:26px">
+    <span class="stamp" style="color:var(--riso-marigold);border-color:var(--riso-marigold)">Watch this</span>
+    <p style="font-size:15.5px;line-height:1.65;margin:14px 0 0">Section 28 makes agreements in restraint of trade void, which is why most exclusivity clauses in Malaysian artist and management agreements are weaker than they look.</p></div>
+</div></section>
+
+<section class="pad-sm"><div class="wrap-narrow">
+  <div class="sec-head"><div><span class="bar">Start here</span><h2>What to read first</h2></div></div>
+  <p class="label" style="margin:0 0 14px">Section numbers read out of the AGC text itself</p>
+  <div class="card" style="padding:18px 24px"><div class="lg-sec"><span class="lg-num">s.3</span><span>Communication, acceptance and revocation of proposals</span></div><div class="lg-sec"><span class="lg-num">s.10</span><span>What agreements are contracts</span></div><div class="lg-sec"><span class="lg-num">s.30</span><span>Agreements void for uncertainty</span></div><div class="lg-sec"><span class="lg-num lg-topic" title="Topic reference; the section number could not be confirmed from the AGC text">topic</span><span>Agreement in restraint of trade void</span></div><div class="lg-sec"><span class="lg-num">s.20</span><span>Power to set aside contract induced by undue influence</span></div><div class="lg-sec"><span class="lg-num">s.18</span><span>“Misrepresentation”</span></div><div class="lg-sec"><span class="lg-num lg-topic" title="Topic reference; the section number could not be confirmed from the AGC text">topic</span><span>Contingent contracts</span></div><div class="lg-sec"><span class="lg-num">s.74</span><span>(1) Compensation for loss or damage caused by breach of contract (2) Compensation for failure to discharge obligation resembling those created by contract</span></div><div class="lg-sec"><span class="lg-num lg-topic" title="Topic reference; the section number could not be confirmed from the AGC text">topic</span><span>Compensation for loss or damage</span></div><div class="lg-sec"><span class="lg-num lg-topic" title="Topic reference; the section number could not be confirmed from the AGC text">topic</span><span>Agency</span></div></div>
+</div></section>
+<section class="pad-sm"><div class="wrap-narrow">
+  <div class="sec-head"><div><span class="bar">In practice</span><h2>Where this one bites</h2></div></div>
+  <div class="grid grid-2"><a class="card lg-card" href="../doing/dj-club-night/"><span class="idx">Scenario</span><h3>DJ a club night</h3><p>You are playing other people&#x27;s recordings to a paying room. Three separate licences, one venue licence, a stat&hellip;</p></a><a class="card lg-card" href="../doing/release-track/"><span class="idx">Scenario</span><h3>Release and distribute a track</h3><p>Ownership, registration and the two separate rights in every recording.&hellip;</p></a><a class="card lg-card" href="../doing/sync-licence/"><span class="idx">Scenario</span><h3>Licence a song for an ad, film or game</h3><p>Two permissions, usually from two different owners, and a blanket licence is neither of them.&hellip;</p></a><a class="card lg-card" href="../doing/exhibit-sell-art/"><span class="idx">Scenario</span><h3>Exhibit and sell your work</h3><p>Selling the object is not selling the copyright, and the commission clause decides who owned it in the first p&hellip;</p></a><a class="card lg-card" href="../doing/mural/"><span class="idx">Scenario</span><h3>Paint a mural or install work in public space</h3><p>Your copyright survives on someone else&#x27;s wall. What the owner may then do to it is the fight.&hellip;</p></a><a class="card lg-card" href="../doing/management-deal/"><span class="idx">Scenario</span><h3>Sign a management, label or agency deal</h3><p>** `What you assign you do not get back. And the clause that looks like a life sentence is often weaker than i&hellip;</p></a></div>
+</div></section>
+<section class="pad-sm"><div class="wrap-narrow">
+  <details class="card lg-fold" style="padding:22px 24px">
+    <summary><span style="font-family:'Literata',Georgia,serif;font-size:19px">Full arrangement of sections</span>
+      <span class="label">185 sections · show / hide</span></summary>
+    <p class="label" style="margin:14px 0 0">Extracted from the AGC PDF on this page.</p>
+    <div class="lg-arr"><div class="lg-sec"><span class="lg-num">s.1</span><span>Short title</span></div><div class="lg-sec"><span class="lg-num">s.2</span><span>Interpretation</span></div><div class="lg-sec"><span class="lg-num">s.3</span><span>Communication, acceptance and revocation of proposals</span></div><div class="lg-sec"><span class="lg-num">s.4</span><span>Communication, when complete</span></div><div class="lg-sec"><span class="lg-num">s.5</span><span>Revocation of proposals and acceptances</span></div><div class="lg-sec"><span class="lg-num">s.6</span><span>Revocation how made</span></div><div class="lg-sec"><span class="lg-num">s.7</span><span>Acceptance must be absolute</span></div><div class="lg-sec"><span class="lg-num">s.8</span><span>Acceptance by performing conditions, or receiving consideration</span></div><div class="lg-sec"><span class="lg-num">s.9</span><span>Promises, express and implied</span></div><div class="lg-sec"><span class="lg-num">s.10</span><span>What agreements are contracts</span></div><div class="lg-sec"><span class="lg-num">s.11</span><span>Who are competent to contract</span></div><div class="lg-sec"><span class="lg-num">s.12</span><span>What is a sound mind for the purposes of contracting</span></div><div class="lg-sec"><span class="lg-num">s.13</span><span>“Consent”</span></div><div class="lg-sec"><span class="lg-num">s.14</span><span>“Free consent”</span></div><div class="lg-sec"><span class="lg-num">s.15</span><span>“Coercion”</span></div><div class="lg-sec"><span class="lg-num">s.16</span><span>“Undue influence”</span></div><div class="lg-sec"><span class="lg-num">s.17</span><span>“Fraud”</span></div><div class="lg-sec"><span class="lg-num">s.18</span><span>“Misrepresentation”</span></div><div class="lg-sec"><span class="lg-num">s.19</span><span>Voidability of agreements without free consent</span></div><div class="lg-sec"><span class="lg-num">s.20</span><span>Power to set aside contract induced by undue influence</span></div><div class="lg-sec"><span class="lg-num">s.21</span><span>Agreement void where both parties are under mistake as to matter of fact</span></div><div class="lg-sec"><span class="lg-num">s.22</span><span>Effect of mistake as to law</span></div><div class="lg-sec"><span class="lg-num">s.23</span><span>Contract caused by mistake of one party as to matter of fact</span></div><div class="lg-sec"><span class="lg-num">s.24</span><span>What considerations and object are lawful, and what not Void Agreements</span></div><div class="lg-sec"><span class="lg-num">s.25</span><span>Agreements void if considerations and objects unlawful in part</span></div><div class="lg-sec"><span class="lg-num">s.27</span><span>Agreement in restraint of marriage void</span></div><div class="lg-sec"><span class="lg-num">s.30</span><span>Agreements void for uncertainty</span></div><div class="lg-sec"><span class="lg-num">s.31</span><span>(1) Agreements by way of wager void (2) Exception in favour of certain prizes for horse racing</span></div><div class="lg-sec"><span class="lg-num">s.32</span><span>“Contingent contract”</span></div><div class="lg-sec"><span class="lg-num">s.33</span><span>Enforcement of contracts contingent on an event happening</span></div><div class="lg-sec"><span class="lg-num">s.34</span><span>Enforcement of contracts contingent on an event not happening</span></div><div class="lg-sec"><span class="lg-num">s.35</span><span>When event on which contract is contingent to be deemed impossible, if it is the future conduct of a living person</span></div><div class="lg-sec"><span class="lg-num">s.37</span><span>Agreement contingent on impossible events void</span></div><div class="lg-sec"><span class="lg-num">s.38</span><span>Obligation of parties to contracts</span></div><div class="lg-sec"><span class="lg-num">s.39</span><span>Effect of refusal to accept offer of performance</span></div><div class="lg-sec"><span class="lg-num">s.40</span><span>Effect of refusal of party to perform promise wholly By whom Contracts must be Performed</span></div><div class="lg-sec"><span class="lg-num">s.41</span><span>Person by whom promise is to be performed</span></div><div class="lg-sec"><span class="lg-num">s.42</span><span>Effect of accepting performance from third person</span></div><div class="lg-sec"><span class="lg-num">s.43</span><span>Devolution of joint liabilities</span></div><div class="lg-sec"><span class="lg-num">s.44</span><span>(1) Any one of joint promisors may be compelled to perform (2) Each promisor may compel contribution (3) Sharing of loss by default in contribution</span></div><div class="lg-sec"><span class="lg-num">s.45</span><span>Effect of release of one joint promisor</span></div><div class="lg-sec"><span class="lg-num">s.46</span><span>Devolution of joint rights Time and Place for Performance</span></div><div class="lg-sec"><span class="lg-num">s.47</span><span>Time for performance of promise where no application is to be made and no time is specified</span></div><div class="lg-sec"><span class="lg-num">s.48</span><span>Time and place for performance of promise where time is specified and no application to be made</span></div><div class="lg-sec"><span class="lg-num">s.49</span><span>Application for performance on certain day to be at proper time and place</span></div><div class="lg-sec"><span class="lg-num">s.50</span><span>Place for performance of promise where no application to be made and no place fixed</span></div><div class="lg-sec"><span class="lg-num">s.51</span><span>Performance in manner of at time prescribed or sanctioned by promisee Performance of Reciprocal Promises</span></div><div class="lg-sec"><span class="lg-num">s.52</span><span>Promisor not bound to perform unless reciprocal promisee ready and willing to perform</span></div><div class="lg-sec"><span class="lg-num">s.53</span><span>Order of performance of reciprocal promises</span></div><div class="lg-sec"><span class="lg-num">s.54</span><span>Liability of party preventing event on which contract is to take effect</span></div><div class="lg-sec"><span class="lg-num">s.55</span><span>Effect of defaults as to that promise which should be first performed, in contract consisting of reciprocal promises</span></div><div class="lg-sec"><span class="lg-num">s.58</span><span>Reciprocal promise to do things legal, and also other things illegal</span></div><div class="lg-sec"><span class="lg-num">s.59</span><span>Alternative promise, one branch being illegal Appropriation of Payments</span></div><div class="lg-sec"><span class="lg-num">s.60</span><span>Application of payment where debt to be discharged is indicated</span></div><div class="lg-sec"><span class="lg-num">s.61</span><span>Application of payment where debt to be discharged is not indicated</span></div><div class="lg-sec"><span class="lg-num">s.62</span><span>Application of payment where neither party appropriates Contracts which need not be Performed</span></div><div class="lg-sec"><span class="lg-num">s.63</span><span>Effect of novation, rescission and alteration of contract</span></div><div class="lg-sec"><span class="lg-num">s.64</span><span>Promisee may dispense with or remit performance of promise</span></div><div class="lg-sec"><span class="lg-num">s.65</span><span>Consequences of rescission of voidable contract</span></div><div class="lg-sec"><span class="lg-num">s.66</span><span>Obligation of person who has received advantage under void agreement, or contract that becomes void</span></div><div class="lg-sec"><span class="lg-num">s.67</span><span>Mode of communicating or revoking rescission of voidable contract</span></div><div class="lg-sec"><span class="lg-num">s.68</span><span>Effect of neglect of promisee to afford promisor reasonable facilities for performance</span></div><div class="lg-sec"><span class="lg-num">s.69</span><span>Claim for necessaries supplied to person incapable of contracting, or on his account</span></div><div class="lg-sec"><span class="lg-num">s.70</span><span>Reimbursement of person paying money due by another, in payment of which he is interested</span></div><div class="lg-sec"><span class="lg-num">s.71</span><span>Obligation of person enjoying benefit of non-gratuitous act</span></div><div class="lg-sec"><span class="lg-num">s.72</span><span>Responsibility or finder of goods</span></div><div class="lg-sec"><span class="lg-num">s.73</span><span>Liability of person to whom money is paid, or thing delivered, by mistake or under coercion</span></div><div class="lg-sec"><span class="lg-num">s.74</span><span>(1) Compensation for loss or damage caused by breach of contract (2) Compensation for failure to discharge obligation resembling those created by contract</span></div><div class="lg-sec"><span class="lg-num">s.75</span><span>Compensation for breach of contract where penalty stipulated for</span></div><div class="lg-sec"><span class="lg-num">s.76</span><span>Party rightfully rescinding contract entitled to compensation</span></div><div class="lg-sec"><span class="lg-num">s.77</span><span>“Contract of indemnity”</span></div><div class="lg-sec"><span class="lg-num">s.78</span><span>Rights of indemnity holder when sued</span></div><div class="lg-sec"><span class="lg-num">s.79</span><span>“Contract of guarantee”, “surety”, “principal debtor”, and “creditor”</span></div><div class="lg-sec"><span class="lg-num">s.80</span><span>Consideration for guarantee</span></div><div class="lg-sec"><span class="lg-num">s.81</span><span>Surety’s liability</span></div><div class="lg-sec"><span class="lg-num">s.82</span><span>“Continuing guarantee”</span></div><div class="lg-sec"><span class="lg-num">s.83</span><span>Revocation of continuing guarantee</span></div><div class="lg-sec"><span class="lg-num">s.84</span><span>Revocation of continuing guarantee by surety’s death</span></div><div class="lg-sec"><span class="lg-num">s.85</span><span>Liability of two persons, primarily liable, not affected by arrangement between them that one shall be surety on other’s default</span></div><div class="lg-sec"><span class="lg-num">s.86</span><span>Discharge of surety by variance in terms of contract</span></div><div class="lg-sec"><span class="lg-num">s.87</span><span>Discharge of surety by release or discharge of principal debtor</span></div><div class="lg-sec"><span class="lg-num">s.88</span><span>Discharge of surety when creditor compounds with, gives time to, or agrees not to sue principal debtor</span></div><div class="lg-sec"><span class="lg-num">s.89</span><span>Surety not discharged when agreement made with third person to give time to principal debtor</span></div><div class="lg-sec"><span class="lg-num">s.90</span><span>Creditor’s forbearance to sue does not discharge surety</span></div><div class="lg-sec"><span class="lg-num">s.91</span><span>Release of one co-surety does not discharge others</span></div><div class="lg-sec"><span class="lg-num">s.92</span><span>Discharge of surety by creditor’s act or omission impairing surety’s eventual remedy</span></div><div class="lg-sec"><span class="lg-num">s.93</span><span>Rights of surety on payment or performance</span></div><div class="lg-sec"><span class="lg-num">s.94</span><span>Surety’s right to benefit of creditor’s securities</span></div><div class="lg-sec"><span class="lg-num">s.95</span><span>Guarantee obtained by misrepresentation invalid</span></div><div class="lg-sec"><span class="lg-num">s.96</span><span>Guarantee obtained by concealment invalid</span></div><div class="lg-sec"><span class="lg-num">s.97</span><span>Guarantee on contract that creditor shall not act on it until co-surety joins</span></div><div class="lg-sec"><span class="lg-num">s.98</span><span>Implied promise to indemnify surety</span></div><div class="lg-sec"><span class="lg-num">s.99</span><span>Co-sureties liable to contribute equally</span></div><div class="lg-sec"><span class="lg-num">s.100</span><span>Liability of co-sureties bound in different sums</span></div><div class="lg-sec"><span class="lg-num">s.101</span><span>“Bailment”, “bailor” and “bailee”</span></div><div class="lg-sec"><span class="lg-num">s.102</span><span>Delivery to bailee how made</span></div><div class="lg-sec"><span class="lg-num">s.103</span><span>Bailor’s duty to disclose faults in goods bailed</span></div><div class="lg-sec"><span class="lg-num">s.104</span><span>Care to be taken by bailee</span></div><div class="lg-sec"><span class="lg-num">s.105</span><span>Bailee when not liable for loss, etc., of thing bailed</span></div><div class="lg-sec"><span class="lg-num">s.106</span><span>Termination of bailment by bailee’s act inconsistent with conditions</span></div><div class="lg-sec"><span class="lg-num">s.107</span><span>Liability of bailee making unauthorized use of goods bailed</span></div><div class="lg-sec"><span class="lg-num">s.108</span><span>Effect of mixture, with bailor’s consent, of his goods with bailee’s</span></div><div class="lg-sec"><span class="lg-num">s.109</span><span>Effect of mixture, without bailor’s consent, when the goods can be separated</span></div><div class="lg-sec"><span class="lg-num">s.110</span><span>Effect of mixture, without bailor’s consent, when the goods cannot be separated</span></div><div class="lg-sec"><span class="lg-num">s.111</span><span>Repayment by bailor of necessary expenses</span></div><div class="lg-sec"><span class="lg-num">s.112</span><span>Restoration of goods lent gratuitously</span></div><div class="lg-sec"><span class="lg-num">s.113</span><span>Return of goods bailed, on expiration of time or accomplishment of purpose</span></div><div class="lg-sec"><span class="lg-num">s.114</span><span>Bailee’s responsibility when goods are not duly returned</span></div><div class="lg-sec"><span class="lg-num">s.115</span><span>Termination of gratuitous bailment by death</span></div><div class="lg-sec"><span class="lg-num">s.116</span><span>Bailor entitled to increase or profit from goods bailed</span></div><div class="lg-sec"><span class="lg-num">s.117</span><span>Bailor’s responsibility to bailee</span></div><div class="lg-sec"><span class="lg-num">s.118</span><span>Bailment by several joint owners</span></div><div class="lg-sec"><span class="lg-num">s.119</span><span>Bailee not responsible on re-delivery to bailor without title</span></div><div class="lg-sec"><span class="lg-num">s.120</span><span>Right of third person claiming goods bailed</span></div><div class="lg-sec"><span class="lg-num">s.121</span><span>Right of finder of goods; may sue for specific reward offered</span></div><div class="lg-sec"><span class="lg-num">s.122</span><span>When finder of thing commonly on sale may sell it</span></div><div class="lg-sec"><span class="lg-num">s.123</span><span>Bailee’s particular lien</span></div><div class="lg-sec"><span class="lg-num">s.124</span><span>General lien of bankers, factors, wharfingers, advocates and policy brokers Bailments of Pledges</span></div><div class="lg-sec"><span class="lg-num">s.125</span><span>“Pledge”, “pawnor” and “pawnee”</span></div><div class="lg-sec"><span class="lg-num">s.126</span><span>Pawnee’s right of retainer</span></div><div class="lg-sec"><span class="lg-num">s.127</span><span>Pawnee not to retain for debt or promise other than that for which goods pledged. Presumption in case of subsequent advances</span></div><div class="lg-sec"><span class="lg-num">s.128</span><span>Pawnee’s right as to extraordinary expenses incurred</span></div><div class="lg-sec"><span class="lg-num">s.129</span><span>Pawnee’s right where pawnor makes default</span></div><div class="lg-sec"><span class="lg-num">s.130</span><span>Defaulting pawnor’s right to redeem</span></div><div class="lg-sec"><span class="lg-num">s.131</span><span>Pledge by possessor of goods, or of documentary title to goods</span></div><div class="lg-sec"><span class="lg-num">s.132</span><span>Pledge where pawnor has only a limited interest Suits by Bailees or Bailor againts Wrongdoers</span></div><div class="lg-sec"><span class="lg-num">s.133</span><span>Suit by bailor or bailee against wrongdoer</span></div><div class="lg-sec"><span class="lg-num">s.134</span><span>Apportionment of relief or compensation obtained by such suits</span></div><div class="lg-sec"><span class="lg-num">s.135</span><span>“Agent” and “principal”</span></div><div class="lg-sec"><span class="lg-num">s.136</span><span>Who may employ agent</span></div><div class="lg-sec"><span class="lg-num">s.137</span><span>Who may be an agent</span></div><div class="lg-sec"><span class="lg-num">s.138</span><span>Consideration not necessary</span></div><div class="lg-sec"><span class="lg-num">s.139</span><span>Agent’s authority may be expressed or implied</span></div><div class="lg-sec"><span class="lg-num">s.140</span><span>Definitions of express and implied authority</span></div><div class="lg-sec"><span class="lg-num">s.141</span><span>Extent of agent’s authority</span></div><div class="lg-sec"><span class="lg-num">s.142</span><span>Agent’s authority in an emergency Sub-agents</span></div><div class="lg-sec"><span class="lg-num">s.143</span><span>When agent cannot delegate</span></div><div class="lg-sec"><span class="lg-num">s.144</span><span>“Sub-agent”</span></div><div class="lg-sec"><span class="lg-num">s.145</span><span>(1) Representation of principal by sub-agent properly appointed (2) Agent’s responsibility for sub-agent (3) Sub-agent’s responsibility</span></div><div class="lg-sec"><span class="lg-num">s.146</span><span>Agent’s responsibility for sub-agent appointed without authority</span></div><div class="lg-sec"><span class="lg-num">s.147</span><span>Relation between principal and person duly appointed by agent to act in business of agency</span></div><div class="lg-sec"><span class="lg-num">s.148</span><span>Agent’s duty in naming such person Ratification</span></div><div class="lg-sec"><span class="lg-num">s.149</span><span>Right of person as to acts done for him without his authority. Effect of ratification</span></div><div class="lg-sec"><span class="lg-num">s.150</span><span>Ratification may be expressed or implied</span></div><div class="lg-sec"><span class="lg-num">s.151</span><span>Knowledge requisite to valid ratification</span></div><div class="lg-sec"><span class="lg-num">s.152</span><span>Effect of ratifying unauthorized act forming part of a transaction</span></div><div class="lg-sec"><span class="lg-num">s.153</span><span>Ratification of unauthorized act cannot injure third person Revocation of Authority</span></div><div class="lg-sec"><span class="lg-num">s.154</span><span>Termination of agency</span></div><div class="lg-sec"><span class="lg-num">s.155</span><span>Termination of agency, where agent has an interest in subject-matter</span></div><div class="lg-sec"><span class="lg-num">s.156</span><span>When principal may revoke agent’s authority</span></div><div class="lg-sec"><span class="lg-num">s.157</span><span>Revocation where authority has been partly exercised</span></div><div class="lg-sec"><span class="lg-num">s.158</span><span>Compensation for revocation by principal or renunciation by agent</span></div><div class="lg-sec"><span class="lg-num">s.159</span><span>Notice of revocation or renunciation</span></div><div class="lg-sec"><span class="lg-num">s.160</span><span>Revocation and renunciation may be expressed or implied</span></div><div class="lg-sec"><span class="lg-num">s.161</span><span>When termination of agent’s authority takes effect as to agent, and as to third persons</span></div><div class="lg-sec"><span class="lg-num">s.162</span><span>Agent’s duty on termination of agency by principal’s death or insanity</span></div><div class="lg-sec"><span class="lg-num">s.163</span><span>Termination of sub-agent’s authority Agent’s duty to Principal</span></div><div class="lg-sec"><span class="lg-num">s.164</span><span>Agent’s duty in conducting principal’s business</span></div><div class="lg-sec"><span class="lg-num">s.165</span><span>Skill and diligence required from agent</span></div><div class="lg-sec"><span class="lg-num">s.166</span><span>Agent’s accounts</span></div><div class="lg-sec"><span class="lg-num">s.167</span><span>Agent’s duty to communicate with principal</span></div><div class="lg-sec"><span class="lg-num">s.168</span><span>Right of principal when agent deals, on his own account, in business of agency without principal’s consent</span></div><div class="lg-sec"><span class="lg-num">s.169</span><span>Principal’s right to benefit gained by agent dealing on his own account in business of agency</span></div><div class="lg-sec"><span class="lg-num">s.170</span><span>Agent’s right of retainer out of sums received on principal’s account</span></div><div class="lg-sec"><span class="lg-num">s.171</span><span>Agent’s duty to pay sums received for principal</span></div><div class="lg-sec"><span class="lg-num">s.172</span><span>When agent’s remuneration becomes due</span></div><div class="lg-sec"><span class="lg-num">s.173</span><span>Agent not entitled to remuneration for business misconducted</span></div><div class="lg-sec"><span class="lg-num">s.174</span><span>Agent’s lien on principal’s property Principal’s duty to Agent</span></div><div class="lg-sec"><span class="lg-num">s.175</span><span>Agent to be indemnified against consequences of lawful acts</span></div><div class="lg-sec"><span class="lg-num">s.176</span><span>Agent to be indemnified against consequences of acts done in good faith</span></div><div class="lg-sec"><span class="lg-num">s.177</span><span>Non-liability of employer of agent to do a criminal act</span></div><div class="lg-sec"><span class="lg-num">s.178</span><span>Compensation to agent for injury caused by principal’s neglect Effect of Agency on Contract with Third Persons</span></div><div class="lg-sec"><span class="lg-num">s.179</span><span>Enforcement and consequences of agent’s contracts</span></div><div class="lg-sec"><span class="lg-num">s.180</span><span>Principal how far bound when agent exceeds authority</span></div><div class="lg-sec"><span class="lg-num">s.181</span><span>Principal not bound when excess of agent’s authority is not separable</span></div><div class="lg-sec"><span class="lg-num">s.182</span><span>Consequences of notice given to agent</span></div><div class="lg-sec"><span class="lg-num">s.183</span><span>Agent cannot personally enforce, nor be bound by, contracts on behalf of principal Presumption of contract to contrary</span></div><div class="lg-sec"><span class="lg-num">s.184</span><span>Rights of parties to a contract made by agent not disclosed</span></div><div class="lg-sec"><span class="lg-num">s.185</span><span>Performance of contract with agent supposed to be principal</span></div><div class="lg-sec"><span class="lg-num">s.186</span><span>Right of person dealing with agent personally liable</span></div><div class="lg-sec"><span class="lg-num">s.187</span><span>Consequence of inducing agent or principal to act on belief that principal or agent will be held exclusively liable</span></div><div class="lg-sec"><span class="lg-num">s.188</span><span>Liability of pretended agent</span></div><div class="lg-sec"><span class="lg-num">s.189</span><span>Person falsely contracting as agent not entitled to performance</span></div><div class="lg-sec"><span class="lg-num">s.190</span><span>Liability of principal inducing belief that agent’s unauthorized acts were authorized</span></div><div class="lg-sec"><span class="lg-num">s.191</span><span>Effect, on agreement, of misrepresentation or fraud by agent</span></div></div>
+  </details>
+</div></section>
+
+<section class="pad-sm"><div class="wrap-narrow">
+  <div class="sec-head"><div><span class="bar">Full text</span><h2>Read the law</h2></div></div>
+  <div class="grid grid-2"><a class="card lg-card" href="../../legislation/pdf/act-136-bi.pdf" target="_blank" rel="noopener"><span class="idx">PDF · 0.2 MB · hosted by ALIM</span><h3>English text</h3><p>Open the full text &rarr;</p></a></div>
+  <p class="label" style="margin-top:16px">Source of record ·
+    <a class="ulink" href="https://lom.agc.gov.my/act-detail.php?act=136&amp;lang=BI" target="_blank" rel="noopener">lom.agc.gov.my/act-detail.php?act=136&amp;lang=BI</a></p>
+</div></section>
+
+<section class="pad-sm"><div class="wrap-narrow">
+  <span class="label">Who this reaches</span>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 26px"><span class="lg-chip" style="cursor:default">Visual arts</span><span class="lg-chip" style="cursor:default">Music</span><span class="lg-chip" style="cursor:default">Film &amp; TV</span><span class="lg-chip" style="cursor:default">Performing arts</span><span class="lg-chip" style="cursor:default">Literature, writing &amp; publishing</span><span class="lg-chip" style="cursor:default">Fashion &amp; craft</span><span class="lg-chip" style="cursor:default">Digital &amp; media</span><span class="lg-chip" style="cursor:default">Museum &amp; archiving</span><span class="lg-chip" style="cursor:default">Content creation</span><span class="lg-chip" style="cursor:default">Everything else</span></div>
+  <div class="card lg-notice" style="padding:28px">
+<span class="bar">Important notice</span>
+<p>This page is published by ALIM (Art &times; Law Initiative Malaysia) as general legal
+information for Malaysia&rsquo;s creative communities. It is not legal advice. It does not take
+your circumstances into account, and reading it does not create a solicitor-client relationship
+with ALIM or with anyone associated with it.</p>
+<p>The law changes. Each Act reproduced here is the Attorney General&rsquo;s Chambers&rsquo;
+consolidated reprint and carries the date it was consolidated to; amendments made after that date
+do not appear in the text, and the authoritative version of any Malaysian law is the one published
+in the Federal Gazette. Subsidiary legislation, state enactments and local authority by-laws may
+also apply to your situation and are largely outside this library.</p>
+<p>Please do not act, or decide not to act, on the strength of this page alone. Take advice from an
+advocate and solicitor on your own facts. To the extent permitted by law, ALIM and its contributors
+accept no liability for any loss arising from reliance on this page.</p>
+<p class="lg-notice-cta">If you have a live problem,
+<a class="ulink" href="../../get-help/">talk to us</a>. It is free and confidential.</p>
+</div>
+</div></section>
+</main>
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="alim">Alim<span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-style:normal">·my</span></span>
+        <p>Championing the legal rights of artists and cultural workers across Malaysia through advice, advocacy, and education.</p>
+        <p style="margin-top:12px;font-size:13px;line-height:1.55;color:var(--ink-3)">Legislation sourced from the Attorney General's Chambers, <a class="ulink" href="https://lom.agc.gov.my/" target="_blank" rel="noopener">lom.agc.gov.my</a>. Catalogue checked 2026-09-21; pages generated 2026-09-21. The authoritative text of any Malaysian law is the version published in the Federal Gazette.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../../get-help/">Get Help</a></li>
+          <li><a href="../../our-work/">Our Work</a></li>
+          <li><a href="../../mission/">Our Charter</a></li>
+          <li><a href="../../resources/">Resources</a></li>
+          <li><a href="../../legislation/">Legislation Library</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="../../about-alim/">About Us</a></li>
+          <li><a href="../../faq/">FAQ</a></li>
+          <li><a href="../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../terms-of-service/">Terms of Service</a></li>
+          <li><a href="../../sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/artxlawmas/" target="_blank" rel="noopener">Instagram @artxlawmas</a></li>
+          <li><a href="https://www.threads.net/@artxlawmas" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://linktr.ee/artxlawinitiative" target="_blank" rel="noopener">Linktree</a></li>
+          <li><a href="mailto:artxlawinitiative@gmail.com">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> ALIM.my (Art × Law Initiative Malaysia). All rights reserved.</span>
+      <span>Made with purpose in Malaysia.</span>
+    </div>
+  </div>
+</footer>
+<div id="dot" aria-hidden="true"></div>
+<script src="../../assets/alim.js"></script>
+
+</body></html>
