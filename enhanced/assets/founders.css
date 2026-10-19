@@ -114,7 +114,7 @@ html.charter .fm-pin .tip{ background:#000; }
 .fm-close{ background:#1A1612; color:#F2EBDD; }
 html.charter .fm-close{ background:#000; }
 .fm-close-grid{ display:grid; }
-@media(min-width:980px){ .fm-close-grid{ grid-template-columns:1.6fr 1fr; min-height:580px; } }
+@media(min-width:1280px){ .fm-close-grid{ grid-template-columns:1.6fr 1fr; min-height:580px; } }
 .fm-close-img{ position:relative; overflow:hidden; min-height:340px; }
 .fm-close-img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; transform:translateY(var(--py,0)) scale(1.03); }
 .fm-close-txt{ padding:clamp(44px,6vw,84px) clamp(24px,5vw,72px); display:flex; flex-direction:column; justify-content:center; }
@@ -209,4 +209,7 @@ body.fm-lock{ overflow:hidden; }
 .fm-d-scroll .prose p+p{ margin-top:1em; }
 
 /* closing band: show the full wide group frame on narrow screens */
-@media(max-width:979px){ .fm-close-img{ min-height:0; aspect-ratio:5663/3718; } }
+@media(max-width:1279px){ .fm-close-img{ min-height:0; aspect-ratio:5663/3718; } }
+
+/* desktop closing band: photo box keeps the photo ratio so nobody is cropped at any width */
+@media(min-width:1280px){ .fm-close-grid{ min-height:0; } .fm-close-img{ min-height:0; aspect-ratio:5663/3718; align-self:center; } }
