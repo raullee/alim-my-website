@@ -9,7 +9,7 @@
   var people = cards.map(function (c, i) {
     return { i: i, slug: c.getAttribute("data-slug"), key: c.getAttribute("data-key"),
       name: c.querySelector(".fm-name").textContent.trim(),
-      role: c.querySelector(".fm-role").innerHTML, bio: c.querySelector(".fm-bio") };
+      role: (c.querySelector(".fm-role") || {}).innerHTML || "", bio: c.querySelector(".fm-bio") };
   });
   var bySlug = {}; people.forEach(function (p) { bySlug[p.slug] = p; });
   function img(p, kind, w) { return ASSET + p.key + "-" + kind + "-" + w + ".webp"; }
@@ -51,7 +51,7 @@
       dNo.textContent = "FM·" + num;
       dCount.textContent = "Founding Member · " + num + " / " + ("0" + people.length).slice(-2);
       dScroll.innerHTML = '<img class="fm-d-mphoto" src="' + img(p, "a", 1080) + '" alt="">' +
-        '<h2 id="fm-d-name">' + p.name + "</h2>" + '<p class="fm-role">' + p.role + "</p>" + p.bio.innerHTML;
+        '<h2 id="fm-d-name">' + p.name + "</h2>" + (p.role ? '<p class="fm-role">' + p.role + "</p>" : '') + p.bio.innerHTML;
       dScroll.scrollTop = 0;
       dScroll.classList.remove("swap"); void dScroll.offsetWidth; if (!reduced) dScroll.classList.add("swap");
       var prev = people[(idx - 1 + people.length) % people.length], next = people[(idx + 1) % people.length];
