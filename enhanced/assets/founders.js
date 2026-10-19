@@ -164,7 +164,7 @@
       }
       if (cimg) {
         var c = cimg.parentNode.getBoundingClientRect();
-        cimg.style.setProperty("--py", (((c.top + c.height / 2 - vh / 2) / vh) * -40).toFixed(1) + "px");
+        cimg.style.setProperty("--py", (((c.top + c.height / 2 - vh / 2) / vh) * -14).toFixed(1) + "px");
       }
       ticking = false;
     }
